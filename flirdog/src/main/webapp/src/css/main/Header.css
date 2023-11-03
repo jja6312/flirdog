@@ -1,0 +1,23 @@
+.navBar {
+  background-color: #f56084;
+}
+.logo {
+  height: 45px;
+  margin: 0 auto;
+  display: block;
+}
+
+.spaceDiv {
+  width: 455px;
+}
+
+@media (max-width: 1380px) {
+  .spaceDiv {
+    width: 400px;
+  }
+}
+@media (max-width: 1200px) {
+  .spaceDiv {
+    width: 250px;
+  }
+}
