@@ -2,6 +2,7 @@
   background-color: #f56084;
 }
 .navText {
+  font-size: 1.2rem;
   color: white;
 }
 
@@ -12,21 +13,25 @@
 }
 
 .spaceDiv {
-  width: 335px;
+  width: 265px;
 }
 
 @media (max-width: 1400px) {
   .spaceDiv {
-    width: 150px;
+    width: 120px;
   }
 }
 @media (max-width: 1154px) {
   .logo {
-    max-height: 45px;
+    max-height: 35px;
     margin: 0 auto;
     display: block;
   }
   .spaceDiv {
-    width: 0px;
+    width: 150px;
+  }
+  .navText {
+    font-size: 1rem;
+    color: white;
   }
 }

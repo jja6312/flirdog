@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Condensed:wght@700&display=swap");
 .mainIconImgText {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: rgb(88, 88, 88);
 }
 
@@ -7,9 +8,113 @@
   width: 40%;
 }
 
+.bestFlirdogTitle {
+  width: 70%;
+}
+.bestFlirdogImgContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+}
+.bestFlirdogImgRound {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+.bestFlirdogImgRound--Hover__black {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+  background-color: black;
+  opacity: 0;
+
+  transition: all 0.15s ease-in-out;
+}
+
+.bestFlirdogImgRound--Hover__text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+  color: white;
+  font-size: 2rem;
+  opacity: 0;
+
+  transition: all 0.15s ease-in-out;
+}
+.bestFlirdogImgContainer:hover .bestFlirdogImgRound--Hover__black {
+  opacity: 0.5;
+}
+.bestFlirdogImgContainer:hover .bestFlirdogImgRound--Hover__text {
+  opacity: 1;
+}
+
+.bestFlirdogPinkLikeBtn {
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 100px;
+  border-radius: 11px;
+
+  background-color: #e85b6c;
+}
+.likeBoneImg {
+  border-radius: 11px;
+  height: 80%;
+}
+.likeBoneText {
+  font-family: "Black Han Sans";
+  font-size: 4.5rem;
+  height: 100%;
+  color: white;
+}
+
+.rankingBtn {
+  height: 60px;
+  font-size: 1.7rem;
+}
+
+.pinkDivColor {
+  background-color: #f56084;
+  color: white;
+
+  cursor: pointer;
+}
+
+.whiteDivColor {
+  background-color: white;
+  color: #f56084;
+  border: 3px solid #f56084;
+  cursor: pointer;
+}
+
 @media (max-width: 1400px) {
   .mainIconImgText {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   .mainIconImg {
     width: 50%;
@@ -17,21 +122,94 @@
 }
 @media (max-width: 1154px) {
   .mainIconImgText {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
   .mainIconImg {
     width: 60%;
   }
+  .bestFlirdogImg {
+    width: 100%;
+  }
+}
+@media (max-width: 880px) {
+  .bestFlirdogPinkLikeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    border-radius: 11px;
+
+    background-color: #e85b6c;
+  }
+  .likeBoneImg {
+    border-radius: 11px;
+    height: 80%;
+  }
+  .likeBoneText {
+    font-family: "Black Han Sans";
+    font-size: 2.2rem;
+    height: 100%;
+    color: white;
+  }
 }
 @media (max-width: 620px) {
+  .rankingBtn {
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .bestFlirdogPinkLikeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 30px;
+    border-radius: 7px;
+
+    background-color: #e85b6c;
+  }
+  .likeBoneImg {
+    border-radius: 8px;
+    height: 80%;
+  }
+  .likeBoneText {
+    font-family: "Black Han Sans";
+    font-size: 1.3rem;
+    height: 100%;
+    color: white;
+  }
   .mainIconImgText {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
   .mainIconImg {
     width: 100%;
   }
 }
 @media (max-width: 400px) {
+  .bestFlirdogImgRound--Hover__text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    opacity: 0;
+
+    transition: all 0.15s ease-in-out;
+  }
+
+  .rankingBtn {
+    height: 30px;
+    font-size: 0.6rem;
+  }
   .px-10 {
     padding-left: 50px !important;
     padding-right: 50px !important;

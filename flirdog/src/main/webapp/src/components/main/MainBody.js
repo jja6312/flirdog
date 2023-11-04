@@ -3,6 +3,7 @@ import "../../css/main/MainBody.css";
 import Container from "react-bootstrap/esm/Container";
 import MainIcon from "./MainIcon";
 import { Link } from "react-router-dom";
+import BestFlirdog from "./BestFlirdog";
 
 const MainBody = () => {
   return (
@@ -31,6 +32,7 @@ const MainBody = () => {
             </Link>
           </div>
         </div>
+        <BestFlirdog></BestFlirdog>
       </Container>
     </>
   );
