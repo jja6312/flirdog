@@ -8,10 +8,10 @@
 }
 
 .spaceDiv {
-  width: 455px;
+  width: 585px;
 }
 
-@media (max-width: 1380px) {
+@media (max-width: 1400px) {
   .spaceDiv {
     width: 400px;
   }

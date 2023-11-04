@@ -12,7 +12,7 @@ const Header = () => {
       <Navbar expand="lg" className="navBar">
         <Container className="px-5 d-flex justify-content-between">
           <Link to="/">
-            <img src="/image/logo2.png" className="logo mb-2" alt="logo" />
+            <img src="/image/main/logo2.png" className="logo mb-2" alt="logo" />
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
