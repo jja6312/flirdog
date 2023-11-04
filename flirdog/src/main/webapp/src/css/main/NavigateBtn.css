@@ -1,0 +1,18 @@
+.navigateBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+}
+
+.navigateBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+
+  border-radius: 40px;
+  background-color: #f6a1b4;
+  color: white;
+}

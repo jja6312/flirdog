@@ -30,18 +30,22 @@ const Test = () => (
       src="/image/test/testImg1.jpg"
       style={{ width: "100%", height: "150px", objectFit: "cover" }}
     />
-    <Container className="px-5">
+    <Container className="px-10">
       <h3>2. 반응형으로 좌우공백 유지시키기(Container태그. </h3>
       <h3 style={{ color: "red" }}>
-        모든 꾸미는 요소의 상위에 Container className="px-5" 를 써주십시오. 저희 반응형웹 기초 틀로 가려고합니다.)
+        모든 꾸미는 요소의 상위에 Container className="px-10" 를 써주십시오.
+        저희 반응형웹 기초 틀로 가려고합니다.)
       </h3>
-      <p>Container는 화면이 작아져도 좌우 마진을 유지시켜주고, 유동적인 사이트로 보이게 해줍니다. px-5는 x축 padding을</p>
+      <p>
+        Container는 화면이 작아져도 좌우 마진을 유지시켜주고, 유동적인 사이트로
+        보이게 해줍니다. px-10는 x축 padding을
+      </p>
       <img
         src="/image/test/testImg1.jpg"
         style={{ width: "100%", height: "150px", objectFit: "cover" }}
       />
     </Container>
-    <Container className="px-5">
+    <Container className="px-10">
       <h3>
         3. close 버튼 삽입하기.(1. 리액트부트스트랩 홈페이지 - get started -
         좌측메뉴 중 Components - 하위항목 Close Button들어가기.)

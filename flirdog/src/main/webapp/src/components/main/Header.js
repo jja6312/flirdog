@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <div>
       <Navbar expand="lg" className="navBar">
-        <Container className="px-5 d-flex justify-content-between">
+        <Container className="px-10 d-flex justify-content-between">
           <Link to="/">
             <img src="/image/main/logo2.png" className="logo mb-2" alt="logo" />
           </Link>
@@ -18,25 +18,25 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <div className="spaceDiv"></div>
-              <Nav.Link style={{ color: "white" }} href="/">
+              <Nav.Link className="navText mx-2" href="/">
                 홈
               </Nav.Link>
-              <Nav.Link style={{ color: "white" }} href="/">
+              <Nav.Link className="navText mx-2" href="/">
                 애견 매칭
               </Nav.Link>
-              <Nav.Link style={{ color: "white" }} href="/">
+              <Nav.Link className="navText mx-2" href="/">
                 애견 소모임
               </Nav.Link>
-              <Nav.Link style={{ color: "white" }} href="/">
+              <Nav.Link className="navText mx-2" href="/">
                 쇼핑
               </Nav.Link>
-              <Nav.Link style={{ color: "white" }} href="/">
+              <Nav.Link className="navText mx-2" href="/">
                 마이페이지
               </Nav.Link>
-              <Nav.Link style={{ color: "white" }} href="/">
+              <Nav.Link className="navText mx-2" href="/">
                 커뮤니티
               </Nav.Link>
-              <Nav.Link style={{ color: "white" }} href="/">
+              <Nav.Link className="navText mx-2" href="/">
                 로그인
               </Nav.Link>
             </Nav>

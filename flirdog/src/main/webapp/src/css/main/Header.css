@@ -1,23 +1,37 @@
 .navBar {
   background-color: #f56084;
 }
+.navText {
+  font-size: 1.2rem;
+  color: white;
+}
+
 .logo {
-  height: 45px;
+  height: 55px;
   margin: 0 auto;
   display: block;
 }
 
 .spaceDiv {
-  width: 585px;
+  width: 265px;
 }
 
 @media (max-width: 1400px) {
   .spaceDiv {
-    width: 400px;
+    width: 120px;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1154px) {
+  .logo {
+    max-height: 35px;
+    margin: 0 auto;
+    display: block;
+  }
   .spaceDiv {
-    width: 250px;
+    width: 150px;
+  }
+  .navText {
+    font-size: 1rem;
+    color: white;
   }
 }
