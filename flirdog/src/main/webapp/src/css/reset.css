@@ -10,3 +10,8 @@
   font-size: 100%;
   vertical-align: baseline;
 }
+
+.px-10 {
+  padding-left: 8rem;
+  padding-right: 8rem;
+}

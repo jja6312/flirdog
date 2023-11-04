@@ -1,6 +1,10 @@
 .navBar {
   background-color: #f56084;
 }
+.navText {
+  color: white;
+}
+
 .logo {
   height: 45px;
   margin: 0 auto;
@@ -8,16 +12,16 @@
 }
 
 .spaceDiv {
-  width: 585px;
+  width: 355px;
 }
 
 @media (max-width: 1400px) {
   .spaceDiv {
-    width: 400px;
+    width: 180px;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1154px) {
   .spaceDiv {
-    width: 250px;
+    width: 0px;
   }
 }
