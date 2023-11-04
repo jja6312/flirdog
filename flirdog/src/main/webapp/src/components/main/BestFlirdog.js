@@ -1,5 +1,6 @@
 import React from "react";
 import BestFlirdogImg from "./BestFlirdogImg";
+import NavigateBtn from "./NavigateBtn";
 
 const BestFlirdog = () => {
   return (
@@ -30,6 +31,9 @@ const BestFlirdog = () => {
         <BestFlirdogImg srcImg="/image/main/dog1.jpg" text="999" />
         <BestFlirdogImg srcImg="/image/main/dog2.jpg" text="784" />
         <BestFlirdogImg srcImg="/image/main/dog3.jpg" text="654" />
+      </div>
+      <div className="navigateBtnContainer mt-5">
+        <NavigateBtn text="등록하러 가기" url="/"></NavigateBtn>
       </div>
     </>
   );
