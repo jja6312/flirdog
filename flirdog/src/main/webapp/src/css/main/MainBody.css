@@ -6,3 +6,40 @@
 .mainIconImg {
   width: 40%;
 }
+
+@media (max-width: 1400px) {
+  .mainIconImgText {
+    font-size: 1.2rem;
+  }
+  .mainIconImg {
+    width: 50%;
+  }
+}
+@media (max-width: 1154px) {
+  .mainIconImgText {
+    font-size: 0.8rem;
+  }
+  .mainIconImg {
+    width: 60%;
+  }
+}
+@media (max-width: 620px) {
+  .mainIconImgText {
+    font-size: 0.7rem;
+  }
+  .mainIconImg {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .px-10 {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+  .mainIconImgText {
+    font-size: 0.6rem;
+  }
+  .mainIconImg {
+    width: 100%;
+  }
+}
