@@ -13,7 +13,7 @@
 }
 
 .spaceDiv {
-  width: 265px;
+  width: 245px;
 }
 
 @media (max-width: 1400px) {
@@ -31,7 +31,7 @@
     width: 150px;
   }
   .navText {
-    font-size: 1rem;
-    color: white;
+    font-size: 1rem !important;
+    color: white !important;
   }
 }

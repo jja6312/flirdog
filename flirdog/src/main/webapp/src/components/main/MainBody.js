@@ -5,6 +5,8 @@ import MainIcon from "./MainIcon";
 import { Link } from "react-router-dom";
 import BestFlirdog from "./BestFlirdog";
 import NavigateBtn from "./NavigateBtn";
+import CommunityBtnContainer from "./CommunityBtnContainer";
+import CommunityWriteBox from "./CommunityWriteBox";
 
 const MainBody = () => {
   return (
@@ -50,6 +52,26 @@ const MainBody = () => {
           ></NavigateBtn>
         </div>
       </div>
+      <Container className="px-10">
+        <div className="row mt-8">
+          <CommunityBtnContainer></CommunityBtnContainer>
+        </div>
+
+        <div className="row mt-6">
+          <CommunityWriteBox></CommunityWriteBox>
+          <CommunityWriteBox></CommunityWriteBox>
+          <CommunityWriteBox></CommunityWriteBox>
+        </div>
+        <div className="mt-7 d-flex justify-content-center align-items-center">
+          <NavigateBtn
+            text="커뮤니티 이동"
+            url="/"
+            fontSize="2.5vw"
+            btnWidth="25vw"
+            btnHeight="10vh"
+          ></NavigateBtn>
+        </div>
+      </Container>
     </>
   );
 };

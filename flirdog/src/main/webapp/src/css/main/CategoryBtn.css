@@ -1,0 +1,13 @@
+.whiteDivColor {
+  background-color: white;
+  color: #f56084;
+  border: 3px solid #f56084;
+  cursor: pointer;
+}
+
+.pinkDivColor {
+  background-color: #f56084;
+  color: white;
+
+  cursor: pointer;
+}

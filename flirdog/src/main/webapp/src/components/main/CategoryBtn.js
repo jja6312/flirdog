@@ -1,12 +1,13 @@
 import React from "react";
 
-const CategoryBtn = ({ isSelect, text, onClick }) => {
+const CategoryBtn = ({ isSelect, text, onClick, size, height, fontSize }) => {
   const DivColor =
     isSelect === "notSelected" ? "whiteDivColor" : "pinkDivColor";
   return (
     <div
-      className={`col-3 d-flex justify-content-center align-items-center rankingBtn ${DivColor}`}
+      className={`${size} d-flex justify-content-center align-items-center rankingBtn ${DivColor}`}
       onClick={onClick}
+      style={{ height: height, fontSize: fontSize }}
     >
       <span>{text}</span>
     </div>

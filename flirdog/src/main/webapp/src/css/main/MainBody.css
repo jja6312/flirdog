@@ -93,25 +93,6 @@
   color: white;
 }
 
-.rankingBtn {
-  height: 60px;
-  font-size: 1.7rem;
-}
-
-.pinkDivColor {
-  background-color: #f56084;
-  color: white;
-
-  cursor: pointer;
-}
-
-.whiteDivColor {
-  background-color: white;
-  color: #f56084;
-  border: 3px solid #f56084;
-  cursor: pointer;
-}
-
 .dogSmallGroup {
   width: 100%;
   position: relative;

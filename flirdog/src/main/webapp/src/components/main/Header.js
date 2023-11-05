@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "../../css/main/Header.css";
 import { Link } from "react-router-dom";
+import HeaderCustomNavDropdownElement from "./HeaderCustomNavDropdownElement";
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
       <Navbar expand="lg" className="navBar">
         <Container className="px-10 d-flex justify-content-between">
           <Link to="/">
-            <img src="/image/main/logo2.png" className="logo mb-2" alt="logo" />
+            <img src="/image/main/logo2.png" className="logo" alt="logo" />
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -30,12 +31,7 @@ const Header = () => {
               <Nav.Link className="navText mx-2" href="/">
                 쇼핑
               </Nav.Link>
-              <Nav.Link className="navText mx-2" href="/">
-                마이페이지
-              </Nav.Link>
-              <Nav.Link className="navText mx-2" href="/">
-                커뮤니티
-              </Nav.Link>
+              <HeaderCustomNavDropdownElement theme="커뮤니티" />
               <Nav.Link className="navText mx-2" href="/">
                 로그인
               </Nav.Link>
