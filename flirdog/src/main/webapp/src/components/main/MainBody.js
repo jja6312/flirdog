@@ -40,9 +40,6 @@ const MainBody = () => {
             btnWidth="22vw"
             btnHeight="70px"
             theme="pink"
-            // absolute="true"
-            // absoluteTop="35vh"
-            // absoluteRight="50px"
             opacity="0.9"
           ></NavigateBtn>
           <div style={{ height: 15 }}></div>
@@ -53,10 +50,6 @@ const MainBody = () => {
             btnWidth="22vw"
             btnHeight="70px"
             theme="white"
-            // absolute="true"
-            // absoluteTop="47vh"
-            // absoluteBottom="0px"
-            // absoluteRight="50px"
             opacity="0.8"
           ></NavigateBtn>
         </div>
