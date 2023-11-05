@@ -3,7 +3,7 @@ import CategoryBtn from "./CategoryBtn";
 import "../../css/main/CategoryBtn.css";
 
 const CommunityBtnContainer = () => {
-  const [selectedCategory, setSelectedCategory] = useState("자유 게시판");
+  const [selectedCategory, setSelectedCategory] = useState("실시간 인기글");
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -11,6 +11,16 @@ const CommunityBtnContainer = () => {
 
   return (
     <>
+      <CategoryBtn
+        isSelect={
+          selectedCategory === "실시간 인기글" ? "selected" : "notSelected"
+        }
+        text="실시간 인기글"
+        onClick={() => handleCategoryClick("실시간 인기글")}
+        size="col-4"
+        height="45px"
+        fontSize="1.3rem"
+      />
       <CategoryBtn
         isSelect={
           selectedCategory === "자유 게시판" ? "selected" : "notSelected"
@@ -27,14 +37,6 @@ const CommunityBtnContainer = () => {
         }
         text="자랑 게시판"
         onClick={() => handleCategoryClick("자랑 게시판")}
-        size="col-4"
-        height="45px"
-        fontSize="1.3rem"
-      />
-      <CategoryBtn
-        isSelect={selectedCategory === "Q&A" ? "selected" : "notSelected"}
-        text="Q&A"
-        onClick={() => handleCategoryClick("Q&A")}
         size="col-4"
         height="45px"
         fontSize="1.3rem"
