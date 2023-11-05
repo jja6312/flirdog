@@ -35,18 +35,15 @@ const Footer = () => {
             </Link>
           </div>
           <div class="footer-link-items">
-            <h2>More</h2>
+            <h2>Products</h2>
             <Link style={{ color: "#9E9EB1 " }} to="/">
-              Contact
+              Kream
             </Link>
             <Link style={{ color: "#9E9EB1 " }} to="/">
-              Support
+              Flirdog
             </Link>
             <Link style={{ color: "#9E9EB1 " }} to="/">
-              Destinations
-            </Link>
-            <Link style={{ color: "#9E9EB1 " }} to="/">
-              Sponsorships
+              ...
             </Link>
           </div>
           <div class="footer-link-items">
@@ -67,6 +64,39 @@ const Footer = () => {
               고객센터 문의
             </Link>
           </div>
+          <div class="footer-link-items">
+            <h2>SNS</h2>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Instagram
+            </Link>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Facebook
+            </Link>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Youtube
+            </Link>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Twitter
+            </Link>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              LinkedIn
+            </Link>
+          </div>
+          <div class="footer-link-items">
+            <h2>More</h2>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Contact
+            </Link>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Support
+            </Link>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Destinations
+            </Link>
+            <Link style={{ color: "#9E9EB1 " }} to="/">
+              Sponsorships
+            </Link>
+          </div>
         </div>
       </div>
       <hr></hr>
@@ -77,10 +107,13 @@ const Footer = () => {
           대표자 : 아저씨6인방
         </p>
         <p>
+          서울특별시 강남구 가자미래로 999, 6층 601호 | 전화 : 01-234-5678 |
+          이메일 : xxx@naver.com (00:00 ~ 24:00)
+        </p>
+        <p>
           Corporation with an Average Age of 31 | Mail-Order Business
           Registration: No. 2019-Seoul-Gangnam-Naver Cloud Camp | Business
-          Registration Number: 123-45-6789 | Representatives: The Gentlemen
-          Sextet
+          Registration Number: 123-45-6789
         </p>
       </div>
     </div>
