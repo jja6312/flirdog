@@ -7,11 +7,29 @@ import BestFlirdog from "./BestFlirdog";
 import NavigateBtn from "./NavigateBtn";
 import CommunityBtnContainer from "./CommunityBtnContainer";
 import CommunityWriteBox from "./CommunityWriteBox";
+import ShoppingProduct from "./ShoppingProduct";
+import Carousel from "react-bootstrap/Carousel";
 
 const MainBody = () => {
   return (
     <>
-      <img src="/image/main/main1.png" style={{ width: "100%" }} />
+      <Carousel data-bs-theme="white">
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/image/main/main1.png"
+            alt="First slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/image/main/main2.png"
+            alt="Second slide"
+          />
+        </Carousel.Item>
+      </Carousel>
+      <img src="" style={{ width: "100%" }} />
       <Container className="px-10">
         <div className="row">
           <div className="col-lg-3 col-6">
@@ -57,8 +75,7 @@ const MainBody = () => {
           <CommunityBtnContainer></CommunityBtnContainer>
         </div>
 
-        <div className="row mt-6">
-          <CommunityWriteBox></CommunityWriteBox>
+        <div className="row mt-1">
           <CommunityWriteBox></CommunityWriteBox>
           <CommunityWriteBox></CommunityWriteBox>
         </div>
@@ -71,7 +88,33 @@ const MainBody = () => {
             btnHeight="80px"
           ></NavigateBtn>
         </div>
+        <div className="d-flex justify-content-center mt-7 flex-column">
+          <span className="text-center" style={{ width: "100%", fontSize: 40 }}>
+            Best SHOPPING
+          </span>
+          <div className="row">
+            <ShoppingProduct imgSrc="/image/main/exam/exam1.jpg"></ShoppingProduct>
+            <ShoppingProduct imgSrc="/image/main/exam/exam2.jpg"></ShoppingProduct>
+            <ShoppingProduct imgSrc="/image/main/exam/exam3.jpg"></ShoppingProduct>
+            <ShoppingProduct imgSrc="/image/main/exam/exam4.jpg"></ShoppingProduct>
+          </div>
+          <div className="row">
+            <ShoppingProduct imgSrc="/image/main/exam/exam5.jpg"></ShoppingProduct>
+            <ShoppingProduct imgSrc="/image/main/exam/exam6.jpg"></ShoppingProduct>
+            <ShoppingProduct imgSrc="/image/main/exam/exam7.jpg"></ShoppingProduct>
+            <ShoppingProduct imgSrc="/image/main/exam/exam8.jpg"></ShoppingProduct>
+          </div>
+        </div>
       </Container>
+      <div className="mt-7 d-flex justify-content-center align-items-center">
+        <NavigateBtn
+          text="쇼핑몰 이동"
+          url="/"
+          fontSize="2.5vw"
+          btnWidth="25vw"
+          btnHeight="80px"
+        ></NavigateBtn>
+      </div>
     </>
   );
 };

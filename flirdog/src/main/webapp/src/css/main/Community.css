@@ -1,7 +1,11 @@
+.communityWriteElementContainer {
+  padding: 2px;
+}
+
 .communityWriteElement {
   background-color: white;
   border-radius: 5px;
-  border: 2px solid rgb(221, 221, 221);
-  /* height를 width와 똑같이하고싶을때 */
+  border: 1px solid #b9b9b9;
+
   height: 350px;
 }
