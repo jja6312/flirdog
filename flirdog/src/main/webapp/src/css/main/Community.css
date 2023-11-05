@@ -2,5 +2,6 @@
   background-color: white;
   border-radius: 5px;
   border: 2px solid rgb(221, 221, 221);
+  /* height를 width와 똑같이하고싶을때 */
   height: 350px;
 }

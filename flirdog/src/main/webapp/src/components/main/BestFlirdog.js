@@ -29,7 +29,7 @@ const BestFlirdog = () => {
           url="/"
           fontSize="2.5vw"
           btnWidth="40vw"
-          btnHeight="12vh "
+          btnHeight="80px "
         ></NavigateBtn>
       </div>
     </>

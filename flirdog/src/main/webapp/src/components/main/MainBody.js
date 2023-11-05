@@ -48,7 +48,7 @@ const MainBody = () => {
             url="/"
             fontSize="2.5vw"
             btnWidth="25vw"
-            btnHeight="10vh"
+            btnHeight="80px"
           ></NavigateBtn>
         </div>
       </div>
@@ -68,7 +68,7 @@ const MainBody = () => {
             url="/"
             fontSize="2.5vw"
             btnWidth="25vw"
-            btnHeight="10vh"
+            btnHeight="80px"
           ></NavigateBtn>
         </div>
       </Container>

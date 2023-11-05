@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   transition: all 0.1s ease-in-out;
 }
 .custom-dropdown:hover {
@@ -15,6 +16,7 @@
 .custom-dropdown:hover .custom-dropdown-menu {
   display: block; /* This will show the dropdown on hover */
 }
+
 .custom-dropdown-toggle::after {
   display: inline-block;
   margin-left: 0.255em;
@@ -30,7 +32,7 @@
   display: none;
   position: absolute;
   top: 90%;
-  left: 0;
+  left: -50%;
   z-index: 1000;
   float: left;
   min-width: 10rem;
@@ -69,4 +71,27 @@
   color: #1e2125;
   text-decoration: none;
   background-color: #f8f9fa;
+}
+
+@media (max-width: 880px) {
+  .custom-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    transition: all 0.1s ease-in-out;
+  }
+  .custom-dropdown-menu {
+    display: none;
+  }
+  .custom-dropdown:hover .custom-dropdown-menu {
+    display: none;
+  }
+  .custom-dropdown-item {
+    display: none;
+  }
+  .custom-dropdown-menu.custom-show {
+    display: none;
+  }
 }
