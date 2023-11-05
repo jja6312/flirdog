@@ -15,4 +15,9 @@
   border-radius: 40px;
   background-color: #f6a1b4;
   color: white;
+  transition: all 0.15s ease-in-out;
+  z-index: 20;
+}
+.navigateBtn:hover {
+  background-color: #ff7a97;
 }

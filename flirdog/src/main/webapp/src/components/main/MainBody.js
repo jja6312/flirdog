@@ -9,6 +9,7 @@ import CommunityBtnContainer from "./CommunityBtnContainer";
 import CommunityWriteBox from "./CommunityWriteBox";
 import ShoppingProduct from "./ShoppingProduct";
 import Carousel from "react-bootstrap/Carousel";
+import "../../css/main/MainCarousel.css";
 
 const MainBody = () => {
   return (
@@ -30,6 +31,36 @@ const MainBody = () => {
         </Carousel.Item>
       </Carousel>
       <img src="" style={{ width: "100%" }} />
+      <div className="carousel--NavigateBtnContainer">
+        <div className="carousel--NavigateBtnAbsolute">
+          <NavigateBtn
+            text="매칭 등록"
+            url="/"
+            fontSize="2vw"
+            btnWidth="22vw"
+            btnHeight="70px"
+            theme="pink"
+            // absolute="true"
+            // absoluteTop="35vh"
+            // absoluteRight="50px"
+            opacity="0.9"
+          ></NavigateBtn>
+          <div style={{ height: 15 }}></div>
+          <NavigateBtn
+            text="주변 애견 매칭"
+            url="/"
+            fontSize="2vw"
+            btnWidth="22vw"
+            btnHeight="70px"
+            theme="white"
+            // absolute="true"
+            // absoluteTop="47vh"
+            // absoluteBottom="0px"
+            // absoluteRight="50px"
+            opacity="0.8"
+          ></NavigateBtn>
+        </div>
+      </div>
       <Container className="px-10">
         <div className="row">
           <div className="col-lg-3 col-6">
@@ -88,11 +119,11 @@ const MainBody = () => {
             btnHeight="80px"
           ></NavigateBtn>
         </div>
-        <div className="d-flex justify-content-center mt-7 flex-column">
-          <span className="text-center" style={{ width: "100%", fontSize: 40 }}>
-            Best SHOPPING
+        <div className="d-flex justify-content-center mt-10 flex-column">
+          <span className="" style={{ width: "100%", fontSize: 40 }}>
+            인기 상품
           </span>
-          <div className="row">
+          <div className="row mt-5">
             <ShoppingProduct imgSrc="/image/main/exam/exam1.jpg"></ShoppingProduct>
             <ShoppingProduct imgSrc="/image/main/exam/exam2.jpg"></ShoppingProduct>
             <ShoppingProduct imgSrc="/image/main/exam/exam3.jpg"></ShoppingProduct>

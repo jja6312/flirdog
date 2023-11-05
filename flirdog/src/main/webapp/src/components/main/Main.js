@@ -11,6 +11,7 @@ const Main = () => {
       <div style={{ width: "100%", textAlign: "center" }}>
         <Link to="/user/userTest">가이드라인(필독)</Link>
       </div>
+
       <MainBody></MainBody>
       <div style={{ height: 100 }}></div>
       <Footer></Footer>
