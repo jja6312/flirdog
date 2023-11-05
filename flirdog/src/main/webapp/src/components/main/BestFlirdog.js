@@ -1,6 +1,8 @@
 import React from "react";
 import BestFlirdogImg from "./BestFlirdogImg";
 import NavigateBtn from "./NavigateBtn";
+import CategoryBtn from "./CategoryBtn";
+import CategoryBtnContainer from "./CategoryBtnContainer";
 
 const BestFlirdog = () => {
   return (
@@ -14,18 +16,7 @@ const BestFlirdog = () => {
         </div>
       </div>
       <div className="row mt-8">
-        <div
-          className="col-3 d-flex justify-content-center align-items-center
-        rankingBtn pinkDivColor "
-        >
-          <span>전국 랭킹</span>
-        </div>
-        <div
-          className="col-3 d-flex justify-content-center align-items-center
-        rankingBtn whiteDivColor"
-        >
-          <span>지역 랭킹</span>
-        </div>
+        <CategoryBtnContainer></CategoryBtnContainer>
       </div>
       <div className="row mt-8 d-flex justify-content-between">
         <BestFlirdogImg srcImg="/image/main/dog1.jpg" text="999" />
@@ -38,7 +29,7 @@ const BestFlirdog = () => {
           url="/"
           fontSize="2.5vw"
           btnWidth="40vw"
-          btnHeight="12vh "
+          btnHeight="80px "
         ></NavigateBtn>
       </div>
     </>
