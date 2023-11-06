@@ -22,7 +22,7 @@
 .communityWriteNumberDiv {
   margin: 0;
   padding: 0;
-  width: 8%;
+  min-width: 40px;
   height: 80%;
   display: flex;
   justify-content: center;
@@ -36,7 +36,7 @@
 }
 
 .communityWriteImageDiv {
-  width: 100px;
+  min-width: 100px;
   height: 0; /* 초기 높이는 0 */
   padding-bottom: 80px;
   position: relative; /* 상대 위치 지정 */
@@ -48,4 +48,16 @@
   top: 0;
   left: 0;
   object-fit: cover; /* 이미지가 div를 가득 채우도록 조정 */
+}
+
+.communityWriteTitleText {
+  font-size: 1.2rem;
+}
+.communityWriteTitleText:hover {
+  color: #5383e8;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.communityWriteContentText {
+  color: #879292;
 }
