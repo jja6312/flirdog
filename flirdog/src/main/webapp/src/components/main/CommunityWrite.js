@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CommunityWrite = ({ title, createdDate, author, imgSrc, number }) => {
   return (
@@ -7,16 +8,22 @@ const CommunityWrite = ({ title, createdDate, author, imgSrc, number }) => {
         <span className="communityWriteNumberSpan">{number}</span>
       </div>
       <div className="communityWriteImageDiv mx-2">
-        <img src={imgSrc} className="communityWriteImage"></img>
+        <Link to="/">
+          <img src={imgSrc} className="communityWriteImage"></img>
+        </Link>
       </div>
       <div className="d-flex flex-column justify-content-center align-items-start">
-        <p>{title}</p>
+        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+          <p className="communityWriteTitleText mx-2">{title}</p>
+        </Link>
         <div className="d-flex flex-start">
           <div>
-            <span>{createdDate}</span>
+            <span className="communityWriteContentText mx-2">
+              {createdDate}
+            </span>
           </div>
           <div>
-            <span>{author}</span>
+            <span className="communityWriteContentText mx-2">{author}</span>
           </div>
         </div>
       </div>
