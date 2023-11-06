@@ -97,9 +97,9 @@ const Test = () => (
       </div>
       <h3>아래는 한 화면에 이미지를 세개 넣고 싶을 때.</h3>
       <div className="row">
-        <img src="/image/test/testImg1.jpg" className="col-4" />
-        <img src="/image/test/testImg2.jpg" className="col-4" />
-        <img src="/image/test/testImg3.jpg" className="col-4" />
+        <img src="/image/test/testImg1.jpg" className="col-lg-4 col-12" />
+        <img src="/image/test/testImg2.jpg" className="col-lg-4 col-12" />
+        <img src="/image/test/testImg3.jpg" className="col-lg-4 col-12" />
       </div>
       <br></br>
       <h2 style={{ color: "blue" }}>

@@ -6,14 +6,20 @@ import { Link } from "react-router-dom";
 import BestFlirdog from "./BestFlirdog";
 import NavigateBtn from "./NavigateBtn";
 import CommunityBtnContainer from "./CommunityBtnContainer";
-import CommunityWriteBox from "./CommunityWriteBox";
+
 import ShoppingProduct from "./ShoppingProduct";
 import Carousel from "react-bootstrap/Carousel";
 import "../../css/main/MainCarousel.css";
+import "../../css/main/Community.css";
+import CommunityWrite from "./CommunityWrite";
+import Button from "react-bootstrap/Button";
 
 const MainBody = () => {
   return (
     <>
+      <Button className="mt-5" variant="primary">
+        Primary
+      </Button>{" "}
       <Carousel data-bs-theme="white">
         <Carousel.Item>
           <img
@@ -40,7 +46,7 @@ const MainBody = () => {
             btnWidth="22vw"
             btnHeight="70px"
             theme="pink"
-            opacity="0.9"
+            opacity="0.8"
           ></NavigateBtn>
           <div style={{ height: 15 }}></div>
           <NavigateBtn
@@ -56,22 +62,22 @@ const MainBody = () => {
       </div>
       <Container className="px-10">
         <div className="row">
-          <div className="col-lg-3 col-6">
+          <div className="col-lg-3 col-6 exam">
             <Link to="/" style={{ textDecoration: "none" }}>
               <MainIcon imgSrc="mainIcon1.png" imgText="애견 매칭" />
             </Link>
           </div>
-          <div className="col-lg-3 col-6">
+          <div className="col-lg-3 col-6 exam">
             <Link to="/" style={{ textDecoration: "none" }}>
               <MainIcon imgSrc="mainIcon2.png" imgText="소모임" />
             </Link>
           </div>
-          <div className="col-lg-3 col-6">
+          <div className="col-lg-3 col-6 exam">
             <Link to="/" style={{ textDecoration: "none" }}>
               <MainIcon imgSrc="mainIcon3.png" imgText="쇼핑" />
             </Link>
           </div>
-          <div className="col-lg-3 col-6">
+          <div className="col-lg-3 col-6 exam">
             <Link to="/" style={{ textDecoration: "none" }}>
               <MainIcon imgSrc="mainIcon4.png" imgText="커뮤니티" />
             </Link>
@@ -100,8 +106,84 @@ const MainBody = () => {
         </div>
 
         <div className="row mt-1">
-          <CommunityWriteBox></CommunityWriteBox>
-          <CommunityWriteBox></CommunityWriteBox>
+          <div className=" col-12 col-xl-6 communityWriteElementContainer">
+            <div className="communityWriteElement">
+              <CommunityWrite
+                title="개떡ㅁㅌㅊ?ㅋㅋ"
+                createdDate="1시간 전"
+                author="시바이누"
+                imgSrc="/image/main/exam/community1.png"
+                number={1}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community2.png"
+                number={2}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community3.png"
+                number={3}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community4.png"
+                number={4}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community5.png"
+                number={5}
+              ></CommunityWrite>
+            </div>
+          </div>
+          <div className=" col-12 col-xl-6 communityWriteElementContainer">
+            <div className="communityWriteElement">
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community6.png"
+                number={6}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community7.png"
+                number={7}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community8.png"
+                number={8}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community9.png"
+                number={9}
+              ></CommunityWrite>
+              <CommunityWrite
+                title=""
+                createdDate=""
+                author=""
+                imgSrc="/image/main/exam/community10.png"
+                number={10}
+              ></CommunityWrite>
+            </div>
+          </div>
         </div>
         <div className="mt-7 d-flex justify-content-center align-items-center">
           <NavigateBtn
