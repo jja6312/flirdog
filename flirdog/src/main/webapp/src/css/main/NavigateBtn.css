@@ -6,7 +6,7 @@
   height: 80px;
 }
 
-.navigateBtn {
+.navigateBtnPink {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,6 +18,23 @@
   transition: all 0.15s ease-in-out;
   z-index: 20;
 }
-.navigateBtn:hover {
+.navigateBtnWhite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+
+  border-radius: 40px;
+  background-color: white;
+  color: #ff7a97;
+  transition: all 0.15s ease-in-out;
+  z-index: 20;
+}
+.navigateBtnPink:hover {
   background-color: #ff7a97;
+  opacity: 1;
+}
+.navigateBtnWhite:hover {
+  color: #ff3e68;
+  opacity: 1;
 }

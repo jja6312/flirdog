@@ -23,13 +23,13 @@ const NavigateBtn = ({
         }}
       >
         <div
-          className="navigateBtn"
+          className={`navigateBtn ${
+            theme === "white" ? "navigateBtnWhite" : "navigateBtnPink"
+          }`}
           style={{
             fontSize: fontSize,
             width: btnWidth,
             height: btnHeight,
-            backgroundColor: theme === "white" ? "white" : "#f56084",
-            color: theme === "white" ? "#f56084" : "white",
             position: absolute ? "absolute" : "",
             top: absoluteTop,
             right: absoluteRight,
