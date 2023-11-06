@@ -1,0 +1,31 @@
+.custom-dropdown-mobile .custom-dropdown-toggle-mobile {
+  display: none;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transform: translateX(-4px);
+}
+
+.custom-dropdown-mobile .custom-dropdown-menu-mobile {
+  background-color: transparent;
+  border: none;
+}
+.custom-dropdown-mobile .custom-dropdown-menu-mobile {
+  color: white;
+}
+
+.custom-dropdown-mobile .custom-dropdown-item-mobile {
+  color: white;
+}
+.custom-dropdown-mobile .custom-dropdown-item-mobile {
+  background-color: transparent;
+}
+@media (max-width: 880px) {
+  #categoryDropdown {
+    display: none;
+  }
+  .custom-dropdown-mobile .custom-dropdown-toggle-mobile {
+    display: flex;
+  }
+}

@@ -1,0 +1,11 @@
+.communityWriteElementContainer {
+  padding: 2px;
+}
+
+.communityWriteElement {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #b9b9b9;
+
+  height: 350px;
+}
