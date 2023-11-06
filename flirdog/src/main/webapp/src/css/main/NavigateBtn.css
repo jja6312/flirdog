@@ -6,7 +6,7 @@
   height: 80px;
 }
 
-.navigateBtn {
+.navigateBtnPink {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,4 +15,26 @@
   border-radius: 40px;
   background-color: #f6a1b4;
   color: white;
+  transition: all 0.15s ease-in-out;
+  z-index: 20;
+}
+.navigateBtnWhite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+
+  border-radius: 40px;
+  background-color: white;
+  color: #ff7a97;
+  transition: all 0.15s ease-in-out;
+  z-index: 20;
+}
+.navigateBtnPink:hover {
+  background-color: #ff7a97;
+  opacity: 1;
+}
+.navigateBtnWhite:hover {
+  color: #ff3e68;
+  opacity: 1;
 }
