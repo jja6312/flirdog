@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import "../../css/main/shoppingProduct.css";
+import "../../../css/main/shoppingProduct.css";
 import { Link } from "react-router-dom";
 
 const ShoppingProduct = ({ imgSrc }) => {

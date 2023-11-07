@@ -1,8 +1,8 @@
 import React from "react";
 import BestFlirdogImg from "./BestFlirdogImg";
-import NavigateBtn from "./NavigateBtn";
-import CategoryBtn from "./CategoryBtn";
-import CategoryBtnContainer from "./CategoryBtnContainer";
+import NavigateBtn from "../NavigateBtn";
+import CategoryBtn from "../CategoryBtn";
+import CategoryBtnContainer from "../CategoryBtnContainer";
 
 const BestFlirdog = () => {
   return (
