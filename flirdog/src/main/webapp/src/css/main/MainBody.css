@@ -8,11 +8,6 @@
   width: 40%;
 }
 
-.dogSmallGroup {
-  width: 100%;
-  position: relative;
-}
-
 @media (max-width: 1400px) {
   .mainIconImgText {
     font-size: 1.4rem;

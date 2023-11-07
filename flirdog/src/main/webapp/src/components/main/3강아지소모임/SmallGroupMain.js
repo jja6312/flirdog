@@ -1,9 +1,10 @@
 import React from "react";
 import NavigateBtn from "../NavigateBtn";
+import styles from "../../../css/main/3강아지소모임/dogSmallGroup.module.css";
 
 const SmallGroup = () => {
   return (
-    <div className="dogSmallGroup mt-10">
+    <div className={`${styles.dogSmallGroup} mt-10`}>
       <img src="/image/main/mainDogSmallGroup.png" style={{ width: "100%" }} />
       <div style={{ position: "absolute", top: "70%", left: "10%" }}>
         <NavigateBtn
