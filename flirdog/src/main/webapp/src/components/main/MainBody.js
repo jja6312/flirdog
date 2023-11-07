@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/main/MainBody.css";
+import mainBody from "../../css/main/MainBody.module.css";
 
 import Container from "react-bootstrap/esm/Container";
 
@@ -17,7 +17,7 @@ const MainBody = () => {
       <MainScreen></MainScreen>
 
       <Container className="px-10">
-        <BestFlirdog></BestFlirdog>
+        <BestFlirdog />
       </Container>
       <SmallGroupMain></SmallGroupMain>
       <CommunityMain></CommunityMain>

@@ -1,13 +1,12 @@
 import React from "react";
 import ShoppingProduct from "./ShoppingProduct";
+import styles from "../../../css/main/5인기상품/shoppingProduct.module.css";
 
 const BestProductMain = () => {
   return (
     <>
       <div className="d-flex justify-content-center mt-10 flex-column">
-        <span className="" style={{ width: "100%", fontSize: 40 }}>
-          인기 상품
-        </span>
+        <span className={styles.titleText}>인기 상품</span>
         <div className="row mt-5">
           <ShoppingProduct imgSrc="/image/main/exam/exam1.jpg"></ShoppingProduct>
           <ShoppingProduct imgSrc="/image/main/exam/exam2.jpg"></ShoppingProduct>
