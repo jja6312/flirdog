@@ -9,7 +9,7 @@ const Myprofile = () => {
                 <Link to="/myPage/Mydogprofile">개프로필1</Link>
             </div>
             <div style={{ width: "100%", textAlign: "center" }}>
-                <Link to="/myPage/Mydogprofile">개프로필2</Link>
+                <Link to="/myPage/Mydogprofile">개프로필23</Link>
             </div>
             <div style={{ width: "100%", textAlign: "center" }}>
                 <Link to="/myPage/Mydogprofile">개프로필3</Link>
