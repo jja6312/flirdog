@@ -1,11 +1,13 @@
 import React from "react";
 import "../../css/main/MainBody.css";
-
 import "../../css/main/Community.css";
+
 import Container from "react-bootstrap/esm/Container";
+
 import NavigateBtn from "./NavigateBtn";
-import BestFlirdog from "./2베스트플러독/BestFlirdog";
+
 import MainScreen from "./1메인화면/MainScreen";
+import BestFlirdog from "./2베스트플러독/BestFlirdog";
 import SmallGroupMain from "./3강아지소모임/SmallGroupMain";
 import CommunityMain from "./4커뮤니티/CommunityMain";
 import BestProductMain from "./5인기상품/BestProductMain";

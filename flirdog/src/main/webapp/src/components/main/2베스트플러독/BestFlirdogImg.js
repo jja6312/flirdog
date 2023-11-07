@@ -1,14 +1,15 @@
 import React from "react";
 import BestFlirdogPinkLikeBtn from "./BestFlirdogPinkLikeBtn";
+import styles from "../../../css/main/2베스트플러독/bestFlirdog.module.css";
 
 const BestFlirdogImg = ({ srcImg, text }) => {
   return (
     <div className="col-4">
       <div className="d-flex flex-column justify-content-center align-items-center">
-        <div className="bestFlirdogImgContainer ">
-          <img className="bestFlirdogImgRound" src={`${srcImg}`} />
-          <div className="bestFlirdogImgRound--Hover__black"></div>
-          <span className="bestFlirdogImgRound--Hover__text">1:1 채팅</span>
+        <div className={styles.bestFlirdogImgContainer}>
+          <img className={styles.bestFlirdogImgRound} src={`${srcImg}`} />
+          <div className={styles.bestFlirdogImgRoundHoverBlack}></div>
+          <span className={styles.bestFlirdogImgRoundHoverText}>1:1 채팅</span>
         </div>
         <BestFlirdogPinkLikeBtn text={text}></BestFlirdogPinkLikeBtn>
       </div>
