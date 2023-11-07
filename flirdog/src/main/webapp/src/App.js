@@ -4,6 +4,8 @@ import Main from "./components/main/Main";
 
 import "./css/reset.css";
 import Test from "./components/user/Test";
+import Mypage from "./components/mypage/Mypage";
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -12,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
+          <Route path="/mypage/Mypage" element={<Mypage />} /> {/* [ 김찬영  2023-11-7 오후 04:42:39 ] */}
         </Routes>
       </>
     </BrowserRouter>
