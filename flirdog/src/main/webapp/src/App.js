@@ -46,7 +46,7 @@ const App = () => {
           />
           <Route
             path="/admin/orderShippingForm"
-            element={<OrderShippingForm />}
+            element={<OrderShippingForm openLeftside="2" />}
           />
           {/* 리뷰 관리 */}
           <Route

@@ -8,7 +8,7 @@ const OrderCheckForm = ({ openLeftside }) => {
     <>
       <AdminHeader></AdminHeader>
       <div className="leftRightContainer ">
-        <LeftSide openLeftside={openLeftside}></LeftSide>
+        <LeftSide openLeftside={openLeftside} selected="발주 관리"></LeftSide>
         <div className="rightContent">여기는 발주 확인</div>
       </div>
     </>

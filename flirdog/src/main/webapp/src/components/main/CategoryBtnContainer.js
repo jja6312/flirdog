@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CategoryBtn from "./CategoryBtn";
-import "../../css/main/CategoryBtn.css";
+import styles from "../../css/main/CategoryBtn.module.css";
 
 const CategoryBtnContainer = () => {
   const [selectedCategory, setSelectedCategory] = useState("전국 랭킹");
