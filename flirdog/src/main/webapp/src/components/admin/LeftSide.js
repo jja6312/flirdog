@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import "../../css/admin/leftSide.css";
 import { Link } from "react-router-dom";
 
-const LeftSide = ({ openLeftside }) => {
+const LeftSide = ({ openLeftside, selected }) => {
+  const [currentSubmenu, setCurrentSubmenu] = useState("");
+
+  useEffect(() => {
+    const subMenu = document.querySelectorAll(".subMenu");
+    subMenu.forEach((item) => {
+      if (item.innerText === selected) {
+        item.style.color = "#F56084";
+        item.style.fontWeight = "bold";
+      }
+    });
+  }, []);
+
   return (
     <>
+      {/* <div onChange={currentSubmenu}>{currentSubmenu}</div> */}
       <div className="leftSideAbsolute">
         <div className="leftSide">
           <Accordion defaultActiveKey={openLeftside} flush>

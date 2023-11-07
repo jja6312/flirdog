@@ -8,7 +8,10 @@ const UserListForm = ({ openLeftside }) => {
     <>
       <AdminHeader></AdminHeader>
       <div className="leftRightContainer ">
-        <LeftSide openLeftside={openLeftside}></LeftSide>
+        <LeftSide
+          openLeftside={openLeftside}
+          selected="회원 목록 조회/수정"
+        ></LeftSide>
         <div className="rightContent">여기는 유저리스트</div>
       </div>
     </>
