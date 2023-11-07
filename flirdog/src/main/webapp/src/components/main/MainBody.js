@@ -1,11 +1,10 @@
 import React from "react";
 import "../../css/main/MainBody.css";
-import "../../css/main/MainCarousel.css";
+
 import "../../css/main/Community.css";
 import Container from "react-bootstrap/esm/Container";
 import NavigateBtn from "./NavigateBtn";
 import BestFlirdog from "./2베스트플러독/BestFlirdog";
-
 import MainScreen from "./1메인화면/MainScreen";
 import SmallGroupMain from "./3강아지소모임/SmallGroupMain";
 import CommunityMain from "./4커뮤니티/CommunityMain";
@@ -21,16 +20,19 @@ const MainBody = () => {
       </Container>
       <SmallGroupMain></SmallGroupMain>
       <CommunityMain></CommunityMain>
-      <BestProductMain></BestProductMain>
-      <div className="mt-7 d-flex justify-content-center align-items-center">
-        <NavigateBtn
-          text="쇼핑몰 이동"
-          url="/"
-          fontSize="2.5vw"
-          btnWidth="25vw"
-          btnHeight="80px"
-        ></NavigateBtn>
-      </div>
+      <Container className="px-10">
+        <BestProductMain></BestProductMain>
+
+        <div className="mt-7 d-flex justify-content-center align-items-center">
+          <NavigateBtn
+            text="쇼핑몰 이동"
+            url="/"
+            fontSize="2.5vw"
+            btnWidth="25vw"
+            btnHeight="80px"
+          ></NavigateBtn>
+        </div>
+      </Container>
     </>
   );
 };

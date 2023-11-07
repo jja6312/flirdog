@@ -6,6 +6,8 @@ import MainIcon from "./MainIcon";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
+import mainCarousel from "../../../css/main/1메인화면/mainCarousel.module.css";
+
 const MainScreen = () => {
   return (
     <div>
@@ -26,8 +28,8 @@ const MainScreen = () => {
         </Carousel.Item>
       </Carousel>
       <img src="" style={{ width: "100%" }} />
-      <div className="carousel--NavigateBtnContainer">
-        <div className="carousel--NavigateBtnAbsolute">
+      <div className={mainCarousel.carouselNavigateBtnContainer}>
+        <div className={mainCarousel.carouselNavigateBtnAbsolute}>
           <NavigateBtn
             text="매칭 등록"
             url="/"
