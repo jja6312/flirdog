@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/main/NavigateBtn.css";
+import styles from "../../css/main/2베스트플러독/navigateBtn.module.css";
 import { Link } from "react-router-dom";
 
 const NavigateBtn = ({
@@ -23,17 +23,17 @@ const NavigateBtn = ({
         }}
       >
         <div
-          className={`navigateBtn ${
-            theme === "white" ? "navigateBtnWhite" : "navigateBtnPink"
+          className={`${
+            theme === "white" ? styles.navigateBtnWhite : styles.navigateBtnPink
           }`}
           style={{
-            fontSize: fontSize,
+            fontSize,
             width: btnWidth,
             height: btnHeight,
             position: absolute ? "absolute" : "",
             top: absoluteTop,
             right: absoluteRight,
-            opacity: opacity,
+            opacity,
           }}
         >
           {text}
