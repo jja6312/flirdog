@@ -6,9 +6,9 @@ const CategoryBtn = ({ isSelect, text, onClick, size, height, fontSize }) => {
     isSelect === "notSelected" ? "whiteDivColor" : "pinkDivColor";
   return (
     <div
-      className={`${size} d-flex justify-content-center align-items-center styles.${DivColor}`}
+      className={`${size} d-flex justify-content-center align-items-center ${styles[DivColor]}`}
       onClick={onClick}
-      style={{ height: height, fontSize: fontSize }}
+      style={{ height, fontSize }}
     >
       <span>{text}</span>
     </div>

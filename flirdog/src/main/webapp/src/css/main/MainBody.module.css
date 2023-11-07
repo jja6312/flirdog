@@ -1,46 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Condensed:wght@700&display=swap");
 
-@media (max-width: 1400px) {
-  .mainIconImgText {
-    font-size: 1.4rem;
-  }
-  .mainIconImg {
-    width: 50%;
-  }
-}
-@media (max-width: 1154px) {
-  .mainIconImgText {
-    font-size: 1.2rem;
-  }
-  .mainIconImg {
-    width: 60%;
-  }
-  .bestFlirdogImg {
-    width: 100%;
-  }
-}
-@media (max-width: 880px) {
-  .bestFlirdogPinkLikeBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 50px;
-    border-radius: 11px;
-
-    background-color: #e85b6c;
-  }
-  .likeBoneImg {
-    border-radius: 11px;
-    height: 80%;
-  }
-  .likeBoneText {
-    font-family: "Black Han Sans";
-    font-size: 2.2rem;
-    height: 100%;
-    color: white;
-  }
-}
 @media (max-width: 620px) {
   .rankingBtn {
     height: 40px;
@@ -98,10 +57,7 @@
     height: 30px;
     font-size: 0.6rem;
   }
-  .px-10 {
-    padding-left: 50px !important;
-    padding-right: 50px !important;
-  }
+
   .mainIconImgText {
     font-size: 1.2rem;
   }

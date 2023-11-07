@@ -10,3 +10,6 @@
   color: white;
   cursor: pointer;
 }
+
+@media (max-width: 700) {
+}
