@@ -13,14 +13,17 @@ const LeftSide = ({ openLeftside }) => {
               상품 관리
             </Accordion.Header>
             <Link
-              to="/admin/productUpload"
+              to="/admin/productUploadForm"
               style={{ color: "black", textDecoration: "none" }}
             >
               <Accordion.Body className="mx-4 subMenu">
                 상품 등록
               </Accordion.Body>
             </Link>
-            <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+            <Link
+              to="/admin/productListForm"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <Accordion.Body className="mx-4 subMenu">
                 전체 상품 조회/수정
               </Accordion.Body>
@@ -29,7 +32,10 @@ const LeftSide = ({ openLeftside }) => {
           <Accordion.Item eventKey="1">
             <Accordion.Header className="titleMenu">회원 관리</Accordion.Header>
 
-            <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+            <Link
+              to="/admin/userListForm"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <Accordion.Body className="mx-4 subMenu">
                 회원 목록 조회/수정
               </Accordion.Body>
@@ -38,17 +44,26 @@ const LeftSide = ({ openLeftside }) => {
           <Accordion.Item eventKey="2">
             <Accordion.Header className="titleMenu">주문 관리</Accordion.Header>
 
-            <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+            <Link
+              to="/admin/orderListForm"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <Accordion.Body className="mx-4 subMenu">
                 주문 확인
               </Accordion.Body>
             </Link>
-            <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+            <Link
+              to="/admin/orderCheckForm"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <Accordion.Body className="mx-4 subMenu">
                 발주 관리
               </Accordion.Body>
             </Link>
-            <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+            <Link
+              to="/admin/orderShippingForm"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <Accordion.Body className="mx-4 subMenu">
                 배송 관리
               </Accordion.Body>
@@ -57,7 +72,10 @@ const LeftSide = ({ openLeftside }) => {
           <Accordion.Item eventKey="3">
             <Accordion.Header className="titleMenu">리뷰 관리</Accordion.Header>
 
-            <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+            <Link
+              to="/admin/reviewListForm"
+              style={{ color: "black", textDecoration: "none" }}
+            >
               <Accordion.Body className="mx-4 subMenu">
                 문의/리뷰 관리
               </Accordion.Body>
@@ -65,7 +83,6 @@ const LeftSide = ({ openLeftside }) => {
           </Accordion.Item>
         </Accordion>
       </div>
-      <div className="leftSideAbsolute"></div>
     </>
   );
 };

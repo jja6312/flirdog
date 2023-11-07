@@ -1,19 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LeftSide from "./LeftSide";
-import AdminHeader from "./AdminHeader";
-// import "../s"
+import LeftSide from "../LeftSide";
+import AdminHeader from "../AdminHeader";
 
-const ProductUpload = ({ openLeftside }) => {
+const ReviewListForm = ({ openLeftside }) => {
   return (
     <>
       <AdminHeader></AdminHeader>
       <div className="leftRightContainer ">
         <LeftSide openLeftside={openLeftside}></LeftSide>
-        {/* <div className="d-flex">여기는 상품등록</div> */}
+        <div className="rightContent">여기는 리뷰관리</div>
       </div>
     </>
   );
 };
 
-export default ProductUpload;
+export default ReviewListForm;
