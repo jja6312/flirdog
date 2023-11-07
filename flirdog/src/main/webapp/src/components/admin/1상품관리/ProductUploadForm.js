@@ -4,17 +4,17 @@ import LeftSide from "../LeftSide";
 import AdminHeader from "../AdminHeader";
 import ProductUploadFormImage from "./ProductUploadFormImage";
 import ProductUploadFormHeader from "./ProductUploadFormHeader";
+import styles from "../../../css/admin/rightContent.module.css";
 
 const ProductUploadForm = ({ openLeftside }) => {
   return (
     <>
       <AdminHeader></AdminHeader>
-      <div className="leftRightContainer ">
-        <LeftSide openLeftside={openLeftside} selected="상품 등록"></LeftSide>
-        <div className="rightContent">
-          <ProductUploadFormHeader></ProductUploadFormHeader>
-          <ProductUploadFormImage></ProductUploadFormImage>
-        </div>
+
+      <LeftSide openLeftside={openLeftside} selected="상품 등록"></LeftSide>
+      <div className={styles.rightContent}>
+        <ProductUploadFormHeader></ProductUploadFormHeader>
+        <ProductUploadFormImage></ProductUploadFormImage>
       </div>
     </>
   );
