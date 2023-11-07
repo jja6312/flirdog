@@ -1,6 +1,5 @@
 import React from "react";
 import "../../css/main/MainBody.css";
-import "../../css/main/Community.css";
 
 import Container from "react-bootstrap/esm/Container";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CategoryBtn from "../CategoryBtn";
-import "../../../css/main/CategoryBtn.css";
+import categoryStyle from "../../../css/main/CategoryBtn.module.css";
 
 const CommunityBtnContainer = () => {
   const [selectedCategory, setSelectedCategory] = useState("실시간 인기글");

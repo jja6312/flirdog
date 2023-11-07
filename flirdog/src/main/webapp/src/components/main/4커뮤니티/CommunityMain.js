@@ -3,6 +3,7 @@ import CommunityBtnContainer from "./CommunityBtnContainer";
 import CommunityWrite from "./CommunityWrite";
 import Container from "react-bootstrap/esm/Container";
 import NavigateBtn from "../NavigateBtn";
+import styles from "../../../css/main/4커뮤니티/Community.module.css";
 
 const CommunityMain = () => {
   return (
@@ -13,8 +14,10 @@ const CommunityMain = () => {
         </div>
 
         <div className="row mt-1">
-          <div className=" col-12 col-xl-6 communityWriteElementContainer">
-            <div className="communityWriteElement">
+          <div
+            className={` col-12 col-xl-6 ${styles.communityWriteElementContainer}`}
+          >
+            <div className={styles.communityWriteElement}>
               <CommunityWrite
                 title="개떡ㅁㅌㅊ?ㅋㅋ"
                 createdDate="1시간 전"
@@ -52,8 +55,10 @@ const CommunityMain = () => {
               ></CommunityWrite>
             </div>
           </div>
-          <div className=" col-12 col-xl-6 communityWriteElementContainer">
-            <div className="communityWriteElement">
+          <div
+            className={`{ col-12 col-xl-6 ${styles.communityWriteElementContainer}}`}
+          >
+            <div className={styles.communityWriteElement}>
               <CommunityWrite
                 title="인기글 도전한다"
                 createdDate="3시간 전"
