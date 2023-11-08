@@ -22,7 +22,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
-          <Route path="/mypage/Mypage" element={<Mypage />} /> {/* [ 김찬영  2023-11-7 오후 04:42:39 ] */}
+          <Route path="/mypage/Mypage" element={<Mypage />} />{" "}
+          {/* [ 김찬영  2023-11-7 오후 04:42:39 ] */}
           <Route path="/admin" element={<Admin />} />
           {/* 상품관리 */}
           <Route

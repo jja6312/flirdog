@@ -1,0 +1,38 @@
+.categoryDiv {
+  padding: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.8em;
+  height: 30px;
+}
+
+.categorySelected {
+  background-color: #1967d2;
+  color: white;
+}
+.contentContainerCategory {
+  padding: 15px;
+  width: 30%;
+  min-width: 150px;
+  min-height: 85%;
+  max-height: 100%;
+}
+
+.categorySmallBox {
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  min-height: 210px;
+  max-height: 100%;
+  border: 1px solid rgb(216, 216, 216);
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: 85%;
+  background-color: white;
+}
