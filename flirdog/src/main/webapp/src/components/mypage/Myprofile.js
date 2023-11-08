@@ -6,13 +6,16 @@ const Myprofile = () => {
         <div>
             <h1>프로필화면입니다.</h1>
             <div style={{ width: "100%", textAlign: "center" }}>
-                <Link to="/myPage/Mydogprofile">개프로필1</Link>
+                <Link to="/mypage/Myprofile">프로필</Link>
             </div>
             <div style={{ width: "100%", textAlign: "center" }}>
-                <Link to="/myPage/Mydogprofile">개프로필23</Link>
+                <Link to="/mypage/Myarticle">내가 작성한 글</Link>
             </div>
             <div style={{ width: "100%", textAlign: "center" }}>
-                <Link to="/myPage/Mydogprofile">개프로필3</Link>
+                <Link to="/mypage/Mypoint">포인트</Link>
+            </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/Mysetting">설정</Link>
             </div>
         </div>
     );

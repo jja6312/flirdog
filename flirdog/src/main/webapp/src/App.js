@@ -14,15 +14,27 @@ import OrderListForm from "./components/admin/3주문관리/OrderListForm";
 import OrderCheckForm from "./components/admin/3주문관리/OrderCheckForm";
 import OrderShippingForm from "./components/admin/3주문관리/OrderShippingForm";
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
+import Myprofile from "./components/mypage/Myprofile";
+import Myarticle from "./components/mypage/Myarticle";
+import Mypoint from "./components/mypage/Mypoint";
+import Mysetting from "./components/mypage/Mysetting";
 const App = () => {
   return (
     <BrowserRouter>
       <>
         {/* 화면에 보이는 영역 */}
         <Routes>
+          
+          {/* //김찬영================================================================= */}
+          <Route path="/mypage/Mypage" element={<Mypage />} /> 
+          <Route path="/mypage/Myprofile" element={<Myprofile />} />
+          <Route path="/mypage/Myarticle" element={<Myarticle />} />
+          <Route path="/mypage/Mypoint" element={<Mypoint />} />
+          <Route path="mypage/mysetting" element={<Mysetting />} />
+          {/* 김찬영//================================================================= */}
+          
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
-          <Route path="/mypage/Mypage" element={<Mypage />} /> {/* [ 김찬영  2023-11-7 오후 04:42:39 ] */}
           <Route path="/admin" element={<Admin />} />
           {/* 상품관리 */}
           <Route
