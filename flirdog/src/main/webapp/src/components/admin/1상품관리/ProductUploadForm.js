@@ -6,6 +6,7 @@ import ProductUploadFormImage from "./ProductUploadFormImage";
 import styles from "../../../css/admin/rightContent.module.css";
 import RightContentHeader from "../RightContentHeader";
 import ProductDetail from "./1상품분류정보/ProductDetail";
+import EditorBox from "../../EditorBox";
 
 const ProductUploadForm = ({ openLeftside }) => {
   return (
@@ -31,6 +32,7 @@ const ProductUploadForm = ({ openLeftside }) => {
             </tr>
           </table>
         </form>
+        <EditorBox></EditorBox>
       </div>
     </>
   );
