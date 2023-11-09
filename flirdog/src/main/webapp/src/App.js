@@ -15,6 +15,7 @@ import OrderListForm from "./components/admin/3주문관리/OrderListForm";
 import OrderCheckForm from "./components/admin/3주문관리/OrderCheckForm";
 import OrderShippingForm from "./components/admin/3주문관리/OrderShippingForm";
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
+import SomoimMain from "./components/somoim/SomoimMain";
 
 import Myprofile from "./components/mypage/Myprofile";
 import Myarticle from "./components/mypage/Myarticle";
@@ -42,6 +43,8 @@ const App = () => {
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
           <Route path="/admin" element={<Admin />} />
+
+          <Route path='/somoim' element={ <SomoimMain /> } />
           {/* 상품관리 */}
           <Route
             path="/admin/productUploadForm"
