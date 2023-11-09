@@ -4,10 +4,8 @@ import styles from "../../css/admin/leftSide.module.css";
 import { Link } from "react-router-dom";
 
 const LeftSide = ({ openLeftside, selected }) => {
-  const [currentSubmenu, setCurrentSubmenu] = useState("");
-
   useEffect(() => {
-    const subMenu = document.querySelectorAll(styles.subMenu);
+    const subMenu = document.querySelectorAll(`.${styles.subMenu}`);
     subMenu.forEach((item) => {
       if (item.innerText === selected) {
         item.style.color = "#F56084";
