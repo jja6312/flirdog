@@ -36,7 +36,6 @@ const App = () => {
           <Route path="/mypage/Mypage_test" element={<Mypage_test />} />
           <Route path="/mypage/Mypage_test2" element={<MyPage_test2 />} />
           {/* 김찬영마이페이지//================================================================= */}
-          {/* 김찬영마이페이지//================================================================= */}
           
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
