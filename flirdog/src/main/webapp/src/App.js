@@ -5,6 +5,7 @@ import DateList from "./components/date/DateList";
 
 import "./css/reset.css";
 import Test from "./components/user/Test";
+import DateWrite from "./components/date/DateWrite";
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
           <Route path="/date/dateList" element={<DateList />} />
+          <Route path="/date/dateWrite" element={<DateWrite />} />
         </Routes>
       </>
     </BrowserRouter>
