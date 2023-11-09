@@ -17,6 +17,9 @@ const Myprofile = () => {
             <div style={{ width: "100%", textAlign: "center" }}>
                 <Link to="/mypage/Mysetting">설정</Link>
             </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/Mypage_test">페이지테스트</Link>
+            </div>
         </div>
     );
 };

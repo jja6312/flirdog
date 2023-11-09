@@ -18,6 +18,8 @@ import Myprofile from "./components/mypage/Myprofile";
 import Myarticle from "./components/mypage/Myarticle";
 import Mypoint from "./components/mypage/Mypoint";
 import Mysetting from "./components/mypage/Mysetting";
+import Mypage_test from "./components/mypage/Mypage_test";
+import MyPage_test2 from "./components/mypage/MyPage_test2";
 const App = () => {
   return (
     <BrowserRouter>
@@ -25,13 +27,16 @@ const App = () => {
         {/* 화면에 보이는 영역 */}
         <Routes>
           
-          {/* //김찬영================================================================= */}
+          {/* //김찬영마이페이지================================================================= */}
           <Route path="/mypage/Mypage" element={<Mypage />} /> 
           <Route path="/mypage/Myprofile" element={<Myprofile />} />
           <Route path="/mypage/Myarticle" element={<Myarticle />} />
           <Route path="/mypage/Mypoint" element={<Mypoint />} />
-          <Route path="mypage/mysetting" element={<Mysetting />} />
-          {/* 김찬영//================================================================= */}
+          <Route path="/mypage/Mysetting" element={<Mysetting />} />
+          <Route path="/mypage/Mypage_test" element={<Mypage_test />} />
+          <Route path="/mypage/Mypage_test2" element={<MyPage_test2 />} />
+          {/* 김찬영마이페이지//================================================================= */}
+          {/* 김찬영마이페이지//================================================================= */}
           
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
