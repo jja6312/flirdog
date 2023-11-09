@@ -40,9 +40,6 @@ dependencies {
 	// File upload
     implementation 'commons-fileupload:commons-fileupload:1.4'
     implementation 'commons-io:commons-io:2.8.0'
-	//Logging
-	implementation 'org.slf4j:slf4j-api:1.7.32'
-    implementation 'ch.qos.logback:logback-classic:1.2.6'
 }
 
 tasks.named('test') {
