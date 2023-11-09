@@ -1,10 +1,16 @@
 import React from 'react';
+import Header from '../main/Header';
+import Footer from '../main/Footer';
+import Myprofile from './Myprofile';
 
 const Mypage = () => {
     return (
         <div>
-            <h1>찬영의 테스트</h1>
-            
+        <Header></Header>
+        
+        <Myprofile></Myprofile>
+
+        <Footer></Footer>
         </div>
     );
 };
