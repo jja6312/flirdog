@@ -127,10 +127,10 @@ const DateList = () => {
                                     <div className='genderCheck'>성 별
                                     <div className={`${dateCheck.genderCheckBox} d-flex justify-content-left`}>
                                         <input id='checkbox1' type='checkbox' value='남 아' />
-                                        <label htmlFor='checkbox1'>남 아</label>
+                                        <label className={dateCheck.labelClass} htmlFor='checkbox1'>남 아</label>
                                         &nbsp;&nbsp;
                                         <input id='checkbox2' type='checkbox' value='여 아' />
-                                        <label htmlFor='checkbox2'>여 아</label>
+                                        <label className={dateCheck.labelClass} htmlFor='checkbox2'>여 아</label>
                                     </div>
 
                                     </div>
@@ -138,20 +138,20 @@ const DateList = () => {
                                         marginTop:'10px' }}>중성화 여부 &nbsp;&nbsp;
                                         <div className={`${dateCheck.neutralizationCheckBox} d-flex justify-content-left`}>
                                             <input id='checkbox3' type='checkbox' value='중성화' />
-                                            <label className={dateCheck.neutralizationLabel} htmlFor='checkbox3'></label>
+                                            <label className={`${dateCheck.neutralizationLabel} ${dateCheck.labelClass}`} htmlFor='checkbox3'></label>
                                         </div>
                                     </div>
                                     <div className='sizeCheck' style={{
                                         marginTop:'10px' }}>애견 사이즈 &nbsp;&nbsp;
                                         <div className={`${dateCheck.sizeCheckBox} d-flex justify-content-left`}>
                                             <input id='checkbox4' type='checkbox' value='대' />
-                                            <label htmlFor='checkbox4'>대</label>
+                                            <label className={dateCheck.labelClass} htmlFor='checkbox4'>대</label>
                                             &nbsp;&nbsp;
                                             <input id='checkbox5' type='checkbox' value='중' />
-                                            <label htmlFor='checkbox5'>중</label>
+                                            <label className={dateCheck.labelClass} htmlFor='checkbox5'>중</label>
                                             &nbsp;&nbsp;
                                             <input id='checkbox6' type='checkbox' value='소' />
-                                            <label htmlFor='checkbox6'>소</label>
+                                            <label className={dateCheck.labelClass} htmlFor='checkbox6'>소</label>
                                         </div>
                                     </div>
                                     <div className='filterAddress' style={{

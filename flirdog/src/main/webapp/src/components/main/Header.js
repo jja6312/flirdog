@@ -25,7 +25,7 @@ const Header = () => {
               <Nav.Link className="navText mx-2" href="/date/dateList">
                 애견 매칭
               </Nav.Link>
-              <Nav.Link className="navText mx-2" href="/">
+              <Nav.Link className="navText mx-2" href="/somoim">
                 애견 소모임
               </Nav.Link>
               <Nav.Link className="navText mx-2" href="/">

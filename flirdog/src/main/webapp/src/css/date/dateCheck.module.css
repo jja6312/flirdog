@@ -7,7 +7,7 @@ input[type=checkbox]:checked + label {
     background-color: white;
 }
 
-label {
+.labelClass {
     color: white; /* 클릭하기 전 글자색 설정 */
     display: flex;
     justify-content: center;

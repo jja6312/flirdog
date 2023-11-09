@@ -12,8 +12,8 @@
 }
 
 .px-10 {
-  padding-left: 8rem;
-  padding-right: 8rem;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .mt-6 {
@@ -55,7 +55,7 @@
 
 @media (max-width: 400px) {
   .px-10 {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
   }
 }
