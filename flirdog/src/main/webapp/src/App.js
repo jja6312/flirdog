@@ -14,6 +14,7 @@ import OrderListForm from "./components/admin/3주문관리/OrderListForm";
 import OrderCheckForm from "./components/admin/3주문관리/OrderCheckForm";
 import OrderShippingForm from "./components/admin/3주문관리/OrderShippingForm";
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
+import ProductPopup from "./components/admin/1상품관리/1상품분류정보/ProductPopup";
 const App = () => {
   return (
     <BrowserRouter>
@@ -29,6 +30,10 @@ const App = () => {
           <Route
             path="/admin/productUploadForm"
             element={<ProductUploadForm openLeftside="0"></ProductUploadForm>}
+          />
+          <Route
+            path="/admin/productPopup"
+            element={<ProductPopup></ProductPopup>}
           />
           <Route
             path="/admin/productListForm"
