@@ -1,18 +1,18 @@
 import React from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
-import Myprofile from './Myprofile';
+import MypageCategory from './MypageCategory';
 
-const Mypage = () => {
+const MypageCategoryWrapper = () => {
     return (
         <div>
         <Header></Header>
-        
-        <Myprofile></Myprofile>
+
+        <MypageCategory></MypageCategory>
 
         <Footer></Footer>
         </div>
     );
 };
 
-export default Mypage;
+export default MypageCategoryWrapper;

@@ -45,7 +45,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
           <a className="custom-dropdown-item" href="#action/3.3">
             Q&A
           </a>
-            <a className="custom-dropdown-item" href={window.location.pathname !==  "/" ? "../mypage/Mypage" : "mypage/Mypage"}>
+            <a className="custom-dropdown-item" href={window.location.pathname !==  "/" ? "../mypage/MypageCategoryWrapper" : "mypage/MypageCategoryWrapper"}>
               마이페이지
             </a> {/* [ 김찬영  2023-11-7 오후 04:42:25 ] */}
         </div>

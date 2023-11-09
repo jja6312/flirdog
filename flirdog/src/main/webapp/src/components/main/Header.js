@@ -6,7 +6,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "../../css/main/Header.css";
 import { Link } from "react-router-dom";
 import HeaderCustomNavDropdownElement from "./HeaderCustomNavDropdownElement";
-
 const Header = () => {
   return (
     <div>
