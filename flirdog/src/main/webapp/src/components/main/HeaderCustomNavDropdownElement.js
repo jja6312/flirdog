@@ -45,6 +45,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
           <a className="custom-dropdown-item" href="#action/3.3">
             Q&A
           </a>
+<<<<<<< HEAD
           <a
             className="custom-dropdown-item"
             href={
@@ -67,6 +68,11 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
             마이페이지
           </a>{" "}
           {/* [ 김찬영  2023-11-7 오후 04:42:25 ] */}
+=======
+            <a className="custom-dropdown-item" href={window.location.pathname !==  "/" ? "../mypage/MypageCategoryWrapper" : "mypage/MypageCategoryWrapper"}>
+              마이페이지
+            </a> {/* [ 김찬영  2023-11-7 오후 04:42:25 ] */}
+>>>>>>> 7b0ef7b (마이페이지 간소화)
         </div>
       </div>
       {/* 여기서부터 모바일 드랍다운*/}

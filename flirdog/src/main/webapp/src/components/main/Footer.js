@@ -7,13 +7,13 @@ const Footer = () => {
   return (
     <div className="footer-container">
       <section className="footer-subscription"></section>
-      <div className="footer-links">
+      <div class="footer-links">
         <img
           src="/image/main/averageAge.png"
           style={{ width: "100px", height: "100px" }}
         />
         <div className="footer-link-wrapper">
-          <div className="footer-link-items">
+          <div class="footer-link-items">
             <h2>About Us</h2>
             <Link style={{ color: "#9E9EB1 " }} to="/">
               공동 대표 | 김찬영
@@ -34,7 +34,7 @@ const Footer = () => {
               공동 대표 | 최병권
             </Link>
           </div>
-          <div className="footer-link-items">
+          <div class="footer-link-items">
             <h2>Products</h2>
             <Link style={{ color: "#9E9EB1 " }} to="/">
               Kream
@@ -46,7 +46,7 @@ const Footer = () => {
               ...
             </Link>
           </div>
-          <div className="footer-link-items">
+          <div class="footer-link-items">
             <h2>Resources</h2>
             <Link style={{ color: "#9E9EB1 " }} to="/">
               개인정보처리방침
@@ -64,7 +64,7 @@ const Footer = () => {
               고객센터 문의
             </Link>
           </div>
-          <div className="footer-link-items">
+          <div class="footer-link-items">
             <h2>SNS</h2>
             <Link style={{ color: "#9E9EB1 " }} to="/">
               Instagram
@@ -82,7 +82,7 @@ const Footer = () => {
               LinkedIn
             </Link>
           </div>
-          <div className="footer-link-items">
+          <div class="footer-link-items">
             <h2>More</h2>
             <Link style={{ color: "#9E9EB1 " }} to="/">
               Contact

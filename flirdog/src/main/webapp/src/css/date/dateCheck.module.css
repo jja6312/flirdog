@@ -7,7 +7,11 @@ input[type=checkbox]:checked + label {
     background-color: white;
 }
 
+<<<<<<< HEAD
 .labelClass {
+=======
+label {
+>>>>>>> 508804b (스타일.매칭페이지/글작성)
     color: white; /* 클릭하기 전 글자색 설정 */
     display: flex;
     justify-content: center;

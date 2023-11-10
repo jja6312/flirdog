@@ -4,7 +4,14 @@ import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 
+<<<<<<< HEAD
 const Myarticle = () => {
+=======
+
+const Myarticle = () => {
+    const[color,setcolor]=useState(Mypage.color);
+    setcolor(Mypage.anothercolor)
+>>>>>>> 7b0ef7b (마이페이지 간소화)
     return (
         <div>
             <MypageHeader/>
