@@ -29,12 +29,12 @@
 
 @media (max-width: 1400px) {
   .spaceDiv {
-    width: 270px;
+    width: 230px;
   }
 }
 @media (max-width: 1300px) {
   .spaceDiv {
-    width: 260px;
+    width: 220px;
   }
 }
 @media (max-width: 1154px) {
@@ -47,7 +47,7 @@
     display: block;
   }
   .spaceDiv {
-    width: 250px;
+    width: 200px;
   }
   .navText {
     font-size: 1rem !important;

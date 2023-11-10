@@ -3,15 +3,12 @@ import { Link } from "react-router-dom";
 import LeftSide from "../LeftSide";
 import AdminHeader from "../AdminHeader";
 import styles from "../../../css/admin/rightContent.module.css";
-<<<<<<< HEAD
 import RightContentHeader from "../RightContentHeader";
 import AdminPageInfoText from "../AdminPageInfoText";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
 import filterForm from "../../../css/admin/filterForm.module.css";
 import FilterForm from "./FilterForm";
-=======
->>>>>>> bfe3c24 (리팩토링:관리자페이지 css모듈화 완료)
 
 // 사륜안ㅋㅋ
 
@@ -176,7 +173,6 @@ const ProductListForm = ({ openLeftside }) => {
         openLeftside={openLeftside}
         selected="전체 상품 조회/수정"
       ></LeftSide>
-<<<<<<< HEAD
       <div className={styles.rightContent}>
         <RightContentHeader title="전체 상품 조회/수정" />
         <Alert
@@ -310,9 +306,6 @@ const ProductListForm = ({ openLeftside }) => {
           </tbody>
         </Table>
       </div>
-=======
-      <div className={styles.rightContent}>여기는 상품리스트</div>
->>>>>>> bfe3c24 (리팩토링:관리자페이지 css모듈화 완료)
     </>
   );
 };

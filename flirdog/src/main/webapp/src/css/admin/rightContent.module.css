@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -15,12 +14,14 @@
   background-color: #d9d9d9;
 }
 .rightContent {
-  width: calc(100% - 240px);
+  width: calc(100% - 203px);
 
   position: absolute;
-  left: 240px;
-  margin-top: 10px;
+  left: 203px;
+  padding: 37px;
+
   /* top: 155.8px; */
+  background-color: rgb(255, 246, 248);
 }
 .rightContentTop {
   color: gray;
@@ -45,14 +46,6 @@
 .titleThird {
   font-size: 14px;
   color: #868786;
-=======
-.rightContent {
-  width: calc(100% - 200px);
-
-  position: absolute;
-  left: 200px;
-  top: 55.8px;
->>>>>>> bfe3c24 (리팩토링:관리자페이지 css모듈화 완료)
 }
 
 @media (min-width: 1200px) {
