@@ -1,15 +1,10 @@
 package user.bean;
 
 import api.BaseEntity;
-<<<<<<< HEAD
 import community.bean.Community;
 import jakarta.persistence.*;
 import lombok.*;
 import matching.bean.Matching;
-=======
-import jakarta.persistence.*;
-import lombok.*;
->>>>>>> f63edee (스프링 기본 세팅)
 
 import java.util.List;
 
@@ -31,7 +26,6 @@ public class User extends BaseEntity{
     @NonNull
     private String email;
 
-<<<<<<< HEAD
     private String nickname;
 
     @Enumerated(EnumType.STRING)
@@ -51,13 +45,5 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Community> communities;
-=======
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
-
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<DogsInfo> dogsInfos;
->>>>>>> f63edee (스프링 기본 세팅)
 }
 
