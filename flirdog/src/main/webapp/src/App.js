@@ -7,7 +7,6 @@ import "./css/reset.css";
 import Test from "./components/user/Test";
 import DateWrite from "./components/date/DateWrite";
 
-import Mypage from "./components/mypage/Mypage";
 import Admin from "./components/admin/Admin";
 import ProductUploadForm from "./components/admin/1상품관리/ProductUploadForm";
 import ProductListForm from "./components/admin/1상품관리/ProductListForm";
@@ -19,12 +18,16 @@ import OrderShippingForm from "./components/admin/3주문관리/OrderShippingFor
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 import SomoimMain from "./components/somoim/SomoimMain";
 
-import Myprofile from "./components/mypage/Myprofile";
-import Myarticle from "./components/mypage/Myarticle";
-import Mypoint from "./components/mypage/Mypoint";
-import Mysetting from "./components/mypage/Mysetting";
-import Mypage_test from "./components/mypage/Mypage_test";
-import MyPage_test2 from "./components/mypage/MyPage_test2";
+
+import MypageMain from "./components/mypage/MypageMain";
+import Myarticle from "./components/mypage/2내가작성한글/Myarticle";
+import MypageCategory from "./components/mypage/MypageCategory";
+import MypageCategoryWrapper from "./components/mypage/MypageCategoryWrapper";
+import Mypoint from "./components/mypage/3포인트/Mypoint";
+import Mysetting from "./components/mypage/4설정/Mysetting";
+import MyprofileUpdate from "./components/mypage/1프로필/Myprofileupdate";
+import MydogProfile from "./components/mypage/1프로필/MydogProfile";
+import MypageHeader from "./components/mypage/MypageHeader";
 
 const App = () => {
   return (
@@ -33,13 +36,15 @@ const App = () => {
         {/* 화면에 보이는 영역 */}
         <Routes>
           {/* //김찬영마이페이지================================================================= */}
-          <Route path="/mypage/Mypage" element={<Mypage />} />
-          <Route path="/mypage/Myprofile" element={<Myprofile />} />
-          <Route path="/mypage/Myarticle" element={<Myarticle />} />
           <Route path="/mypage/Mypoint" element={<Mypoint />} />
           <Route path="/mypage/Mysetting" element={<Mysetting />} />
-          <Route path="/mypage/Mypage_test" element={<Mypage_test />} />
-          <Route path="/mypage/Mypage_test2" element={<MyPage_test2 />} />
+          <Route path="/mypage/Myarticle" element={<Myarticle />} />
+          <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />} />
+          <Route path="/mypage/MypageMain" element={<MypageMain />} />
+          <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
+          <Route path="/mypage/MypageCategoryWrapper" element={<MypageCategoryWrapper />} />
+          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
           {/* 김찬영마이페이지//================================================================= */}
 
           <Route path="/" element={<Main></Main>} />
