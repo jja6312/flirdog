@@ -1,3 +1,13 @@
+.adminHeaderTitle {
+  position: absolute;
+  z-index: 22;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  top: 21px;
+  left: 220px;
+}
+
 .navBar {
   background-color: #f56084;
 }
@@ -9,6 +19,7 @@
 .logo {
   height: 55px;
   margin: 0 auto;
+
   display: block;
 }
 
@@ -27,6 +38,9 @@
   }
 }
 @media (max-width: 1154px) {
+  .adminHeaderTitle {
+    top: 11px;
+  }
   .logo {
     max-height: 35px;
     margin: 0 auto;

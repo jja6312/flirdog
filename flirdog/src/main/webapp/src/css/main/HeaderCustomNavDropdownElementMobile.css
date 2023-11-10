@@ -1,3 +1,8 @@
+.navText {
+  font-size: 1rem;
+  color: white;
+}
+
 .custom-dropdown-mobile .custom-dropdown-toggle-mobile {
   display: none;
   background-color: transparent;
