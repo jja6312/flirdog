@@ -23,8 +23,9 @@
 .submitBtnDesign {
   margin-top: 20px;
   padding: 10px 20px;
-  width: 105px;
-  height: 40px;
+  width: 145px;
+  height: 50px;
+  max-height: 70px;
   border-radius: 25px;
   font-size: 0.9rem;
 
@@ -38,7 +39,7 @@
   cursor: pointer;
   position: fixed;
   right: 20px;
-  bottom: 100px;
+  bottom: 80px;
   transition: 0.16s ease-in-out;
 }
 .popupClickProductUpload {

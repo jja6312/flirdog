@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Editor } from "@toast-ui/react-editor";
-// import { Editor, Viewer } from "@toast-ui/react-editor";
+
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
@@ -26,16 +26,14 @@ const EditorBox = () => {
     console.log(data);
   };
 
-  const onUploadImage = async (blob, callback) => {
-    console.log(blob);
-    alert(blob);
-  };
+  // const onUploadImage = async (blob, callback) => {
+  //   console.log(blob);
+  //   alert(blob);
+  // };
 
-  //설명 : editorRef.current().getInstatnce() 로 에디터의 설정값을 가져올 수 있습니다!
   return (
     <>
       <Editor
-        // initialValue=""
         previewStyle="vertical"
         height="600px"
         initialEditType="wysiwyg"
@@ -44,9 +42,9 @@ const EditorBox = () => {
         ref={editorRef}
         onChange={onChange}
         plugins={[colorSyntax]}
-        hooks={{
-          addImageBlobHook: onUploadImage,
-        }}
+        // hooks={{
+        //   addImageBlobHook: onUploadImage,
+        // }}
       />
       <div className="d-flex justify-content-center" style={{ width: "100%" }}>
         <Button
