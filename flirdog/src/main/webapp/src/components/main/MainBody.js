@@ -12,30 +12,30 @@ import CommunityMain from "./4커뮤니티/CommunityMain";
 import BestProductMain from "./5인기상품/BestProductMain";
 
 const MainBody = () => {
-  return (
-    <>
-      <MainScreen></MainScreen>
+    return (
+        <>
+            <MainScreen></MainScreen>
 
-      <Container className="px-10">
-        <BestFlirdog />
-      </Container>
-      <SmallGroupMain></SmallGroupMain>
-      <CommunityMain></CommunityMain>
-      <Container className="px-10">
-        <BestProductMain></BestProductMain>
+            <Container className="px-10">
+                <BestFlirdog />
+            </Container>
+            <SmallGroupMain></SmallGroupMain>
+            <CommunityMain></CommunityMain>
+            <Container className="px-10">
+                <BestProductMain></BestProductMain>
 
-        <div className="mt-7 d-flex justify-content-center align-items-center">
-          <NavigateBtn
-            text="쇼핑몰 이동"
-            url="/"
-            fontSize="2.5vw"
-            btnWidth="25vw"
-            btnHeight="80px"
-          ></NavigateBtn>
-        </div>
-      </Container>
-    </>
-  );
+                <div className="mt-7 d-flex justify-content-center align-items-center">
+                    <NavigateBtn
+                        text="쇼핑몰 이동"
+                        url="/product"
+                        fontSize="2.5vw"
+                        btnWidth="25vw"
+                        btnHeight="80px"
+                    ></NavigateBtn>
+                </div>
+            </Container>
+        </>
+    );
 };
 
 export default MainBody;

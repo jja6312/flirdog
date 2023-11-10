@@ -36,7 +36,7 @@ const ProductDetail = () => {
       {" "}
       <div className={styles.contentContainer}>
         <div className={styles.contentContainerCategory}>
-          <span className={styles.contentContainerCategorySpan}>1차 분류</span>
+          <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>1차 분류</span>
           <div className={styles.categorySmallBox}>
             {category1.map((item, index) => (
               <div
@@ -52,7 +52,7 @@ const ProductDetail = () => {
           </div>
         </div>
         <div className={styles.contentContainerCategory}>
-          <span className={styles.contentContainerCategorySpan}>2차 분류</span>
+          <span style={{ fontWeight: 700, fontSize: "0.9rem" }}>2차 분류</span>
           <div className={styles.categorySmallBox}>
             {category2Array.map((item, index) => (
               <div

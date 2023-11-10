@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 
 const LeftSide = ({ openLeftside, selected }) => {
   useEffect(() => {
+<<<<<<< HEAD
     const subMenu = document.querySelectorAll(`.${styles.subMenu}`);
+=======
+    const subMenu = document.querySelectorAll(styles.subMenu);
+>>>>>>> bfe3c24 (리팩토링:관리자페이지 css모듈화 완료)
     subMenu.forEach((item) => {
       if (item.innerText === selected) {
         item.style.color = "#F56084";

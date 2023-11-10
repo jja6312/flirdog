@@ -1,14 +1,10 @@
 .categoryDiv {
-  color: gray;
   padding: 4px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 0.8em;
   height: 30px;
-}
-.categoryDiv:hover {
-  background-color: #e9e9e9;
 }
 
 .categorySelected {
@@ -17,15 +13,10 @@
 }
 .contentContainerCategory {
   padding: 15px;
-  width: 50%;
+  width: 30%;
   min-width: 150px;
   min-height: 85%;
   max-height: 100%;
-}
-
-.contentContainerCategorySpan {
-  font-weight: 700;
-  font-size: 0.9rem;
 }
 
 .categorySmallBox {
@@ -42,6 +33,6 @@
   justify-content: flex-start;
   align-items: flex-start;
 
-  width: 100%;
+  width: 85%;
   background-color: white;
 }
