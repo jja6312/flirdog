@@ -54,7 +54,7 @@
 .RoundedCircle{
     width: 150px;
     height: 150px;
-    justify-content: center;
+    justify-content: center s;
 }
 .Text {
     border-bottom: 3px solid #f56084;;

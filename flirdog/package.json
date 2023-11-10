@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "flirdog",
   "version": "1.0.0",
   "description": "",
@@ -8,10 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
-=======
+  "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.23.2"
   }
->>>>>>> 508804b (스타일.매칭페이지/글작성)
 }
