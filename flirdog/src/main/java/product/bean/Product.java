@@ -29,14 +29,10 @@ public class Product extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SubCategory subCategory;
 
-<<<<<<< HEAD
     @Embedded
     private Hit hit;
 
     @Builder(toBuilder = true)
-=======
-    @Builder
->>>>>>> f63edee (스프링 기본 세팅)
     private Product(String name, String content, String image, MainCategory mainCategory, SubCategory subCategory) {
         this.name = name;
         this.content = content;
@@ -46,17 +42,8 @@ public class Product extends BaseEntity {
     }
 
     public static Product create(List<String> imgs, Product product) {
-<<<<<<< HEAD
         return product.toBuilder()
                 .image(String.join(",", imgs))
-=======
-        return Product.builder()
-                .name(product.getName())
-                .content(product.getContent())
-                .image(String.join(",", imgs))
-                .mainCategory(product.getMainCategory())
-                .subCategory(product.getSubCategory())
->>>>>>> f63edee (스프링 기본 세팅)
                 .build();
     }
 }

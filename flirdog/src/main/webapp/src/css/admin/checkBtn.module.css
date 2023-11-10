@@ -1,0 +1,19 @@
+.checkBtn {
+  width: 30px;
+  height: auto;
+  fill: rgb(245, 96, 132);
+  cursor: pointer;
+}
+
+.editBtn {
+  height: auto;
+  background-color: rgb(245, 96, 132);
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.editBtn:hover {
+  opacity: 1;
+  background-color: rgb(255, 65, 109);
+}
