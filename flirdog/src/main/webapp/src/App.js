@@ -1,9 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "./components/main/Main";
+import DateList from "./components/date/DateList";
 
 import "./css/reset.css";
 import Test from "./components/user/Test";
+import DateWrite from "./components/date/DateWrite";
 
 import Mypage from "./components/mypage/Mypage";
 import Admin from "./components/admin/Admin";
@@ -42,6 +44,8 @@ const App = () => {
 
           <Route path="/" element={<Main></Main>} />
           <Route path="/user/userTest" element={<Test />} />
+          <Route path="/date/dateList" element={<DateList />} />
+          <Route path="/date/dateWrite" element={<DateWrite />} />
           <Route path="/admin" element={<Admin />} />
 
           <Route path='/somoim' element={ <SomoimMain /> } />

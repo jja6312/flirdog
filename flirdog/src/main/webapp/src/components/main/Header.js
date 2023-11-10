@@ -26,7 +26,12 @@ const Header = () => {
               <Nav.Link className={`${styles.navText} mx-2`} href="/">
                 홈
               </Nav.Link>
-              <Nav.Link className={`${styles.navText} mx-2`} href="/">
+
+              <Nav.Link
+                className={`${styles.navText} mx-2`}
+                href="/"
+              ></Nav.Link>
+              <Nav.Link className="navText mx-2" href="/date/dateList">
                 애견 매칭
               </Nav.Link>
               <Nav.Link className={`${styles.navText} mx-2`} href="/somoim">
