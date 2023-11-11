@@ -1,6 +1,29 @@
+.replyComplete {
+  color: rgb(96, 96, 255);
+}
+.replyYet {
+  color: red;
+}
+
+.tableOverflow {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.table th,
+.table td {
+  min-width: 120px;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
 .imgContainer {
-  width: 200px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 }
 
 .imgContainer img {
@@ -23,6 +46,7 @@
 
 .table th {
   background-color: #d9d9d9;
+  vertical-align: middle;
 }
 
 .rightContent {

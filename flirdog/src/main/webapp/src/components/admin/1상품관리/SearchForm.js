@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
 
-const SearchForm = () => {
+const SearchForm = ({ placeHolder }) => {
   const [searchValueText, setSearchValueText] = useState("");
   const onSearchValueText = (e) => {
     setSearchValueText(e.target.value);
@@ -31,7 +31,7 @@ const SearchForm = () => {
         <Form.Control
           style={{ width: "470px", height: "50px" }}
           type="search"
-          placeholder="상품 이름 검색"
+          placeholder={placeHolder}
           className="me-2"
           aria-label="Search"
           onChange={onSearchValueText}

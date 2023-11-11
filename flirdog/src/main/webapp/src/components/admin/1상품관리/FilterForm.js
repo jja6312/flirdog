@@ -4,6 +4,8 @@ import { faBorderAll } from "@fortawesome/free-solid-svg-icons";
 import styles from "../../../css/admin/filterForm.module.css";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faStoreSlash } from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 
 const FilterForm = ({
   iconName,
@@ -33,6 +35,12 @@ const FilterForm = ({
           )}
           {iconName === "faStoreSlash" && (
             <FontAwesomeIcon className={styles.icon} icon={faStoreSlash} />
+          )}
+          {iconName === "faCommentDots" && (
+            <FontAwesomeIcon className={styles.icon} icon={faCommentDots} />
+          )}
+          {iconName === "faHeadset" && (
+            <FontAwesomeIcon className={styles.icon} icon={faHeadset} />
           )}
         </div>
 

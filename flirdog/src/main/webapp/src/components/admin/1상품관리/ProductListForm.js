@@ -242,7 +242,7 @@ const ProductListForm = ({ openLeftside }) => {
           className="d-flex justify-content-end mt-4"
           style={{ width: "100%" }}
         >
-          <SearchForm></SearchForm>
+          <SearchForm placeHolder="상품 이름 검색"></SearchForm>
         </div>
 
         <div className="d-flex align-items-center mt-4">
@@ -281,7 +281,7 @@ const ProductListForm = ({ openLeftside }) => {
               <th>재고</th>
               <th>조회수</th>
               <th>등록일</th>
-              <th>출시일</th>
+              <th>수정일</th>
             </tr>
           </thead>
           <tbody>
