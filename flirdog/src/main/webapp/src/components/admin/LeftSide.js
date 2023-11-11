@@ -93,7 +93,7 @@ const LeftSide = ({ openLeftside, selected }) => {
                 style={{ color: "black", textDecoration: "none" }}
               >
                 <Accordion.Body className={`mx-4 ${styles.subMenu}`}>
-                  문의/리뷰 관리
+                  문의 조회/답변
                 </Accordion.Body>
               </Link>
             </Accordion.Item>

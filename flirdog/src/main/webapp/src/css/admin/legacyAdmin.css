@@ -1088,18 +1088,17 @@ th {
   font-family: "Courier New", Courier, monospace;
 }
 
-/* ****************      문의/리뷰        ****************** */
+/* ****************      문의 조회/답변       ****************** */
 
 .custom-textarea-cell {
   margin: 0;
-  cell-padding: 0;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
   height: 200px;
-  background-color: #f7f7f7; /* 연한 회색 배경색 */
+  background-color: #f7f7f7;
   border: 1px solid #cecece;
 }
 

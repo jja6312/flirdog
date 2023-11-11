@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 const AdminHeader = () => {
   return (
     <div style={{ position: "relative" }}>
-      <span className={styles.adminHeaderTitle}>관리자페이지 홈</span>
+      <Link to="/admin">
+        <span className={styles.adminHeaderTitle}>관리자페이지 홈</span>
+      </Link>
       <Navbar expand="lg" className={styles.navBar}>
         <Link to="/">
           <img
