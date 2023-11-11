@@ -114,7 +114,7 @@ const ReviewListForm = ({ openLeftside }) => {
                 </td>
                 <td>34</td>
                 <td>7</td>
-                <td className={styles.replyYet}>미답변</td>
+                <td style={{ color: "red" }}>미답변</td>
                 <td>예압</td>
                 <td>얘얘압</td>
                 <td>정쥐</td>
@@ -130,7 +130,7 @@ const ReviewListForm = ({ openLeftside }) => {
                 </td>
                 <td>34</td>
                 <td>7</td>
-                <td className={styles.replyComplete}>답변완료</td>
+                <td style={{ color: "rgb(96, 96, 255)" }}>답변완료</td>
                 <td>여기 장사잘되나요?</td>
                 <td>아이스크림하나만사주세요제발요 농협3022374631211정지안</td>
                 <td>정쥐</td>
