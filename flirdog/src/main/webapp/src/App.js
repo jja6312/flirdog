@@ -26,6 +26,9 @@ import Mysetting from "./components/mypage/4설정/Mysetting";
 import MyprofileUpdate from "./components/mypage/1프로필/Myprofileupdate";
 import MydogProfile from "./components/mypage/1프로필/MydogProfile";
 import MypageHeader from "./components/mypage/MypageHeader";
+import MydogProfileUpdate from "./components/mypage/1프로필/MydogProfileUpdate";
+import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileRegister";
+
 
 const App = () => {
   return (
@@ -42,7 +45,10 @@ const App = () => {
           <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
           <Route path="/mypage/MypageCategoryWrapper" element={<MypageCategoryWrapper />} />
           <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route path="/mypage/MydogProfileUpdate" element={<MydogProfileUpdate />} />
           <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
+          <Route path="/mypage/MydogProfileRegister" element={<MydogProfileRegister />} />
           {/* 김찬영마이페이지//================================================================= */}
 
           <Route path="/" element={<Main></Main>} />

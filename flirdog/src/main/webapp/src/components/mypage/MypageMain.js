@@ -52,7 +52,7 @@ const MypageMain = () => {
                     <Col xs={5} md={4}>
                     </Col>
                     <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                        <Image src="https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg" roundedCircle className={Mypage.RoundedCircle} />
+                        <Image src="https://cdn.eyesmag.com/content/uploads/sliderImages/2022/12/30/3-fb9fd982-6568-4662-8ed1-d16ceb53ada9.jpg" roundedCircle className={Mypage.RoundedCircle} />
                     </Col>
                     <Col xs={5} md={4}>
                     </Col>
@@ -108,7 +108,7 @@ const MypageMain = () => {
                     </div>
                     <div className='col-sm-4 d-flex justify-content-center'></div>
                 </div>
-        </Container>
+            </Container>
 
 
     </div>
