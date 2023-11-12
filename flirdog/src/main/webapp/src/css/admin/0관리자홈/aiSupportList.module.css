@@ -1,0 +1,15 @@
+.subTitle {
+  color: blue;
+  font-size: 0.9rem;
+}
+
+.subTitleMargin {
+  margin-top: 22px;
+}
+.title {
+  font-size: 1rem;
+}
+
+.relative {
+  position: relative;
+}
