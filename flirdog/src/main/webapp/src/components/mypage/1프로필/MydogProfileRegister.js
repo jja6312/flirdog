@@ -7,6 +7,7 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
+import Button from 'react-bootstrap/esm/Button';
 
 
 const MydogProfileRegister = () => {
@@ -33,8 +34,8 @@ const MydogProfileRegister = () => {
                     </Col>
                 </Row>
         </Container>
-        <Container className='px-10 mt-4'>
-            <div className='row'> {/* 사진선택란 */}
+        <Container className='px-10 mt-4'> {/* 사진선택 및 내용 란 */}
+            <div className='row'> 
                 <div className='col-lg-4 d-flex justify-content-center'></div>
                 <div className='col-lg-4 d-flex justify-content-center'>
                     <div className={Mypage.MydogProfileRegisterText}>
@@ -54,7 +55,7 @@ const MydogProfileRegister = () => {
                 <div className='col-lg-4 d-flex justify-content-center'>
                     <div className={Mypage.MydogProfileRegisterText}>
                         <span style={{color:'red'}}>*</span>
-                        <input className={Mypage.MydogProfileRegisterText3} type='text' placeholder='이름' style={{padding:'6px 10px',width:'99%'}}></input> 
+                        <input  type='text' placeholder='이름' style={{padding:'6px 10px',width:'99%'}}></input> 
                     </div>
                 </div>
                 <div className='col-lg-4 d-flex justify-content-center'></div>
@@ -62,7 +63,7 @@ const MydogProfileRegister = () => {
             <div className='row mt-2'> {/* 이름 체크란  */}
                 <div className='col-lg-4 d-flex justify-content-end'>
                 </div>
-                <div className='col-lg-4 d-flex justify-content-start'>
+                <div className='col-lg-4 d-flex justify-content-center'>
                     <div className={Mypage.MydogProfileRegisterTextCheck}>
                         ex 닉네임은 숫자와 문자를 사용해 1-10자를 입력해 주세요.
                     </div>
@@ -74,8 +75,10 @@ const MydogProfileRegister = () => {
                 </div>
                 <div className='col-lg-4 d-flex justify-content-center'>
                     <div className={Mypage.MydogProfileRegisterText}>
-                        <span style={{color:'red'}}>*</span>
-                        <input type='text' pattern="[0-9]*" maxLength='8' placeholder='반려동물의 생년월일 8자리를 입력해주세요' style={{padding:'6px 10px',width:'99%'}}/>
+                        <div>
+                            <span style={{color:'red'}}>*</span>
+                            <input type='text' pattern="[0-9]*" maxLength='8' placeholder='반려동물의 생년월일 8자리를 입력해주세요' style={{padding:'6px 10px',width:'99%'}}/>
+                        </div>
                     </div>{/*과제 숫자만 입력되게 소스수정필요 */}
                 </div>
                 <div className='col-lg-4 d-flex justify-content-center'></div>
@@ -84,16 +87,70 @@ const MydogProfileRegister = () => {
                 <div className='col-lg-4 d-flex justify-content-end'>
                 </div>
                 <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText3}>
+                    <div className={Mypage.MydogProfileRegisterText}>
                         <span style={{color:'red'}}>*</span>
-                        <select className={Mypage.MydogProfileRegisterText2} size="1" aria-label="size 1 select example">
-                            <option  selected>품종</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select className={Mypage.MydogProfileRegisterText5} size="1" aria-label="size 1 select example" style={{padding:'6px 6px',width:'99%'}}>
+                            <option selected>품종</option>
+                            <option value="1">웰시코기</option>
+                            <option value="2">말티즈</option>
+                            <option value="3">시츄</option>
                         </select>
                     </div>
                 </div>
+                <div className='col-lg-4 d-flex justify-content-center'></div>
+            </div>
+            
+            <div className='row mt-2'> {/* 남아 여아 체크박스 위에 필수별표 */}
+                <div className='col-lg-4 d-flex justify-content-center'>
+                </div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                    <div className={Mypage.MydogProfileRegisterText4}>
+                        <div className={``}>
+                            <span style={{color:'red'}}>*</span>
+                            <span style={{padding:'6px'}}>{' '}성별</span>
+                        </div>
+                    </div>
+                </div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                </div>
+            </div>
+            <div className='row mt-2'> {/* 남아 여아 체크박스 부분 */}
+                <div className='col-lg-4 d-flex justify-content-center'>
+                </div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                    <div className={Mypage.MydogProfileRegisterText4}>
+                        <div className={``}>
+                            <div class='form-check form-check-inline' style={{marginRight:'13%', marginLeft:'25%'}}>
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                <label class="form-check-label" for="inlineRadio1">남아</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                <label class="form-check-label" for="inlineRadio2">여아</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                </div>
+            </div>
+            <div className='row mt-2'>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                </div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                    <div className={Mypage.MydogProfileRegisterText4}>
+                        <p><label><input type="checkbox" name="nb[]" value="01"/>{" "}<span style={{marginLeft:'5%'}}> 중성화여부  </span></label></p>
+                    </div>
+                </div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                </div>
+            </div>
+            <div className='row mt-2'>
+                <div className='col-lg-4 d-flex justify-content-center'></div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                    <Button variant="outline-danger" className={`${Mypage.Btn4}`} >
+                                        추가하기
+                    </Button>{''}</div>
                 <div className='col-lg-4 d-flex justify-content-center'></div>
             </div>
         </Container>

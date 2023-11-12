@@ -122,6 +122,17 @@
     border-radius: 10rem;
     margin-top: 15px;
 }
+.Btn4{
+    width: 24rem;
+    height: 4rem;
+    background-color: #f56084;
+    border: 0;
+    color: black;
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
 .Imagecenter{
     display: flex;
     justify-content: center;
@@ -189,6 +200,7 @@
     font-weight: bold;
     margin-right: 5px;
 }
+
 .MydogProfileRegisterText{
     width: 360px;
     white-space: nowrap;
@@ -198,12 +210,11 @@
     font-size: 13px;
     padding: 3px 3px;
 }
-
 .MydogProfileRegisterText2{
     width: 99%;
     white-space: nowrap;
     border-radius: 6px;
-    border: 1px solid #e4e4e6;
+    border: 0;
     background-color: #fff;
     color: #868688;
     font-size: 13px;
@@ -215,6 +226,25 @@
     border-radius: 6px;
     border: 0;
     background-color: #fff;
+    font-size: 13px;
+    padding-top: 3px;
+}
+.MydogProfileRegisterText4{
+    width: 360px;
+    white-space: nowrap;
+    border-radius: 6px;
+    border: 0;
+    font-size: 13px;
+    padding-left: 4px;
+    color: #868688;
+}
+.MydogProfileRegisterText5{
+    width: 99%;
+    white-space: nowrap;
+    border-radius: 6px;
+    border: 0;
+    background-color: #fff;
+    color: #868688;
     font-size: 13px;
     padding: 3px 3px;
 }
@@ -230,7 +260,6 @@
     
 }
 .MydogProfileRegisterTextCheck{
-    margin-left: 15px;
     font-size: 13px;
     color: #f24147;
 }
