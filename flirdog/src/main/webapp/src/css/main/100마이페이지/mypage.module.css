@@ -66,12 +66,14 @@
 .Space{
     margin-left: 2rem;
 }
-.Space2_logo{
-    margin-left: 13rem;
+
+.Space2{
+    margin-left: 50%;
 }
 .Space3{
     margin-bottom: 3px;
 }
+
 .Email{
     width: 30px;
 }
@@ -173,4 +175,62 @@
     border-radius: 5px;
     font-size: 13px;
     word-spacing: -4px;
+}
+.picSize{
+    width: 40px;
+    height: 40px;
+}
+.UploadFileLabel{
+    padding: 1px 1px;
+    background-color:#E7E7E9;
+    border-radius: 10px;
+    color: #A5A5A7;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.MydogProfileRegisterText{
+    width: 360px;
+    white-space: nowrap;
+    border-radius: 6px;
+    border: 1px solid #e4e4e6;
+    background-color: #fff;
+    font-size: 13px;
+    padding: 3px 3px;
+}
+
+.MydogProfileRegisterText2{
+    width: 99%;
+    white-space: nowrap;
+    border-radius: 6px;
+    border: 1px solid #e4e4e6;
+    background-color: #fff;
+    color: #868688;
+    font-size: 13px;
+    padding: 3px 3px;
+}
+.MydogProfileRegisterText3{
+    width: 360px;
+    white-space: nowrap;
+    border-radius: 6px;
+    border: 0;
+    background-color: #fff;
+    font-size: 13px;
+    padding: 3px 3px;
+}
+.MydogProfileRegisterTextInner{
+    
+    width: 360px;
+    white-space: nowrap;
+    border: 0;
+    background-color: #fff;
+    font-size: 13px;
+    line-height: 20px;
+    color: #868688;
+    
+}
+.MydogProfileRegisterTextCheck{
+    margin-left: 15px;
+    font-size: 13px;
+    color: #f24147;
 }
