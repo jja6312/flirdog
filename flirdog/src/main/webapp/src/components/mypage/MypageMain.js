@@ -52,7 +52,7 @@ const MypageMain = () => {
                     <Col xs={5} md={4}>
                     </Col>
                     <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                        <Image src="https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg" roundedCircle className={Mypage.RoundedCircle} />
+                        <Image src="https://cdn.eyesmag.com/content/uploads/sliderImages/2022/12/30/3-fb9fd982-6568-4662-8ed1-d16ceb53ada9.jpg" roundedCircle className={Mypage.RoundedCircle} />
                     </Col>
                     <Col xs={5} md={4}>
                     </Col>
@@ -62,7 +62,7 @@ const MypageMain = () => {
                 <div className='row'>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                     <div className='col-lg-4 d-flex justify-content-right'> 
-                        <div className={Mypage.Text}>
+                        <div className={`row ${Mypage.Text}`}>
                             <div className={Mypage.Space3}>
                                 <span>닉네임</span>
                                 <span className={Mypage.Space}>이름입력칸</span> 
@@ -73,19 +73,17 @@ const MypageMain = () => {
                 </div>
                 <div className='row'>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
-                    <div className='col-lg-4 d-flex justify-content-right'> 
-                        <div className={Mypage.Text}>
-                            <span>ci2288@naver.com</span>
-                            <span className={Mypage.Space2_logo}><img className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>  
-                            
+                    <div className='col-lg-4 d-flex justify-content-start'> 
+                        <div className={`row ${Mypage.Text}`}>
+                            <span className='col-6 d-flex justify-content-start'>ci2288@naver.com</span>
+                            <span className='col-6 d-flex justify-content-end'><img className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>
                         </div>
                     </div>
-                    <div className='col-lg-4 d-flex justify-content-center'></div>
                 </div>
                 <div className='row'>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                     <div className='col-lg-4 d-flex justify-content-right'> 
-                        <div className={Mypage.Text}>
+                        <div className={`row ${Mypage.Text}`}>
                             <div className={Mypage.Space3}>
                                 <div className="d-grid gap-2">
                                 <Link to='/mypage/MyprofileUpdate'>
@@ -108,7 +106,7 @@ const MypageMain = () => {
                     </div>
                     <div className='col-sm-4 d-flex justify-content-center'></div>
                 </div>
-        </Container>
+            </Container>
 
 
     </div>
