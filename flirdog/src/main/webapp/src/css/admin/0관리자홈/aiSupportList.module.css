@@ -1,5 +1,5 @@
 .subTitle {
-  color: blue;
+  color: rgb(66, 119, 254);
   font-size: 0.9rem;
 }
 
@@ -8,6 +8,7 @@
 }
 .title {
   font-size: 1rem;
+  font-weight: 800;
 }
 
 .relative {
