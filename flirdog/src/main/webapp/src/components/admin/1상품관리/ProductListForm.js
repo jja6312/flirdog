@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LeftSide from "../LeftSide";
 import AdminHeader from "../AdminHeader";
@@ -9,6 +9,14 @@ import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
 import filterForm from "../../../css/admin/filterForm.module.css";
 import FilterForm from "./FilterForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRegular } from "@fortawesome/free-solid-svg-icons";
+import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import CheckBtn from "./CheckBtn";
+import Button from "react-bootstrap/esm/Button";
+import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
+import Swal from "sweetalert2";
+import SearchForm from "./SearchForm";
 
 // 사륜안ㅋㅋ
 
@@ -165,6 +173,28 @@ import FilterForm from "./FilterForm";
 
 // export default ListForm;
 const ProductListForm = ({ openLeftside }) => {
+  const [selectedIcon, setSelectedIcon] = useState("faBorderAll");
+  const [checkBtn, setCheckBtn] = useState(false);
+  const onDeleteSelected = () => {
+    Swal.fire({
+      title: "정말 삭제하시겠습니까?",
+      text: "삭제한 상품은 복원 및 수정이 불가능합니다.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "삭제 성공!",
+          text: "파일이 삭제되었습니다.",
+          icon: "success",
+        });
+      }
+    });
+  };
   return (
     <>
       <AdminHeader></AdminHeader>
@@ -190,23 +220,45 @@ const ProductListForm = ({ openLeftside }) => {
             iconName="faBorderAll"
             titleText="전체"
             searchValue="92"
+            selectedIcon={selectedIcon}
+            setSelectedIcon={setSelectedIcon}
           ></FilterForm>
           <FilterForm
             iconName="faCartShopping"
             titleText="판매중"
             searchValue="88"
+            selectedIcon={selectedIcon}
+            setSelectedIcon={setSelectedIcon}
           ></FilterForm>
           <FilterForm
             iconName="faStoreSlash"
             titleText="품절"
             searchValue="4"
+            selectedIcon={selectedIcon}
+            setSelectedIcon={setSelectedIcon}
           ></FilterForm>
         </div>
-        <div className="mt-3">
-          <span>[TOTAL: 47 개 / 검색 47 개]</span>
+        <div
+          className="d-flex justify-content-end mt-4"
+          style={{ width: "100%" }}
+        >
+          <SearchForm placeHolder="상품 이름 검색"></SearchForm>
         </div>
+
+        <div className="d-flex align-items-center mt-4">
+          <div>[TOTAL: 47 개 / 검색 47 개]</div>
+
+          <Button
+            className="mx-2"
+            variant="outline-danger"
+            onClick={onDeleteSelected}
+          >
+            선택 일괄 삭제
+          </Button>
+        </div>
+
         <Table
-          className={`${styles.table} mt-1`}
+          className={`${styles.table} mt-3`}
           striped
           bordered
           hover
@@ -229,16 +281,29 @@ const ProductListForm = ({ openLeftside }) => {
               <th>재고</th>
               <th>조회수</th>
               <th>등록일</th>
-              <th>출시일</th>
+              <th>수정일</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>
+                <CheckBtn
+                  checkBtn={checkBtn}
+                  setCheckBtn={setCheckBtn}
+                ></CheckBtn>
+              </td>
+              <td>
+                <Button className={checkBtnStyle.editBtn}>수정</Button>
+              </td>
+              <td>
+                <Button variant="outline-danger">삭제</Button>
+              </td>
               <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
+              <td>
+                <div className={styles.imgContainer}>
+                  <img src="/image/main/exam/exam1.jpg"></img>
+                </div>
+              </td>
               <td>1</td>
               <td>1</td>
               <td>1</td>
@@ -252,11 +317,24 @@ const ProductListForm = ({ openLeftside }) => {
               <td>1</td>
             </tr>
             <tr>
+              <td>
+                <CheckBtn
+                  checkBtn={checkBtn}
+                  setCheckBtn={setCheckBtn}
+                ></CheckBtn>
+              </td>
+              <td>
+                <Button className={checkBtnStyle.editBtn}>수정</Button>
+              </td>
+              <td>
+                <Button variant="outline-danger">삭제</Button>
+              </td>
               <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
+              <td>
+                <div className={styles.imgContainer}>
+                  <img src="/image/main/exam/exam3.jpg"></img>
+                </div>
+              </td>
               <td>1</td>
               <td>1</td>
               <td>1</td>
@@ -270,11 +348,24 @@ const ProductListForm = ({ openLeftside }) => {
               <td>1</td>
             </tr>
             <tr>
+              <td>
+                <CheckBtn
+                  checkBtn={checkBtn}
+                  setCheckBtn={setCheckBtn}
+                ></CheckBtn>
+              </td>
+              <td>
+                <Button className={checkBtnStyle.editBtn}>수정</Button>
+              </td>
+              <td>
+                <Button variant="outline-danger">삭제</Button>
+              </td>
               <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
+              <td>
+                <div className={styles.imgContainer}>
+                  <img src="/image/main/exam/exam2.jpg"></img>
+                </div>
+              </td>
               <td>1</td>
               <td>1</td>
               <td>1</td>
@@ -287,6 +378,7 @@ const ProductListForm = ({ openLeftside }) => {
               <td>1</td>
               <td>1</td>
             </tr>
+
             {/* {list.map((item, index) => {
               return (
                 <tr key={index}>

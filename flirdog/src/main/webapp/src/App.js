@@ -32,25 +32,25 @@ import DateReadMore from "./components/date/DateReadMore";
 import DateUpdate from "./components/date/DateUpdate";
 
 const App = () => {
-    return (
-        <BrowserRouter>
-            <>
-                {/* 화면에 보이는 영역 */}
-                <Routes>
-                    {/* //김찬영마이페이지================================================================= */}
-                    <Route path="/mypage/Mypoint" element={<Mypoint />} />
-                    <Route path="/mypage/Mysetting" element={<Mysetting />} />
-                    <Route path="/mypage/Myarticle" element={<Myarticle />} />
-                    <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />} />
-                    <Route path="/mypage/MypageMain" element={<MypageMain />} />
-                    <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
-                    <Route
-                        path="/mypage/MypageCategoryWrapper"
-                        element={<MypageCategoryWrapper />}
-                    />
-                    <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-                    <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
-                    {/* 김찬영마이페이지//================================================================= */}
+  return (
+    <BrowserRouter>
+      <>
+        {/* 화면에 보이는 영역 */}
+        <Routes>
+          {/* //김찬영마이페이지================================================================= */}
+          <Route path="/mypage/Mypoint" element={<Mypoint />} />
+          <Route path="/mypage/Mysetting" element={<Mysetting />} />
+          <Route path="/mypage/Myarticle" element={<Myarticle />} />
+          <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />} />
+          <Route path="/mypage/MypageMain" element={<MypageMain />} />
+          <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
+          <Route
+            path="/mypage/MypageCategoryWrapper"
+            element={<MypageCategoryWrapper />}
+          />
+          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
+          {/* 김찬영마이페이지//================================================================= */}
 
                     <Route path="/" element={<Main></Main>} />
 
@@ -64,51 +64,51 @@ const App = () => {
 
                     <Route path="/admin" element={<Admin />} />
 
-                    <Route path="/somoim" element={<SomoimMain />} />
-                    {/* 상품관리 */}
-                    <Route
-                        path="/admin/productUploadForm"
-                        element={<ProductUploadForm openLeftside="0"></ProductUploadForm>}
-                    />
-                    <Route
-                        path="/admin/productPopup"
-                        element={<ProductPopup></ProductPopup>}
-                    />
-                    <Route
-                        path="/admin/productListForm"
-                        element={<ProductListForm openLeftside="0" />}
-                    />
-                    {/* 회원관리 */}
-                    <Route
-                        path="/admin/userListForm"
-                        element={<UserListForm openLeftside="1" />}
-                    />
-                    {/* 주문관리 */}
-                    <Route
-                        path="/admin/orderListForm"
-                        element={<OrderListForm openLeftside="2" />}
-                    />
-                    <Route
-                        path="/admin/orderCheckForm"
-                        element={<OrderCheckForm openLeftside="2" />}
-                    />
-                    <Route
-                        path="/admin/orderShippingForm"
-                        element={<OrderShippingForm openLeftside="2" />}
-                    />
-                    {/* 리뷰 관리 */}
-                    <Route
-                        path="/admin/reviewListForm"
-                        element={<ReviewListForm openLeftside="3" />}
-                    />
+          <Route path="/somoim" element={<SomoimMain />} />
+          {/* 상품관리 */}
+          <Route
+            path="/admin/productUploadForm"
+            element={<ProductUploadForm openLeftside="0"></ProductUploadForm>}
+          />
+          <Route
+            path="/admin/productPopup"
+            element={<ProductPopup></ProductPopup>}
+          />
+          <Route
+            path="/admin/productListForm"
+            element={<ProductListForm openLeftside="0" />}
+          />
+          {/* 회원관리 */}
+          <Route
+            path="/admin/userListForm"
+            element={<UserListForm openLeftside="1" />}
+          />
+          {/* 주문관리 */}
+          <Route
+            path="/admin/orderListForm"
+            element={<OrderListForm openLeftside="2" />}
+          />
+          <Route
+            path="/admin/orderCheckForm"
+            element={<OrderCheckForm openLeftside="2" />}
+          />
+          <Route
+            path="/admin/orderShippingForm"
+            element={<OrderShippingForm openLeftside="2" />}
+          />
+          {/* 문의 조회/답변*/}
+          <Route
+            path="/admin/reviewListForm"
+            element={<ReviewListForm openLeftside="3" />}
+          />
 
-                    <Route path="product" >
-                        <Route path="" element={<Product />} />
-                    </Route>
-                </Routes>
-            </>
-        </BrowserRouter>
-    );
+          <Route path="product">
+            <Route path="" element={<Product />} />
+          </Route>
+        </Routes>
+      </>
+    </BrowserRouter>
+  );
 };
 
 export default App;

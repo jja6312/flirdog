@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBorderAll } from "@fortawesome/free-solid-svg-icons";
 import styles from "../../../css/admin/filterForm.module.css";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faStoreSlash } from "@fortawesome/free-solid-svg-icons";
+import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 
-const FilterForm = ({ iconName, titleText, searchValue }) => {
+const FilterForm = ({
+  iconName,
+  titleText,
+  searchValue,
+  selectedIcon,
+  setSelectedIcon,
+}) => {
   return (
     <>
       <div
-        className={`${styles.allContainer}  d-flex justify-content-start align-items-center`}
+        className={`${styles.allContainer} d-flex justify-content-start align-items-center`}
+        onClick={() => setSelectedIcon(iconName)}
       >
-        <div className={styles.iconContainer}>
+        <div
+          className={`${styles.iconContainer} ${
+            selectedIcon === iconName
+              ? styles.iconContainerPink
+              : styles.iconContainerGray
+          }`}
+        >
           {iconName === "faBorderAll" && (
             <FontAwesomeIcon className={styles.icon} icon={faBorderAll} />
           )}
@@ -20,6 +35,12 @@ const FilterForm = ({ iconName, titleText, searchValue }) => {
           )}
           {iconName === "faStoreSlash" && (
             <FontAwesomeIcon className={styles.icon} icon={faStoreSlash} />
+          )}
+          {iconName === "faCommentDots" && (
+            <FontAwesomeIcon className={styles.icon} icon={faCommentDots} />
+          )}
+          {iconName === "faHeadset" && (
+            <FontAwesomeIcon className={styles.icon} icon={faHeadset} />
           )}
         </div>
 

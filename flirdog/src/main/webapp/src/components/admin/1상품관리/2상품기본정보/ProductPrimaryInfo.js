@@ -40,19 +40,6 @@ const ProductPrimaryInfo = () => {
             </InputGroup>
           </td>
         </tr>
-        <tr>
-          <th className={styles.tableTh}>출시일</th>
-          <td className={styles.tableTd}>
-            <input
-              style={{ color: "gray", fontSize: "0.8rem" }}
-              className="mx-2"
-              type="date"
-              id="releaseDate"
-              name="releaseDate"
-              required
-            />
-          </td>
-        </tr>
       </table>
     </div>
   );

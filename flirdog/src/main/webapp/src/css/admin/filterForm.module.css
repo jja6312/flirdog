@@ -1,11 +1,19 @@
 .iconContainer {
   width: 70px;
   height: 70px;
-  background-color: #767a83;
+
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.iconContainerPink {
+  background-color: rgb(245, 96, 132);
+}
+
+.iconContainerGray {
+  background-color: #767a83;
 }
 
 .icon {
