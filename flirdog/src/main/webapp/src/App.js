@@ -28,6 +28,9 @@ import MydogProfile from "./components/mypage/1프로필/MydogProfile";
 import MypageHeader from "./components/mypage/MypageHeader";
 import MydogProfileUpdate from "./components/mypage/1프로필/MydogProfileUpdate";
 import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileRegister";
+import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
+import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
+import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
 
 
 const App = () => {
@@ -49,6 +52,9 @@ const App = () => {
           <Route path="/mypage/MydogProfileUpdate" element={<MydogProfileUpdate />} />
           <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
           <Route path="/mypage/MydogProfileRegister" element={<MydogProfileRegister />} />
+          <Route path="/mypage/MypointRecharge" element={<MypointRecharge />} />
+          <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
+          <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />} />
           {/* 김찬영마이페이지//================================================================= */}
 
           <Route path="/" element={<Main></Main>} />
