@@ -2,7 +2,7 @@ import React, {  useRef, useState } from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
 import Container from 'react-bootstrap/esm/Container';
-import TableCss from '../../css/date/dateWrite.module.css';
+import DateUpdateCss from '../../css/date/dateUpdate.module.css';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -13,8 +13,8 @@ import 'react-calendar/dist/Calendar.css';
 import KakaoMap from './KakaoMap';
 import { useNavigate } from 'react-router-dom';
 
-const DateWrite = () => {
-  const [purposeSelect, setPurposeSelect] = useState('글 분류');
+const DateUpdate = () => {
+    const [purposeSelect, setPurposeSelect] = useState('글 분류');
   const [dogBreedSelect, setdogBreedSelect] = useState('애견 종 선택');
   const [daySelect, setDaySelect] = useState('날짜 선택');
   const [matchingAddress, setMatchingAddress] = useState('');
@@ -89,43 +89,45 @@ const DateWrite = () => {
     navigate('/date/dateList')
   }
 
-
     return (
         <div>
+            {/* 헤더 */}
             <Header></Header>
+            {/* 내용 */}
             <div>
-              <Container><div className={TableCss.DateTitle}>
-                  <div className={TableCss.DateTitleDiv}>
+              <Container>
+              <div className={DateUpdateCss.DateTitle}>
+                  <div className={DateUpdateCss.DateTitleDiv}>
                   매칭 글 작성
                   </div>
                 </div>
               </Container>
             </div>
-            <hr className={TableCss.dateHr}/>
+            <hr className={DateUpdateCss.dateHr}/>
 
             <Container>
-              <div className={TableCss.formTable}>
-                <div className={TableCss.formTableDiv}>
+              <div className={DateUpdateCss.formTable}>
+                <div className={DateUpdateCss.formTableDiv}>
                 <Form>
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formGridTitle">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             제 목
                           </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={TableCss.FormSubjectTitleInput} size="lg" type="text" placeholder="제목을 입력해주세요." />
+                          <Form.Control className={DateUpdateCss.FormSubjectTitleInput} size="lg" type="text" placeholder="제목을 입력해주세요." />
                         </div>
                       </Form.Group>
                     </Row>
 
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formGridCheckPurpose">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             글 분류
                           </div>&nbsp;&nbsp;&nbsp;
                           <Dropdown>
-                              <Dropdown.Toggle className={TableCss.filterDropdownBtn} variant="success" id="dropdown-basic"
+                              <Dropdown.Toggle className={DateUpdateCss.filterDropdownBtn} variant="success" id="dropdown-basic"
                                   style={{
                                       border:'5px solid #F56084',
                                       backgroundColor: 'white',
@@ -148,25 +150,25 @@ const DateWrite = () => {
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formDogName">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             애견 이름
                           </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={TableCss.FormTitleInput} size="lg" type="text" placeholder="애견 이름 입력" />
+                          <Form.Control className={DateUpdateCss.FormTitleInput} size="lg" type="text" placeholder="애견 이름 입력" />
                         </div>
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formDogGender">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             성 별
                           </div>&nbsp;&nbsp;&nbsp;
                           <div className={`d-flex justify-content-left`}>
                                             <input id='genderBox1' type='radio' name='gender'  value='남아' />
-                                            <label className={TableCss.labelClass1} htmlFor='genderBox1'>남 아</label>
+                                            <label className={DateUpdateCss.labelClass1} htmlFor='genderBox1'>남 아</label>
                                             &nbsp;&nbsp;
                                             <input id='genderBox2' type='radio' name='gender'  value='여아' />
-                                            <label className={TableCss.labelClass2} htmlFor='genderBox2'>여 아</label>
+                                            <label className={DateUpdateCss.labelClass2} htmlFor='genderBox2'>여 아</label>
                           </div>
                         </div>
                       </Form.Group>
@@ -174,47 +176,47 @@ const DateWrite = () => {
 
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formDogAge">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             나 이
                           </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={TableCss.FormTitleInput} size="lg" type="text" placeholder="나이 입력" />
+                          <Form.Control className={DateUpdateCss.FormTitleInput} size="lg" type="text" placeholder="나이 입력" />
                         </div>
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formGridEmail">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} 
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} 
                                style={{fontSize:'1em'}}
                           >
                             중성화 여부
                           </div>&nbsp;&nbsp;&nbsp;
                           <div className={`d-flex justify-content-left`}>
                             <input id='neutralizationBox' type='checkbox' value='neutralization' />
-                            <label className={`${TableCss.neutralizationLabel} ${TableCss.labelClass3}`} htmlFor='neutralizationBox'></label>
+                            <label className={`${DateUpdateCss.neutralizationLabel} ${DateUpdateCss.labelClass3}`} htmlFor='neutralizationBox'></label>
                           </div>
                         </div>
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formDogMBTI">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             멍BTI
                           </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={TableCss.FormTitleInput} size="lg" type="text" placeholder="애견 MBTI 입력" />
+                          <Form.Control className={DateUpdateCss.FormTitleInput} size="lg" type="text" placeholder="애견 MBTI 입력" />
                         </div>
                       </Form.Group>
                     </Row>
                     
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formGridCheckPurpose">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} 
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} 
                            style={{fontSize:'1em'}}>
                             애견종 선택
                           </div>&nbsp;&nbsp;&nbsp;
                           <Dropdown>
-                              <Dropdown.Toggle className={TableCss.filterDropdownBtn} variant="success" id="dropdown-basic"
+                              <Dropdown.Toggle className={DateUpdateCss.filterDropdownBtn} variant="success" id="dropdown-basic"
                                   style={{
                                       border:'5px solid #F56084',
                                       backgroundColor: 'white',
@@ -237,13 +239,13 @@ const DateWrite = () => {
                         </div>  
                       </Form.Group>
                       <Form.Group as={Col} controlId="formMatchingDate">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             매칭 날짜
                           </div>&nbsp;&nbsp;&nbsp;
 
                           <Dropdown>
-                              <Dropdown.Toggle className={TableCss.dayDropdownBtn} variant="success" id="dropdown-basic"
+                              <Dropdown.Toggle className={DateUpdateCss.dayDropdownBtn} variant="success" id="dropdown-basic"
                                   style={{
                                       width:'200px',
                                       border:'5px solid #F56084',
@@ -265,14 +267,14 @@ const DateWrite = () => {
 
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formMatchingAddress">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} >
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             만남 장소
                           </div>&nbsp;&nbsp;&nbsp;
                           <div style={{
                             width:'35%'
                           }}>
-                            <Form.Control className={TableCss.FormAddressInput} size="lg" type="text" onChange={handleInputChange}  value={matchingAddress} placeholder="주소 및 검색어 입력" />
+                            <Form.Control className={DateUpdateCss.FormAddressInput} size="lg" type="text" onChange={handleInputChange}  value={matchingAddress} placeholder="주소 및 검색어 입력" />
                           </div>
                         </div>
                         <div style={{
@@ -285,10 +287,10 @@ const DateWrite = () => {
 
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formUploadimage">
-                        <div className={TableCss.FormTitleDiv} style={{
+                        <div className={DateUpdateCss.FormTitleDiv} style={{
                           color:'gray',
                         }}>
-                          <div className={TableCss.FormTitleNameDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} >
                             사 진
                           </div>&nbsp;&nbsp;&nbsp;
                           사진 버튼클릭!
@@ -328,8 +330,8 @@ const DateWrite = () => {
 
                     <Row className="mb-3">
                       <Form.Group as={Col} controlId="formContent">
-                        <div className={TableCss.FormTitleDiv} >
-                          <div className={TableCss.FormTitleNameDiv} 
+                        <div className={DateUpdateCss.FormTitleDiv} >
+                          <div className={DateUpdateCss.FormTitleNameDiv} 
                           style={{marginBottom:'18px'}}>
                             상세 내용
                           </div>
@@ -365,10 +367,12 @@ const DateWrite = () => {
                   </Form>
                   </div>
               </div>
-            </Container>
+              </Container>
+                
+            {/* 푸터 */}
             <Footer></Footer>
         </div>
     );
 };
 
-export default DateWrite;
+export default DateUpdate;

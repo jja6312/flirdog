@@ -19,6 +19,18 @@ input[type=checkbox]:checked + label {
     border-radius: 5px;
     position: relative;
 }
+.labelStateClass {
+    color: white; /* 클릭하기 전 글자색 설정 */
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    height: 30px;
+    border: 2px solid white;
+    background-color: #F56084;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+}
 .neutralizationLabel{
     width: 30px;
 }
@@ -34,10 +46,13 @@ input[type="checkbox"]:checked + .neutralizationLabel::before {
 .genderCheckBox{ 
     margin-top: 10px;
 }
+.purposeCheckBox{ 
+    margin-top: 10px;
+}
 .neutralizationCheckBox{
     margin-top: 10px;
 }
-.sizeCheckBox{
+.matchingStateCheckBox{
     margin-top: 10px;
 }
 .filterAddressBtn{

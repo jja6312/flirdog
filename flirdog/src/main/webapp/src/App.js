@@ -28,6 +28,8 @@ import MyprofileUpdate from "./components/mypage/1프로필/Myprofileupdate";
 import MydogProfile from "./components/mypage/1프로필/MydogProfile";
 import MypageHeader from "./components/mypage/MypageHeader";
 import Product from "./components/product/Product";
+import DateReadMore from "./components/date/DateReadMore";
+import DateUpdate from "./components/date/DateUpdate";
 
 const App = () => {
   return (
@@ -50,11 +52,17 @@ const App = () => {
           <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
           {/* 김찬영마이페이지//================================================================= */}
 
-          <Route path="/" element={<Main></Main>} />
-          <Route path="/user/userTest" element={<Test />} />
-          <Route path="/date/dateList" element={<DateList />} />
-          <Route path="/date/dateWrite" element={<DateWrite />} />
-          <Route path="/admin" element={<Admin />} />
+                    <Route path="/" element={<Main></Main>} />
+
+                    {/* 매칭관련 */}
+                    <Route path="/user/userTest" element={<Test />} />
+                    <Route path="/date/dateList" element={<DateList />} />
+                    <Route path="/date/dateWrite" element={<DateWrite />} />
+                    <Route path="/date/dateReadMore" element={<DateReadMore />} />
+                    <Route path="/date/dateUpdate" element={<DateUpdate/>} />
+
+
+                    <Route path="/admin" element={<Admin />} />
 
           <Route path="/somoim" element={<SomoimMain />} />
           {/* 상품관리 */}

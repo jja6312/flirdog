@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../main/Header';
 import Container from 'react-bootstrap/esm/Container';
 import "../../css/reset.css"
@@ -7,13 +7,17 @@ import dateCheck from "../../css/date/dateCheck.module.css";
 import Carousel from 'react-bootstrap/Carousel';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Footer from '../main/Footer';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const DateList = () => {
     const [selectedRegion, setSelectedRegion] = useState('지역 선택');
 
     const handleRegionSelect = (region) => {
         setSelectedRegion(region);
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
     };
 
     return (
@@ -110,6 +114,7 @@ const DateList = () => {
             <br /><br />
 
             <Container className='px-10'>
+                {/* 필터 */}
                 <div className={dateList.filterList}>
                     <div className={dateList.filters}>
                         <div className={dateList.filterDiv}>
@@ -122,36 +127,46 @@ const DateList = () => {
                                 필 터
                                 </div>
 
-                                <br/>
                                 <div className={dateList.filterContent}>
                                     <div className='genderCheck'>성 별
-                                    <div className={`${dateCheck.genderCheckBox} d-flex justify-content-left`}>
-                                        <input id='checkbox1' type='checkbox' value='남 아' />
-                                        <label className={dateCheck.labelClass} htmlFor='checkbox1'>남 아</label>
-                                        &nbsp;&nbsp;
-                                        <input id='checkbox2' type='checkbox' value='여 아' />
-                                        <label className={dateCheck.labelClass} htmlFor='checkbox2'>여 아</label>
+                                        <div className={`${dateCheck.genderCheckBox} d-flex justify-content-left`}>
+                                            <input id='checkbox1' type='checkbox' value='남 아' />
+                                            <label className={dateCheck.labelClass} htmlFor='checkbox1'>남 아</label>
+                                            &nbsp;&nbsp;
+                                            <input id='checkbox2' type='checkbox' value='여 아' />
+                                            <label className={dateCheck.labelClass} htmlFor='checkbox2'>여 아</label>
+                                        </div>
                                     </div>
 
+                                    <div className='purposeCheck'style={{
+                                        marginTop:'10px' }}>글 분류
+                                        <div className={`${dateCheck.purposeCheckBox} d-flex justify-content-left`}>
+                                            <input id='checkbox3' type='checkbox' value='date' />
+                                            <label className={dateCheck.labelClass} htmlFor='checkbox3'>연 애</label>
+                                            &nbsp;&nbsp;
+                                            <input id='checkbox4' type='checkbox' value='walk' />
+                                            <label className={dateCheck.labelClass} htmlFor='checkbox4'>산 책</label>
+                                        </div>
                                     </div>
+
                                     <div className='neutralizationCheck' style={{
                                         marginTop:'10px' }}>중성화 여부 &nbsp;&nbsp;
                                         <div className={`${dateCheck.neutralizationCheckBox} d-flex justify-content-left`}>
-                                            <input id='checkbox3' type='checkbox' value='중성화' />
-                                            <label className={`${dateCheck.neutralizationLabel} ${dateCheck.labelClass}`} htmlFor='checkbox3'></label>
+                                            <input id='checkbox5' type='checkbox' value='중성화' />
+                                            <label className={`${dateCheck.neutralizationLabel} ${dateCheck.labelClass}`} htmlFor='checkbox5'></label>
                                         </div>
                                     </div>
-                                    <div className='sizeCheck' style={{
-                                        marginTop:'10px' }}>애견 사이즈 &nbsp;&nbsp;
-                                        <div className={`${dateCheck.sizeCheckBox} d-flex justify-content-left`}>
-                                            <input id='checkbox4' type='checkbox' value='대' />
-                                            <label className={dateCheck.labelClass} htmlFor='checkbox4'>대</label>
+                                    <div className='matchingStateCheck' style={{
+                                        marginTop:'10px' }}>매칭 상태 &nbsp;&nbsp;
+                                        <div className={`${dateCheck.matchingStateCheckBox} d-flex justify-content-left`}>
+                                            <input id='checkbox6' type='checkbox' value='기다림' />
+                                            <label className={dateCheck.labelStateClass} htmlFor='checkbox6'>기다림</label>
                                             &nbsp;&nbsp;
-                                            <input id='checkbox5' type='checkbox' value='중' />
-                                            <label className={dateCheck.labelClass} htmlFor='checkbox5'>중</label>
+                                            <input id='checkbox7' type='checkbox' value='매칭중' />
+                                            <label className={dateCheck.labelStateClass} htmlFor='checkbox7'>매칭중</label>
                                             &nbsp;&nbsp;
-                                            <input id='checkbox6' type='checkbox' value='소' />
-                                            <label className={dateCheck.labelClass} htmlFor='checkbox6'>소</label>
+                                            <input id='checkbox8' type='checkbox' value='완료' />
+                                            <label className={dateCheck.labelStateClass} htmlFor='checkbox8'>완료</label>
                                         </div>
                                     </div>
                                     <div className='filterAddress' style={{
@@ -212,7 +227,7 @@ const DateList = () => {
                         </div>
                         
                         <br />
-                        <Link to="/date/dateWrite" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/date/dateWrite" style={{ textDecoration: 'none', color: 'inherit' }} onClick={scrollToTop}>
                         <div className={dateList.matchingWriteBtn}>
                             <div className={dateList.matchingNullDiv}></div>
                                 매칭 글 작성
@@ -229,6 +244,7 @@ const DateList = () => {
                     
                     <div className={dateList.filterDateList}>
                         <div className={dateList.filterDateListDiv}>
+                        <Link to='/date/dateReadMore'>
                         <div className={dateList.filterDate}
                                  style={{marginBottom:'3%'}}>
                                 <div className={dateList.filterDateImg}>
@@ -289,10 +305,13 @@ const DateList = () => {
                                         </div>
                                 </div>
                             </div>
+                            </Link>
                             
                             {/* 2번강아지 */}
                             <div className={dateList.filterDate}
-                                 style={{marginBottom:'3%'}}>
+                                 style={{marginBottom:'3%',
+                                 backgroundColor:'lightblue'
+                                 }}>
                                 <div className={dateList.filterDateImg}>
                                     <div style={{
                                         display:'flex',
@@ -328,7 +347,7 @@ const DateList = () => {
                                                 }}>
                                                     {[1, 2, 3, 4, 5].map((index) => (
                                                         <img key={index} src='/image/date/starScore.png' width={25} alt="별"
-                                                        style={{ marginRight: index === 5 ? '0' : '5px' }} />
+                                                        style={{ marginRight: index === 5 ? '0' : '10px' }} />
                                                     ))}
                                                 </div>
                                         </div>
@@ -390,7 +409,7 @@ const DateList = () => {
                                                 }}>
                                                     {[1, 2, 3, 4, 5].map((index) => (
                                                         <img key={index} src='/image/date/starScore.png' width={25} alt="별"
-                                                        style={{ marginRight: index === 5 ? '0' : '5px' }} />
+                                                        style={{ marginRight: index === 5 ? '0' : '10px' }} />
                                                     ))}
                                                 </div>
                                         </div>
@@ -452,7 +471,7 @@ const DateList = () => {
                                                 }}>
                                                     {[1, 2, 3, 4, 5].map((index) => (
                                                         <img key={index} src='/image/date/starScore.png' width={25} alt="별"
-                                                        style={{ marginRight: index === 5 ? '0' : '5px' }} />
+                                                        style={{ marginRight: index === 5 ? '0' : '10px' }} />
                                                     ))}
                                                 </div>
                                         </div>
