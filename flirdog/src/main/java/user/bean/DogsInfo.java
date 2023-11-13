@@ -6,12 +6,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-<<<<<<< HEAD
 import matching.bean.Matching;
 
 import java.util.List;
-=======
->>>>>>> f63edee (스프링 기본 세팅)
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,7 +29,6 @@ public class DogsInfo extends BaseEntity {
 
     private String image;
 
-<<<<<<< HEAD
     @Embedded
     private Score score;
 
@@ -43,9 +39,4 @@ public class DogsInfo extends BaseEntity {
     @OneToMany(mappedBy = "dogsInfo")
     private List<Matching> matching;
 
-=======
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
->>>>>>> f63edee (스프링 기본 세팅)
 }
