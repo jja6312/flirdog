@@ -30,6 +30,12 @@ import MypageHeader from "./components/mypage/MypageHeader";
 import Product from "./components/product/Product";
 import DateReadMore from "./components/date/DateReadMore";
 import DateUpdate from "./components/date/DateUpdate";
+import MydogProfileUpdate from "./components/mypage/1프로필/MydogProfileUpdate";
+import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileRegister";
+import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
+import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
+import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
+
 
 const App = () => {
   return (
@@ -37,6 +43,7 @@ const App = () => {
       <>
         {/* 화면에 보이는 영역 */}
         <Routes>
+          
           {/* //김찬영마이페이지================================================================= */}
           <Route path="/mypage/Mypoint" element={<Mypoint />} />
           <Route path="/mypage/Mysetting" element={<Mysetting />} />
@@ -44,12 +51,15 @@ const App = () => {
           <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />} />
           <Route path="/mypage/MypageMain" element={<MypageMain />} />
           <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
-          <Route
-            path="/mypage/MypageCategoryWrapper"
-            element={<MypageCategoryWrapper />}
-          />
+          <Route path="/mypage/MypageCategoryWrapper" element={<MypageCategoryWrapper />} />
           <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route path="/mypage/MydogProfileUpdate" element={<MydogProfileUpdate />} />
           <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
+          <Route path="/mypage/MydogProfileRegister" element={<MydogProfileRegister />} />
+          <Route path="/mypage/MypointRecharge" element={<MypointRecharge />} />
+          <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
+          <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />} />
           {/* 김찬영마이페이지//================================================================= */}
 
                     <Route path="/" element={<Main></Main>} />
