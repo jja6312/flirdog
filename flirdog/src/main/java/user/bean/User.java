@@ -5,6 +5,7 @@ import community.bean.Community;
 import jakarta.persistence.*;
 import lombok.*;
 import matching.bean.Matching;
+import payment.bean.PointCharging;
 
 import java.util.List;
 
@@ -31,8 +32,9 @@ public class User extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    @Embedded
-    private Address address;
+    private Long point;
+
+    private int communityScore;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DogsInfo> dogsInfos;
@@ -45,5 +47,11 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Community> communities;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PointCharging> pointChargings;
 }
 

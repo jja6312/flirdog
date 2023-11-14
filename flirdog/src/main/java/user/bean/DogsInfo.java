@@ -18,6 +18,8 @@ public class DogsInfo extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     private String age;
 
     private String gender;

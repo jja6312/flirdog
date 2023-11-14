@@ -38,7 +38,7 @@ const Header = () => {
               <Nav.Link className={`${styles.navText} mx-2`} href="/somoim">
                 애견 소모임
               </Nav.Link>
-              <Nav.Link className={`${styles.navText} mx-2`} href="/">
+              <Nav.Link className={`${styles.navText} mx-2`} href="/product">
                 쇼핑
               </Nav.Link>
               <HeaderCustomNavDropdownElement theme="커뮤니티" />

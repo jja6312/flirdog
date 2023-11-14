@@ -3,6 +3,9 @@ package product.bean;
 import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import order.bean.Order;
+import user.bean.DogsInfo;
+import user.bean.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,6 +26,12 @@ public class Product extends BaseEntity {
 
     private String image;
 
+    private int stock;
+
+    private int price;
+
+    private String contentDetail;
+
     @Enumerated(EnumType.STRING)
     private MainCategory mainCategory;
 
@@ -31,6 +40,13 @@ public class Product extends BaseEntity {
 
     @Embedded
     private Hit hit;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductComment> productComments;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @Builder(toBuilder = true)
     private Product(String name, String content, String image, MainCategory mainCategory, SubCategory subCategory) {

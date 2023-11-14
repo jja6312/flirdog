@@ -64,7 +64,7 @@ const MainScreen = () => {
             </Link>
           </div>
           <div className="col-lg-3 col-6 exam">
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/product" style={{ textDecoration: "none" }}>
               <MainIcon imgSrc="mainIcon3.png" imgText="쇼핑" />
             </Link>
           </div>
