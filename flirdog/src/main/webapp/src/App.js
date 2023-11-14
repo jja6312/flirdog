@@ -36,6 +36,7 @@ import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
 import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
 import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
 
+import SomoimDetail from "./components/somoim/detail/SomoimDetail";
 
 const App = () => {
   return (
@@ -43,7 +44,6 @@ const App = () => {
       <>
         {/* 화면에 보이는 영역 */}
         <Routes>
-          
           {/* //김찬영마이페이지================================================================= */}
           <Route path="/mypage/Mypoint" element={<Mypoint />} />
           <Route path="/mypage/Mysetting" element={<Mysetting />} />
@@ -51,30 +51,40 @@ const App = () => {
           <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />} />
           <Route path="/mypage/MypageMain" element={<MypageMain />} />
           <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
-          <Route path="/mypage/MypageCategoryWrapper" element={<MypageCategoryWrapper />} />
+          <Route
+            path="/mypage/MypageCategoryWrapper"
+            element={<MypageCategoryWrapper />}
+          />
           <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
           <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-          <Route path="/mypage/MydogProfileUpdate" element={<MydogProfileUpdate />} />
+          <Route
+            path="/mypage/MydogProfileUpdate"
+            element={<MydogProfileUpdate />}
+          />
           <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
-          <Route path="/mypage/MydogProfileRegister" element={<MydogProfileRegister />} />
+          <Route
+            path="/mypage/MydogProfileRegister"
+            element={<MydogProfileRegister />}
+          />
           <Route path="/mypage/MypointRecharge" element={<MypointRecharge />} />
           <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
           <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />} />
           {/* 김찬영마이페이지//================================================================= */}
 
-                    <Route path="/" element={<Main></Main>} />
+          <Route path="/" element={<Main></Main>} />
 
-                    {/* 매칭관련 */}
-                    <Route path="/user/userTest" element={<Test />} />
-                    <Route path="/date/dateList" element={<DateList />} />
-                    <Route path="/date/dateWrite" element={<DateWrite />} />
-                    <Route path="/date/dateReadMore" element={<DateReadMore />} />
-                    <Route path="/date/dateUpdate" element={<DateUpdate/>} />
+          {/* 매칭관련 */}
+          <Route path="/user/userTest" element={<Test />} />
+          <Route path="/date/dateList" element={<DateList />} />
+          <Route path="/date/dateWrite" element={<DateWrite />} />
+          <Route path="/date/dateReadMore" element={<DateReadMore />} />
+          <Route path="/date/dateUpdate" element={<DateUpdate />} />
 
+          <Route path="/admin" element={<Admin />} />
 
-                    <Route path="/admin" element={<Admin />} />
-
-          <Route path="/somoim" element={<SomoimMain />} />
+          {/* 소모임 페이지!! */}
+          <Route path="/somoim/" element={<SomoimMain />} />
+          <Route path="/somoim/:subMenu" element={<SomoimDetail />} />
           {/* 상품관리 */}
           <Route
             path="/admin/productUploadForm"
