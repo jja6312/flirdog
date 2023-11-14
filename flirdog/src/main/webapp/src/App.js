@@ -35,6 +35,7 @@ import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileReg
 import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
 import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
 import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
+import SomoimDetail from "./components/somoim/detail/SomoimDetail"
 
 
 const App = () => {
@@ -73,8 +74,9 @@ const App = () => {
 
 
                     <Route path="/admin" element={<Admin />} />
-
-          <Route path="/somoim" element={<SomoimMain />} />
+ {/* 소모임 페이지 */}
+          <Route path='/somoim/' element={ <SomoimMain /> } />
+          <Route path="/somoim/:subMenu" element={<SomoimDetail />} />
           {/* 상품관리 */}
           <Route
             path="/admin/productUploadForm"

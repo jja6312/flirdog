@@ -1,0 +1,16 @@
+.whiteDivColor {
+    background-color: white;
+    color: #F0AAAA;
+    border: 3px solid #F0AAAA;
+    cursor: pointer;
+  }
+  
+  .pinkDivColor {
+    background-color: #F0AAAA;
+    color: white;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 700) {
+  }
+  
