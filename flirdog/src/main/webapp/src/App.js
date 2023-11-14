@@ -74,7 +74,8 @@ const App = () => {
 
 
                     <Route path="/admin" element={<Admin />} />
- {/* 소모임 페이지 */}
+          
+           {/* 소모임 페이지!! */}
           <Route path='/somoim/' element={ <SomoimMain /> } />
           <Route path="/somoim/:subMenu" element={<SomoimDetail />} />
           {/* 상품관리 */}
