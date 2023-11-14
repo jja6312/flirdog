@@ -3,10 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import NavbarToggle from 'react-bootstrap/NavbarToggle'
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { useState } from 'react';
+import {useState} from 'react';
 
 import styles from '../../../css/somoim/main/MoimMainCategoryBtn.module.css';
 

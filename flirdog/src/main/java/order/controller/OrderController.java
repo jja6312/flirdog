@@ -8,8 +8,4 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class OrderController {
 
-	@GetMapping("/order")
-	public String test() {
-		return "/order/test";
-	}
 }

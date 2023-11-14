@@ -17,7 +17,6 @@ import OrderCheckForm from "./components/admin/3주문관리/OrderCheckForm";
 import OrderShippingForm from "./components/admin/3주문관리/OrderShippingForm";
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 import SomoimMain from "./components/somoim/SomoimMain";
-import SomoimDetail from "./components/somoim/detail/SomoimDetail";
 
 import MypageMain from "./components/mypage/MypageMain";
 import Myarticle from "./components/mypage/2내가작성한글/Myarticle";
@@ -29,17 +28,12 @@ import MyprofileUpdate from "./components/mypage/1프로필/Myprofileupdate";
 import MydogProfile from "./components/mypage/1프로필/MydogProfile";
 import MypageHeader from "./components/mypage/MypageHeader";
 import Product from "./components/product/Product";
-import DateReadMore from "./components/date/DateReadMore";
-import DateUpdate from "./components/date/DateUpdate";
 import MydogProfileUpdate from "./components/mypage/1프로필/MydogProfileUpdate";
 import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileRegister";
 import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
 import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
 import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
-import SomoimDetail from "./components/somoim/detail/SomoimDetail";
 import ProductDetail from "./components/product/ProductDetail";
-import ProductDetail from "./components/product/ProductDetail";
-import DateReadMore from "./components/date/DateReadMore";
 
 const App = () => {
     return (

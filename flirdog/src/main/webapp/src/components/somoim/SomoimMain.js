@@ -1,9 +1,8 @@
 import React from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import SomoimMainBody from './main/SomoimMainBody';
-import SomoimMainFilter from './main/SomoimMainFilter';
 
 const SomoimMain = () => {
     return (
