@@ -29,7 +29,11 @@
     "primereact": "^10.0.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
+<<<<<<< HEAD
+    "react-bootstrap-icons": "^1.10.3",
+=======
     "react-calendar": "^4.6.1",
+>>>>>>> 358e4426bc3ffb60d6cec64d4707302b360407a3
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
