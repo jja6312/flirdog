@@ -2,23 +2,33 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
-import "../../css/main/Header.css";
+import styles from "../../css/main/Header.module.css";
 import { Link } from "react-router-dom";
 
 const AdminHeader = () => {
   return (
-    <div>
-      <Navbar expand="lg" className="navBar">
+    <div style={{ position: "relative" }}>
+      <Link to="/admin">
+        <span className={styles.adminHeaderTitle}>Ai 관리자페이지 홈</span>
+      </Link>
+      <Navbar expand="lg" className={styles.navBar}>
         <Link to="/">
-          <img src="/image/main/logo2.png" className="logo mx-4" alt="logo" />
+          <img
+            src="/image/main/logo2.png"
+            className={`${styles.logo} mx-4}`}
+            alt="logo"
+          />
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <div className="spaceDiv"></div>
+            <div className={styles.spaceDiv}></div>
           </Nav>
-          <Nav.Link className="navText" href="/" style={{ marginRight: 50 }}>
+          <Nav.Link
+            className={styles.navText}
+            href="/"
+            style={{ marginRight: 50 }}
+          >
             로그아웃
           </Nav.Link>
         </Navbar.Collapse>

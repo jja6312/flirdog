@@ -3,23 +3,16 @@ import styles from "../../../css/admin/1상품관리/productNoticeBanner.module.
 
 const ProductNoticeBanner = () => {
   const openPopup = () => {
-    // 팝업의 너비와 높이
     const popupWidth = 400;
     const popupHeight = 400;
-
-    // 화면의 너비와 높이
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
-    // 팝업을 화면 중앙에 위치시키기 위한 x, y 좌표 계산
     const left = screenWidth / 2 - popupWidth / 2;
     const top = screenHeight / 2 - popupHeight / 2;
-
-    // 팝업 열기
     window.open(
       "/admin/productPopup",
       "newWindow",
-      `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
     );
   };
   return (

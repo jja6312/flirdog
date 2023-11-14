@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LeftSide from "./LeftSide";
 import AdminHeader from "./AdminHeader";
-import AdminMainContent from "./AdminMainContent";
+import AdminMainContent from "./0관리자홈/AdminMainContent";
+import KakaoMap from "../date/KakaoMap";
 
 const Admin = () => {
   return (
