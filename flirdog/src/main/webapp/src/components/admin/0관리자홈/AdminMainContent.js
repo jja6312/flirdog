@@ -24,6 +24,10 @@ const AdminMainContent = () => {
               className={`${styles.leftContainer} d-flex jsutify-content-center algin-items-center`}
             ></div>
           </div>
+          <Alert variant="warning">
+            1. 아래 ai 컨설팅을 통해 사업을 확장하세요.<br></br>2. 하단 채팅을
+            통해 세부 작업을 제안받으세요.{" "}
+          </Alert>
           <div className=" d-flex justify-content-start">
             <div className={`${styles.leftContainer}`}>
               <div>
@@ -123,7 +127,27 @@ const AdminMainContent = () => {
             </div>
           </div>
           <ChatAi></ChatAi>
-
+          <div
+            className={`${styles.chatAi} d-flex justify-content-start align-items-center flex-column`}
+          >
+            <div
+              className={`${styles.chatAiInputRelative} d-flex justify-content-center align-items-center`}
+            >
+              <input
+                type="text"
+                className={styles.chatAiTextDiv}
+                placeholder="채팅을 통해 작업을 지시하고, 세부 작업을 제안받으세요."
+              />
+              <img
+                src="/image/admin/openai.png"
+                className={styles.openailogo}
+              ></img>
+            </div>
+            <p className={styles.chatAiExplain}>
+              ChatFlirdog can make mistakes. Consider checking important
+              information.
+            </p>
+          </div>
           <div style={{ height: "1000px" }}></div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Button from 'react-bootstrap/Button';
 import SomoimMainCategoryVarContainer from './SomoimMainCategoryVarContainer';
@@ -6,9 +6,8 @@ import MoimMainCategoryBtn from './MoimMainCategoryBtn';
 
 import SomoimMainFilterCategory from '../../../css/somoim/main/SomoimMainFilter.module.css';
 
-import { CustomToggle, CustomMenu } from './SomoimMainCategoryToggle';
-import { Dropdown } from 'react-bootstrap';
-import SomoimMainList from './SomoimMainList';
+import {CustomMenu, CustomToggle} from './SomoimMainCategoryToggle';
+import {Dropdown} from 'react-bootstrap';
 
 const SomoimMainFilter = () => {
     const [categoryToggle, setCategoryToggle] = useState(false);

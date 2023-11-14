@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styleDesktop from "../../css/main/HeaderCustomNavDropdownElement.module.css";
 import styleMobile from "../../css/main/HeaderCustomNavDropdownElementMobile.module.css";
 import Dropdown from "react-bootstrap/Dropdown";

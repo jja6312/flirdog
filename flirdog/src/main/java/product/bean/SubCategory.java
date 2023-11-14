@@ -43,7 +43,7 @@ public enum SubCategory {
 
     FEEDINGWATERBOWLS("식기 및 급수기", "HOMEWARE"),
     BEDDING("침구류", "HOMEWARE"),
-    BATHTOILETSUPPLIES("목욕 및 화장실용품", "HOMEWARE"),
+    TOILETSUPPLIES("화장실용품", "HOMEWARE"),
     CLEANINGTOOLS("청소도구", "HOMEWARE"),
     STORAGEITEMS("수납용품", "HOMEWARE"),
     OTHERHOMEWARE("기타", "HOMEWARE"),
@@ -51,7 +51,7 @@ public enum SubCategory {
     PLAYPENS("이동장", "SAFETY"),
     GATES("안전문", "SAFETY"),
     COLLARSHARNESSES("목줄 및 하네스", "SAFETY"),
-    ACCESSORIES_SAFETY("안전 액세서리", "SAFETY"),
+    SAFETYACCESSORIES("안전 액세서리", "SAFETY"),
     OTHERSAFETY("기타 안전/이동", "SAFETY"),
 
     TRAINING("훈련용품", "TRAINING"),

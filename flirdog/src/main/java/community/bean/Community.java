@@ -4,6 +4,7 @@ import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import product.bean.Hit;
+import product.bean.ProductComment;
 import user.bean.DogsInfo;
 import user.bean.User;
 
@@ -33,4 +34,7 @@ public class Community extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "community", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CommunityComment> communityComments;
 }
