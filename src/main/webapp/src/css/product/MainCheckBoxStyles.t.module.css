@@ -1,0 +1,15 @@
+.mainCheckBoxDiv {
+  display: flex;
+  color: white;
+}
+
+@media (max-width: 880px) {
+  .mainCheckBoxDiv {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 600px) {
+  .mainCheckBoxDiv {
+    font-size: 0.8em;
+  }
+}

@@ -1,0 +1,51 @@
+.iconContainer {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconContainerPink {
+  background-color: rgb(245, 96, 132);
+}
+
+.iconContainerGray {
+  background-color: #767a83;
+}
+
+.icon {
+  color: white;
+  width: 35px;
+  height: 35px;
+}
+
+.allContainer {
+  width: 200px;
+  height: 80px;
+
+  cursor: pointer;
+}
+
+.titleText {
+  font-size: 14px;
+  color: #868786;
+}
+
+.textContentBigText {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.textContentSmallText {
+  font-size: 14px;
+  color: #868786;
+}
+
+.filterFormContainer {
+  width: 100%;
+  height: 120px;
+  background-color: white;
+}

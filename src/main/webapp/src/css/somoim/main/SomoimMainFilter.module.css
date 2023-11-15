@@ -1,0 +1,13 @@
+.category {
+    width: 101px;
+    height: 32px;
+    left: 0;
+    top: 174.20px;
+    position: absolute;
+    text-align: center;
+    color: #625C5C;
+    font-size: 18px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+}
