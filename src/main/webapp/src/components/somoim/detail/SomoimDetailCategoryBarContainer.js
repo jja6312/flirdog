@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CategoryBtn from "./SomoimDetailCategoryBar";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import data from './SomoimDetailMenuData';
-import SomoimDetailMain from './SomoimDetailMain';
 
 const SomoimDetailCategoryBarContainer = () => {
   const [selectedCategory, setSelectedCategory] = useState('모임 정보');
   const navigate = useNavigate();
-  const location = useLocation();
+  //const location = useLocation();
 
   const handleCategoryClick = (categoryInfo) => {
     const [title, path] = categoryInfo;
@@ -15,7 +14,7 @@ const SomoimDetailCategoryBarContainer = () => {
     setSelectedCategory(title);
   };
 
-  const showDetailMain = location.pathname === '/somoim/detailMain' || selectedCategory === '모임 정보';
+  //const showDetailMain = location.pathname === '/somoim/detailMain' || selectedCategory === '모임 정보';
 
     return (
         <>
@@ -26,14 +25,15 @@ const SomoimDetailCategoryBarContainer = () => {
                   isSelect={selectedCategory === item.title ? "selected" : "notSelected"}
                   text={item.title}
                   onClick={() => handleCategoryClick([item.title, item.path])}
-                  size="col-2 col-lg-2"
+                  size="col-3 col-lg-2"
                   height="40px"
-                  fontSize="1.2rem">
+                  fontSize="1.2rem"
+                  >
                 </CategoryBtn>
               )
             })
           }
-          {showDetailMain && <SomoimDetailMain />}
+          {/* {showDetailMain && <SomoimDetailMain />} */}
           {/* <CategoryBtn
             isSelect={selectedCategory === "모임 정보" ? "selected" : "notSelected"}
             text="모임 정보"
