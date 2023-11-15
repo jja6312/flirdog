@@ -1,10 +1,10 @@
-.moimMainTitle {
+/* .moimMainTitle {
     text-align: center;
     color: rgb(239, 136, 136);
     font-size: 30px;
     font-family: Ribeye;
     font-weight: bold;
-}
+} */
 
 .moimHighlight {
     padding: 0;
@@ -43,3 +43,80 @@ font-size: 13px;
 font-family: Ribeye;
  
  align-items: center;*/
+
+.container {
+width: 100%;
+padding: 20px;
+box-sizing: border-box;
+}
+
+.header {
+text-align: center;
+}
+
+.header h1 {
+font-size: 25px;
+font-weight: 700;
+}
+
+.header p {
+font-size: 20px;
+font-weight: 100;
+}
+
+.content {
+display: flex;
+flex-direction: column;
+}
+
+
+.details {
+width: 100%;
+display: flex;
+flex-direction: column;
+}
+
+.info {
+font-size: 16px;
+color: black;
+line-height: 1.5;
+margin-right: 20px;
+}
+
+.buttons {
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+
+.map-button,
+.join-button {
+display: flex;
+align-items: center;
+}
+
+.map-icon,
+.join-gradient {
+width: 30px;
+height: 30px;
+margin-right: 10px;
+}
+
+.map-button {
+color: white;
+}
+
+.map-gradient {
+background: linear-gradient(180deg, #FB4B4B 0%, rgba(255, 208.25, 219.55, 0.66) 63%, rgba(255, 208.25, 219.55, 0.62) 80%, rgba(255, 208.25, 219.55, 0) 100%);
+box-shadow: 0px 4px 4px rgba(217.10, 189.97, 189.97, 0.25);
+}
+
+.join-button {
+color: white;
+}
+
+.join-gradient {
+background: linear-gradient(180deg, #FB4B4B 0%, rgba(255, 208.25, 219.55, 0.66) 63%, rgba(255, 208.25, 219.55, 0.62) 80%, rgba(255, 208.25, 219.55, 0) 100%);
+box-shadow: 0px 4px 4px rgba(217.10, 189.97, 189.97, 0.25);
+}
+

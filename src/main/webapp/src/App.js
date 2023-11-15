@@ -16,7 +16,9 @@ import OrderListForm from "./components/admin/3주문관리/OrderListForm";
 import OrderCheckForm from "./components/admin/3주문관리/OrderCheckForm";
 import OrderShippingForm from "./components/admin/3주문관리/OrderShippingForm";
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
+
 import SomoimMain from "./components/somoim/SomoimMain";
+import SomoimDetail from "./components/somoim/detail/SomoimDetail"
 
 import MypageMain from "./components/mypage/MypageMain";
 import Myarticle from "./components/mypage/2내가작성한글/Myarticle";
@@ -71,7 +73,10 @@ const App = () => {
                     <Route path="/date/dateWrite" element={<DateWrite/>}/>
                     <Route path="/admin" element={<Admin/>}/>
 
+                    {/* 소모임 페이지!! */}
                     <Route path="/somoim" element={<SomoimMain/>}/>
+                    <Route path="/somoim/:subMenu" element={<SomoimDetail />} />
+
                     {/* 상품관리 */}
                     <Route
                         path="/admin/productUploadForm"
