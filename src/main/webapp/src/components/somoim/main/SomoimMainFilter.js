@@ -29,7 +29,8 @@ const SomoimMainFilter = () => {
 
     return (
         <div>
-            <Container className="px-8" style={{border: '1px solid blue'}}>
+            {/* <Container className="px-8" style={{border: '1px solid blue'}}> */}
+            <Container className="px-8">
                 <div className="row mt-4 d-flex justify-content-center align-items-center">
                     <SomoimMainCategoryVarContainer></SomoimMainCategoryVarContainer>
                 </div>
