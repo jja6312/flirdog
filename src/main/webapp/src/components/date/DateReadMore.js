@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
 import { Container } from 'react-bootstrap';
@@ -18,14 +18,14 @@ const DateReadMore = () => {
   
   //사진 등록관련
 
-  const [userUploadDTO, setUserUploadDTO] = useState({
-      imageName: '',
-      imageContent: '',
-      imageFileName: '',
-      imageOriginalName:'',
-  }) //객체는 {}
-  console.log(userUploadDTO)
-  setUserUploadDTO()
+  // const [userUploadDTO, setUserUploadDTO] = useState({
+  //     imageName: '',
+  //     imageContent: '',
+  //     imageFileName: '',
+  //     imageOriginalName:'',
+  // }) //객체는 {}
+  // console.log(userUploadDTO)
+  // setUserUploadDTO()
 
   //const { imageName, imageContent, imageFileName, imageOriginalName } = userUploadDTO
 

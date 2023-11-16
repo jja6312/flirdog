@@ -48,14 +48,14 @@ const DateUpdate = () => {
   //사진 등록관련
   const imgRef = useRef()
 
-  const [userUploadDTO, setUserUploadDTO] = useState({
-      imageName: '',
-      imageContent: '',
-      imageFileName: '',
-      imageOriginalName:'',
-  }) //객체는 {}
-  console.log(userUploadDTO)
-  setUserUploadDTO()
+  // const [userUploadDTO, setUserUploadDTO] = useState({
+  //     imageName: '',
+  //     imageContent: '',
+  //     imageFileName: '',
+  //     imageOriginalName:'',
+  // }) //객체는 {}
+  // console.log(userUploadDTO)
+  // setUserUploadDTO()
 
   //const { imageName, imageContent, imageFileName, imageOriginalName } = userUploadDTO
 
