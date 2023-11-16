@@ -8,6 +8,8 @@ const KakaoMap = ({matchingAddress, onAddressSelected}) => {
     
     const onAddressClick = (item) => {
         const selectedAddress = item.road_address_name || item.address_name;
+        console.log(address)
+        console.log(infowindow)
         setAddress(selectedAddress);
         onAddressSelected(selectedAddress);
         console.log(selectedAddress);

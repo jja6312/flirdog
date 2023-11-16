@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import Header from '../main/Header';
 import Container from 'react-bootstrap/esm/Container';
 import "../../css/reset.css"
@@ -31,15 +31,15 @@ const DateList = () => {
                 <div className="Group66" style={{width: "14.5vw", height: "7vh", background: '#F56084', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                     <div style={{width: "9.5vw", color: 'white', fontSize: "1.7vw", fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>애견 매칭</div>   
                 </div>
-                &emsp;&emsp;<img src='/image/date/image1.jpg' style={{width:'70%'}}></img>
-                <img src='/image/date/image2.png' style={{width:'10%'}}></img>
+                &emsp;&emsp;<img alt='' src='/image/date/image1.jpg' style={{width:'70%'}}></img>
+                <img alt='' src='/image/date/image2.png' style={{width:'10%'}}></img>
             </div>
             <br/>
 
             {/* 메인 이미지 */}
             <Container className='px-10'>
                 <div style={{display: 'flex', justifyContent:'center'}}>
-                        <img src='/image/date/image3.png' className="d-block w-100" style={{width:'100%'}}></img>
+                        <img alt='' src='/image/date/image3.png' className="d-block w-100" style={{width:'100%'}}></img>
                 </div>
             </Container>
             <br /><br />
@@ -268,7 +268,7 @@ const DateList = () => {
                                              height:200,
                                              overflow:'hidden'
                                         }}>
-                                            <img src='/image/date/starDog1.jpg'
+                                            <img alt='' src='/image/date/starDog1.jpg'
                                                     style={{
                                                     width:'100%',
                                                     objectFit:'cover'
@@ -306,7 +306,7 @@ const DateList = () => {
                                               강아지 설명
                                             </div>
                                             <div className={dateList.filterDateContentSiteScore}>
-                                                <img src='/image/main/likeBone.png' width={20}/>
+                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
                                               커뮤니티 활동점수
                                             </div> 
                                         </div>
@@ -335,7 +335,7 @@ const DateList = () => {
                                              height:200,
                                              overflow:'hidden'
                                         }}>
-                                            <img src='/image/date/starDog2.jpg'
+                                            <img alt='' src='/image/date/starDog2.jpg'
                                                     style={{
                                                     width:'100%',
                                                     objectFit:'cover'
@@ -371,7 +371,7 @@ const DateList = () => {
                                               강아지 설명
                                             </div>
                                             <div className={dateList.filterDateContentSiteScore}>
-                                                <img src='/image/main/likeBone.png' width={20}/>
+                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
                                               커뮤니티 활동점수
                                             </div> 
                                         </div>
@@ -397,7 +397,7 @@ const DateList = () => {
                                              height:200,
                                              overflow:'hidden'
                                         }}>
-                                            <img src='/image/date/Dog4.jpg'
+                                            <img alt='' src='/image/date/Dog4.jpg'
                                                     style={{
                                                     width:'100%',
                                                     objectFit:'cover'
@@ -433,7 +433,7 @@ const DateList = () => {
                                               강아지 설명
                                             </div>
                                             <div className={dateList.filterDateContentSiteScore}>
-                                                <img src='/image/main/likeBone.png' width={20}/>
+                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
                                               커뮤니티 활동점수
                                             </div> 
                                         </div>
@@ -459,7 +459,7 @@ const DateList = () => {
                                              height:200,
                                              overflow:'hidden'
                                         }}>
-                                            <img src='/image/date/Dog5.jpg'
+                                            <img alt='' src='/image/date/Dog5.jpg'
                                                     style={{
                                                     width:'100%',
                                                     objectFit:'cover'
@@ -495,7 +495,7 @@ const DateList = () => {
                                               3대30 거뜬함
                                             </div>
                                             <div className={dateList.filterDateContentSiteScore}>
-                                                <img src='/image/main/likeBone.png' width={20}/>
+                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
                                               커뮤니티 활동점수
                                             </div> 
                                         </div>

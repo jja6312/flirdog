@@ -59,6 +59,7 @@ const DateWrite = () => {
   //사진 등록관련
   const imgRef = useRef()
 
+  /*
   const [userUploadDTO, setUserUploadDTO] = useState({
       imageName: '',
       imageContent: '',
@@ -67,6 +68,7 @@ const DateWrite = () => {
   }) //객체는 {}
 
   const { imageName, imageContent, imageFileName, imageOriginalName } = userUploadDTO
+  */
 
   const [imgList, setImgList] = useState([]) //배열은 []
   // const [files, setFiles] = useState('')
@@ -82,6 +84,7 @@ const DateWrite = () => {
       imgfiles.map(item => {
           const objectURL = URL.createObjectURL(item)
           imgArray.push(objectURL)
+          return imgArray;
       })
 
       setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
@@ -347,6 +350,7 @@ const DateWrite = () => {
                           {
                             imgList.map((item, index) => <img key={ index } 
                                                               src={ item } 
+                                                              alt=''
                                                               style={{ width:'100px', height:'100px', borderRadius:'5px',
                                                               margin:'5px'}} />)
                           }
