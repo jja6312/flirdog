@@ -1,5 +1,7 @@
 import React from 'react';
+import MypageHeader from '../MypageHeader';
 import Container from 'react-bootstrap/esm/Container';
+import { Link } from "react-router-dom";
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
 

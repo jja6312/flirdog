@@ -1,5 +1,7 @@
 import React from 'react';
+import MypageHeader from '../MypageHeader';
 import Container from 'react-bootstrap/esm/Container';
+import { Link } from "react-router-dom";
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
 import Image from 'react-bootstrap/Image';
@@ -89,7 +91,7 @@ const MyprofileUpdate = () => {
                     <div className='col-lg-4 d-flex justify-content-right'> 
                         <div className={Mypage.Text}>
                             <span>ci2288@naver.com</span>
-                            <span className={Mypage.Space2_logo}><img alt="email" className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>
+                            <span className={Mypage.Space2_logo}><img className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>  
                             
                         </div>
                     </div>
