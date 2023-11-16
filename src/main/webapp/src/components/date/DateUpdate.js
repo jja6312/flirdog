@@ -98,7 +98,7 @@ const DateUpdate = () => {
               <Container>
               <div className={DateUpdateCss.DateTitle}>
                   <div className={DateUpdateCss.DateTitleDiv}>
-                  매칭 글 작성
+                  매칭 글 수정
                   </div>
                 </div>
               </Container>

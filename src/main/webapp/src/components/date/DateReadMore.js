@@ -2,46 +2,18 @@ import React, { useRef, useState } from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
 import { Container } from 'react-bootstrap';
-import DateUpdate from '../../css/date/dateReadMore.module.css';
+import ReadMoreCSS from '../../css/date/dateReadMore.module.css';
 import { useNavigate } from 'react-router-dom';
-import KakaoMap from './KakaoMap';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Calendar from 'react-calendar';
 import Button from 'react-bootstrap/Button';
 
 const DateReadMore = () => {
-  const [purposeSelect, setPurposeSelect] = useState('글 분류');
-  const [dogBreedSelect, setdogBreedSelect] = useState('애견 종 선택');
-  const [daySelect, setDaySelect] = useState('날짜 선택');
-  const [matchingAddress, setMatchingAddress] = useState('');
-  const [value, onChange] = useState(new Date());
-  const moment = require('moment');
 
   const navigate = useNavigate()
 
 
-  const handlePurposeSelect = (purpose) => {
-    setPurposeSelect(purpose);
-  };
-  
-  const handleDogBreedSelect = (breed) => {
-    setdogBreedSelect(breed);
-  };
-
-  const handleDaySelect = (day) => {
-    setDaySelect(day);
-  };
-
   const textareaStyle = {
     resize: 'none', // 사용자가 크기를 조절하지 못하도록 설정
-  };
-
-  const handleInputChange = (event) => {
-    // 입력값이 변경될 때마다 matchingAddress 상태를 업데이트
-    setMatchingAddress(event.target.value);
   };
   
   //사진 등록관련
@@ -58,35 +30,22 @@ const DateReadMore = () => {
 
   const [imgList, setImgList] = useState([]) //배열은 []
   // const [files, setFiles] = useState('')
-
-  const onCamera = () => {
-      imgRef.current.click()
-  }
-
-  const onImgInput = (e) => {
-      const imgfiles = Array.from(e.target.files)
-      var imgArray = []
-
-      imgfiles.map(item => {
-          const objectURL = URL.createObjectURL(item)
-          imgArray.push(objectURL)
-      })
-
-      setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
-      // setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
-  }
-
-    const onUploadSubmit = (e) => {
-      e.preventDefault()
-
-      alert('이미지 업로드 완료')
-      navigate('/date/dateList')
-  }
   
-  const onBack = () => {
-    window.scrollTo(0, 0);
+  const onUploadSubmit = (e) => {
+    e.preventDefault()
+
     navigate('/date/dateList')
-  }
+}
+
+const goDateUpdate = () => {
+  window.scrollTo(0, 0);
+  navigate('/date/dateUpdate')
+}
+
+const onBack = () => {
+  window.scrollTo(0, 0);
+  navigate('/date/dateList')
+}
 
 
     return (
@@ -95,271 +54,323 @@ const DateReadMore = () => {
             <Header></Header>
             {/* 내용 */}
             <Container>
-                <div className={DateUpdate.DateUpdateTitle}>
-                  <div className={DateUpdate.DateUpdateTitleDiv}>
+                <div className={ReadMoreCSS.ReadMoreTitle}>
+                  <div className={ReadMoreCSS.ReadMoreTitleDiv}>
                     매칭 글 상세보기
                   </div>&nbsp;&nbsp;&nbsp;
-                  <div style={{marginTop:'20px', width:'50%'}}>
-                    <Form.Control size="lg" type="text" placeholder="제목" />
+                  <div style={{marginTop:'20px', width:'50%',
+                  height:'70px',
+                  border:'10px solid #F56084',
+                  borderRadius:'10px',
+                  marginLeft:'20px',
+                  display:'flex',
+                  justifyContent:'center',
+                  alignItems: 'center'
+                }}>
+                  <div style={{
+                    display:'flex',
+                    justifyContent:'center',
+                    alignItems: 'center',
+                    fontSize:'1.5em'
+                  }}>제목이다 이자시가</div>
                   </div>
                 </div>
             </Container>
-            <hr className={DateUpdate.dateHr}/>
+
+            <hr className={ReadMoreCSS.dateHr}/>
 
             <Container>
-              <div className={DateUpdate.formTable}>
-                <div className={DateUpdate.formTableDiv}>
-                <Form>
-                    
-                    <Row className="mb-3">
-                      <Form.Group as={Col} controlId="formGridCheckPurpose">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            글 분류
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <Dropdown>
-                              <Dropdown.Toggle className={DateUpdate.filterDropdownBtn} variant="success" id="dropdown-basic"
-                                  style={{
-                                      border:'5px solid #F56084',
-                                      backgroundColor: 'white',
-                                      color:'#F56084',
-                                      fontWeight:'bold',
-                                      fontSize:'1.3em',
-                                      borderRadius:'10px'
-                                  }}
-                              >
-                              {purposeSelect}
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu className='dropdown-menu scrollContainer' 
-                              style={{ maxHeight: '200px', overflowY: 'auto' }}    
-                                  >
-                                  <Dropdown.Item href="#/action-1" onClick={() => handlePurposeSelect('연 애')} >연 애</Dropdown.Item>
-                                  <Dropdown.Item href="#/action-2" onClick={() => handlePurposeSelect('산 책')}>산 책</Dropdown.Item>
-                              </Dropdown.Menu>
-                          </Dropdown>
-                        </div>  
-                      </Form.Group>
-
-                      <Form.Group as={Col} controlId="formDogName">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            애견 이름
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={DateUpdate.FormTitleInput} size="lg" type="text" placeholder="애견 이름 입력" />
-                        </div>
-                      </Form.Group>
-
-                      <Form.Group as={Col} controlId="formDogGender">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            성 별
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <div className={`d-flex justify-content-left`}>
-                                            <input id='genderBox1' type='radio' name='gender'  value='남아' />
-                                            <label className={DateUpdate.labelClass1} htmlFor='genderBox1'>남 아</label>
-                                            &nbsp;&nbsp;
-                                            <input id='genderBox2' type='radio' name='gender'  value='여아' />
-                                            <label className={DateUpdate.labelClass2} htmlFor='genderBox2'>여 아</label>
+              <div className={ReadMoreCSS.formTable}>
+                <div className={ReadMoreCSS.formTableDiv}>
+                  <div style={{}}>
+                    <div className={ReadMoreCSS.ReadMoreHeader}>
+                      <div style={{marginLeft:'5%',
+                      height:'40px',
+                      display:'flex',
+                      justifyItems:'center',
+                      alignItems:'center',
+                      fontSize:'1.3em'
+                    }}>
+                      <span>작성자 : 인풋빌런</span></div>
+                    <div style={{height:'40px',
+                      display:'flex',
+                      justifyItems:'center',
+                      alignItems:'center',
+                      fontSize:'1.3em'
+                    }}><span>작성일 : 2023.11.13</span></div>
+                    <div style={{marginRight:'5%',
+                            height:'40px',
+                            display:'flex',
+                            justifyItems:'center',
+                            alignItems:'center',
+                            fontSize:'1.3em'
+                    }}><span>조회수 : 6000</span></div>
+                    </div>
+                  </div>
+                  <div style={{display:'flex',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            margin:'2%'
+                            }}>
+                    <div className={ReadMoreCSS.CarouselDiv}>
+                        <div id="carouselExample" className="carousel slide">
+                          <div className="carousel-inner">
+                            <div className="carousel-item active">
+                              <img src="/image/date/starDog1.jpg" className="d-block w-100" alt="..." 
+                              style={{ borderRadius:'20px'}}
+                              />
+                            </div>
+                            <div className="carousel-item">
+                              <img src="/image/date/starDog1.jpg" className="d-block w-100" alt="..." 
+                              style={{ borderRadius:'20px'}}
+                              />
+                            </div>
+                            <div className="carousel-item">
+                              <img src="/image/date/starDog1.jpg" className="d-block w-100" alt="..." 
+                              style={{ borderRadius:'20px'}}
+                              />
+                            </div>
+                            </div>
+                            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span className="visually-hidden">Next</span>
+                            </button>
                           </div>
                         </div>
-                      </Form.Group>
-                    </Row>
 
-                    <Row className="mb-3">
-                      <Form.Group as={Col} controlId="formDogAge">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            나 이
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={DateUpdate.FormTitleInput} size="lg" type="text" placeholder="나이 입력" />
+                  <div className={ReadMoreCSS.dogScore}>
+                    <div className={ReadMoreCSS.filterDateContent}
+                                     style={{height:'100%'}}>
+                        <div style={{ display: 'flex', flexDirection: 'column', height: '400px', width:'300px',
+                        backgroundColor:'white', marginLeft:'20px', borderRadius:'10px', padding:'2.5%',
+                        border:'10px solid pink'
+                      }}>
+                            <div className={ReadMoreCSS.filterDateContentDogname}>
+                              강아지 이름
+                            </div>
+                            <div className={ReadMoreCSS.filterDateContentDogBreed}>
+                              강아지 종
+                            </div>
+                            <div className={ReadMoreCSS.filterDateContentSiteScore}>
+                                <img src='/image/main/likeBone.png' width={20}/>
+                              커뮤니티 활동점수
+                            </div>
+                            <div className={ReadMoreCSS.matchingState}>
+                              <div>
+                                매칭상태 : 기다림
+                              </div>
+                            </div>
+                            <div className={ReadMoreCSS.listStarScore}>
+                              <div style={{
+                                      fontWeight: 'bold',
+                                      height: '40px',
+                                      display: 'flex',
+                                      justifyContent: 'center',
+                                      alignItems: 'center' 
+                                      }}>
+                                          {[1, 2, 3, 4, 5].map((index) => (
+                                              <img key={index} src='/image/date/starScore.png' width={25} alt="별"
+                                              style={{ marginRight: index === 5 ? '0' : '10px' }} />
+                                          ))}
+                              </div>
+                            </div>
                         </div>
-                      </Form.Group>
-
-                      <Form.Group as={Col} controlId="formGridEmail">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} 
-                               style={{fontSize:'1em'}}
-                          >
-                            중성화 여부
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <div className={`d-flex justify-content-left`}>
-                            <input id='neutralizationBox' type='checkbox' value='neutralization' />
-                            <label className={`${DateUpdate.neutralizationLabel} ${DateUpdate.labelClass3}`} htmlFor='neutralizationBox'></label>
-                          </div>
-                        </div>
-                      </Form.Group>
-
-                      <Form.Group as={Col} controlId="formDogMBTI">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            멍BTI
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={DateUpdate.FormTitleInput} size="lg" type="text" placeholder="애견 MBTI 입력" />
-                        </div>
-                      </Form.Group>
-                    </Row>
-                    
-                    <Row className="mb-3">
-                      <Form.Group as={Col} controlId="formGridCheckPurpose">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} 
-                           style={{fontSize:'1em'}}>
-                            애견종 선택
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <Dropdown>
-                              <Dropdown.Toggle className={DateUpdate.filterDropdownBtn} variant="success" id="dropdown-basic"
-                                  style={{
-                                      border:'5px solid #F56084',
-                                      backgroundColor: 'white',
-                                      color:'#F56084',
-                                      fontWeight:'bold',
-                                      borderRadius:'10px'
-                                  }}
-                              >
-                              {dogBreedSelect}
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu className='dropdown-menu scrollContainer' 
-                              style={{ maxHeight: '200px', overflowY: 'auto' }}    
-                                  >
-                                  <Dropdown.Item href="#/action-1" onClick={() => handleDogBreedSelect('요크셔테리어')} >요크셔테리어</Dropdown.Item>
-                                  <Dropdown.Item href="#/action-2" onClick={() => handleDogBreedSelect('리트리버')}>리트리버</Dropdown.Item>
-                                  <Dropdown.Item href="#/action-1" onClick={() => handleDogBreedSelect('비숑')} >비숑</Dropdown.Item>
-                                  <Dropdown.Item href="#/action-2" onClick={() => handleDogBreedSelect('푸들')}>푸들</Dropdown.Item>
-                              </Dropdown.Menu>
-                          </Dropdown>
-                        </div>  
-                      </Form.Group>
-                      <Form.Group as={Col} controlId="formMatchingDate">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            매칭 날짜
-                          </div>&nbsp;&nbsp;&nbsp;
-
-                          <Dropdown>
-                              <Dropdown.Toggle className={DateUpdate.dayDropdownBtn} variant="success" id="dropdown-basic"
-                                  style={{
-                                      width:'200px',
-                                      border:'5px solid #F56084',
-                                      backgroundColor: 'white',
-                                      color:'#F56084',
-                                      fontWeight:'bold',
-                                      borderRadius:'10px'
-                                  }}
-                              >
-                              {daySelect}
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu className='dropdown-menu scrollContainer'>
-                                  <Dropdown.Item href="#/action-1" onClick={() => handleDaySelect(moment(value).format("YYYY년 MM월 DD일"))} ><Calendar onChange={onChange} value={value} /></Dropdown.Item>
-                              </Dropdown.Menu>
-                          </Dropdown>
-                        </div>
-                      </Form.Group>
-                    </Row>
-
-                    <Row className="mb-3">
-                      <Form.Group as={Col} controlId="formMatchingAddress">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            만남 장소
-                          </div>&nbsp;&nbsp;&nbsp;
-                          <div style={{
-                            width:'35%'
-                          }}>
-                            <Form.Control className={DateUpdate.FormAddressInput} size="lg" type="text" onChange={handleInputChange}  value={matchingAddress} placeholder="주소 및 검색어 입력" />
-                          </div>
-                        </div>
-                        <div style={{
-                          marginTop:'18px'
-                        }}>
-                        <KakaoMap matchingAddress={matchingAddress} ></KakaoMap>
-                        </div>
-                      </Form.Group>
-                    </Row>
-
-                    <Row className="mb-3">
-                      <Form.Group as={Col} controlId="formUploadimage">
-                        <div className={DateUpdate.FormTitleDiv} style={{
-                          color:'gray',
-                        }}>
-                          <div className={DateUpdate.FormTitleNameDiv} >
-                            사 진
-                          </div>&nbsp;&nbsp;&nbsp;
-                          사진 버튼클릭!
-                          <img src='/image/date/camera.jpg' alt="카메라"
-                                    onClick={ onCamera }
-                                    style={{width:70, height:50, borderRadius:20}} />
-                          <input type="file"name="img[]"
-                                  multiple="multiple"
-                                  onChange={ onImgInput } 
-                                  ref={ imgRef } style={{visibility:'hidden'}} />
-                        </div>
-                        <div
-                          style={{
-                            border: '5px solid #F56084',
-                            marginTop: '20px',
-                            borderRadius: '10px',
-                            height: '120px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center', 
+                      </div>
+                      <div className='goDateUpdate'
+                            style={{
+                              width:'100%',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              flexDirection: 'row',
+                              marginLeft:'10px'
+                            }}
+                      >
+                      <Button variant="primary"
+                        style={{
+                          borderColor:'#F56084',
+                          fontWeight:'bold',
+                          fontSize:'1.5em',
+                          backgroundColor:'#F56084',
+                          borderRadius:'10px',
+                          width:'300px',
+                          marginTop:'20px',
+                          height:'50px'
                           }}
-                        >
-                          {imgList.length === 0 && (
-                            <div><span style={{ color: 'gray', textAlign:'center' }}>이미지 미리보기</span></div>
-                          )}
-                          <div>
-                          {
-                            imgList.map((item, index) => <img key={ index } 
-                                                              src={ item } 
-                                                              style={{ width:'100px', height:'100px', borderRadius:'5px',
-                                                              margin:'5px'}} />)
-                          }
-                          </div>
-                        </div>
-                      </Form.Group>
-                    </Row>
+                          onClick={ goDateUpdate }>
+                          글 수정
+                        </Button>
+                      </div>
+                    </div>   
+                    </div>
+                  <div style={{color:'black',
+                        backgroundColor:'pink',
+                        padding:'1%',
+                        borderRadius:'10px',
+                        margin:'1.5%',
+                        }}>
+                    <div style={{
+                      backgroundColor:'white',
+                      borderRadius:'20px',
+                      padding:'1%'
+                    }}>
+                     <div style={{
+                        display: 'flex',
+                        justifyContent:'center',
+                        alignItems: 'center',
+                        backgroundColor:'white',
+                        fontSize:'1.3em',
+                        padding:'2%',
+                        fontWeight:'bold',
+                        borderRadius:'10px'
+                     }}>
+                      나 이&nbsp;&nbsp;&nbsp;
+                      <div style={{
+                        backgroundColor:'lightgray',
+                        borderRadius:'10px',
+                        width:'25%',
+                        height:'50px',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        textAlign:'center'
+                      }}>
+                        <div>2살</div>
+                      </div>&nbsp;&nbsp;&nbsp;
+                      성 별&nbsp;&nbsp;&nbsp;
+                      <div style={{
+                        backgroundColor:'lightgray',
+                        borderRadius:'10px',
+                        width:'25%',
+                        height:'50px',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        textAlign:'center'
+                      }}>
+                        <div>남 아</div>
+                      </div>&nbsp;&nbsp;&nbsp;
+                      멍BTI&nbsp;&nbsp;&nbsp;
+                      <div style={{
+                        backgroundColor:'lightgray',
+                        borderRadius:'10px',
+                        width:'25%',
+                        height:'50px',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        textAlign:'center'
+                      }}>
+                        <div>ISFJ</div>
+                      </div>
+                     </div>
 
-                    <Row className="mb-3">
-                      <Form.Group as={Col} controlId="formContent">
-                        <div className={DateUpdate.FormTitleDiv} >
-                          <div className={DateUpdate.FormTitleNameDiv} 
-                          style={{marginBottom:'18px'}}>
-                            상세 내용
-                          </div>
-                        </div>
-                        <Form.Control as="textarea" rows={20} style={textareaStyle} />
-                      </Form.Group>
-                    </Row>
-
-                    <Button variant="primary" type="submit"
+                     <div style={{
+                        display: 'flex',
+                        justifyContent:'center',
+                        alignItems: 'center',
+                        backgroundColor:'white',
+                        fontSize:'1.3em',
+                        padding:'2%',
+                        fontWeight:'bold'
+                     }}>
+                      중성화&nbsp;&nbsp;&nbsp;
+                      <div className={`${ReadMoreCSS.neutralizationCheckBox} d-flex justify-content-left`}>
+                          <input id='checkbox5' type='checkbox' value='중성화' />
+                          <label className={`${ReadMoreCSS.neutralizationLabel} ${ReadMoreCSS.labelClass}`} htmlFor='checkbox5'></label>
+                      </div>&nbsp;&nbsp;&nbsp;
+                      만남장소&nbsp;&nbsp;&nbsp;
+                      <div style={{
+                        backgroundColor:'lightgray',
+                        borderRadius:'10px',
+                        width:'50%',
+                        height:'50px',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        textAlign:'center'
+                      }}>
+                        <div>강남역 12번출구 비트캠프</div>
+                      </div>&nbsp;&nbsp;&nbsp;
+                      날 짜&nbsp;&nbsp;&nbsp;
+                      <div style={{
+                        backgroundColor:'lightgray',
+                        borderRadius:'10px',
+                        width:'20%',
+                        height:'50px',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        textAlign:'center'
+                      }}>
+                        <div>23년 11월 25일</div>
+                      </div>
+                     </div>
+                     <div style={{
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center'
+                     }}>
+                      <div style={{
+                        border:'5px solid pink',
+                        borderRadius:'20px',
+                        padding:'1%',
+                        width:'90%',
+                        justifyContent:'center',
+                        alignItems:'center'
+                      }}>
+                        <div style={{fontSize:'1.3em'}}>쏼라쏼라쏼라</div>
+                        <div style={{fontSize:'1.3em'}}>가나다라마바사아자차카타파하</div>
+                        <div style={{fontSize:'1.3em'}}>아야어여오요우유으이</div>
+                        <div style={{fontSize:'1.3em'}}>abcdefghijklmnopqrstuvwxyz</div>
+                        <div style={{fontSize:'1.3em'}}>wqr</div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div style={{
+                    display:'flex',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    background:'white',
+                    paddingBottom:'2%',
+                  }}>
+                  <Button variant="primary" type="submit"
                     style={{
                       borderColor:'#F56084',
                       fontWeight:'bold',
-                      fontSize:'1.3em',
+                      fontSize:'1.5em',
                       backgroundColor:'#F56084',
                       borderRadius:'10px',
-                      width:'100px'
+                      width:'40%',
+                      marginRight:'5%',
+                      height:'70px'
                       }}
                       onClick={ onUploadSubmit }>
-                      글 등록
+                      <img src='/image/date/chat.png' alt="chat" style={{width:50, height:50,
+                      }}/>&nbsp;&nbsp;플러팅 하러가기&nbsp;&nbsp;&nbsp;&nbsp;
                     </Button>
-                    &nbsp;&nbsp;&nbsp;
+                    
                     <Button
                     style={{
-                      borderColor:'#F56084',
+                      borderColor:'lightgray',
                       fontWeight:'bold',
-                      fontSize:'1.3em',
-                      backgroundColor:'#F56084',
+                      fontSize:'1.5em',
+                      backgroundColor:'lightgray',
                       borderRadius:'10px',
-                      width:'100px'
+                      width:'40%',
+                      height:'70px'
                       }}
                       onClick={ onBack }>
-                    뒤로</Button>
-                  </Form>
+                     <img src='/image/date/text.png' alt="text" style={{width:50, height:50}} />&nbsp;&nbsp;목록으로&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                   </div>
-              </div>
-            </Container>
-
+                  </div>
+                </div>
+              </Container>
             {/* 푸터 */}
             <Footer></Footer>
         </div>
