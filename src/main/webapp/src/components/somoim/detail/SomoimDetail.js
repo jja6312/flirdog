@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 import Header from '../../main/Header';
 import Footer from '../../main/Footer';
