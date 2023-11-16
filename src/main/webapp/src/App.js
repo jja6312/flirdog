@@ -55,7 +55,6 @@ const App = () => {
             element={<MypageCategoryWrapper />}
           />
           <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
           <Route
             path="/mypage/MydogProfileUpdate"
             element={<MydogProfileUpdate />}
