@@ -36,6 +36,8 @@ import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
 import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
 import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
 import ProductDetail from "./components/product/ProductDetail";
+import DateReadMore from "./components/date/DateReadMore";
+import DateUpdate from "./components/date/DateUpdate";
 
 const App = () => {
     return (
@@ -60,18 +62,21 @@ const App = () => {
                     <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl/>}/>
                     <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge/>}/>
                     {/* 김찬영마이페이지//================================================================= */}
-
+                    
+                    {/* 매칭페이지 */}
                     <Route path="/" element={<Main></Main>}/>
                     <Route path="/user/userTest" element={<Test/>}/>
                     <Route path="/date/dateList" element={<DateList/>}/>
                     <Route path="/date/dateWrite" element={<DateWrite/>}/>
-                    <Route path="/admin" element={<Admin/>}/>
+                    <Route path="/date/dateUpdate" element={<DateUpdate />}/>
+                    <Route path="/date/dateReadMore" element={<DateReadMore/>}/>
 
-                    <Route path="/" element={<Main></Main>}/>
-                    <Route path="/user/userTest" element={<Test/>}/>
-                    <Route path="/date/dateList" element={<DateList/>}/>
-                    <Route path="/date/dateWrite" element={<DateWrite/>}/>
+
+                    {/* 관리자페이지 */}
                     <Route path="/admin" element={<Admin/>}/>
+                    
+                    {/* 메인페이지 */}
+                    <Route path="/" element={<Main></Main>}/>
 
                     {/* 소모임 페이지!! */}
                     <Route path="/somoim" element={<SomoimMain/>}/>

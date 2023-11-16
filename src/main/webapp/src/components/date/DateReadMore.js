@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
 import { Container } from 'react-bootstrap';
 import ReadMoreCSS from '../../css/date/dateReadMore.module.css';
 import { useNavigate } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
+//import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 
 const DateReadMore = () => {
@@ -12,12 +12,11 @@ const DateReadMore = () => {
   const navigate = useNavigate()
 
 
-  const textareaStyle = {
-    resize: 'none', // 사용자가 크기를 조절하지 못하도록 설정
-  };
+  // const textareaStyle = {
+  //   resize: 'none', // 사용자가 크기를 조절하지 못하도록 설정
+  // };
   
   //사진 등록관련
-  const imgRef = useRef()
 
   const [userUploadDTO, setUserUploadDTO] = useState({
       imageName: '',
@@ -25,10 +24,13 @@ const DateReadMore = () => {
       imageFileName: '',
       imageOriginalName:'',
   }) //객체는 {}
+  console.log(userUploadDTO)
+  setUserUploadDTO()
 
-  const { imageName, imageContent, imageFileName, imageOriginalName } = userUploadDTO
+  //const { imageName, imageContent, imageFileName, imageOriginalName } = userUploadDTO
 
-  const [imgList, setImgList] = useState([]) //배열은 []
+  // const [imgList, setImgList] = useState([]) //배열은 []
+  // console.log(imgList)
   // const [files, setFiles] = useState('')
   
   const onUploadSubmit = (e) => {
@@ -156,7 +158,7 @@ const onBack = () => {
                               강아지 종
                             </div>
                             <div className={ReadMoreCSS.filterDateContentSiteScore}>
-                                <img src='/image/main/likeBone.png' width={20}/>
+                                <img src='/image/main/likeBone.png' width={20} alt="별"/>
                               커뮤니티 활동점수
                             </div>
                             <div className={ReadMoreCSS.matchingState}>

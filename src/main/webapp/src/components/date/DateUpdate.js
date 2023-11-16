@@ -14,7 +14,7 @@ import KakaoMap from './KakaoMap';
 import { useNavigate } from 'react-router-dom';
 
 const DateUpdate = () => {
-    const [purposeSelect, setPurposeSelect] = useState('글 분류');
+  const [purposeSelect, setPurposeSelect] = useState('글 분류');
   const [dogBreedSelect, setdogBreedSelect] = useState('애견 종 선택');
   const [daySelect, setDaySelect] = useState('날짜 선택');
   const [matchingAddress, setMatchingAddress] = useState('');
@@ -54,8 +54,10 @@ const DateUpdate = () => {
       imageFileName: '',
       imageOriginalName:'',
   }) //객체는 {}
+  console.log(userUploadDTO)
+  setUserUploadDTO()
 
-  const { imageName, imageContent, imageFileName, imageOriginalName } = userUploadDTO
+  //const { imageName, imageContent, imageFileName, imageOriginalName } = userUploadDTO
 
   const [imgList, setImgList] = useState([]) //배열은 []
   // const [files, setFiles] = useState('')
@@ -71,6 +73,7 @@ const DateUpdate = () => {
       imgfiles.map(item => {
           const objectURL = URL.createObjectURL(item)
           imgArray.push(objectURL)
+          return imgArray;
       })
 
       setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
@@ -320,6 +323,7 @@ const DateUpdate = () => {
                           {
                             imgList.map((item, index) => <img key={ index } 
                                                               src={ item } 
+                                                              alt=''
                                                               style={{ width:'100px', height:'100px', borderRadius:'5px',
                                                               margin:'5px'}} />)
                           }

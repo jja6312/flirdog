@@ -1,7 +1,7 @@
 package matching.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,20 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "date")
 public class MatchingController {
 	
-	@GetMapping("list")
-	public String dateList() {
-		return "/date/dateList";
+	@PostMapping("list")
+	public void dateList() {
 	}
-	@GetMapping("Write")
-	public String dateWrite() {
-		return "/date/dateWrite";
+	@PostMapping("Write")
+	public void dateWrite() {
 	}
-	@GetMapping("dateReadMore")
-	public String dateReadMore() {
-		return "/date/dateReadMore";
+	@PostMapping("dateReadMore")
+	public void dateReadMore() {
 	}
-	@GetMapping("update")
-	public String dateUpdate() {
-		return "/date/dateUpdate";
+	@PostMapping("update")
+	public void dateUpdate() {
 	}
 }
