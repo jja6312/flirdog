@@ -33,7 +33,7 @@ const MoimMainCategoryBtn = () => {
                                 <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
                             </NavDropdown>
                         </Nav> */}
-                        <Form className="d-flex" style={{ width: '100%', alignItems: 'center' }}>
+                        <Form className="d-none d-md-block d-flex" style={{ width: '100%', alignItems: 'center' }}>
                             <div className={styles.Rectangle29}>
                                 <div className={`${styles.title}  text-nowrap pt-1 pb-1`}>제 목</div>
                                 <div className={styles.Line2}></div>

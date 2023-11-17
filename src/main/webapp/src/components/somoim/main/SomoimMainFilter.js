@@ -29,10 +29,12 @@ const SomoimMainFilter = () => {
 
     return (
         <div>
-            <Container className="px-8" style={{border: '1px solid blue'}}>
+            {/* <Container className="px-8" style={{border: '1px solid blue'}}> */}
+            <Container className="px-8">
                 <div className="row mt-4 d-flex justify-content-center align-items-center">
                     <SomoimMainCategoryVarContainer></SomoimMainCategoryVarContainer>
                 </div>
+                {/* <hr className='col-12' style={{ border:'4px solid pink', width:'70%', margin: '33px 202px 0px' }}/> */}
                 <div className="row mt-4 d-flex justify-content-center align-items-center" >
                     {
                         categoryToggle && (
@@ -40,7 +42,7 @@ const SomoimMainFilter = () => {
                             <div className='col-2 d-flex justify-content-end category' style={SomoimMainFilterCategory}>
                                 <Dropdown>
                                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                                        카테고리
+                                        지역선택
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu as={CustomMenu} style={{ width: '210px'}}>
                                         <Dropdown.Item eventKey="1" active>전국</Dropdown.Item>
