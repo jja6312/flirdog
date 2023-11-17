@@ -2,7 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.5'
 	id 'io.spring.dependency-management' version '1.1.3'
-	id "com.github.node-gradle.node" version "4.0.0"
 }
 
 group = 'com.example'
@@ -63,44 +62,3 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-
-//React build 설정
-def reactAppDir = "${projectDir}/src/main/webapp"
-
-processResources {
-	// task간의 의존성 정의
-	// processResources task 실행되기 전에 copyReactFile task를 먼저 실행한다.
-	dependsOn "copyReactFile"
-}
-
-task copyReactFile(type: Copy) {
-	dependsOn "buildReact"
-	from "$reactAppDir/build"
-	into "$projectDir/src/main/resources/static/"
-}
-
-task buildReact(type: Exec) {
-	dependsOn "installReact"
-	workingDir "$reactAppDir"
-	//$reactAppDir 디렉토리의 변경 사항을 감지하고, 변경이 있을 경우에만 task가 실행되도록 한다.
-	inputs.dir "$reactAppDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "run-script", "build"
-	} else {
-		commandLine "npm", "run-script", "build"
-	}
-}
-
-task installReact(type: Exec) {
-	workingDir "$reactAppDir"
-	inputs.dir "$reactAppDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "audit", "fix"
-		commandLine "npm.cmd", "install"
-	} else {
-		commandLine "npm", "audit", "fix"
-		commandLine "npm", "install"
-	}
-}
