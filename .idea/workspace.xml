@@ -5,11 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/favicon.ico" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/main/static/flirdog.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/flirdog.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/static/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/static/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/static/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/static/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/manifest.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/manifest.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "featue/product",
-    "last_opened_file_path": "F:/gitworkspace/flirdog",
+    "last_opened_file_path": "F:/gitworkspace/flirdog/src/main/webapp/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,6 +69,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\gitworkspace\flirdog\src\main\webapp\public" />
+      <recent name="F:\gitworkspace\flirdog\src\main\resources\static\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\gitworkspace\flirdog\bin\main\static" />
+      <recent name="F:\gitworkspace\flirdog\src\main\resources\static" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="FlirdogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -71,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1700136410801</updated>
       <workItem from="1700136411754" duration="2766000" />
-      <workItem from="1700324248015" duration="882000" />
+      <workItem from="1700324248015" duration="2240000" />
     </task>
     <servers />
   </component>
