@@ -10,7 +10,6 @@ const AdminHeader = () => {
     <div style={{ position: "relative" }}>
       <Link to="/admin">
         <span className={styles.adminHeaderTitle}>Ai 관리자페이지 홈</span>
-        <span className={styles.adminHeaderTitle}>관리자페이지 홈</span>
       </Link>
       <Navbar expand="lg" className={styles.navBar}>
         <Link to="/">
