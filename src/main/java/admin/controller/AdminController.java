@@ -63,10 +63,10 @@ public class AdminController {
 	// 업로드
 	@PostMapping(path = "productUpload")
 	public void productUpload(@RequestParam("productDTO") String productDTOJson,
-			@RequestParam("mainCategory") String mainCategory,
-			@RequestParam("subCategory") String subCategory,
-			@RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFilesList,
-			HttpSession session) throws IOException {
+							  @RequestParam("mainCategory") String mainCategory,
+							  @RequestParam("subCategory") String subCategory,
+							  @RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFilesList,
+							  HttpSession session) throws IOException {
 
 		adminProductService.productUpload(productDTOJson, mainCategory, subCategory, imgFilesList, session);
 
@@ -109,9 +109,9 @@ public class AdminController {
 	// 상품수정(이미지를 변경하지 않았을 경우)
 	@PostMapping(path = "productUpdateWithoutImage")
 	public void productUpdateWithoutImage(@RequestParam("productDTO") String productDTOJson,
-			@RequestParam("mainCategory") String mainCategory,
-			@RequestParam("subCategory") String subCategory,
-			@RequestParam("productId") String productId) throws JsonMappingException, JsonProcessingException {
+										  @RequestParam("mainCategory") String mainCategory,
+										  @RequestParam("subCategory") String subCategory,
+										  @RequestParam("productId") String productId) throws JsonMappingException, JsonProcessingException {
 		System.out.println("여기는 컨트롤러");
 		System.out.println("productDTOJson: " + productDTOJson);
 		System.out.println("mainCategory: " + mainCategory);
@@ -125,11 +125,11 @@ public class AdminController {
 	// 상품수정(이미지가 변경되었을 경우)
 	@PostMapping(path = "productUpdateAllWithImage")
 	public void productUpdateAllWithImage(@RequestParam("productDTO") String productDTOJson,
-			@RequestParam("mainCategory") String mainCategory,
-			@RequestParam("subCategory") String subCategory,
-			@RequestParam("productId") String productId,
-			@RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFilesList,
-			HttpSession session) throws JsonMappingException, JsonProcessingException {
+										  @RequestParam("mainCategory") String mainCategory,
+										  @RequestParam("subCategory") String subCategory,
+										  @RequestParam("productId") String productId,
+										  @RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFilesList,
+										  HttpSession session) throws JsonMappingException, JsonProcessingException {
 		System.out.println("여기는 컨트롤러");
 		System.out.println("productDTOJson: " + productDTOJson);
 		System.out.println("mainCategory: " + mainCategory);
@@ -149,7 +149,7 @@ public class AdminController {
 		return userList;
 
 	}
-	
+
 	// 회원삭제
 	@PostMapping(path = "userDelete")
 	public void userDelete(@RequestParam("userId") String userId) {
@@ -157,7 +157,7 @@ public class AdminController {
 		adminUserService.userDelete(userId);
 
 	}
-	
+
 	// 회원선택삭제
 	@PostMapping(path = "userDeleteSelected")
 	public void userDeleteSelected(@RequestParam("userId") String userId) {
@@ -165,19 +165,19 @@ public class AdminController {
 		adminUserService.userDeleteSelected(userId);
 
 	}
-	
+
 	//특정 회원불러오기
 	// 회원리스트
 	@PostMapping(path = "getUser")
 	public Optional<User> getUser(@RequestBody Map<String, String> requestBody) {
-	    String userId = requestBody.get("userId");
-	    System.out.println("!!!!!!!!!userid:" + userId);
-	    Optional<User> user = adminUserService.getUser(userId);
+		String userId = requestBody.get("userId");
+		System.out.println("!!!!!!!!!userid:" + userId);
+		Optional<User> user = adminUserService.getUser(userId);
 
-	    return user;
+		return user;
 	}
-	
-	
+
+
 	// 회원 정보 수정
 	@PostMapping(path = "userEdit")
 	public void userEdit(@RequestBody User userDTO) throws JsonMappingException, JsonProcessingException {
@@ -186,7 +186,7 @@ public class AdminController {
 		adminUserService.userEdit(userDTO);
 
 	}
-	
+
 	// 주문리스트
 	@GetMapping(path = "getOrderList")
 	public List<Order> getOrderList() {
@@ -195,74 +195,74 @@ public class AdminController {
 		return orderList;
 
 	}
-	
+
 	// 애견리스트
 	@GetMapping(path = "getDogList", produces = "application/json;charset=UTF-8")
 	public List<DogsInfo> getDogList() {
 		List<DogsInfo> dogList = adminDogService.getAllDogsWithUsers();
-		
+
 		return dogList;
-		
+
 	}
 	// 애견선택삭제
-		@PostMapping(path = "dogDeleteSelected")
-		public void dogDeleteSelected(@RequestParam("dogId") String dogId) {
+	@PostMapping(path = "dogDeleteSelected")
+	public void dogDeleteSelected(@RequestParam("dogId") String dogId) {
 
-			adminDogService.dogDeleteSelected(dogId);
+		adminDogService.dogDeleteSelected(dogId);
 
-		}
-		
-		// 애견삭제
-		@PostMapping(path = "dogDelete")
-		public void dogDelete(@RequestParam("dogId") String dogId) {
+	}
 
-			adminDogService.dogDelete(dogId);
+	// 애견삭제
+	@PostMapping(path = "dogDelete")
+	public void dogDelete(@RequestParam("dogId") String dogId) {
 
-		}
-		
-		
-		//특정 애견불러오기
-		@PostMapping(path = "getDog")
-		public Optional<DogsInfo> getDog(@RequestBody Map<String, String> requestBody) {
-		    String dogId = requestBody.get("dogId");
-		    Optional<DogsInfo> dog = adminDogService.getDog(dogId);
+		adminDogService.dogDelete(dogId);
 
-		    return dog;
-		}
-		
-		// 회원 정보 수정
-		@PostMapping(path = "dogEdit")
-		public void userEdit(@RequestBody DogsInfo dogDTO) throws JsonMappingException, JsonProcessingException {
-			
-			adminDogService.dogEdit(dogDTO);
+	}
 
-		}
-		
-		// 상품리스트
-		@GetMapping(path = "getMatchingList", produces = "application/json;charset=UTF-8")
-		public List<MatchingDTO> getMatchingList() {
-			List<MatchingDTO> matchingList = adminMatchingService.getMatchingList();
 
-			return matchingList;
+	//특정 애견불러오기
+	@PostMapping(path = "getDog")
+	public Optional<DogsInfo> getDog(@RequestBody Map<String, String> requestBody) {
+		String dogId = requestBody.get("dogId");
+		Optional<DogsInfo> dog = adminDogService.getDog(dogId);
 
-		}
-		
-		// 매칭삭제
-		@PostMapping(path = "matchingDelete")
-		public void matchingDelete(@RequestParam("matchingId") String matchingId) {
+		return dog;
+	}
 
-			adminMatchingService.matchingDelete(matchingId);
+	// 회원 정보 수정
+	@PostMapping(path = "dogEdit")
+	public void userEdit(@RequestBody DogsInfo dogDTO) throws JsonMappingException, JsonProcessingException {
 
-		}
-		
-		// 매칭선택삭제
-		@PostMapping(path = "matchingDeleteSelected")
-		public void matchingDeleteSelected(@RequestParam("matchingId") String matchingId) {
+		adminDogService.dogEdit(dogDTO);
 
-			adminMatchingService.matchingDeleteSelected(matchingId);
+	}
 
-		}
-		
-		
-		
+	// 상품리스트
+	@GetMapping(path = "getMatchingList", produces = "application/json;charset=UTF-8")
+	public List<MatchingDTO> getMatchingList() {
+		List<MatchingDTO> matchingList = adminMatchingService.getMatchingList();
+
+		return matchingList;
+
+	}
+
+	// 매칭삭제
+	@PostMapping(path = "matchingDelete")
+	public void matchingDelete(@RequestParam("matchingId") String matchingId) {
+
+		adminMatchingService.matchingDelete(matchingId);
+
+	}
+
+	// 매칭선택삭제
+	@PostMapping(path = "matchingDeleteSelected")
+	public void matchingDeleteSelected(@RequestParam("matchingId") String matchingId) {
+
+		adminMatchingService.matchingDeleteSelected(matchingId);
+
+	}
+
+
+
 }

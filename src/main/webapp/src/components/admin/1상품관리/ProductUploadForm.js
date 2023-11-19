@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import Reactquill from "../../somoim/Reactquill";
 import TextEditor from "../../TextEditor";
 
+
 const ProductUploadForm = ({ openLeftside }) => {
   const [productDTO, setProductDTO] = useState({
     name: "",
@@ -112,6 +113,7 @@ const ProductUploadForm = ({ openLeftside }) => {
     }
 
     console.log(formData.entries());
+
 
     axios
       .post("http://localhost:8080/admin/productUpload", formData, {
