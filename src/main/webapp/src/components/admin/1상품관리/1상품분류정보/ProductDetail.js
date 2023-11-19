@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from "../../../../css/admin/1상품관리/productDetail.module.css";
 import ProductCategory from "./ProductCategory";
 
-const ProductDetail = () => {
-  const [category1Selected, setCategory1Selected] = useState("");
-  const [category2Selected, setCategory2Selected] = useState("");
+const ProductDetail = ({
+  category1Selected,
+  setCategory1Selected,
+  category2Selected,
+  setCategory2Selected,
+}) => {
   const [category2Array, setCategory2Array] = useState([]);
 
   const category1 = ProductCategory.mainCategories;

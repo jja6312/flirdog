@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 public class Product extends BaseEntity {
     @Id
@@ -49,9 +49,11 @@ public class Product extends BaseEntity {
     private Order order;
 
     @Builder(toBuilder = true)
-    private Product(String name, String content, String image, MainCategory mainCategory, SubCategory subCategory) {
+    private Product(String name, String content, int stock, int price, String image, MainCategory mainCategory, SubCategory subCategory) {
         this.name = name;
         this.content = content;
+        this.stock = stock;
+        this.price = price;
         this.image = image;
         this.mainCategory = mainCategory;
         this.subCategory = subCategory;
