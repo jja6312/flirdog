@@ -15,4 +15,5 @@
 }
 .loadingDiv img {
     width: 200px;
+    opacity: 0.1;
 }

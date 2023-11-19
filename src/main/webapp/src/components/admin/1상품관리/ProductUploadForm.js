@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
+import Swal from "sweetalert2";
 import LeftSide from "../LeftSide";
 import AdminHeader from "../AdminHeader";
 import styles from "../../../css/admin/rightContent.module.css";
 import RightContentHeader from "../RightContentHeader";
 import ProductDetail from "./1상품분류정보/ProductDetail";
-import EditorBox from "../../EditorBox";
 import Container from "react-bootstrap/esm/Container";
 import AdminPageInfoText from "../AdminPageInfoText";
 import ProductPrimaryInfo from "./2상품기본정보/ProductPrimaryInfo";
@@ -15,13 +15,7 @@ import ProductNoticeBanner from "./ProductNoticeBanner";
 import ProductThumnail from "./5상품대표이미지/ProductThumnail";
 import axios from "axios";
 import ProductCategory from "./1상품분류정보/ProductCategory";
-
-//   const [userUploadDTO, setUserUploadDTO] = useState({
-//     imageName: "",
-//     imageContent: "",
-//     imageFileName: "",
-//     imageOriginalFileName: "",
-//   });
+import { useNavigate } from "react-router-dom";
 
 const ProductUploadForm = ({ openLeftside }) => {
   const [productDTO, setProductDTO] = useState({
@@ -43,7 +37,19 @@ const ProductUploadForm = ({ openLeftside }) => {
   const [category1Selected, setCategory1Selected] = useState("");
   const [category2Selected, setCategory2Selected] = useState("");
 
+  const navigate = useNavigate();
   const productUpload = () => {
+    if (category1Selected === "" || category2Selected === "") {
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "상품 분류를 선택해주세요.",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      return;
+    }
+
     const mainCategory = ProductCategory.mainCategories.find(
       (item) => item.text === category1Selected
     );
@@ -62,6 +68,23 @@ const ProductUploadForm = ({ openLeftside }) => {
     const price = priceRef.current.value;
     const stock = stockRef.current.value;
 
+    if (name === "" || content === "" || price === "" || stock === "") {
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "필수 입력 항목을 입력해주세요.",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+
+      if (name === "") nameRef.current.focus();
+      else if (content === "") contentRef.current.focus();
+      else if (price === "") priceRef.current.focus();
+      else if (stock === "") stockRef.current.focus();
+
+      return;
+    }
+
     const updatedProductDTO = {
       ...productDTO,
       name: name,
@@ -78,16 +101,37 @@ const ProductUploadForm = ({ openLeftside }) => {
     formData.append("productDTO", JSON.stringify(updatedProductDTO));
     formData.append("mainCategory", mainCategoryUppercase);
     formData.append("subCategory", subCategoryUppercase);
-    formData.append("imgFiles", imgFiles[0]);
+
+    for (var i = 0; i < imgFiles.length; i++) {
+      formData.append("imgFiles", imgFiles[i]);
+    }
+    if (imgFiles.length === 0) {
+      formData.append("imgFiles", new File([], ""));
+    }
 
     console.log(formData.entries());
+
     axios
       .post("http://localhost:8080/admin/productUpload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then((res) => alert("상품 등록 완료"))
+      .then((res) => {
+        setTimeout(() => {
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "상품 등록 성공",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }, 10);
+
+        setTimeout(() => {
+          navigate("/admin/productListForm");
+        }, 1600);
+      })
       .catch((error) => console.log(error));
   };
 
@@ -147,7 +191,7 @@ const ProductUploadForm = ({ openLeftside }) => {
           ></ProductThumnail>
 
           <AdminPageInfoText title="상품 상세 정보" isNessasary={false} />
-          <EditorBox style={{ width: "60%" }}></EditorBox>
+          {/* <EditorBox style={{ width: "60%" }}></EditorBox> */}
         </Container>
 
         <ProductNoticeBanner
