@@ -63,6 +63,7 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 				 e.printStackTrace();
 			 }
 		 }
+
 		//2. 빌더 생성
 		//builder를 통해 껍데기 product객체를 만든다. 
 		 Product productBuilder = Product.builder()
@@ -83,8 +84,7 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 
 		
 	}
-	// @Autowired
-	// private ProductRepository productRepository;
+	
 
 //	@Override
 //	public Integer calculate(Integer a, Integer b) {

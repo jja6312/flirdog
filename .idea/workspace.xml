@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/public/image/loadingDog.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/static/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/static/flirdog.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/flirdog.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flirdog.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/flirdog.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/components/Loading.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/product/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/components/product/Product.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/css/Loading.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/css/Loading.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,14 +55,27 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
     &quot;git-widget-placeholder&quot;: &quot;featue/product&quot;,
     &quot;last_opened_file_path&quot;: &quot;F:/gitworkspace/flirdog/bin/main/static&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jongin/gitworkspace/flirdog&quot;,
+>>>>>>> bd38d33 (기능:상품등록 이미지여러개 등록 가능 및 이미지없이 등록 로직 추가)
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+<<<<<<< HEAD
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+=======
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.50574714&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/jongin/gitworkspace/flirdog/src/main/webapp/node_modules/typescript/lib&quot;,
+>>>>>>> bd38d33 (기능:상품등록 이미지여러개 등록 가능 및 이미지없이 등록 로직 추가)
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -81,6 +88,7 @@
       <recent name="F:\gitworkspace\flirdog\src\main\resources\static\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/public/image" />
       <recent name="F:\gitworkspace\flirdog\build\resources\main\static" />
       <recent name="F:\gitworkspace\flirdog\src\main\resources\static" />
       <recent name="F:\gitworkspace\flirdog\src\main\webapp\public" />
@@ -107,6 +115,9 @@
       <updated>1700136410801</updated>
       <workItem from="1700136411754" duration="2766000" />
       <workItem from="1700324248015" duration="3199000" />
+      <workItem from="1700443673817" duration="33000" />
+      <workItem from="1700443723952" duration="4330000" />
+      <workItem from="1700619722969" duration="3041000" />
     </task>
     <servers />
   </component>
