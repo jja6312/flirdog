@@ -272,7 +272,7 @@ const ProductListForm = ({ openLeftside }) => {
               <th>썸네일 이미지</th>
               <th>카테고리</th>
               <th>카테고리2</th>
-              <th>브랜드</th>
+
               <th>상품명</th>
               <th>상품 설명</th>
               <th>상품 상세 설명</th>
@@ -338,7 +338,7 @@ const ProductListForm = ({ openLeftside }) => {
               <td>1</td>
               <td>1</td>
               <td>1</td>
-              <td>1</td>
+
               <td>1</td>
               <td>1</td>
               <td>1</td>
@@ -369,7 +369,7 @@ const ProductListForm = ({ openLeftside }) => {
               <td>1</td>
               <td>1</td>
               <td>1</td>
-              <td>1</td>
+
               <td>1</td>
               <td>1</td>
               <td>1</td>
