@@ -30,10 +30,13 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 	@Override
 	public void productUpload(String productDTOJson, String mainCategory, String subCategory,
 			List<MultipartFile> imgFilesList, HttpSession session) throws IOException {
+
 		//1. 데이터 매핑
 			//1-1.요청받은 dto를 product에 set.
 		ObjectMapper objectMapper = new ObjectMapper();
 		Product product = objectMapper.readValue(productDTOJson, Product.class);
+		System.out.println("제이슨변환: "+product);
+		System.out.println("제이슨변환.getName: "+product);
 
 			//1-2.카테고리들을 enum과 매핑해서 value를 꺼내온다.
 		MainCategory mainCategoryEnumClass = MainCategory.valueOf(mainCategory);
@@ -52,10 +55,11 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 		 for(MultipartFile img : imgFilesList) {
 			 originalFileName = img.getOriginalFilename();
 			 System.out.println("originalFileName: "+originalFileName);
-			 imagePaths.add("/storage/"+originalFileName);
 			
 			 fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
 			 file = new File(filePath, originalFileName);
+			 
+			 imagePaths.add("flirdogStorage/"+fileName);
 			
 			 try {
 				 img.transferTo(file);
@@ -93,3 +97,4 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 //	}
 
 }
+

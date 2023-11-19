@@ -62,23 +62,25 @@ const ProductUploadForm = ({ openLeftside }) => {
     const price = priceRef.current.value;
     const stock = stockRef.current.value;
 
-    setProductDTO({
+    const updatedProductDTO = {
       ...productDTO,
       name: name,
       content: content,
       price: price,
       stock: stock,
-    });
+    };
+
+    setProductDTO(updatedProductDTO);
 
     console.log(productDTO);
 
     const formData = new FormData();
-    formData.append("productDTO", JSON.stringify(productDTO));
+    formData.append("productDTO", JSON.stringify(updatedProductDTO));
     formData.append("mainCategory", mainCategoryUppercase);
     formData.append("subCategory", subCategoryUppercase);
     formData.append("imgFiles", imgFiles[0]);
 
-    console.log(formData);
+    console.log(formData.entries());
     axios
       .post("http://localhost:8080/admin/productUpload", formData, {
         headers: {
