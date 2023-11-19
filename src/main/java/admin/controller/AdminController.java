@@ -48,7 +48,7 @@ public class AdminController {
 	public void productUpload(@RequestParam("productDTO") String productDTOJson, 
 							@RequestParam("mainCategory") String mainCategory,
 							@RequestParam("subCategory") String subCategory,
-							@RequestPart("imgFiles") List<MultipartFile> imgFilesList,
+							@RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFilesList,
 							HttpSession session) throws IOException {
 		
 	    adminUploadService.productUpload(productDTOJson, mainCategory, subCategory, imgFilesList, session);

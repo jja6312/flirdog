@@ -241,7 +241,6 @@ const ProductListForm = ({ openLeftside }) => {
           style={{ width: "100%" }}
         >
           <SearchForm placeHolder="상품 이름 검색"></SearchForm>
-          <SearchForm></SearchForm>
         </div>
 
         <div className="d-flex align-items-center mt-4">
