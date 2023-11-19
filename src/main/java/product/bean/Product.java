@@ -39,7 +39,7 @@ public class Product extends BaseEntity {
     private SubCategory subCategory;
 
     @Embedded
-    private Hit hit;
+    private Hit hit = new Hit(); // 명시적으로 new 해서 기본값 0으로 설정했습니다.(지안)
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductComment> productComments;
@@ -49,7 +49,8 @@ public class Product extends BaseEntity {
     private Order order;
 
     @Builder(toBuilder = true)
-    private Product(String name, String content, int stock, int price, String image, MainCategory mainCategory, SubCategory subCategory) {
+    private Product(String name, String content, int stock, int price, String image, MainCategory mainCategory,
+            SubCategory subCategory) {
         this.name = name;
         this.content = content;
         this.stock = stock;
@@ -64,4 +65,5 @@ public class Product extends BaseEntity {
                 .image(String.join(",", imgs))
                 .build();
     }
+
 }
