@@ -4,6 +4,7 @@ import NavigateBtn from "../NavigateBtn";
 
 import CategoryBtnContainer from "../CategoryBtnContainer";
 import styles from "../../../css/main/2베스트플러독/navigateBtn.module.css";
+import bestFlirdog from "../../../css/main/2베스트플러독/bestFlirdog.module.css";
 
 const BestFlirdog = () => (
   <>
@@ -11,7 +12,7 @@ const BestFlirdog = () => (
       <div className="col-12">
         <img
           alt=""
-          className="bestFlirdogTitle"
+          className={bestFlirdog.bestFlirdogTitle}
           src="/image/main/bestFlirdog1.png"
         />
       </div>
