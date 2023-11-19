@@ -52,21 +52,31 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 		 String fileName;
 		 
 		 List<String> imagePaths = new ArrayList<>();
-		 for(MultipartFile img : imgFilesList) {
-			 originalFileName = img.getOriginalFilename();
-			 System.out.println("originalFileName: "+originalFileName);
-			
-			 fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
-			 file = new File(filePath, originalFileName);
-			 
-			 imagePaths.add("flirdogStorage/"+fileName);
-			
-			 try {
-				 img.transferTo(file);
-			 } catch (IOException e) {
-				 e.printStackTrace();
-			 }
-		 }
+		 
+		// 이미지가 없는 경우 지정된 이미지사용
+		    if (imagePaths.isEmpty()) {
+		        imagePaths.add("/image/nullImage/nullImage1.png"); // 대체 이미지 경로 또는 빈 문자열
+		    }else if(!imagePaths.isEmpty()) {
+		    	for(MultipartFile img : imgFilesList) {
+		    		originalFileName = img.getOriginalFilename();
+		    		System.out.println("originalFileName: "+originalFileName);
+		    		
+		    		fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
+		    		file = new File(filePath, originalFileName);
+		    		
+		    		imagePaths.add("flirdogStorage/"+fileName);
+		    		
+		    		try {
+		    			img.transferTo(file);
+		    		} catch (IOException e) {
+		    			e.printStackTrace();
+		    		}
+		    	}
+		    	
+		    }
+		 
+		
+		 
 		//2. 빌더 생성
 		//builder를 통해 껍데기 product객체를 만든다. 
 		 Product productBuilder = Product.builder()
@@ -87,8 +97,7 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 
 		
 	}
-	// @Autowired
-	// private ProductRepository productRepository;
+	
 
 //	@Override
 //	public Integer calculate(Integer a, Integer b) {
