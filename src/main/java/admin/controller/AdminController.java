@@ -1,36 +1,28 @@
 package admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import admin.service.AdminUploadService;
+import admin.service.AdminProductService;
 import jakarta.servlet.http.HttpSession;
-import product.bean.MainCategory;
 import product.bean.Product;
-import product.bean.SubCategory;
 
 @CrossOrigin
 @RestController
 @RequestMapping(path = "admin")
 public class AdminController {
-	// @Autowired
-	// private AdminUploadService adminUploadService;
-	// @Autowired
-	// private ObjectStorageService objectStorageService;
-	// private String bucketName = "bitcamp-edu-bucket-111";
 	@Autowired
-	private AdminUploadService adminUploadService;
+	private AdminProductService adminProductService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -51,8 +43,15 @@ public class AdminController {
 							@RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFilesList,
 							HttpSession session) throws IOException {
 		
-	    adminUploadService.productUpload(productDTOJson, mainCategory, subCategory, imgFilesList, session);
+	    adminProductService.productUpload(productDTOJson, mainCategory, subCategory, imgFilesList, session);
 
+	}
+	@GetMapping(path="getProductList", produces = "application/json;charset=UTF-8")
+	public List<Product> getProductList(){
+		List<Product> productList = adminProductService.getProductList();
+		
+		return productList;
+		
 	}
 }
 
