@@ -103,7 +103,7 @@ const MypageMain = () => {
                 <div className='row'>
                     <div className='col-sm-4 d-flex justify-content-center'></div>
                     <div className='col-sm-4 d-flex justify-content-right'> {/* offset 사용예시 */}
-                        <Button variant="outline-danger" className={Mypage.Btn2}>로그아웃!</Button>{''} 
+                        <Button variant="outline-danger" className={Mypage.Btn2}>로그아웃</Button>{''} 
                         {/* <button type="button" className={`btn btn-warning ${Mypage.Btn}`} >Warning</button>   */}
                         {/* 부트스트랩 이랑 className이랑 혼용예시 */}
                     </div>
