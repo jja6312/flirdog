@@ -72,7 +72,7 @@ const SomoimMainFilter = () => {
                         <MoimMainCategoryBtn></MoimMainCategoryBtn>
                     </div>
                     <div className='col-3 col-md-2 d-flex justify-content-center'>
-                        <Button variant="outline-secondary" className='text-nowrap btn-sm w-100'>모임 개설하기</Button>
+                        <Button variant="outline-secondary" className='text-nowrap btn-sm w-100' href='/somoimNew'>모임 개설하기</Button>
                     </div>
                     
                     {/* <div className='col-md-12 col-4 d-flex justify-content-center' style={{width: 1332.53, height: 279.20, position: 'relative'}}>

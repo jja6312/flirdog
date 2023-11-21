@@ -31,7 +31,7 @@ const SomoimDetail = () => {
             <div className='row'>
                 {/* <div className='col-lg-3 col-12 d-flex justify-content-left' style={{ justifyContent:'center', textAlign: 'left', padding: 0, alignItems: 'center', background: '#FFF4F4', border: '1px solid pink' }}> */}
                 <div className='col-lg-3 col-12 d-flex justify-content-left' style={{ justifyContent:'center', textAlign: 'left', padding: 0, alignItems: 'center', background: '#FFF4F4'}}>
-                    <img className="responsive-image" style={{ width: '90%', borderRadius: '5px', objectFit: 'cover' }} src="https://via.placeholder.com/460x460" alt="somoim-image1" />
+                    <img className="responsive-image" style={{ width: '90%', borderRadius: '5px', objectFit: 'cover' }} src="https://via.placeholder.com/460x390" alt="somoim-image1" />
                 </div>
                 {/* <div className={`col-lg-9 col-12 d-flex justify-content-center ${styles.moimMainTitle}`} style={{ background: '#FFF4F4', border: '1px solid black' }}> */}
                 <div className={`col-lg-9 col-12 d-flex justify-content-center ${styles.moimMainTitle}`} style={{ background: '#FFF4F4'}}>
@@ -43,7 +43,6 @@ const SomoimDetail = () => {
                         </div>
                         <div className="content d-flex">
                             <div className="flex-row col-lg-2 d-none d-md-block" style={{ position: 'relative', lineHeight: '0.8rem', textAlign:'right', paddingRight: '30px', color: '#F56084' }}>
-                                <p className='info'>신청마감</p>
                                 <p className='info'>모임장소</p>
                                 <p className='info'>모임일자</p>
                                 <p className='info'>대상자</p>
@@ -51,7 +50,6 @@ const SomoimDetail = () => {
                                 <p className='info'>개설자 정보</p>
                             </div>
                             <div className="flex-row col-lg-10" style={{ position: 'relative', lineHeight: '0.6rem' }}>
-                                <p className='detail'>~ 2023-11-16(목) 13:59</p>
                                 <div className='detail d-flex'>
                                     <p style={{ lineHeight: '1.3', color:'#726C69' }}>서울 강서구 강서로 정조길 940-11 (영화동) 연세IT미래교육원 빌딩</p>
                                     <Button className='col-2' variant="secondary" size="sm" style={{ width: '70px', height: '25px', alignSelf:'start', marginLeft: '4px' }}>지도보기</Button>

@@ -21,6 +21,7 @@ import OrderShippingForm from "./components/admin/3주문관리/OrderShippingFor
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 
 import SomoimMain from "./components/somoim/SomoimMain";
+import SomoimNew from "./components/somoim/SomoimNew";
 import SomoimDetail from "./components/somoim/detail/SomoimDetail"
 
 import MypageMain from "./components/mypage/MypageMain";
@@ -76,6 +77,7 @@ const App = () => {
 
                     {/* 소모임 페이지!! */}
                     <Route path="/somoim" element={<SomoimMain/>}/>
+                    <Route path="/somoimNew" element={<SomoimNew/>} />
                     <Route path="/somoim/:subMenu" element={<SomoimDetail />} />
 
                     {/* 상품관리 */}
