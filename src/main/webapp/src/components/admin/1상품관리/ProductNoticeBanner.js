@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../../css/admin/1상품관리/productNoticeBanner.module.css";
 
-const ProductNoticeBanner = () => {
+const ProductNoticeBanner = ({ productUpload }) => {
   const openPopup = () => {
     const popupWidth = 400;
     const popupHeight = 400;
@@ -15,9 +15,15 @@ const ProductNoticeBanner = () => {
       `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
     );
   };
+
   return (
     <div className={styles.descriptionContainer}>
-      <button id="submitBtn" className={styles.submitBtnDesign}>
+      <button
+        id="submitBtn"
+        className={styles.submitBtnDesign}
+        onClick={productUpload}
+      >
+        {/* 상품 등록 버튼 */}
         상품 등록
       </button>
       <div

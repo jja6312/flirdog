@@ -8,6 +8,26 @@ import { Alert } from "react-bootstrap";
 import ChatAi from "./ChatAi";
 
 const AdminMainContent = () => {
+  // const testGo = () => {
+  //   axios
+  //     .get("http://localhost:8080/admin/testGo")
+  //     .then((res) => {
+  //       alert(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  // axios
+  //       .get(`/user/getUserList?page=${page}`)
+  //       .then((res) => {
+  //         setList(res.data.content);
+  //         setPagingArray(
+  //           Array.from({ length: res.data.totalPages }, (_, index) => index + 1)
+  //         );
+  //       })
+  //       .catch((error) => console.log(error));
   return (
     <>
       <div
@@ -19,16 +39,20 @@ const AdminMainContent = () => {
             className={styles.mainBanner}
             src="/image/admin/openaiAutoMain.png"
           />
-          <p className={`${rightContent.title}`}>Ai 관리자 컨설팅 메뉴</p>
+
+          <p
+            className={`${rightContent.title}`}
+            // onClick={testGo}
+          >
+            Ai 관리자 컨설팅 메뉴
+          </p>
+
           <div className={` d-flex jsutify-content-between algin-items-center`}>
             <div
               className={`${styles.leftContainer} d-flex jsutify-content-center algin-items-center`}
             ></div>
           </div>
-          <Alert variant="warning">
-            1. 아래 ai 컨설팅을 통해 사업을 확장하세요.<br></br>2. 하단 채팅을
-            통해 세부 작업을 제안받으세요.{" "}
-          </Alert>
+
           <div className=" d-flex justify-content-start">
             <div className={`${styles.leftContainer}`}>
               <div>
@@ -129,29 +153,8 @@ const AdminMainContent = () => {
             </div>
           </div>
           <ChatAi></ChatAi>
-          <div
-            className={`${styles.chatAi} d-flex justify-content-start align-items-center flex-column`}
-          >
-            <div
-              className={`${styles.chatAiInputRelative} d-flex justify-content-center align-items-center`}
-            >
-              <input
-                type="text"
-                className={styles.chatAiTextDiv}
-                placeholder="채팅을 통해 작업을 지시하고, 세부 작업을 제안받으세요."
-              />
-              <img
-                alt=""
-                src="/image/admin/openai.png"
-                className={styles.openailogo}
-              ></img>
-            </div>
-            <p className={styles.chatAiExplain}>
-              ChatFlirdog can make mistakes. Consider checking important
-              information.
-            </p>
-          </div>
-          <div style={{ height: "1000px" }}></div>
+
+          <div style={{ height: "300px" }}></div>
         </div>
       </div>
     </>
