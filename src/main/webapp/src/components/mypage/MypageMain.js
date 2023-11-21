@@ -1,4 +1,6 @@
-import React from 'react';
+
+
+import React, { useEffect, useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
@@ -11,8 +13,40 @@ import MypageHeader from './MypageHeader';
 import MypageSubHeader1 from './5공통/MypageSubHeader1';
 import MypageSubHeader1_1 from './5공통/MypageSubHeader1_1';
 
+import axios from 'axios';
+
+
 
 const MypageMain = () => {
+
+    
+    const [userDTO, setUserDTO] = useState({
+        name: '',
+        passwd: '',
+        email: '',
+        nickname: '',
+        userRole: '',
+        point: 0,
+        communityScore: 0,
+        // 나머지 필드들에 대해서도 테이블의 컬럼에 따라 추가해주세요.
+        // 예를 들면, dogsInfos, popularity, matching 등...
+      });
+
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/mypage/getUserProfile?userIdStr=1')
+        .then((res) => {
+            alert('성공')
+            console.log(res.data);
+            setUserDTO(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+
+    
+
     return (
         <div>
             <MypageSubHeader1_1></MypageSubHeader1_1>
@@ -74,6 +108,7 @@ const MypageMain = () => {
                         {/* 부트스트랩 이랑 className이랑 혼용예시 */}
                     </div>
                     <div className='col-sm-4 d-flex justify-content-center'></div>
+                    <p>{userDTO.nickname}</p>
                 </div>
             </Container>
     </div>
