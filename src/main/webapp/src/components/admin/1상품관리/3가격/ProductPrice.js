@@ -3,7 +3,7 @@ import styles from "../../../../css/admin/1상품관리/productPrimaryInfo.modul
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
-const ProductPrice = () => {
+const ProductPrice = ({ priceRef }) => {
   return (
     <div className={styles.tableDiv}>
       <div style={{ width: "99%" }} className="d-flex justify-content-end">
@@ -15,6 +15,7 @@ const ProductPrice = () => {
           <td className={styles.tableTd}>
             <InputGroup size="sm">
               <Form.Control
+                ref={priceRef}
                 aria-label="Large"
                 aria-describedby="inputGroup-sizing-sm"
                 type="number"
