@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
-import Header from '../main/Header';
-import Mypage from '../../css/main/100마이페이지/mypage.module.css';
+import Header from '../../main/Header';
+import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 
-const MypageHeader = () => {
+const MypageSubHeader1_1 = () => {
     const [showSubHeader1 , setShowSubHeader1] = useState(false);
     const [showSubHeader2 , setShowSubHeader2] = useState(false);
     const [showSubHeader3 , setShowSubHeader3] = useState(false);
@@ -14,7 +14,12 @@ const MypageHeader = () => {
     const [changeColor3 , setChangeColor3] = useState(false);
     const [changeColor1_1 , setChangeColor1_1] = useState(false);
     const [changeColor1_2 , setChangeColor1_2] = useState(false);
-    
+
+    useEffect(() => {   
+        setChangeColor1(true);
+        setChangeColor1_1(true);
+        sub1();
+    },[])
 
     const sub1 = () => {   
         setShowSubHeader1(true);
@@ -171,5 +176,4 @@ const MypageHeader = () => {
         </div>
     );
 };
-
-export default MypageHeader;
+export default MypageSubHeader1_1;

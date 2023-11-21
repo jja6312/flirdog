@@ -11,6 +11,9 @@ const MypageCategory = () => {
             <div style={{ width: "100%", textAlign: "center" }}>
                 <Link to="/mypage/MypageHeader">마이페이지헤더</Link>
             </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/MypageHeaderTest">마이페이지헤더테스트</Link>
+            </div>
         </div>
     );
 };

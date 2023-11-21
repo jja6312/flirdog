@@ -1,52 +1,21 @@
 import React from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/esm/Container';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Mypage from '../../css/main/100마이페이지/mypage.module.css';
 import MypageHeader from './MypageHeader';
+import MypageSubHeader1 from './5공통/MypageSubHeader1';
+import MypageSubHeader1_1 from './5공통/MypageSubHeader1_1';
+
 
 const MypageMain = () => {
     return (
         <div>
-            <MypageHeader></MypageHeader>
-            <Container className='px-10'>{/* 마이페이지헤더 하단부분 */}
-            <ul className='row m-0 p-0'>    
-                <li className='col-lg-2 d-flex justify-content-center'></li>
-                <li className='col-lg-1 d-flex justify-content-center'></li>
-                <li className='col-lg-2 d-flex justify-content-center'><Link to="/mypage/MypageMain" className={Mypage.Link}><span className={Mypage.LiVisible}>내 프로필</span> </Link></li>
-                <li className='col-lg-2 d-flex justify-content-center'><Link to="/mypage/MydogProfile" className={Mypage.Link}><span className={Mypage.LiVisible}>반려견 프로필</span></Link></li>
-                <li className='col-lg-3 d-flex justify-content-center'></li>
-            </ul>
-            
-            <ul className='row m-0 p-0'>    
-                <li className='col-lg-3 d-flex justify-content-center'></li>
-                <li className='col-lg-2 d-flex justify-content-center'><Link to="" className={Mypage.Link}><span className={Mypage.LiHidden}>Q&A</span> </Link></li>
-                <li className='col-lg-2 d-flex justify-content-center'><Link to="" className={Mypage.Link}><span className={Mypage.LiHidden}>라운지</span></Link></li>
-                <li className='col-lg-2 d-flex justify-content-center'><Link to="" className={Mypage.Link}><span className={Mypage.LiHidden}>댓글</span></Link></li>
-                <li className='col-lg-2 d-flex justify-content-center'></li>
-            </ul>
-            
-            <ul className='row m-0 p-0'>    
-                <li className='col-lg-3 d-flex justify-content-center'></li>
-                <li className='col-lg-2 d-flex justify-content-center'><Link to="" className={Mypage.Link}><span className={Mypage.LiHidden}>포인트 충전</span> </Link></li>
-                <li className='col-lg-2 d-flex justify-content-center'> <Link to="" className={Mypage.Link}><span className={Mypage.LiHidden}>포인트 조회</span> </Link></li>
-                <li className='col-lg-2 d-flex justify-content-center'></li>
-                <li className='col-lg-2 d-flex justify-content-center'></li>
-            </ul>
-            
-            <ul className='row m-0 p-0'>    
-                <li className='col-lg-3 d-flex justify-content-center'></li>
-                <li className='col-lg-3 d-flex justify-content-center'></li>
-                <li className='col-lg-4 d-flex justify-content-center'></li>
-                <li className='col-lg-2 d-flex justify-content-center'></li>
-                <li className='col-lg-2 d-flex justify-content-center'></li>
-            </ul>
-            </Container>
-            <hr className={Mypage.hr2}></hr>
+            <MypageSubHeader1_1></MypageSubHeader1_1>
             <Container className='px-10 mt-8'> {/* 사진이미지부분 */}
                 <Row>
                     <Col xs={5} md={4}>
@@ -76,7 +45,7 @@ const MypageMain = () => {
                     <div className='col-lg-4 d-flex justify-content-start'> 
                         <div className={`row ${Mypage.Text}`}>
                             <span className='col-6 d-flex justify-content-start'>ci2288@naver.com</span>
-                            <span className='col-6 d-flex justify-content-end'><img alt="email" className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>
+                            <span className='col-6 d-flex justify-content-end'><img alt='' className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>
                         </div>
                     </div>
                 </div>
@@ -107,8 +76,6 @@ const MypageMain = () => {
                     <div className='col-sm-4 d-flex justify-content-center'></div>
                 </div>
             </Container>
-
-
     </div>
     );
 };

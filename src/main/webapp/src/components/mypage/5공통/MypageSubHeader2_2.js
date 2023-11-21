@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
-import Header from '../main/Header';
-import Mypage from '../../css/main/100마이페이지/mypage.module.css';
+import Header from '../../main/Header';
+import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 
-const MypageHeader = () => {
+const MypageSubHeader2_2 = () => {
     const [showSubHeader1 , setShowSubHeader1] = useState(false);
     const [showSubHeader2 , setShowSubHeader2] = useState(false);
     const [showSubHeader3 , setShowSubHeader3] = useState(false);
@@ -14,7 +14,13 @@ const MypageHeader = () => {
     const [changeColor3 , setChangeColor3] = useState(false);
     const [changeColor1_1 , setChangeColor1_1] = useState(false);
     const [changeColor1_2 , setChangeColor1_2] = useState(false);
-    
+    const [changeColor2_2 , setChangeColor2_2] = useState(false);
+
+    useEffect(() => {   
+        setChangeColor2(true);
+        setChangeColor2_2(true);
+        sub2();
+    },[])
 
     const sub1 = () => {   
         setShowSubHeader1(true);
@@ -145,9 +151,9 @@ const MypageHeader = () => {
                         
                         <ul className='row m-0 p-0'>    
                             <li className='col-lg-3 col-md-3 col-md-3 col-sm-3 d-flex justify-content-center'></li>
-                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/Myarticle" className={Mypage.Link}><span className={Mypage.LiVisible}>Q&A</span> </Link></li>
-                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/MyarticleRounge" className={Mypage.Link}><span className={Mypage.LiVisible}>라운지</span></Link></li>
-                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/MyarticleRepl" className={Mypage.Link}><span className={Mypage.LiVisible}>댓글</span></Link></li>
+                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/Myarticle" className={Mypage.Link}><span className={` Mypage.LiVisible `}>Q&A</span> </Link></li>
+                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/MyarticleRounge" className={Mypage.Link}><span className={` Mypage.LiVisible ${changeColor2_2 ? Mypage.borderbottomPink : Mypage.borderbottomPinkOff}`}>라운지</span></Link></li>
+                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/MyarticleRepl" className={Mypage.Link}><span className={` Mypage.LiVisible`}>댓글</span></Link></li>
                             <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'></li>
                         </ul>
                     </Container>
@@ -172,4 +178,4 @@ const MypageHeader = () => {
     );
 };
 
-export default MypageHeader;
+export default MypageSubHeader2_2;
