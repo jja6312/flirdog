@@ -9,10 +9,10 @@ import jakarta.servlet.http.HttpSession;
 import product.bean.Product;
 
 public interface AdminProductService {
-	void productUpload(String productDTOJson, String mainCategory, String subCategory,
+	public void productUpload(String productDTOJson, String mainCategory, String subCategory,
 			List<MultipartFile> imgFilesList, HttpSession session) throws IOException;
 
-	List<Product> getProductList();
+	public List<Product> getProductList();
 
 	// Integer calculate(Integer a, Integer b);
 
