@@ -172,4 +172,79 @@ public class AdminProductServiceImpl implements AdminProductService {
 		}
 	}
 
+	@Override
+	public void productUpdateAllWithImage(String productDTOJson, String mainCategory, String subCategory,
+			String productIdStr, List<MultipartFile> imgFilesList, HttpSession session)
+			throws JsonMappingException, JsonProcessingException {
+		// 1. 데이터 매핑
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		// 1-2.카테고리들을 enum과 매핑해서 value를 꺼내온다.
+		Product newProductData = objectMapper.readValue(productDTOJson, Product.class);
+		MainCategory mainCategoryEnumClass = MainCategory.valueOf(mainCategory);
+		SubCategory subCategoryEnumClass = SubCategory.valueOf(subCategory);
+
+		Integer productId = Integer.parseInt(productIdStr);
+		System.out.println("제이슨변환: " + newProductData);
+		System.out.println("메인카테고리: " + mainCategoryEnumClass);
+		System.out.println("서브카테고리: " + subCategoryEnumClass);
+		Optional<Product> existingProductOpt = adminProductRepository.findById(productId);
+
+		System.out.println("아이디로 찾기 완료");
+
+		// 1-3. 이미지 경로
+		// 실제 폴더
+		String filePath = session.getServletContext().getRealPath("/public/storage");
+		System.out.println("실제폴더 = " + filePath);
+
+		File file;
+		String originalFileName;
+		String fileName;
+
+		List<String> imagePaths = new ArrayList<>();
+
+		// 이미지가 없는 경우 지정된 이미지사용
+		if (imgFilesList.isEmpty() || imgFilesList.get(0).isEmpty()) {
+			imagePaths.add("/image/nullImage/nullImage1.png"); // 대체 이미지 경로 또는 빈 문자열
+		} else {
+			for (MultipartFile img : imgFilesList) {
+				originalFileName = img.getOriginalFilename();
+				System.out.println("originalFileName: " + originalFileName);
+
+				fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
+				file = new File(filePath, originalFileName);
+
+				imagePaths.add("flirdogStorage/" + fileName);
+
+				try {
+					img.transferTo(file);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		// 2. 엔티티 업데이트
+		if (existingProductOpt.isPresent()) {
+			Product existingProduct = existingProductOpt.get();
+
+			// 기존 객체의 필드를 직접 업데이트
+			existingProduct.setName(newProductData.getName());
+			existingProduct.setContent(newProductData.getContent());
+			existingProduct.setMainCategory(mainCategoryEnumClass);
+			existingProduct.setSubCategory(subCategoryEnumClass);
+			existingProduct.setStock(newProductData.getStock());
+			existingProduct.setPrice(newProductData.getPrice());
+			existingProduct.setImage(String.join(",", imagePaths));
+			// 이미지 업데이트가 필요한 경우 추가 구현
+
+			adminProductRepository.save(existingProduct);
+		} else {
+			// productId에 해당하는 제품이 없는 경우 처리
+			// 예: 예외 던지기 또는 로깅
+		}
+
+	}
+
 }

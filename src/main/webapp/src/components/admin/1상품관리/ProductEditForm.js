@@ -125,7 +125,7 @@ const ProductEditForm = ({ openLeftside }) => {
             Swal.fire({
               position: "top",
               icon: "success",
-              title: "상품 등록 성공",
+              title: "상품 수정 성공",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -162,7 +162,7 @@ const ProductEditForm = ({ openLeftside }) => {
             Swal.fire({
               position: "top",
               icon: "success",
-              title: "상품 등록 성공",
+              title: "상품 수정 성공",
               showConfirmButton: false,
               timer: 1500,
             });

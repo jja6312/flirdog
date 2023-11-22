@@ -71,7 +71,7 @@ public class AdminController {
 		adminProductService.productDeleteSelected(productId);
 
 	}
-	
+
 	@GetMapping(path = "getProductUpdateForm", produces = "application/json;charset=UTF-8")
 	public Optional<Product> getProductList(@RequestParam String productId) {
 		Optional<Product> productList = adminProductService.getProductList(productId);
@@ -79,21 +79,37 @@ public class AdminController {
 		return productList;
 
 	}
-	
-	
+
 	@PostMapping(path = "productUpdateWithoutImage")
 	public void productUpdateWithoutImage(@RequestParam("productDTO") String productDTOJson,
 			@RequestParam("mainCategory") String mainCategory,
 			@RequestParam("subCategory") String subCategory,
-			@RequestParam("productId") String productId)  throws JsonMappingException, JsonProcessingException  {
+			@RequestParam("productId") String productId) throws JsonMappingException, JsonProcessingException {
 		System.out.println("여기는 컨트롤러");
-		System.out.println("productDTOJson: "+productDTOJson);
-		System.out.println("mainCategory: "+mainCategory);
-		System.out.println("subCategory: "+subCategory);
-		System.out.println("productId: "+productId);
-		
+		System.out.println("productDTOJson: " + productDTOJson);
+		System.out.println("mainCategory: " + mainCategory);
+		System.out.println("subCategory: " + subCategory);
+		System.out.println("productId: " + productId);
 
 		adminProductService.productUpdateWithoutImage(productDTOJson, mainCategory, subCategory, productId);
+
+	}
+
+	@PostMapping(path = "productUpdateAllWithImage")
+	public void productUpdateAllWithImage(@RequestParam("productDTO") String productDTOJson,
+			@RequestParam("mainCategory") String mainCategory,
+			@RequestParam("subCategory") String subCategory,
+			@RequestParam("productId") String productId,
+			@RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFilesList,
+			HttpSession session) throws JsonMappingException, JsonProcessingException {
+		System.out.println("여기는 컨트롤러");
+		System.out.println("productDTOJson: " + productDTOJson);
+		System.out.println("mainCategory: " + mainCategory);
+		System.out.println("subCategory: " + subCategory);
+		System.out.println("productId: " + productId);
+
+		adminProductService.productUpdateAllWithImage(productDTOJson, mainCategory, subCategory, productId,
+				imgFilesList, session);
 
 	}
 }

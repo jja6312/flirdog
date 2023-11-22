@@ -24,7 +24,12 @@ public interface AdminProductService {
 
 	Optional<Product> getProductList(String productId);
 
-	void productUpdateWithoutImage(String productDTOJson, String mainCategory, String subCategory, String productId) throws JsonMappingException, JsonProcessingException;
+	void productUpdateWithoutImage(String productDTOJson, String mainCategory, String subCategory, String productId)
+			throws JsonMappingException, JsonProcessingException;
+
+	void productUpdateAllWithImage(String productDTOJson, String mainCategory, String subCategory, String productId,
+			List<MultipartFile> imgFilesList, HttpSession session)
+			throws JsonMappingException, JsonProcessingException;
 
 	// Integer calculate(Integer a, Integer b);
 
