@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useRef, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
@@ -8,9 +8,32 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import TableCss from '../../../css/date/dateWrite.module.css';
 
 const MydogProfileRegister = () => {
-    
+    const onCamera = () => {
+        imgRef.current.click()
+    }
+  
+    const onImgInput = (e) => {
+        const imgfiles = Array.from(e.target.files)
+        var imgArray = []
+  
+        imgfiles.map(item => {
+            const objectURL = URL.createObjectURL(item)
+            imgArray.push(objectURL)
+            return imgArray;
+        })
+  
+    setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
+        // setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
+    }
+    const [imgList, setImgList] = useState([]) //배열은 []
+    // const [files, setFiles] = useState('')
+  
+    //사진 등록관련
+    const imgRef = useRef()
+  
     return (
         <div>
             <Header></Header>            
@@ -38,15 +61,29 @@ const MydogProfileRegister = () => {
                         <Col xs={5} md={4}>
                         </Col>
                         <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                            <InputGroup className="mb-3">
-                                <InputGroup.Text id="inputGroup-sizing-default">
-                                이미지
-                                </InputGroup.Text>
-                                <Form.Control
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                                />
-                            </InputGroup>
+                            <div className='row'>
+                                <div className='col-sm-5 d-flex justify-content-center'></div>
+                                <div className='col-sm-3 d-flex justify-content-center' style={{marginLeft:'18px'}}>
+                                    <Row className="mb-3">
+                                        <Form.Group as={Col} controlId="formUploadimage">
+                                            <div className={Mypage.FormTitleDiv} style={{
+                                            color:'gray',
+                                            }}>
+                                            <div className={Mypage.FormTitleNameDiv} >
+                                                사 진
+                                            </div>&nbsp;&nbsp;&nbsp;
+                                            <img src='/image/date/camera.jpg' alt="카메라"
+                                                        onClick={ onCamera }
+                                                        style={{width:70, height:50, borderRadius:20}} />
+                                            <input type="file"name="img[]"
+                                                    multiple="multiple"
+                                                    onChange={ onImgInput } 
+                                                    ref={ imgRef } style={{visibility:'hidden'}} />
+                                            </div>
+                                        </Form.Group>
+                                    </Row> 
+                                </div>
+                            </div>
                         </Col>
                         <Col xs={5} md={4}>
                         </Col>

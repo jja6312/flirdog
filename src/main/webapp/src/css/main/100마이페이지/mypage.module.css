@@ -458,25 +458,6 @@
     border-bottom: none;
 }
 /* ===========현성님꺼=============== */
-.FormTitleNameDiv{
-    width:70px;
-    height:30px;
-    background-color:#F56084;
-    color:white;
-    font-weight:bold;
-    font-size:5px;
-    border-radius:10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.FormTitleDiv{
-    display: flex;
-    justify-content: left;
-    align-items:center;
-  }
   
 .neutralizationLabel{
     width: 50px;
@@ -544,5 +525,23 @@ input[type=radio]:checked + .labelClass2  {
     cursor: pointer;
     border-radius: 10px;
     position: relative;
+}
+
+.FormTitleDiv{
+    display: flex;
+    justify-content: left;
+    align-items:center;
+  }
+.FormTitleNameDiv{
+    width:80px;
+    height:30px;
+    background-color:#F56084;
+    color:white;
+    font-weight:bold;
+    font-size:0.9em;
+    border-radius:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* ========================== */
