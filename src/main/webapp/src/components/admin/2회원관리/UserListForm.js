@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import LeftSide from "../LeftSide";
 import AdminHeader from "../AdminHeader";
@@ -8,14 +8,22 @@ import RightContentHeader from "../RightContentHeader";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
 
-import CheckBtn from "../1상품관리/CheckBtn";
 import Button from "react-bootstrap/esm/Button";
-import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
+
 import Swal from "sweetalert2";
 import SearchForm from "../1상품관리/SearchForm";
 
+import axios from "axios";
+import UserList from "./UserList";
+
 const UserListForm = ({ openLeftside }) => {
-  const [checkBtn, setCheckBtn] = useState(false);
+  const [userList, setUserList] = useState([]);
+  const [useFilter, setUseFilter] = useState(false);
+  const [useFilterCheckNumber, setUseFilterCheckNumber] = useState(0);
+  const [searchValueText, setSearchValueText] = useState("");
+  const [checkUser, setCheckUser] = useState([]);
+  const [totalFilter, setTotalFilter] = useState([]);
+
   const onDeleteSelected = () => {
     Swal.fire({
       title: "정말 삭제하시겠습니까?",
@@ -36,6 +44,17 @@ const UserListForm = ({ openLeftside }) => {
       }
     });
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/admin/getUserList")
+      .then((res) => {
+        console.log(res.data);
+
+        setUserList(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <>
       <AdminHeader></AdminHeader>
@@ -57,11 +76,22 @@ const UserListForm = ({ openLeftside }) => {
           className="d-flex justify-content-end mt-4"
           style={{ width: "100%" }}
         >
-          <SearchForm placeHolder="회원 이름 검색"></SearchForm>
+          <SearchForm
+            placeHolder="회원 이름 검색"
+            allProduct={userList}
+            setUseFilter={setUseFilter}
+            searchValueText={searchValueText}
+            setSearchValueText={setSearchValueText}
+            useFilterCheckNumber={useFilterCheckNumber}
+            setUseFilterCheckNumber={setUseFilterCheckNumber}
+          ></SearchForm>
         </div>
 
         <div className="d-flex align-items-center mt-4">
-          <div>[TOTAL: 47 개 / 검색 47 개]</div>
+          <div>
+            [검색:
+            {totalFilter}개 / TOTAL: {userList.length} 개]
+          </div>
 
           <Button
             className="mx-2"
@@ -84,78 +114,29 @@ const UserListForm = ({ openLeftside }) => {
                 <th>선택</th>
                 <th>수정</th>
                 <th>삭제</th>
-                <th>아이디</th>
-                <th>이름</th>
-                <th>우편번호</th>
-                <th>주소</th>
-                <th>닉네임</th>
-                <th>프로필이미지</th>
+                <th>등록고유번호</th>
+                <th>이메일</th>
                 <th>비밀번호</th>
-                <th>유저의 상태</th>
+                <th>이름</th>
+                <th>닉네임</th>
                 <th>사용자 역할</th>
-                <th>소개</th>
+                <th>포인트</th>
                 <th>등록일</th>
-                <th>수정일</th>
-                <th>매너온도 평균점수</th>
-                <th>매너온도 총점수</th>
-                <th>매너온도 투표횟수</th>
-                {/* 여기서부터 강아지정보 */}
-                <th>강아지 아이디</th>
-                <th>강아지 외모 평균 점수</th>
-                <th>강아지 외모 총 점수</th>
-                <th>강아지 외모 투표 수</th>
-                <th>중성화 여부</th>
-                <th>강아지 나이</th>
-                <th>견종</th>
-                <th>강아지 성별</th>
-                <th>생성일</th>
                 <th>수정일</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <CheckBtn
-                    checkBtn={checkBtn}
-                    setCheckBtn={setCheckBtn}
-                  ></CheckBtn>
-                </td>
-                <td>
-                  <Button className={checkBtnStyle.editBtn}>수정</Button>
-                </td>
-                <td>
-                  <Button variant="outline-danger">삭제</Button>
-                </td>
-                <td>jja6312</td>
-                <td>정지안무거북이와두루미</td>
-                <td>123456</td>
-                <td>주소주소주소주소</td>
-                <td>뉙넴뉙넴뉙냄</td>
-                <td>
-                  <div className={styles.imgContainer}>
-                    <img alt="" src="/image/main/exam/aiDog.png"></img>
-                  </div>
-                </td>
-                <td>qwert1234</td>
-                <td>??</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr>
+              <UserList
+                userList={userList}
+                useFilter={useFilter}
+                searchValueText={searchValueText}
+                setSearchValueText={setSearchValueText}
+                useFilterCheckNumber={useFilterCheckNumber}
+                setUseFilterCheckNumber={setUseFilterCheckNumber}
+                checkUser={checkUser}
+                setCheckUser={setCheckUser}
+                setTotalFilter={setTotalFilter}
+              ></UserList>
             </tbody>
           </Table>
         </div>

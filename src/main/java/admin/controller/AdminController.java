@@ -17,8 +17,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import admin.service.AdminProductService;
+import admin.service.AdminUserService;
 import jakarta.servlet.http.HttpSession;
 import product.bean.Product;
+import user.bean.User;
 
 @CrossOrigin
 @RestController
@@ -26,6 +28,8 @@ import product.bean.Product;
 public class AdminController {
 	@Autowired
 	private AdminProductService adminProductService;
+	@Autowired
+	private AdminUserService adminUserService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -39,6 +43,7 @@ public class AdminController {
 	// return sumString;
 	// }
 
+	// 업로드
 	@PostMapping(path = "productUpload")
 	public void productUpload(@RequestParam("productDTO") String productDTOJson,
 			@RequestParam("mainCategory") String mainCategory,
@@ -50,6 +55,7 @@ public class AdminController {
 
 	}
 
+	// 상품리스트
 	@GetMapping(path = "getProductList", produces = "application/json;charset=UTF-8")
 	public List<Product> getProductList() {
 		List<Product> productList = adminProductService.getProductList();
@@ -58,6 +64,7 @@ public class AdminController {
 
 	}
 
+	// 상품삭제
 	@PostMapping(path = "productDelete")
 	public void productUpload(@RequestParam("productId") String productId) {
 
@@ -65,6 +72,7 @@ public class AdminController {
 
 	}
 
+	// 상품선택삭제
 	@PostMapping(path = "productDeleteSelected")
 	public void productDeleteSelected(@RequestParam("productId") String productId) {
 
@@ -72,6 +80,7 @@ public class AdminController {
 
 	}
 
+	// 상품수정폼
 	@GetMapping(path = "getProductUpdateForm", produces = "application/json;charset=UTF-8")
 	public Optional<Product> getProductList(@RequestParam String productId) {
 		Optional<Product> productList = adminProductService.getProductList(productId);
@@ -80,6 +89,7 @@ public class AdminController {
 
 	}
 
+	// 상품수정(이미지를 변경하지 않았을 경우)
 	@PostMapping(path = "productUpdateWithoutImage")
 	public void productUpdateWithoutImage(@RequestParam("productDTO") String productDTOJson,
 			@RequestParam("mainCategory") String mainCategory,
@@ -95,6 +105,7 @@ public class AdminController {
 
 	}
 
+	// 상품수정(이미지가 변경되었을 경우)
 	@PostMapping(path = "productUpdateAllWithImage")
 	public void productUpdateAllWithImage(@RequestParam("productDTO") String productDTOJson,
 			@RequestParam("mainCategory") String mainCategory,
@@ -110,6 +121,15 @@ public class AdminController {
 
 		adminProductService.productUpdateAllWithImage(productDTOJson, mainCategory, subCategory, productId,
 				imgFilesList, session);
+
+	}
+
+	// 회원리스트
+	@GetMapping(path = "getUserList", produces = "application/json;charset=UTF-8")
+	public List<User> getUserList() {
+		List<User> userList = adminUserService.getUserList();
+
+		return userList;
 
 	}
 }

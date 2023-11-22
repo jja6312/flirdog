@@ -30,6 +30,7 @@ const ProductListForm = ({ openLeftside }) => {
   const [useFilterCheckNumber, setUseFilterCheckNumber] = useState(0);
   const [searchValueText, setSearchValueText] = useState("");
   const [checkedProducts, setCheckedProducts] = useState([]);
+  const [totalFilter, setTotalFilter] = useState([]);
 
   useEffect(() => {
     axios
@@ -148,11 +149,8 @@ const ProductListForm = ({ openLeftside }) => {
 
         <div className="d-flex align-items-center mt-4">
           <div>
-            [TOTAL:
-            {selectedIcon === "faBorderAll" && allProduct.length}
-            {selectedIcon === "faCartShopping" && sellingProduct.length}
-            {selectedIcon === "faStoreSlash" && soldOutProduct.length}개 / 검색{" "}
-            {allProduct.length} 개]
+            [검색:
+            {totalFilter}개 / TOTAL: {allProduct.length} 개]
           </div>
 
           <Button
@@ -196,8 +194,6 @@ const ProductListForm = ({ openLeftside }) => {
                 allProduct={allProduct}
                 sellingProduct={sellingProduct}
                 soldOutProduct={soldOutProduct}
-                // checkBtn={checkBtn}
-                // setCheckBtn={setCheckBtn}
                 useFilter={useFilter}
                 searchValueText={searchValueText}
                 setSearchValueText={setSearchValueText}
@@ -205,6 +201,7 @@ const ProductListForm = ({ openLeftside }) => {
                 setUseFilterCheckNumber={setUseFilterCheckNumber}
                 checkedProducts={checkedProducts}
                 setCheckedProducts={setCheckedProducts}
+                setTotalFilter={setTotalFilter}
               ></ProductList>
             </tbody>
           </Table>
