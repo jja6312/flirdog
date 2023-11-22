@@ -14,14 +14,8 @@ const SearchForm = ({
   useFilterCheckNumber,
   setUseFilterCheckNumber,
 }) => {
-  // {selectedIcon === "faBorderAll" && allProduct.length}
-  //           {selectedIcon === "faCartShopping" && sellingProduct.length}
-  //           {selectedIcon === "faStoreSlash" && soldOutProduct.length}개 / 검색{" "}
-
   const searchInput = useRef();
-  // const onSearchValueText = (e) => {
-  //   setSearchValueText(e.target.value);
-  // };
+
   const onSearchList = (event) => {
     event.preventDefault();
     const searchInputValue = searchInput.current.value;

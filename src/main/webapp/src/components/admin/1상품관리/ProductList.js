@@ -21,6 +21,7 @@ const ProductList = ({
   setUseFilterCheckNumber,
   checkedProducts,
   setCheckedProducts,
+  setTotalFilter,
 }) => {
   const navigate = useNavigate();
   const [whatProduct, setWhatProduct] = useState([]);
@@ -33,15 +34,23 @@ const ProductList = ({
     } else if (selectedIcon === "faStoreSlash") {
       setWhatProduct(soldOutProduct);
     }
+    const filteredUserList = useFilter
+      ? whatProduct.filter((item) => item.name.includes(searchValueText))
+      : whatProduct;
+    setTotalFilter(filteredUserList.length);
   }, [
     selectedIcon,
     allProduct,
     sellingProduct,
     soldOutProduct,
     useFilterCheckNumber,
+    searchValueText,
+    setTotalFilter,
+    useFilter,
+    whatProduct,
   ]);
 
-  const onDeleteOne = (e) => {
+  const onDeleteOneProduct = (e) => {
     //id파악
     const deleteBtnId = e.target.id;
 
@@ -110,7 +119,7 @@ const ProductList = ({
               <Button
                 id={item.id}
                 variant="outline-danger"
-                onClick={onDeleteOne}
+                onClick={onDeleteOneProduct}
               >
                 삭제
               </Button>
