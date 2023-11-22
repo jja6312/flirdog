@@ -21,7 +21,7 @@ const ProductPrimaryInfo = ({
     } else if (producTDTOContent !== undefined) {
       contentRef.current.value = producTDTOContent;
     }
-  }, [productDTOName, producTDTOContent]);
+  }, [contentRef, nameRef, producTDTOContent, productDTOName]);
 
   return (
     <div className={styles.tableDiv}>

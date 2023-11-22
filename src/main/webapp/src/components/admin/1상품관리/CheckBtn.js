@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styles from "../../../css/admin/checkBtn.module.css";
 import { useState } from "react";
 

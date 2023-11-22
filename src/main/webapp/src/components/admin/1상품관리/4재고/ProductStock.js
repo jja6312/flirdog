@@ -10,7 +10,7 @@ const ProductStock = ({ stockRef, productDTOStock }) => {
     } else if (productDTOStock !== undefined) {
       stockRef.current.value = productDTOStock;
     }
-  }, [productDTOStock]);
+  }, [productDTOStock, stockRef]);
 
   return (
     <div className={styles.tableDiv}>

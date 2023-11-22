@@ -10,7 +10,7 @@ const ProductPrice = ({ priceRef, productDTOPrice }) => {
     } else if (productDTOPrice !== undefined) {
       priceRef.current.value = productDTOPrice;
     }
-  }, [productDTOPrice]);
+  }, [productDTOPrice, priceRef]);
 
   return (
     <div className={styles.tableDiv}>
