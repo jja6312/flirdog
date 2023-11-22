@@ -46,7 +46,6 @@ const DateWrite = () => {
   const { title, content, matchingPurpose } = matchingDTO
 
   const [dogsInfo, setDogsInfo] = useState([]);
-  //const [user, setUser] = useState([]);
 
   const [titleDiv, setTitleDiv] = useState('')
   const [matchingPurposeDiv, setMatchingDivPurpose] = useState('')
@@ -77,7 +76,9 @@ const DateWrite = () => {
   useEffect(()=>{
     const fetchData = async () => {
       try{
-        const res  = await axios.get(`http://localhost:8080/date/getDogsInfoWithUserId?userId=1`);       
+        const res  = await axios.get(`http://localhost:8080/date/getDogsInfoWithUserId?userId=1`);
+
+        console.log(res.data);     
         setDogsInfo(res.data);
 
         } catch (error){
@@ -212,7 +213,7 @@ const DateWrite = () => {
 
       var sw = 1
 
-      
+      /*
       //유효성 검사
       if(!title){
         setTitleDiv('제목 입력')
@@ -261,7 +262,7 @@ const DateWrite = () => {
         setContentDiv('내용을 작성하세요.')
         sw = 0
       }
-    
+    */
 
       //글 등록---------------------------
       if(sw === 1 ){

@@ -4,8 +4,6 @@ import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import product.bean.Hit;
-import product.bean.MainCategory;
-import product.bean.SubCategory;
 import user.bean.DogsInfo;
 import user.bean.User;
 

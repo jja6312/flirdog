@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,10 +32,10 @@ public class MatchingController {
     public List<DogsInfo> getDogsInfoWithUserId() {
     
         List<DogsInfo> dogsInfoWithUserId = dogsInfoService.getDogsInfoListByUserId(1);
-
         return dogsInfoWithUserId;
-    }
+	}
 	
+		
 	@PostMapping(path= "dateWrite" , consumes = "multipart/form-data")
 	public void dateWrite(@RequestPart("matchingDTO") Matching matchingDTO,
 						  @RequestPart("dogsDTO") DogsInfo dogsDTO,
