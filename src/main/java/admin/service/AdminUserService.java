@@ -10,4 +10,6 @@ public interface AdminUserService {
 
 	void userDelete(String userId);
 
+	void userDeleteSelected(String userId);
+
 }

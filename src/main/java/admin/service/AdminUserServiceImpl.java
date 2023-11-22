@@ -25,4 +25,15 @@ public class AdminUserServiceImpl implements AdminUserService {
 		
 	}
 
+	@Override
+	public void userDeleteSelected(String userId) {
+		// userId는 쉼표가 포함되어있을 수도 있다. 따라서 쉼표로 split해서 배열로 만들어준다.
+		String[] userIdArray = userId.split(",");
+
+		for (String id : userIdArray) {
+			adminUserRepository.deleteById(Integer.parseInt(id));
+		}
+		
+	}
+
 }

@@ -140,4 +140,12 @@ public class AdminController {
 		adminUserService.userDelete(userId);
 
 	}
+	
+	// 회원선택삭제
+	@PostMapping(path = "userDeleteSelected")
+	public void userDeleteSelected(@RequestParam("userId") String userId) {
+
+		adminUserService.userDeleteSelected(userId);
+
+	}
 }

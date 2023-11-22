@@ -25,9 +25,19 @@ const UserListForm = ({ openLeftside }) => {
   const [totalFilter, setTotalFilter] = useState([]);
 
   const onDeleteSelected = () => {
+    if (checkUser.length === 0) {
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "삭제할 회원을 선택해주세요",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
     Swal.fire({
       title: "정말 삭제하시겠습니까?",
-      text: "삭제한 상품은 복원 및 수정이 불가능합니다.",
+      text: "삭제한 회원은 복원이 불가능합니다.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -36,11 +46,19 @@ const UserListForm = ({ openLeftside }) => {
       cancelButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "삭제 성공!",
-          text: "파일이 삭제되었습니다.",
-          icon: "success",
-        });
+        axios
+          .post(
+            `http://localhost:8080/admin/userDeleteSelected?userId=${checkUser}`
+          )
+          .then(() => {
+            //삭제 후 새로고침
+            window.location.reload();
+            Swal.fire({
+              title: "삭제 성공!",
+              text: "파일이 삭제되었습니다.",
+              icon: "success",
+            });
+          });
       }
     });
   };
