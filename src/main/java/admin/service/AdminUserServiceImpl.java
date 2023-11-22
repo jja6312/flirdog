@@ -19,4 +19,10 @@ public class AdminUserServiceImpl implements AdminUserService {
 		return adminUserRepository.findAll();
 	}
 
+	@Override
+	public void userDelete(String userId) {
+		adminUserRepository.deleteById(Integer.parseInt(userId));
+		
+	}
+
 }

@@ -66,7 +66,7 @@ public class AdminController {
 
 	// 상품삭제
 	@PostMapping(path = "productDelete")
-	public void productUpload(@RequestParam("productId") String productId) {
+	public void productDelete(@RequestParam("productId") String productId) {
 
 		adminProductService.productDelete(productId);
 
@@ -130,6 +130,14 @@ public class AdminController {
 		List<User> userList = adminUserService.getUserList();
 
 		return userList;
+
+	}
+	
+	// 회원삭제
+	@PostMapping(path = "userDelete")
+	public void userDelete(@RequestParam("userId") String userId) {
+
+		adminUserService.userDelete(userId);
 
 	}
 }

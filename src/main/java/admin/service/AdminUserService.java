@@ -8,4 +8,6 @@ public interface AdminUserService {
 
 	List<User> getUserList();
 
+	void userDelete(String userId);
+
 }
