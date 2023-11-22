@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../../../css/admin/1상품관리/productPrimaryInfo.module.css";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
-const ProductPrice = ({ priceRef }) => {
+const ProductPrice = ({ priceRef, productDTOPrice }) => {
+  useEffect(() => {
+    if (productDTOPrice === undefined) {
+      priceRef.current.value = "";
+    } else if (productDTOPrice !== undefined) {
+      priceRef.current.value = productDTOPrice;
+    }
+  }, [productDTOPrice]);
+
   return (
     <div className={styles.tableDiv}>
       <div style={{ width: "99%" }} className="d-flex justify-content-end">
