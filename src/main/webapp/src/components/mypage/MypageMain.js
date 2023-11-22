@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/esm/Container';
@@ -36,7 +35,7 @@ const MypageMain = () => {
     useEffect(() => {
         axios.get('http://localhost:8080/mypage/getUserProfile?userIdStr=1')
         .then((res) => {
-            alert('성공')
+            //alert('성공')
             console.log(res.data);
             setUserDTO(res.data);
         })
@@ -68,7 +67,7 @@ const MypageMain = () => {
                         <div className={`row ${Mypage.Text}`}>
                             <div className={Mypage.Space3}>
                                 <span>닉네임</span>
-                                <span className={Mypage.Space}>이름입력칸</span> 
+                                <span className={Mypage.Space}>{userDTO.nickname}</span> 
                             </div>
                         </div>
                     </div>
@@ -78,7 +77,7 @@ const MypageMain = () => {
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                     <div className='col-lg-4 d-flex justify-content-start'> 
                         <div className={`row ${Mypage.Text}`}>
-                            <span className='col-6 d-flex justify-content-start'>ci2288@naver.com</span>
+                            <span className='col-6 d-flex justify-content-start'>{userDTO.email}</span>
                             <span className='col-6 d-flex justify-content-end'><img alt='' className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>
                         </div>
                     </div>
@@ -108,7 +107,6 @@ const MypageMain = () => {
                         {/* 부트스트랩 이랑 className이랑 혼용예시 */}
                     </div>
                     <div className='col-sm-4 d-flex justify-content-center'></div>
-                    <p>{userDTO.nickname}</p>
                 </div>
             </Container>
     </div>

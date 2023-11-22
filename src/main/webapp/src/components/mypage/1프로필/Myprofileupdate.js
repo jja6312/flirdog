@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
@@ -6,8 +6,34 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+
 
 const MyprofileUpdate = () => {
+
+    const [userDTO, setUserDTO] = useState({
+        name: '',
+        passwd: '',
+        email: '',
+        nickname: '',
+        userRole: '',
+        point: 0,
+        communityScore: 0,
+
+        });
+
+        useEffect(() => {
+            axios.get('http://localhost:8080/mypage/getUserProfile?userIdStr=1')
+            .then((res) => {
+                //alert('성공')
+                console.log(res.data);
+                setUserDTO(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }, []);
+    
     return (
         <div>
         <Header></Header>            
@@ -51,8 +77,8 @@ const MyprofileUpdate = () => {
                     <div className='col-lg-4 d-flex justify-content-right'> 
                         <div className={Mypage.Text}>
                             <div className={Mypage.Space3}>
-                                <span>닉네임</span>
-                                <span className={Mypage.Space}>이름입력칸</span> 
+                                <span style={{color:'#f56084'}}>닉네임</span>
+                                <span className={Mypage.Space}>{userDTO.nickname}</span> 
                             </div>
                         </div>
                     </div>
@@ -62,7 +88,8 @@ const MyprofileUpdate = () => {
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                     <div className='col-lg-4 d-flex justify-content-right'> 
                         <div className={Mypage.Text}>
-                            <span>전화번호</span>
+                            <span style={{color:'#f56084'}}>전화번호</span>
+                            <span style={{marginLeft:'17px'}}>{userDTO.email}</span>
                         </div>
                     </div>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
@@ -71,16 +98,19 @@ const MyprofileUpdate = () => {
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                     <div className='col-lg-4 d-flex justify-content-right'> 
                         <div className={Mypage.MyprofileUpdate_Text} >
-                            <span>간단 소개</span> 
+                            <span style={{color:'#f56084'}}>간단 소개</span> 
                         </div>
                     </div>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                 </div>
                 <div className='row'>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
-                    <div className='col-lg-4 d-flex justify-content-center'>
-                        <textarea className={Mypage.TextArea} placeholder='자기소개 &#13; (1~200자)'></textarea>
-
+                    <div className={`col-lg-4 d-flex justify-content-center` }>
+                        <div className={Mypage.Text}> 
+                            <textarea className={`${Mypage.TextArea} `} placeholder='자기소개 &#13; (1~200자)'
+                            value='안녕하세요.'>
+                            </textarea>
+                        </div>
                     </div>  
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                 </div>
@@ -88,9 +118,8 @@ const MyprofileUpdate = () => {
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                     <div className='col-lg-4 d-flex justify-content-right'> 
                         <div className={Mypage.Text}>
-                            <span>ci2288@naver.com</span>
-                            <span className={Mypage.Space2_logo}><img alt='' className={Mypage.Email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>  
-                            
+                            <span>{userDTO.email}</span>
+                            <span className={Mypage.Space2_logo}><img alt='' style={{width:'30px', marginLeft:'150px'}} className={Mypage.email} src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc'></img></span>  
                         </div>
                     </div>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
