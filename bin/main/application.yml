@@ -32,9 +32,7 @@ spring:
         format_sql: true
     defer-datasource-initialization: true # (2.5~) Hibernate 초기화 이후 data.sql 실행
     database: mysql
-    database-platform : org.hibernate.dialect.MySQL8Dialect
-
-
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 ---
 spring:
   config:
@@ -55,7 +53,7 @@ spring:
       hibernate:
         format_sql: true
     database: mysql
-    database-platform : org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 
   sql:
     init:

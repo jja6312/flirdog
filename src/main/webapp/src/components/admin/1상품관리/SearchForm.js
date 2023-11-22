@@ -1,28 +1,40 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Form, Button } from "react-bootstrap";
 import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
 
-const SearchForm = ({ placeHolder }) => {
-  // const [searchValueText, setSearchValueText] = useState("");
-  const onSearchValueText = (e) => {
-    // setSearchValueText(e.target.value);
-  };
+const SearchForm = ({
+  placeHolder,
+  allProduct,
+  sellingProduct,
+  soldOutProduct,
+  selectedIcon,
+  setUseFilter,
+  searchValueText,
+  setSearchValueText,
+  useFilterCheckNumber,
+  setUseFilterCheckNumber,
+}) => {
+  // {selectedIcon === "faBorderAll" && allProduct.length}
+  //           {selectedIcon === "faCartShopping" && sellingProduct.length}
+  //           {selectedIcon === "faStoreSlash" && soldOutProduct.length}개 / 검색{" "}
+
+  const searchInput = useRef();
+  // const onSearchValueText = (e) => {
+  //   setSearchValueText(e.target.value);
+  // };
   const onSearchList = (event) => {
     event.preventDefault();
-    alert();
-    //   axios
-    //     .get(`/user/getUserListSearch?page=0`, {
-    //       params: { columnName: searchValue, keyword: searchValueText },
-    //     })
-    //     .then((res) => {
-    //       setList(res.data.content);
-    //       setPagingArray(
-    //         Array.from({ length: res.data.totalPages }, (_, index) => index + 1)
-    //       );
-    //       console.log(res.data);
-    //       setIsSearch(true);
-    //     })
-    //     .catch((error) => console.log(error));
+    const searchInputValue = searchInput.current.value;
+    setSearchValueText(searchInputValue);
+
+    console.log(searchInputValue);
+    if (searchInputValue === "") {
+      setUseFilter(false);
+      setUseFilterCheckNumber(useFilterCheckNumber + 1);
+    } else if (searchInputValue !== "") {
+      setUseFilter(true);
+      setUseFilterCheckNumber(useFilterCheckNumber + 1);
+    }
   };
 
   return (
@@ -34,7 +46,8 @@ const SearchForm = ({ placeHolder }) => {
           placeholder={placeHolder}
           className="me-2"
           aria-label="Search"
-          onChange={onSearchValueText}
+          // onChange={onSearchValueText}
+          ref={searchInput}
         />
         <Button
           className={checkBtnStyle.editBtn}
