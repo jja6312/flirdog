@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum MatchingState {
-    PENDING("매칭중"),
-    CANCLE("매칭취소"),
+    PENDING("매칭찾는중"),
+    MATCHINGPROGRESS("매칭진행중"),
     COMPLETE("매칭완료");
 
 
