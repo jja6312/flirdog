@@ -77,8 +77,8 @@ const App = () => {
 
                     {/* 소모임 페이지!! */}
                     <Route path="/somoim" element={<SomoimMain/>}/>
-                    <Route path="/somoimNew" element={<SomoimNew/>} />
-                    <Route path="/somoim/:subMenu" element={<SomoimDetail />} />
+                    <Route path="/somoim/somoimNew" element={<SomoimNew/>} />
+                    <Route path="/somoim/:subMenu/:somoimId" element={<SomoimDetail />} />
 
                     {/* 상품관리 */}
                     <Route

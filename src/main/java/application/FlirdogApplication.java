@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "application", "user.*", "product.*", "matching.*", "community.*", "order.*",
-		"payment.*", "admin.*", "s3.*" })
-@EntityScan({ "user.bean", "product.bean", "matching.bean", "community.bean", "order.bean", "payment.bean" })
+		"payment.*", "admin.*", "s3.*", "somoim.*" })
+@EntityScan({ "user.bean", "product.bean", "matching.bean", "community.bean", "order.bean", "payment.bean", "somoim.bean"  })
 @EnableJpaRepositories({ "user.repository", "product.repository", "matching.repository", "community.repository",
-		"order.repository", "payment.repository", "admin.repository" })
+		"order.repository", "payment.repository", "admin.repository", "somoim.repository" })
 @EnableJpaAuditing
 public class FlirdogApplication {
 
