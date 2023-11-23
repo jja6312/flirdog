@@ -3,12 +3,12 @@ import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Button from 'react-bootstrap/Button';
-import MypageSubHeader1_2 from '../5공통/MypageSubHeader1_2';
+import MypageSubHeader12 from '../5공통/MypageSubHeader1_2';
 
 const MydogProfile = () => {
     return (
         <div>
-            <MypageSubHeader1_2/>
+            <MypageSubHeader12/>
             <Container className='px-10 mt-6'> {/* 강아지정보 글씨 */}
                 <div className='row '>
                     <div className='col-lg-4 d-flex justify-content-center'></div>

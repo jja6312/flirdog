@@ -6,12 +6,12 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import MypageSubHeader2_1 from '../5공통/MypageSubHeader2_1';
+import MypageSubHeader21 from '../5공통/MypageSubHeader2_1';
 
 const Myarticle = () => {
     return (
         <div>
-            <MypageSubHeader2_1/>
+            <MypageSubHeader21/>
             <Container className='px-10 mt-7'> 
                 <div className={`row ${Mypage.Myarticle1}`}>
                     <div className='col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center'></div>

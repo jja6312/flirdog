@@ -1,8 +1,7 @@
 import React, { useEffect, useState }  from 'react';
-import MypageHeader from '../MypageHeader';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
-import MypageSubHeader3_2 from '../5공통/MypageSubHeader3_2';
+import MypageSubHeader32 from '../5공통/MypageSubHeader3_2';
 
 import axios from 'axios';
 
@@ -51,7 +50,7 @@ const Mypoint = () => {
 
     return (
         <div>
-            <MypageSubHeader3_2/>
+            <MypageSubHeader32/>
             <Container className='px-10'> {/* 포인트 내용 */}
                 <div className='row mt-6'>
                     <div className='col-lg-2'></div>

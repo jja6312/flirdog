@@ -1,13 +1,13 @@
 import React from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
-import MypageSubHeader4_1 from '../5공통/MypageSubHeader4_1';
+import MypageSubHeader41 from '../5공통/MypageSubHeader4_1';
 
 const Mysetting = () => {
     return (
         <div>
             
-            <MypageSubHeader4_1/>
+            <MypageSubHeader41/>
             <Container className='px-10 mt-6'> {/* 설정창 */}
                 <div className='row'>
                     <div className='col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center'></div>

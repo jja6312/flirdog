@@ -8,7 +8,7 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Mypage from '../../css/main/100마이페이지/mypage.module.css';
-import MypageSubHeader1_1 from './5공통/MypageSubHeader1_1';
+import MypageSubHeader11 from './5공통/MypageSubHeader1_1';
 
 import axios from 'axios';
 
@@ -46,7 +46,7 @@ const MypageMain = () => {
 
     return (
         <div>
-            <MypageSubHeader1_1></MypageSubHeader1_1>
+            <MypageSubHeader11/>
             <Container className='px-10 mt-8'> {/* 사진이미지부분 */}
                 <Row>
                     <Col xs={5} md={4}>

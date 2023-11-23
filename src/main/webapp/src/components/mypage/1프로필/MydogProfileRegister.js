@@ -8,7 +8,6 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import TableCss from '../../../css/date/dateWrite.module.css';
 
 const MydogProfileRegister = () => {
     const onCamera = () => {
@@ -25,10 +24,10 @@ const MydogProfileRegister = () => {
             return imgArray;
         })
   
-    setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
+    // setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
         // setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
     }
-    const [imgList, setImgList] = useState([]) //배열은 []
+    // const [imgList, setImgList] = useState([]) //배열은 []
     // const [files, setFiles] = useState('')
   
     //사진 등록관련
