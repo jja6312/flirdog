@@ -22,16 +22,16 @@ const SomoimDetail = () => {
     // }, [location.pathname]);
     const [formData, setFormData] = useState({});
     const { subMenu = 'detailMain', somoimId } = useParams();
-    const [somoimIdState, setSomoimId] = useState('1');
+    //const [somoimIdState, setSomoimId] = useState('1');
 
     //만약 /somoim/detail/:somoimId가 들어온다면 useParam을 통해 값을 setSomoimId으로 셋팅하고, 들어오지않는다면 아무것도 값을 받지않겠다.
     
     const { somoimName, introduceSub, address, address2, cost, memberCount, target, accountEmail, accountPhone } = formData
 
     useEffect(() => {
-        if (somoimId) {
-            setSomoimId(somoimId);
-        }
+        // if (somoimId) {
+        //     setSomoimId(somoimId);
+        // }
         
         axios.get(`/somoim/getSomoimForm?id=${somoimId}`)
             .then(res => {
@@ -41,7 +41,7 @@ const SomoimDetail = () => {
         // .then(res => {
         //     setFormData(res.data)
         // }).catch(error => console.log(error))
-    },[])
+    },[somoimId])
 
     return (
         <>

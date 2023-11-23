@@ -11,7 +11,7 @@ const SomoimDetailSchedule = ({somoimId}) => {
             .then(res => {
                 setFormData(res.data)
             }).catch(error => console.log(error))
-    },[])
+    },[somoimId])
 
     return (
         <div>
