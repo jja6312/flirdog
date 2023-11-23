@@ -1,0 +1,82 @@
+.moimMainTitle {
+    text-align: center;
+    color: rgb(239, 136, 136);
+    font-size: 30px;
+    font-family: Ribeye;
+    font-weight: bold;
+}
+
+.default {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.defaultLayout {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 0.2rem;
+    position: absolute;
+    left: 1.8rem;
+    top: 0;
+    transform: translateY(-50%);
+    color: #515151;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.6rem;
+    cursor: default;
+    background-color: #fff;
+}
+
+.groupInfo {
+    width: 18rem;
+    margin-top: 0.6rem;
+    /* position: absolute; */
+    left: 10.8rem;
+    top: 0;
+}
+
+.badge {
+    margin-left: 0.6rem;
+    color: #d63030;
+    background-color: #fce3d5;
+}
+
+.groupForm {
+    flex: 1;
+    align-items: flex-start;
+    width: auto;
+    margin-left: -9rem;
+    position: relative;
+    flex-direction: column;
+    
+}
+
+.groupDetail {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    border-radius: 5.6px;
+}
+
+.groupDetailLabel {
+    width: max-content;
+    margin-top: -0.8rem;
+    left: 0.7rem;
+    top: 0.7rem;
+    z-index: 1;
+    background-color: #fff;
+    padding: 0 0.2rem;
+    pointer-events: none;
+    /* position: relative; */
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 2rem;
+}

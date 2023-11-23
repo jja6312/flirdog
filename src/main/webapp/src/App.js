@@ -20,7 +20,9 @@ import OrderShippingForm from "./components/admin/3주문관리/OrderShippingFor
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 
 import SomoimMain from "./components/somoim/SomoimMain";
-import SomoimDetail from "./components/somoim/detail/SomoimDetail";
+
+import SomoimNew from "./components/somoim/SomoimNew";
+import SomoimDetail from "./components/somoim/detail/SomoimDetail"
 
 import MypageMain from "./components/mypage/MypageMain";
 import Myarticle from "./components/mypage/2내가작성한글/Myarticle";
@@ -83,10 +85,11 @@ const App = () => {
           <Route path="/date/dateReadMore" element={<DateReadMore />} />
 
           <Route path="/admin" element={<Admin />} />
-
+          
           {/* 소모임 페이지!! */}
-          <Route path="/somoim" element={<SomoimMain />} />
-          <Route path="/somoim/:subMenu" element={<SomoimDetail />} />
+          <Route path="/somoim" element={<SomoimMain/>}/>
+          <Route path="/somoim/somoimNew" element={<SomoimNew/>} />
+          <Route path="/somoim/:subMenu/:somoimId" element={<SomoimDetail />} />
 
           {/* 상품관리 */}
           <Route
