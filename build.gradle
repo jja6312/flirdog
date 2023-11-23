@@ -49,13 +49,24 @@ dependencies {
 	testImplementation 'org.assertj:assertj-core:3.24.2'
 
 	//kafka
-	implementation 'org.apache.kafka:kafka-clients:3.3.2'
+	implementation 'org.springframework.kafka:spring-kafka:3.0.12'
 
 	//loging
 	implementation  'org.slf4j:slf4j-simple:1.7.30'
 
 	//s3
 	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+
+	//websoket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.webjars:sockjs-client:1.1.2'
+	implementation 'org.webjars:stomp-websocket:2.3.3-1'
+
+	//mongodb
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+	//guava
+	implementation 'com.google.guava:guava:32.1.2-jre'
 }
 
 tasks.named('test') {

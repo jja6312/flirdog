@@ -3,13 +3,9 @@ package product.bean;
 import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import order.bean.Order;
-import user.bean.DogsInfo;
-import user.bean.User;
+import order.bean.Orders;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -46,7 +42,7 @@ public class Product extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Orders orders;
 
     @Builder(toBuilder = true)
     private Product(String name, String content, int stock, int price, String image, MainCategory mainCategory,

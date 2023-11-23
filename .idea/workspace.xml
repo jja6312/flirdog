@@ -5,12 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/public/image/loadingDog.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/flirdog.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/bean/JoinUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/bean/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/bean/MessageRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/bean/ResponseMessageDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/bean/RoomType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/config/ConsumerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/config/KafkaConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/config/ProducerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/config/RestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/config/StompHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/config/WebSocketConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/controller/MessageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/repository/MessageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/repository/MessageRoomRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/src/components/chatting/Chatting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/application/FlirdogApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/application/FlirdogApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/order/bean/Order.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/bean/Product$ProductBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/product/bean/Product$ProductBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/bean/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/product/bean/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/user/bean/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/naver.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/naver.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/FlirdogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/FlirdogApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/order/bean/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/order/bean/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/product/bean/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/product/bean/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/user/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/user/bean/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/components/Loading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/product/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/components/product/Product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/css/Loading.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/css/Loading.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +76,31 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="TypeScript File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-websocket/6.0.13/ae627be80eda66e33fa6a9fc1aed97c25d155db9/spring-websocket-6.0.13-sources.jar!/org/springframework/web/socket/config/annotation/WebSocketMessageBrokerConfigurer.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/jbr-17.0.8.1/Contents/Home/lib/src.zip!/java.base/java/io/Serializable.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,33 +114,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jongin/gitworkspace/flirdog&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.50574714&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/jongin/gitworkspace/flirdog/src/main/webapp/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feature/product",
+    "last_opened_file_path": "/Users/jongin/gitworkspace/flirdog/src/main/java/chatting",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.50574714",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/jongin/gitworkspace/flirdog/src/main/webapp/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="chatting.service" />
+      <recent name="chatting.ㅠㄷ무" />
+      <recent name="chatting.config" />
+      <recent name="chatting.bean" />
+      <recent name="chatting" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/chatting" />
       <recent name="F:\gitworkspace\flirdog\bin\main\static" />
       <recent name="F:\gitworkspace\flirdog\build\resources\main\static\static" />
       <recent name="F:\gitworkspace\flirdog\src\main\resources\static" />
       <recent name="F:\gitworkspace\flirdog\src\main\webapp\public" />
-      <recent name="F:\gitworkspace\flirdog\src\main\resources\static\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/public/image" />
@@ -84,6 +160,10 @@
       <recent name="F:\gitworkspace\flirdog\src\main\resources\static" />
       <recent name="F:\gitworkspace\flirdog\src\main\webapp\public" />
       <recent name="F:\gitworkspace\flirdog\bin\main\static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="chatting.config" />
+      <recent name="chatting.bean" />
     </key>
   </component>
   <component name="RunManager">
@@ -108,7 +188,7 @@
       <workItem from="1700324248015" duration="3199000" />
       <workItem from="1700443673817" duration="33000" />
       <workItem from="1700443723952" duration="4330000" />
-      <workItem from="1700619722969" duration="3041000" />
+      <workItem from="1700619722969" duration="38023000" />
     </task>
     <servers />
   </component>
