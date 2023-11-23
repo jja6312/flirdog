@@ -4,7 +4,6 @@ import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
 import CheckBtn from "../1상품관리/CheckBtn";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading";
 
 const UserList = ({
@@ -32,11 +31,19 @@ const UserList = ({
     setTotalFilter,
   ]);
 
-  const navigate = useNavigate();
   const goUserEditForm = (e) => {
     const editBtnId = e.target.id;
-
-    navigate(`/admin/userEditForm/${editBtnId}`);
+    const popupWidth = 600;
+    const popupHeight = 800;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const left = screenWidth / 2 - popupWidth / 2;
+    const top = screenHeight / 2 - popupHeight / 2;
+    window.open(
+      "/admin/userEditForm/" + editBtnId,
+      "newWindow",
+      `width=${popupWidth},height=${popupHeight},left=${left},top=${top}`
+    );
   };
 
   const onDeleteOneUser = (e) => {
