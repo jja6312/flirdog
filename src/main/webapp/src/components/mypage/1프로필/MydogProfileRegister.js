@@ -61,9 +61,9 @@ const MydogProfileRegister = () => {
                         </Col>
                         <Col xs={2} md={4} className={Mypage.Imagecenter}>
                             <div className='row'>
-                                <div className='col-sm-5 d-flex justify-content-center'></div>
-                                <div className='col-sm-3 d-flex justify-content-center' style={{marginLeft:'18px'}}>
-                                    <Row className="mb-3">
+                                <div className='col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center'></div>
+                                <div className='col-lg-3 col-md-3 col-sm-3  d-flex justify-content-center' style={{marginLeft:'18px'}}>
+                                    <Row>
                                         <Form.Group as={Col} controlId="formUploadimage">
                                             <div className={Mypage.FormTitleDiv} style={{
                                             color:'gray',
