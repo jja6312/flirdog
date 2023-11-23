@@ -1,6 +1,7 @@
 package admin.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,23 @@ public class AdminUserServiceImpl implements AdminUserService {
 		for (String id : userIdArray) {
 			adminUserRepository.deleteById(Integer.parseInt(id));
 		}
+		
+	}
+
+	@Override
+	public Optional<User> getUser(String userIdStr) {
+		Integer userId = Integer.parseInt(userIdStr);
+		
+		System.out.println("여기는 서비스"+userId);
+		return adminUserRepository.findById(userId);
+	}
+
+
+
+	@Override
+	public void userEdit(User userDTO) {
+		
+		adminUserRepository.save(userDTO);
 		
 	}
 

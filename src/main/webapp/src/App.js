@@ -39,6 +39,7 @@ import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl
 import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
 import ProductDetail from "./components/product/ProductDetail";
 import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
+import UserEditForm from "./components/admin/2회원관리/UserEditForm";
 
 const App = () => {
   return (
@@ -126,6 +127,10 @@ const App = () => {
           <Route
             path="/admin/reviewListForm"
             element={<ReviewListForm openLeftside="3" />}
+          />
+          <Route
+            path="/admin/userEditForm/:userId"
+            element={<UserEditForm />}
           />
 
           <Route path="product">

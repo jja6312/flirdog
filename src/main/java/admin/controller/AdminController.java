@@ -2,12 +2,14 @@ package admin.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -148,4 +150,26 @@ public class AdminController {
 		adminUserService.userDeleteSelected(userId);
 
 	}
+	
+	//특정 회원불러오기
+	// 회원리스트
+	@PostMapping(path = "getUser")
+	public Optional<User> getUser(@RequestBody Map<String, String> requestBody) {
+	    String userId = requestBody.get("userId");
+	    System.out.println("!!!!!!!!!userid:" + userId);
+	    Optional<User> user = adminUserService.getUser(userId);
+
+	    return user;
+	}
+	
+	
+	// 회원 정보 수정
+	@PostMapping(path = "userEdit")
+	public void userEdit(@RequestBody User userDTO) throws JsonMappingException, JsonProcessingException {
+		System.out.println("userDTO!!!: "+userDTO);
+
+		adminUserService.userEdit(userDTO);
+
+	}
+
 }
