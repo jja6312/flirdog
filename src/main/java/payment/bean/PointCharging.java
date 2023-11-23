@@ -5,11 +5,8 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import product.bean.Product;
 import user.bean.User;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Getter
