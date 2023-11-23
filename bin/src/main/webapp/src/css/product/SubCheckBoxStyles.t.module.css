@@ -1,0 +1,16 @@
+.subCheckBoxDiv {
+  display: flex;
+  color: white;
+  margin-left: 10%;
+}
+
+@media (max-width: 880px) {
+  .subCheckBoxDiv {
+    font-size: 0.9em;
+  }
+}
+@media (max-width: 600px) {
+  .subCheckBoxDiv {
+    font-size: 0.8em;
+  }
+}

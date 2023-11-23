@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import matching.bean.Matching;
 import payment.bean.PointCharging;
+import somoim.bean.Somoim;
 
 import java.util.List;
 
@@ -53,5 +54,8 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PointCharging> pointChargings;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Somoim> somoim;
 }
 

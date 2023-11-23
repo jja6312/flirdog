@@ -1,0 +1,55 @@
+.sortByBarDiv {
+    width: 100%;
+    height: 28px;
+    border-radius: 15px;
+    display: flex;
+    background-color: #F56084;
+}
+
+.sortByBarDiv div {
+    color: white;
+    width: 80px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+@media (max-width: 1400px) {
+    .sortByBarDiv {
+        height: 28px;
+        border-radius: 15px;
+    }
+    .sortByBarDiv div {
+        width: 80px;
+         font-size: 0.9em;
+     }
+}
+@media (max-width: 1200px) {
+    .sortByBarDiv {
+        height: 23px;
+        border-radius: 15px;
+    }
+    .sortByBarDiv div {
+        width: 73px;
+        font-size: 0.8em;
+    }
+}
+@media (max-width: 880px) {
+    .sortByBarDiv {
+        height: 15px;
+        border-radius: 15px;
+    }
+    .sortByBarDiv div {
+        width: 55px;
+        font-size: 0.6em;
+    }
+}
+@media (max-width: 600px) {
+    .sortByBarDiv {
+        height: 10px;
+        border-radius: 15px;
+    }
+    .sortByBarDiv div {
+        width: 40px;
+        font-size: 0.4em;
+    }
+}

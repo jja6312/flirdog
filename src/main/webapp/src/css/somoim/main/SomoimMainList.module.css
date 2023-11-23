@@ -1,0 +1,30 @@
+.list {
+    width: 344px;
+    height: 331px;
+    flex: 1;
+    position: relative;
+    background: white;
+    border-radius: 3px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    border-radius: 13px;
+}
+
+.text {
+    top: 48px;
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    font-family: 'Ribeye';
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+

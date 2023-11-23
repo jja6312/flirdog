@@ -3,14 +3,14 @@ import CategoryBtn from "./SomoimDetailCategoryBar";
 import { useNavigate } from 'react-router-dom';
 import data from './SomoimDetailMenuData';
 
-const SomoimDetailCategoryBarContainer = () => {
+const SomoimDetailCategoryBarContainer = ({somoimId}) => {
   const [selectedCategory, setSelectedCategory] = useState('모임 정보');
   const navigate = useNavigate();
   //const location = useLocation();
 
   const handleCategoryClick = (categoryInfo) => {
     const [title, path] = categoryInfo;
-    navigate(`/somoim/${path}`);
+    navigate(`/somoim/${path}/${somoimId}`, { somoimId: somoimId });
     setSelectedCategory(title);
   };
 

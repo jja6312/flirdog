@@ -1,0 +1,39 @@
+.Rectangle29 {
+    width: 100%;
+    height: 41px;
+    position: relative;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+    border: 1.2px solid black;
+    display: flex;
+    align-items: center;
+}
+.title {
+    left: 3%;
+    position: absolute;
+    color: #625C5C;
+    font-size: 20px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+    z-index: 2;
+}
+
+.Line2 {
+    width: 41px;
+    height: 0;
+    position: absolute;
+    transform: rotate(90deg);
+    transform-origin: 0 0;
+    border: 2px #625C5C solid;
+    top: 0;
+    left: 17%;
+    z-index: 1;
+}
+
+.search{
+    font-weight: 700;
+    margin-right: 5px;
+    z-index: 2;
+}

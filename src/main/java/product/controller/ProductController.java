@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class ProductController {
 
-	@GetMapping("/product")
+	@GetMapping(path="/product", produces = "application/json;charset=UTF-8")
 	public String test() {
 		return "/product/test";
 	}
