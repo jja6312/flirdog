@@ -124,13 +124,13 @@ const ProductUploadForm = ({ openLeftside }) => {
             icon: "success",
             title: "상품 등록 성공",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2500,
           });
-        }, 10);
+        }, 100);
 
         setTimeout(() => {
           navigate("/admin/productListForm");
-        }, 1600);
+        }, 2500);
       })
       .catch((error) => console.log(error));
   };
@@ -195,7 +195,8 @@ const ProductUploadForm = ({ openLeftside }) => {
         </Container>
 
         <ProductNoticeBanner
-          productUpload={productUpload}
+          productUploadOrEdit={productUpload}
+          type="productUpload"
         ></ProductNoticeBanner>
       </div>
     </>

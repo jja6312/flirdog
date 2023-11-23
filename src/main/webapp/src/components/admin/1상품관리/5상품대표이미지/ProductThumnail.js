@@ -3,7 +3,13 @@ import styles from "../../../../css/admin/1상품관리/productPrimaryInfo.modul
 
 import xBox from "../../../../css/admin/1상품관리/xBox.module.css";
 
-const ProductThumnail = ({ imgRef, imgList, setImgList, setImgFiles }) => {
+const ProductThumnail = ({
+  imgRef,
+  imgList,
+  setImgList,
+  setImgFiles,
+  productDTOImage,
+}) => {
   const onReset = (e) => {
     e.preventDefault();
 
@@ -35,7 +41,6 @@ const ProductThumnail = ({ imgRef, imgList, setImgList, setImgFiles }) => {
               name="img[]"
               ref={imgRef}
               onChange={onImgInput}
-              multiple
             />
           </td>
         </tr>
