@@ -1,5 +1,4 @@
 import React from 'react';
-import MypageHeader from '../MypageHeader';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import MypageSubHeader4_1 from '../5공통/MypageSubHeader4_1';

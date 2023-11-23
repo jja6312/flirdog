@@ -8,8 +8,6 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Mypage from '../../css/main/100마이페이지/mypage.module.css';
-import MypageHeader from './MypageHeader';
-import MypageSubHeader1 from './5공통/MypageSubHeader1';
 import MypageSubHeader1_1 from './5공통/MypageSubHeader1_1';
 
 import axios from 'axios';

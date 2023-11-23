@@ -8,9 +8,11 @@ import order.bean.Order;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 public class Product extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,7 +37,7 @@ public class Product extends BaseEntity {
     private SubCategory subCategory;
 
     @Embedded
-    private Hit hit = new Hit(); // 명시적으로 new 해서 기본값 0으로 설정했습니다.(지안)
+    private Hit hit = new Hit(); // 정지안 : 이렇게해야 상품등록시 초기값이 0이되네요
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductComment> productComments;

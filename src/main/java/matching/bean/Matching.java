@@ -29,7 +29,7 @@ public class Matching extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private MatchingState matchingState;
-
+        
     @Embedded
     private Hit hit;
 
@@ -40,6 +40,15 @@ public class Matching extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dofs_info_id")
     private DogsInfo dogsInfo;
+    
+    @NonNull
+    private String matchingDate;
+    
+    @NonNull
+    private String matchingAddress;
+    
+    @NonNull
+    private String dogMBTI;
 
     @Builder(toBuilder = true)
     private Matching(Long id, @NonNull String title, String content, String image, MatchingPurpose matchingPurpose,
