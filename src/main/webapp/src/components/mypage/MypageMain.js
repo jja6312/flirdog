@@ -33,14 +33,14 @@ const MypageMain = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/mypage/getUserProfile?userIdStr=1')
+        axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
         .then((res) => {
-            //alert('성공')
             console.log(res.data);
             setUserDTO(res.data);
         })
         .catch((error) => {
             console.log(error);
+            alert('실패')
         });
     }, []);
 

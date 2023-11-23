@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mypage.service.MypageService;
+import payment.bean.PointChargingDTO;
 import user.bean.User;
+import user.bean.UserDTO;
 
 @CrossOrigin
 @RestController
@@ -24,6 +26,21 @@ public class MypageController {
 	    Long userId = Long.parseLong(userIdStr);
 	    User userProfile = mypageService.getUserProfile(userId);
 	    return userProfile;
+	}
+	
+	@GetMapping(path = "getUserProfileTest")
+	public UserDTO getUserProfileTest(@RequestParam String userIdStr) {
+	    Long userId = Long.parseLong(userIdStr);
+	    UserDTO userProfile = mypageService.getUserProfileTest(userId);
+	    return userProfile;
+	}
+	
+
+	@GetMapping(path = "getPointCharging")
+	public PointChargingDTO getPointCharging(@RequestParam String userIdStr) {
+	    Long userId = Long.parseLong(userIdStr);
+	    PointChargingDTO getPoint = mypageService.getPointCharging(userId);
+	    return getPoint;
 	}
 	
 

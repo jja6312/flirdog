@@ -19,11 +19,12 @@ const MyprofileUpdate = () => {
         userRole: '',
         point: 0,
         communityScore: 0,
+        introduce : '',
 
         });
 
         useEffect(() => {
-            axios.get('http://localhost:8080/mypage/getUserProfile?userIdStr=1')
+            axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
             .then((res) => {
                 //alert('성공')
                 console.log(res.data);
@@ -89,7 +90,7 @@ const MyprofileUpdate = () => {
                     <div className='col-lg-4 d-flex justify-content-right'> 
                         <div className={Mypage.Text}>
                             <span style={{color:'#f56084'}}>전화번호</span>
-                            <span style={{marginLeft:'17px'}}>{userDTO.email}</span>
+                            <span style={{marginLeft:'17px'}}>{userDTO.phone}</span>
                         </div>
                     </div>
                     <div className='col-lg-4 d-flex justify-content-center'></div>
@@ -108,7 +109,7 @@ const MyprofileUpdate = () => {
                     <div className={`col-lg-4 d-flex justify-content-center` }>
                         <div className={Mypage.Text}> 
                             <textarea className={`${Mypage.TextArea} `} placeholder='자기소개 &#13; (1~200자)'
-                            value='안녕하세요.'>
+                            value={userDTO.introduce}>
                             </textarea>
                         </div>
                     </div>  

@@ -1,11 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import MypageHeader from '../MypageHeader';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import MypageSubHeader3_2 from '../5공통/MypageSubHeader3_2';
 
+import axios from 'axios';
 
 const Mypoint = () => {
+
+    const [userDTO, setUserDTO] = useState({
+        name: '',
+        passwd: '',
+        email: '',
+        nickname: '',
+        userRole: '',
+        point: 0,
+        communityScore: 0,
+        // 나머지 필드들에 대해서도 테이블의 컬럼에 따라 추가해주세요.
+        // 예를 들면, dogsInfos, popularity, matching 등...
+      });
+      
+    const [pointChargingDTO, setPointChargingDTO] = useState({
+		price: 0,
+		
+      });
+      
+    useEffect(() => {
+        axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
+        .then((res) => {
+            console.log(res.data);
+            setUserDTO(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+    useEffect(() => {
+        
+        axios.get('http://localhost:8080/mypage/getPointCharging?userIdStr=1')
+        .then((res) => {
+            console.log(res.data);
+            setPointChargingDTO(res.data);
+            //alert('성공')
+        })
+        .catch((error) => {
+            console.log(error);
+            //alert('실패')
+        });
+    }, []);
+
     return (
         <div>
             <MypageSubHeader3_2/>
@@ -19,7 +62,7 @@ const Mypoint = () => {
                     <div className='col-lg-2'></div>
                     <div className='col-lg-8'>
                         <div className={Mypage.Point2}>
-                            0<span className={Mypage.Point3}>P</span>
+                            {userDTO.point}<span className={Mypage.Point3}>P</span>
                         </div>
                     </div>
                     <div className='col-lg-2'></div>
@@ -33,7 +76,7 @@ const Mypoint = () => {
                     <div className='col-lg-2'></div>
                     <div className='col-lg-8'>
                         <div className={Mypage.Point2}>
-                            0<span className={Mypage.Point3}>P</span>
+                            {pointChargingDTO.price}<span className={Mypage.Point3}>P</span>
                         </div>
                     </div>
                     <div className='col-lg-2'></div>
