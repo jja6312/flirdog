@@ -4,12 +4,15 @@ package mypage.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mypage.service.MypageService;
 import payment.bean.PointChargingDTO;
+import user.bean.DogsInfoDTO;
 import user.bean.User;
 import user.bean.UserDTO;
 
@@ -42,6 +45,10 @@ public class MypageController {
 	    return getPoint;
 	}
 	
+	@PostMapping(path="write")
+	public void write(@ModelAttribute DogsInfoDTO dogsInfoDTO) {
+		mypageService.write(dogsInfoDTO);
+	}
 
 
 }

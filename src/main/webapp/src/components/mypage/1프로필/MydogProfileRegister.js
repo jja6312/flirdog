@@ -1,4 +1,5 @@
-import React, {useRef } from 'react';
+import React, {useEffect, useRef,useState } from 'react';
+import axios from 'axios';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
@@ -10,6 +11,33 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
 const MydogProfileRegister = () => {
+    
+    const [dogsInfoDTO, setdogsInfoDTO] = useState({
+        id: '',
+        name: '',
+        age: '',
+        gender: '',
+        dogsBreed: '',
+        isNeutralized: '',
+        image: '',
+        score: 0,
+        dogsInfoId: 0,
+      });
+
+      useEffect(() => {
+        axios.post('http://localhost:8080/mypage/write', null, { params: dogsInfoDTO })
+        .then((res) => {
+            alert('회원가입을 축하합니다.');
+            console.log(res.data);
+            //setUserDTO(res.data);
+
+        })
+        .catch((error) => {
+            console.log(error);
+            alert('실패')
+        });
+    }, []);
+
     const onCamera = () => {
         imgRef.current.click()
     }
@@ -23,12 +51,7 @@ const MydogProfileRegister = () => {
             imgArray.push(objectURL)
             return imgArray;
         })
-  
-    // setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
-        // setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
     }
-    // const [imgList, setImgList] = useState([]) //배열은 []
-    // const [files, setFiles] = useState('')
   
     //사진 등록관련
     const imgRef = useRef()
