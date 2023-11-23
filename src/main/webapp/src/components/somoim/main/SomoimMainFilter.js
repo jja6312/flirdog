@@ -9,8 +9,9 @@ import SomoimMainFilterCategory from '../../../css/somoim/main/SomoimMainFilter.
 import {CustomMenu, CustomToggle} from './SomoimMainCategoryToggle';
 import {Dropdown} from 'react-bootstrap';
 
-const SomoimMainFilter = () => {
+const SomoimMainFilter = ({ onSelectLocation }) => {
     const [categoryToggle, setCategoryToggle] = useState(false);
+    const locations = ["전국", "서울", "인천", "경기", "대전", "대구", "부산", "광주", "울산", "세종", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"];
 
     useEffect(() => {
         const handleResize = () => {
@@ -45,7 +46,16 @@ const SomoimMainFilter = () => {
                                         지역선택
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu as={CustomMenu} style={{ width: '210px'}}>
-                                        <Dropdown.Item eventKey="1" active>전국</Dropdown.Item>
+                                        {locations.map((location, index) => (
+                                            <Dropdown.Item 
+                                                eventkey={index} 
+                                                onClick={() => onSelectLocation(location)}
+                                                active={index === 0}
+                                            >
+                                                {location}
+                                            </Dropdown.Item>
+                                        ))}
+                                        {/* <Dropdown.Item eventKey="1" active>전국</Dropdown.Item>
                                         <Dropdown.Item eventKey="2">서울</Dropdown.Item>
                                         <Dropdown.Item eventKey="3" >인천</Dropdown.Item>
                                         <Dropdown.Item eventKey="4">경기</Dropdown.Item>
@@ -62,7 +72,7 @@ const SomoimMainFilter = () => {
                                         <Dropdown.Item eventKey="15">전남</Dropdown.Item>
                                         <Dropdown.Item eventKey="16">경북</Dropdown.Item>
                                         <Dropdown.Item eventKey="17">경남</Dropdown.Item>
-                                        <Dropdown.Item eventKey="18">제주</Dropdown.Item>
+                                        <Dropdown.Item eventKey="18">제주</Dropdown.Item> */}
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
@@ -72,7 +82,7 @@ const SomoimMainFilter = () => {
                         <MoimMainCategoryBtn></MoimMainCategoryBtn>
                     </div>
                     <div className='col-3 col-md-2 d-flex justify-content-center'>
-                        <Button variant="outline-secondary" className='text-nowrap btn-sm w-100'>모임 개설하기</Button>
+                        <Button variant="outline-secondary" className='text-nowrap btn-sm w-100' href='/somoim/somoimNew'>모임 개설하기</Button>
                     </div>
                     
                     {/* <div className='col-md-12 col-4 d-flex justify-content-center' style={{width: 1332.53, height: 279.20, position: 'relative'}}>

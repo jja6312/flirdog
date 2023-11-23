@@ -1,0 +1,56 @@
+.adminHeaderTitle {
+  position: absolute;
+  z-index: 22;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  top: 21px;
+  left: 220px;
+}
+
+.navBar {
+  background-color: #f56084;
+}
+.navText {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.logo {
+  height: 55px;
+  margin: 0 auto;
+
+  display: block;
+}
+
+.spaceDiv {
+  width: 385px;
+}
+
+@media (max-width: 1400px) {
+  .spaceDiv {
+    width: 230px;
+  }
+}
+@media (max-width: 1300px) {
+  .spaceDiv {
+    width: 220px;
+  }
+}
+@media (max-width: 1154px) {
+  .adminHeaderTitle {
+    top: 11px;
+  }
+  .logo {
+    max-height: 35px;
+    margin: 0 auto;
+    display: block;
+  }
+  .spaceDiv {
+    width: 200px;
+  }
+  .navText {
+    font-size: 1rem !important;
+    color: white !important;
+  }
+}

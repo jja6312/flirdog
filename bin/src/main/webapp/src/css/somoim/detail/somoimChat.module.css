@@ -1,0 +1,626 @@
+.ChatContainer {
+    width: 290px;
+    height: 1307px;
+    position: relative;
+    padding-right: 90%;
+  }
+  
+  .Rectangle56 {
+    width: 322px;
+    height: 1253.79px;
+    left: 0px;
+    top: 52.21px;
+    position: absolute;
+    background: #FFF4F4;
+  }
+  
+  .Rectangle57 {
+    width: 288px;
+    height: 1209px;
+    left: 17px;
+    top: 78px;
+    position: absolute;
+    background: white;
+  }
+
+  .ChatContainer1 {
+    width: 287px;
+    height: 90px;
+    left: 18px;
+    top: 1217px;
+    position: absolute;
+  }
+  
+  .ChatBackground1 {
+    width: 287px;
+    height: 60px;
+    left: 0px;
+    top: 12px;
+    position: absolute;
+    background: #FFF4F4;
+  }
+  
+  .ChatBackground2 {
+    width: 288px;
+    height: 54px;
+    left: 0px;
+    top: 18px;
+    position: absolute;
+    background: white;
+  }
+  
+  .ChatText {
+    width: 190px;
+    height: 50px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #BAB9AF;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .ChatIcon {
+    width: 90px;
+    height: 90px;
+    left: 200px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .ChatSmsIcon {
+    width: 45px;
+    height: 45px;
+    left: 237px;
+    top: 22px;
+    position: absolute;
+  }
+  
+  .ChatHappyIcon {
+    width: 45px;
+    height: 45px;
+    left: 186px;
+    top: 22px;
+    position: absolute;
+  }
+
+  .Rectangle56 {
+    width: 322px;
+    height: 1253.79px;
+    left: 0px;
+    top: 52.21px;
+    position: absolute;
+    background: #FFF4F4;
+  }
+  
+  .Rectangle60 {
+    width: 215px;
+    height: 82px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #FFF4F4;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
+  
+  .UserContainer {
+    width: 385px;
+    height: 154px;
+    left: 16px;
+    top: 105px;
+    position: absolute;
+  }
+  
+  .UserTextContainer {
+    width: 215px;
+    height: 82px;
+    left: 52px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .UserText {
+    width: 88px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .UserIconContainer {
+    width: 49px;
+    height: 59px;
+    left: 0px;
+    top: 95px;
+    position: absolute;
+  }
+  
+  .UserIcon {
+    width: 45px;
+    height: 45px;
+    left: 2px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .UserName {
+    width: 49px;
+    height: 14px;
+    left: 0px;
+    top: 45px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .ContentContainer {
+    width: 385px;
+    height: 153px;
+    left: 4px;
+    top: 273px;
+    position: absolute;
+  }
+  
+  .ContentTextContainer {
+    width: 215px;
+    height: 82px;
+    left: 64px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .ContentText {
+    width: 187px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .ContentIconContainer {
+    width: 80px;
+    height: 58px;
+    left: 0px;
+    top: 95px;
+    position: absolute;
+  }
+  
+  .ContentIcon {
+    width: 45px;
+    height: 45px;
+    left: 14px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .ContentUserName {
+    width: 80px;
+    height: 14px;
+    left: 0px;
+    top: 44px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+
+  /* styles.css */
+
+.Rectangle56 {
+    width: 322px;
+    height: 1253.79px;
+    left: 0px;
+    top: 52.21px;
+    position: absolute;
+    background: #FFF4F4;
+  }
+  
+  .Rectangle60 {
+    width: 215px;
+    height: 82px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #FFF4F4;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
+  
+  .Container1 {
+    width: 385px;
+    height: 154px;
+    left: 16px;
+    top: 105px;
+    position: absolute;
+  }
+  
+  .TextContainer1 {
+    width: 215px;
+    height: 82px;
+    left: 52px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Text1 {
+    width: 88px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .IconContainer1 {
+    width: 49px;
+    height: 59px;
+    left: 0px;
+    top: 95px;
+    position: absolute;
+  }
+  
+  .Icon1 {
+    width: 45px;
+    height: 45px;
+    left: 2px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Name1 {
+    width: 49px;
+    height: 14px;
+    left: 0px;
+    top: 45px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .Container2 {
+    width: 385px;
+    height: 153px;
+    left: 4px;
+    top: 273px;
+    position: absolute;
+  }
+  
+  .TextContainer2 {
+    width: 215px;
+    height: 82px;
+    left: 64px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Text2 {
+    width: 187px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .IconContainer2 {
+    width: 80px;
+    height: 58px;
+    left: 0px;
+    top: 95px;
+    position: absolute;
+  }
+  
+  .Icon2 {
+    width: 45px;
+    height: 45px;
+    left: 14px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Name2 {
+    width: 80px;
+    height: 14px;
+    left: 0px;
+    top: 44px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .Container3 {
+    width: 385px;
+    height: 164px;
+    left: 67px;
+    top: 463px;
+    position: absolute;
+  }
+  
+  .TextContainer3 {
+    width: 215px;
+    height: 82px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Text3 {
+    width: 187px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .IconContainer3 {
+    width: 80px;
+    height: 58px;
+    left: 173px;
+    top: 82px;
+    position: absolute;
+  }
+  
+  .Icon3 {
+    width: 45px;
+    height: 45px;
+    left: 14px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Name3 {
+    width: 80px;
+    height: 14px;
+    left: 0px;
+    top: 44px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .Container4 {
+    width: 385px;
+    height: 153px;
+    left: 4px;
+    top: 622px;
+    position: absolute;
+  }
+  
+  .TextContainer4 {
+    width: 215px;
+    height: 82px;
+    left: 64px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Text4 {
+    width: 187px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .IconContainer4 {
+    width: 80px;
+    height: 58px;
+    left: 0px;
+    top: 95px;
+    position: absolute;
+  }
+  
+  .Icon4 {
+    width: 45px;
+    height: 45px;
+    left: 14px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Name4 {
+    width: 80px;
+    height: 14px;
+    left: 0px;
+    top: 44px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .Container5 {
+    width: 385px;
+    height: 153px;
+    left: 11px;
+    top: 789px;
+    position: absolute;
+  }
+  
+  .TextContainer5 {
+    width: 215px;
+    height: 82px;
+    left: 64px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Text5 {
+    width: 187px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .IconContainer5 {
+    width: 80px;
+    height: 58px;
+    left: 0px;
+    top: 95px;
+    position: absolute;
+  }
+  
+  .Icon5 {
+    width: 45px;
+    height: 45px;
+    left: 14px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Name5 {
+    width: 80px;
+    height: 14px;
+    left: 0px;
+    top: 44px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .Container6 {
+    width: 385px;
+    height: 164px;
+    left: 84px;
+    top: 972px;
+    position: absolute;
+  }
+  
+  .TextContainer6 {
+    width: 215px;
+    height: 82px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Text6 {
+    width: 187px;
+    height: 75px;
+    left: 14px;
+    top: 17px;
+    position: absolute;
+    color: #454141;
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .IconContainer6 {
+    width: 80px;
+    height: 58px;
+    left: 158px;
+    top: 82px;
+    position: absolute;
+  }
+  
+  .Icon6 {
+    width: 45px;
+    height: 45px;
+    left: 14px;
+    top: 0px;
+    position: absolute;
+  }
+  
+  .Name6 {
+    width: 80px;
+    height: 14px;
+    left: 0px;
+    top: 44px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+
+  .ContainerX {
+    width: 146px;
+    height: 52.21px;
+    left: 0px;
+    top: 0.84px;
+    position: absolute;
+    background: #FFF4F4;
+  }
+  
+  .TextContainerX {
+    width: 146px;
+    height: 43.79px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 32px;
+    font-family: 'Inter';
+    font-weight: 400;
+    word-wrap: break-word;
+  }
