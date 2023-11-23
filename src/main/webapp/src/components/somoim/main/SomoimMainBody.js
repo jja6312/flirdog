@@ -8,10 +8,16 @@ import SomoimMainFilter from './SomoimMainFilter';
 
 import styles from '../../../css/somoim/main/somoimHighlightCard.module.css'
 import slideStyles from '../../../css/somoim/main/SomoimSliderStyles.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const SomoimMainBody = () => {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [hoveredIndex, setHoveredIndex] = useState(null); // 캐러셀 호버 이벤트
+    const { somoimId } = useParams();
+    const [selectedLocation, setSelectedLocation] = useState(null); // 필터링
+
+    const handleSelectLocation = (location) => {
+        setSelectedLocation(location);
+    };
 
     const settings = {
         //rows: 1,                    //이미지를 몇 줄로 표시할지 개수
@@ -126,7 +132,7 @@ const SomoimMainBody = () => {
                             onMouseEnter={() => handleSlideHover(index)}
                             onMouseLeave={handleSlideLeave}
                             >
-                                <Link to='/somoim/detail'>
+                                <Link to={`/somoim/detailMain/${somoimId}`}>
                                     <img className={`${styles.moimHighlightImgDivImg} 
                                                     ${hoveredIndex === index ? slideStyles.hoveredImg : ''}
                                                     mb-4`} 
@@ -147,8 +153,9 @@ const SomoimMainBody = () => {
                     </div>
                 </div>
             </Container>         
-            <SomoimMainFilter></SomoimMainFilter>
-            <SomoimMainList></SomoimMainList>
+            <SomoimMainFilter onSelectLocation={handleSelectLocation}></SomoimMainFilter>
+            {/* <SomoimMainList></SomoimMainList> */}
+            <SomoimMainList selectedLocation={selectedLocation} />
         </>
     );
 };

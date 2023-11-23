@@ -2,7 +2,7 @@
     import Header from '../main/Header';
     import Footer from '../main/Footer';
     import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
-    import { Navigate } from 'react-router-dom';
+    import { useNavigate } from 'react-router-dom';
     import axios from 'axios';
 
     import styles from '../../css/somoim/main/somoimNew.module.css';
@@ -24,6 +24,8 @@
         //const [createdId, setCreatedId] = useState('John Doe')
         const [validated, setValidated] = useState(false);
         //const [showAlert, setShowAlert] = useState(false);
+
+        const navigate = useNavigate();
 
         const {somoimName, introduceSub, introduceDetail, memberCount, 
                 cost, target, address, address2, accountEmail, accountPhone } = formData
@@ -79,7 +81,7 @@
                 }).then(res =>  {
                         alert('소모임 개설이 완료되었습니다');
                         //setShowAlert(true);
-                        Navigate('/somoim');
+                        navigate('/somoim');
                     })
                     .catch(error => console.log(error));
                 console.log('서버 응답 오류:', response);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
+import axios from 'axios';
 import Header from '../../main/Header';
 import Footer from '../../main/Footer';
 
@@ -11,7 +12,6 @@ import SomoimDetailPhoto from './SomoimDetailPhoto';
 import SomoimDetailSchedule from './SomoimDetailSchedule';
 import SomoimDetailMember from './SomoimDetailMember';
 import styles from '../../../css/somoim/detail/somoimDetailHeader.module.css'
-import axios from 'axios';
 
 
 const SomoimDetail = () => {
@@ -65,7 +65,7 @@ const SomoimDetail = () => {
                             
                         </div>
                         <div className="content d-flex">
-                            <div className="flex-row col-lg-2 d-none d-md-block" style={{ position: 'relative', lineHeight: '0.8rem', textAlign:'right', paddingRight: '30px', color: '#F56084' }}>
+                            <div className="flex-row col-lg-2 d-none d-md-block" style={{ position: 'relative', lineHeight: '0.8rem', textAlign:'right', paddingRight: '30px', color: '#F56084', marginTop:'2px' }}>
                                 <p className='info'>모임장소</p>
                                 <p className='info'>참가비용</p>
                                 <p className='info'>대상자</p>
@@ -73,13 +73,14 @@ const SomoimDetail = () => {
                                 <p className='info'>개설자 정보</p>
                             </div>
                             <div className="flex-row col-lg-10" style={{ position: 'relative', lineHeight: '0.6rem' }}>
-                                <div className='detail d-flex'>
+                                <div className='detail d-flex' style={{ height: '2.1rem' }}>
                                     {/* <p style={{ lineHeight: '1.3', color:'#726C69' }}>서울 강서구 강서로 정조길 940-11 (영화동) 연세IT미래교육원 빌딩</p> */}
                                     <p style={{ lineHeight: '1.3', color:'#726C69' }}>{ address} {address2 }</p>
                                     <Button className='col-2' variant="secondary" size="sm" style={{ width: '70px', height: '25px', alignSelf:'start', marginLeft: '4px' }}>지도보기</Button>
                                 </div>
                                 {/* <p className='detail' style={{ color:'#726C69' }}>매주 목요일 14:00 ~ 18:00시</p> */}
-                                <p className='detail' style={{ color:'#726C69' }}>{ cost } 원</p>
+                                <p className='detail' style={{ color:'#726C69', marginBottom: '17px', position:'absolute' }}>{ cost } 원</p>
+                                <p className='info' style={{ color:'#726C69', position:'relative' , paddingLeft: '2.5rem', marginLeft:'7%' }}> |&nbsp;&nbsp;&nbsp;가입가능인원 총 { memberCount } 명</p>
                                 {/* <p className='detail'>성인 이상의 반려견 보유자</p> */}
                                 <p className='detail'>{ target }</p>
                                 <hr className="Line13" style={{ width: '100%', height: '0px', position: 'relative', border: '1.5px #F56084 solid', opacity: 1 }} />
