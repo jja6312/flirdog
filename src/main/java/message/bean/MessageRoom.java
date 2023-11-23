@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import user.bean.Address;
-import user.bean.User;
 
 import java.util.List;
 

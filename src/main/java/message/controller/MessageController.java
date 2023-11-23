@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import message.bean.Message;
 import message.config.KafkaConstants;
+import message.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,18 +25,11 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping(path = "message")
 public class MessageController {
 	@Autowired
-	private KafkaTemplate<String, Message> kafkaTemplate;
+	private MessageService messageService;
 
 	@PostMapping(value = "send", consumes = "application/json", produces = "application/json")
 	public void sendMessage(@RequestBody Message message) {
-		message = message.setSendDateToCurrentTime();
-		System.out.println(message);
-
-		try {
-			kafkaTemplate.send(KafkaConstants.KAFKA_TOPIC, message).get();
-		} catch (InterruptedException | ExecutionException e) {
-			throw new RuntimeException(e);
-		}
+		messageService.send(message);
 	}
 
 	@MessageMapping("/sendMessage")

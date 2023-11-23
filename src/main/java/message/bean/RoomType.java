@@ -7,8 +7,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum RoomType {
-    IMAGE("이미지"),
-    TEXT("텍스트");
+    SOMOIM("소모임"),
+    MATCHING("매칭"),
+    ADMIN("관리자문의");
 
     private final String text;
 }

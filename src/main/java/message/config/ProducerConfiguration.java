@@ -1,8 +1,11 @@
 package message.config;
 
 
+import com.google.common.collect.ImmutableMap;
 import message.bean.Message;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,19 +21,20 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 public class ProducerConfiguration {
-    @Bean
-    public ProducerFactory<String, Message> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfigurations());
+
+    private Map<String, Object> producerConfigurations() {
+        Map<String, Object> producerConfigurations =
+                ImmutableMap.<String, Object>builder()
+                        .put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.KAFKA_BROKER)
+                        .put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class)
+                        .put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class)
+                        .put(ProducerConfig.RETRIES_CONFIG, 3)
+                        .build();
+        return producerConfigurations;
     }
 
-    @Bean
-    public Map<String, Object> producerConfigurations() {
-        Map<String, Object> configurations = new HashMap<>();
-        configurations.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "223.130.146.216:9092,223.130.146.210:9092,223.130.146.187:9092");
-        configurations.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configurations.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        configurations.put(ProducerConfig.RETRIES_CONFIG, 3);
-        return configurations;
+    private ProducerFactory<String, Message> producerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerConfigurations());
     }
 
     @Bean
