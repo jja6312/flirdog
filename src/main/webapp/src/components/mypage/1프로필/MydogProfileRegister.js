@@ -1,4 +1,4 @@
-import React, {useRef, useState } from 'react';
+import React, {useRef } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
