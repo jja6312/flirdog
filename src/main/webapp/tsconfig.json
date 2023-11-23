@@ -22,6 +22,7 @@
   },
   "include": [
     "src/components/product/**/*",
+    "src/components/message/**/*",
     "src/css/product/**/*"
   ],
   "exclude": [

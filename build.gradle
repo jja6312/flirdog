@@ -69,10 +69,6 @@ dependencies {
 
    // //   coolSMS-지안
    // implementation 'net.nurigo:sdk:4.2.7'
-
-
-
-   
 }
 
 tasks.named('test') {
