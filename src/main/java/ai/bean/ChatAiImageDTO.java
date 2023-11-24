@@ -23,12 +23,10 @@ import product.bean.SubCategory;
 @Entity
 public class ChatAiImageDTO {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@NonNull
 	private String request;
-	
-	
 
 }

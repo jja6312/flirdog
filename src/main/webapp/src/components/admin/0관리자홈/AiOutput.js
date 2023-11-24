@@ -9,6 +9,7 @@ const AiOutput = ({ aiDogProfileImgUrl }) => {
           className={styles.aiDogProfileImg}
           src={aiDogProfileImgUrl}
           alt=""
+          style={{ width: "300px" }}
         />
       )}
     </div>

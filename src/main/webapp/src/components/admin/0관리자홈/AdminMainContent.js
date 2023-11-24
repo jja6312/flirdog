@@ -10,19 +10,35 @@ import axios from "axios";
 
 const AdminMainContent = () => {
   const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
-  const onSubmitChatAi = (e) => {
-    const request = e.target.value;
-    alert("간다");
-    axios
-      .post("http://localhost:8080/chatGPT/getAiDogProfileImage", {
-        request: request,
-      })
-      .then((res) => {
-        alert("나 갓다왓어");
-        console.log(res.data);
-        setAiDogProfileImgUrl(res.data);
-      })
-      .catch((error) => console.log(error));
+
+  const [AiImageInputText, setAiImageInputText] = useState("");
+  const [isContent, setIsContent] = useState(false);
+  const onSubmitChatAi = async (e) => {
+    const prompt = AiImageInputText;
+    alert(prompt);
+    alert("Requesting image...");
+
+    try {
+      const response = await axios.post(
+        "https://api.openai.com/v1/images/generations",
+        {
+          prompt: prompt,
+        },
+        {
+          headers: {
+            Authorization: `Bearer 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`,
+          },
+        }
+      );
+
+      const imageUrl = response.data.data[0].url; // Adjust this according to the actual response structure
+      setAiDogProfileImgUrl(imageUrl);
+      setIsContent(true);
+    } catch (error) {
+      console.log(error);
+      console.error("Error fetching image:", error);
+      alert("Failed to fetch image.");
+    }
   };
 
   return (
@@ -90,14 +106,20 @@ const AdminMainContent = () => {
                     <div
                       className={`d-flex justify-content-center align-items-center flex-column`}
                     >
-                      <span className={`${styles.aiOutputTextExplain}`}>
-                        컨텐츠 표시 화면
-                      </span>
-                      <span
-                        className={`${styles.aiOutputText} ${styles.flicker}`}
-                      >
-                        I'll save your time.
-                      </span>
+                      {isContent ? (
+                        <AiOutput aiDogProfileImgUrl={aiDogProfileImgUrl} />
+                      ) : (
+                        <>
+                          <span className={`${styles.aiOutputTextExplain}`}>
+                            컨텐츠 표시 화면
+                          </span>
+                          <span
+                            className={`${styles.aiOutputText} ${styles.flicker}`}
+                          >
+                            I'll save your time.
+                          </span>
+                        </>
+                      )}
                     </div>
                     <div>
                       <div
@@ -107,9 +129,8 @@ const AdminMainContent = () => {
                   </div>
                 </div>
               </div>
-              <div className={`${styles.leftContainerElement} p-3`}>
-                <AiOutput aiDogProfileImgUrl={aiDogProfileImgUrl}></AiOutput>
-              </div>
+
+              <div className={`${styles.leftContainerElement} p-3`}></div>
             </div>
             <div
               className={`${styles.rightContainer} d-flex flex-column justify-content-start`}
@@ -149,7 +170,12 @@ const AdminMainContent = () => {
               </div>
             </div>
           </div>
-          <ChatAi onSubmitChatAi={onSubmitChatAi}></ChatAi>
+
+          <ChatAi
+            onSubmitChatAi={onSubmitChatAi}
+            AiImageInputText={AiImageInputText}
+            setAiImageInputText={setAiImageInputText}
+          ></ChatAi>
 
           <div style={{ height: "300px" }}></div>
         </div>

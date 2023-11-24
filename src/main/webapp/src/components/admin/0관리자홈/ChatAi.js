@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
-const ChatAi = ({ onSubmitChatAi }) => {
+const ChatAi = ({ onSubmitChatAi, AiImageInputText, setAiImageInputText }) => {
   const [toggle, setToggle] = useState(true);
   const toggleBtn = () => {
     setToggle(!toggle);
+  };
+
+  const onInputText = (e) => {
+    setAiImageInputText(e.target.value);
   };
 
   return (
@@ -31,9 +35,11 @@ const ChatAi = ({ onSubmitChatAi }) => {
           )}
         </div>
         <input
+          value={AiImageInputText}
           type="text"
           className={styles.chatAiTextDiv}
           placeholder="채팅을 통해 작업을 지시하고, 세부 작업을 제안받으세요."
+          onChange={onInputText}
         />
         <img
           onClick={onSubmitChatAi}
