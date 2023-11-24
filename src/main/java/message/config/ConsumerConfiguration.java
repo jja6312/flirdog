@@ -11,6 +11,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.Map;
@@ -38,7 +39,8 @@ public class ConsumerConfiguration {
                 ImmutableMap.<String, Object>builder()
                     .put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.KAFKA_BROKER)
                     .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class)
-                    .put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, getAllTrustJsonDeserializer())
+                    .put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class)
+                    .put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, getAllTrustJsonDeserializer())
                     .put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
                     .build();
         return consumerConfigurations;
@@ -47,5 +49,4 @@ public class ConsumerConfiguration {
     private ConsumerFactory<String, Message> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigurations(), new StringDeserializer(), getAllTrustJsonDeserializer());
     }
-
 }

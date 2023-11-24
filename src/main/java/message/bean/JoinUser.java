@@ -3,6 +3,7 @@ package message.bean;
 import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import order.bean.Orders;
@@ -24,4 +25,10 @@ public class JoinUser extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "message_room_id")
     private MessageRoom messageRoom;
+
+    @Builder
+    public JoinUser(User user, MessageRoom messageRoom) {
+        this.user = user;
+        this.messageRoom = messageRoom;
+    }
 }
