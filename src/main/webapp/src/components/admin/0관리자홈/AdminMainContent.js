@@ -33,6 +33,22 @@ const AdminMainContent = () => {
       const imageUrl = response.data.data[0].url; // Adjust this according to the actual response structure
       setAiDogProfileImgUrl(imageUrl);
       setIsContent(true);
+      alert("Saving image...");
+
+      axios
+        .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
+          params: {
+            imageUrl: imageUrl,
+          },
+        })
+        .then((res) => {
+          alert("이미지 저장 완료");
+          alert(res.data);
+        })
+        .catch((error) => {
+          alert("이미지 저장 실패");
+          console.log(error);
+        });
     } catch (error) {
       console.log(error);
       console.error("Error fetching image:", error);
