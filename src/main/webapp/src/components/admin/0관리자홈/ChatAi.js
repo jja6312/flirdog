@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
-const ChatAi = ({ onSubmitChatAi }) => {
+const ChatAi = () => {
   const [toggle, setToggle] = useState(true);
   const toggleBtn = () => {
     setToggle(!toggle);
@@ -36,7 +36,6 @@ const ChatAi = ({ onSubmitChatAi }) => {
           placeholder="채팅을 통해 작업을 지시하고, 세부 작업을 제안받으세요."
         />
         <img
-          onClick={onSubmitChatAi}
           alt=""
           src="/image/admin/openai.png"
           className={styles.openailogo}
