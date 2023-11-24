@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import rightContent from "../../../css/admin/rightContent.module.css";
 import styles from "../../../css/admin/adminMainContent.module.css";
 import AiSupportList from "./AiSupportList";
@@ -6,28 +6,56 @@ import Banner from "./Banner";
 import AiOutput from "./AiOutput";
 import { Alert } from "react-bootstrap";
 import ChatAi from "./ChatAi";
+import axios from "axios";
 
 const AdminMainContent = () => {
-  // const testGo = () => {
-  //   axios
-  //     .get("http://localhost:8080/admin/testGo")
-  //     .then((res) => {
-  //       alert(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
+  const [AiImageInputText, setAiImageInputText] = useState("");
+  const [isContent, setIsContent] = useState(false);
+  const onSubmitChatAi = async (e) => {
+    const prompt = AiImageInputText;
+    alert(prompt);
+    alert("Requesting image...");
 
-  // axios
-  //       .get(`/user/getUserList?page=${page}`)
-  //       .then((res) => {
-  //         setList(res.data.content);
-  //         setPagingArray(
-  //           Array.from({ length: res.data.totalPages }, (_, index) => index + 1)
-  //         );
-  //       })
-  //       .catch((error) => console.log(error));
+    try {
+      const response = await axios.post(
+        "https://api.openai.com/v1/images/generations",
+        {
+          prompt: prompt,
+        },
+        {
+          headers: {
+            Authorization: `Bearer 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`,
+          },
+        }
+      );
+
+      const imageUrl = response.data.data[0].url; // Adjust this according to the actual response structure
+      setAiDogProfileImgUrl(imageUrl);
+      setIsContent(true);
+      alert("Saving image...");
+
+      axios
+        .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
+          params: {
+            imageUrl: imageUrl,
+          },
+        })
+        .then((res) => {
+          alert("이미지 저장 완료");
+          alert(res.data);
+        })
+        .catch((error) => {
+          alert("이미지 저장 실패");
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+      console.error("Error fetching image:", error);
+      alert("Failed to fetch image.");
+    }
+  };
+
   return (
     <>
       <div
@@ -93,14 +121,20 @@ const AdminMainContent = () => {
                     <div
                       className={`d-flex justify-content-center align-items-center flex-column`}
                     >
-                      <span className={`${styles.aiOutputTextExplain}`}>
-                        컨텐츠 표시 화면
-                      </span>
-                      <span
-                        className={`${styles.aiOutputText} ${styles.flicker}`}
-                      >
-                        I'll save your time.
-                      </span>
+                      {isContent ? (
+                        <AiOutput aiDogProfileImgUrl={aiDogProfileImgUrl} />
+                      ) : (
+                        <>
+                          <span className={`${styles.aiOutputTextExplain}`}>
+                            컨텐츠 표시 화면
+                          </span>
+                          <span
+                            className={`${styles.aiOutputText} ${styles.flicker}`}
+                          >
+                            I'll save your time.
+                          </span>
+                        </>
+                      )}
                     </div>
                     <div>
                       <div
@@ -110,9 +144,7 @@ const AdminMainContent = () => {
                   </div>
                 </div>
               </div>
-              <div className={`${styles.leftContainerElement} p-3`}>
-                <AiOutput></AiOutput>
-              </div>
+              <div className={`${styles.leftContainerElement} p-3`}></div>
             </div>
             <div
               className={`${styles.rightContainer} d-flex flex-column justify-content-start`}
@@ -152,7 +184,11 @@ const AdminMainContent = () => {
               </div>
             </div>
           </div>
-          <ChatAi></ChatAi>
+          <ChatAi
+            onSubmitChatAi={onSubmitChatAi}
+            AiImageInputText={AiImageInputText}
+            setAiImageInputText={setAiImageInputText}
+          ></ChatAi>
 
           <div style={{ height: "300px" }}></div>
         </div>
