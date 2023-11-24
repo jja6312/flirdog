@@ -28,6 +28,9 @@ public class MypageUploadController {
 	public void upload( @RequestPart("dogsInfoDTO") DogsInfoDTO dogsInfoDTO,
 						@RequestPart("img") List<MultipartFile> list,
 						HttpSession session) {
+		
+		
+		
 		//실제 폴더
 		String filePath = session.getServletContext().getRealPath("/public/storage");
 		System.out.println("실제폴더 = " + filePath);
@@ -55,9 +58,15 @@ public class MypageUploadController {
 			}
 			
 			DogsInfoDTO dto = new DogsInfoDTO();
+			dto.setAge(dogsInfoDTO.getAge());
+			dto.setDogsBreed(dogsInfoDTO.getDogsBreed());
+			dto.setGender(dogsInfoDTO.getGender());
 			dto.setDogsInfo(dogsInfoDTO.getDogsInfo());
-			dto.setImageFileName(fileName);
+			dto.setIsNeutralized(dogsInfoDTO.getIsNeutralized());
+			dto.setName(dogsInfoDTO.getName());
+			dto.setScore(dogsInfoDTO.getScore());
 			dto.setImage(originalFileName);
+			dto.setImageFileName(fileName);
 			
 			dogsImageList.add(dto);
 			

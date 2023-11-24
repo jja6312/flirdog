@@ -11,67 +11,111 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
-const MydogProfileRegister = () => {
-    
-    const [dogsInfoDTO, setdogsInfoDTO] = useState({
+const MydogProfileRegister2 = () => {
+    const imgRef = useRef()
+
+    const [dogsInfoDTO, setDogsInfoDTO] = useState({
         name: '찬영개기본값',
+        dogsInfo: '강아지 정보는 아직 미정입니다.',
+        image: '이미지 안들어간경우',
         age: '11기본값',
         gender: '남아기본값',
         dogsBreed: '말티즈',
         isNeutralized: 'true',
-        image: '이미지는 아직 구현하지 않았습니다.',
         score: '스코어는 모릅니다.',
-        dogsInfo: '강아지 정보는 아직 미정입니다.',
-      });
-      const {name ,age,gender,dogsBreed,isNeutralized,image,score,dogsInfo } = dogsInfoDTO
+        imageFileName: '이미지파일네임은 모릅니다.',
 
-      const onInput = (e) => {
-        const {name, value} = e.target
+    })  
 
-        setdogsInfoDTO({
+    const {name ,age,gender,dogsBreed,isNeutralized,image,score,dogsInfo,imageFileName } = dogsInfoDTO
+
+    const [imgList, setImgList] = useState([])
+    const [files, setFiles] = useState([])
+
+    const navigate = useNavigate()
+    
+    const onInput = (e) =>{
+        const { name, value } = e.target
+        
+
+        setDogsInfoDTO({
             ...dogsInfoDTO,
             [name]: value
         })
-      }
-      
-    const navigate = useNavigate()
-      
-    const onWriteSubmit = (e) => {
-        
-        e.preventDefault()
-        console.log(dogsInfoDTO)
-
-        axios.post('/mypage/write', null, { params: dogsInfoDTO })
-                .then(
-                    alert(dogsInfoDTO.name),
-                    alert('회원가입을 축하합니다.'),
-                    navigate('/mypage/MydogProfile')
-                ).catch(error => console.log(error))
     }
-
-
 
     const onCamera = () => {
         imgRef.current.click()
     }
-  
-    const onImgInput = (e) => {
-        const imgfiles = Array.from(e.target.files)
-        var imgArray = []
-  
-        imgfiles.map(item => {
-            const objectURL = URL.createObjectURL(item)
-            imgArray.push(objectURL)
-            return imgArray;
-        })
+
+    const onImgInput = (e) => {  //이미지를 선택하면 실행되는 함수
+        const imgFiles = Array.from(e.target.files)//파일을 배열에 담는다.
+        var imgArray = [] //임시배열의 변수를 잡아서
+
+        imgFiles.map(item => {
+            const objectUrl = URL.createObjectURL(item)
+            imgArray.push(objectUrl)
+        }) //map 돌아가는거 안에 차곡차곡 담아라.
+
+        setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
+        setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
     }
-  
-    //사진 등록관련
-    const imgRef = useRef()
-  
+
+    const onUploadSubmit = (e) => {
+        e.preventDefault()
+
+        alert(dogsInfoDTO.age)
+        console.log(dogsInfoDTO);
+
+        var formData = new FormData()
+        formData.append('dogsInfoDTO', new Blob([JSON.stringify(dogsInfoDTO)], {type: 'application/json'}))
+        // for(var i=0; i<files.length; i++) {
+        //     formData.append('img', files[i])
+        // }
+        Object.values(files).map((item,index) => {
+            formData.append('img', item)
+        })
+
+        axios.post('/mypage/upload', formData,{
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        }) 
+        .then(res=>{
+
+            alert('이미지 업로드 완료')
+            navigate('/mypage/MydogProfile')
+        })
+        .catch(error=> console.log(error)) 
+    }
+
+    const onReset = (e) => {
+        e.preventDefault()
+
+        setDogsInfoDTO({
+            name: '',
+            age: '',
+            gender: '',
+            dogsBreed: '',
+            isNeutralized: 'true',
+            image: '',
+            score: '',
+            dogsInfo: '',
+        })
+
+        setImgList([])
+        imgRef.current.value = ''
+    }
+
+
     return (
         <div>
-            <Header></Header>            
+            <Header />
+            <h3>
+        		<Link to='/'>
+        		    <img src="data:image/jpeg;base64,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" alt='망상토끼' width='50' height='50' />
+        		</Link>
+        	</h3>
             <Container className='px-10 mt-6'> {/* 회원 정보 수정 글씨 */}
                     <div className='row '>
                         <div className='col-lg-4 d-flex justify-content-center'></div>
@@ -218,7 +262,34 @@ const MydogProfileRegister = () => {
                     <div className='row'>
                         <div className='col-sm-3 d-flex justify-content-center'></div>
                         <div className='col-sm-6 d-flex justify-content-center'>
-                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onWriteSubmit }>등록하기</Button>{''} 
+                            <textarea  style={{border:'1px solid grey',width:'25rem',height:'50px',marginTop:'10px'}} name='dogsInfo' rows='10' cols='60' value={ dogsInfo } onChange={ onInput }></textarea>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-3 d-flex justify-content-center'></div>
+                        <div className='col-sm-6 d-flex justify-content-center'>
+                                <span>
+                                        {
+                                        imgList.map((item,index) => <img key={ index } 
+                                                                            src={ item } 
+                                                                            style={{ width: '45px' , height: '45px' }} />)
+                                        }
+                                </span>
+
+                                <img src="data:image/jpeg;base64,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"  alt="카메라"
+                                     onClick={ onCamera }
+                                     style={{ width: 30, height: 30, borderRadius: 20 }} />
+                                <input type="file" name="img[]" multiple='multiple'
+                                       ref={ imgRef } 
+                                       onChange={ onImgInput }
+                                       style={{ visibility: 'hidden' }} />
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-3 d-flex justify-content-center'></div>
+                        <div className='col-sm-6 d-flex justify-content-center'>
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>등록하기</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>취소</Button>{''} 
                         </div>
                     </div>
             </Container>
@@ -226,4 +297,4 @@ const MydogProfileRegister = () => {
     );
 };
 
-export default MydogProfileRegister;
+export default MydogProfileRegister2;
