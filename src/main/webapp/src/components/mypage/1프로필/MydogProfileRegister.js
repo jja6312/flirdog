@@ -1,4 +1,5 @@
-import React, {useEffect, useRef,useState } from 'react';
+import React, { useRef,useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
@@ -12,50 +13,110 @@ import Button from 'react-bootstrap/Button';
 
 const MydogProfileRegister = () => {
     
+    //공통사항======================================================
+
+    const navigate = useNavigate()
+
     const [dogsInfoDTO, setdogsInfoDTO] = useState({
-        id: '',
-        name: '',
-        age: '',
-        gender: '',
-        dogsBreed: '',
-        isNeutralized: '',
-        image: '',
-        score: 0,
-        dogsInfoId: 0,
+        name: '찬영개기본값',
+        dogsInfo: '강아지 정보는 아직 미정입니다.',
+        imageFileName: '', //UUID에서 얻은 이름.
+        image: '이미지는 아직 구현하지 않았습니다.', //이미지 원래 이름.
+        age: '11기본값',
+        gender: '남아기본값',
+        dogsBreed: '말티즈',
+        isNeutralized: 'true',
+        score: '스코어는 모릅니다.',
       });
+      const {name ,dogsInfo,imageFileName,image,age,gender,dogsBreed,isNeutralized,score} = dogsInfoDTO
 
-      useEffect(() => {
-        axios.post('http://localhost:8080/mypage/write', null, { params: dogsInfoDTO })
-        .then((res) => {
-            alert('회원가입을 축하합니다.');
-            console.log(res.data);
-            //setUserDTO(res.data);
+      const onInput = (e) => {
+        const {name, value} = e.target
 
+        setdogsInfoDTO({
+            ...dogsInfoDTO,
+            [name]: value
         })
-        .catch((error) => {
-            console.log(error);
-            alert('실패')
-        });
-    }, []);
+      }
+      
+    const onWriteSubmit = (e) => {
+        
+        e.preventDefault()
+        console.log(dogsInfoDTO)
 
+        axios.post('/mypage/write', null, { params: dogsInfoDTO })
+                .then(
+                    alert('회원가입을 축하합니다.'),
+                    navigate('/mypage/MydogProfile')
+                ).catch(error => console.log(error))
+    }
+
+    //==============================================================공통사항    
+
+    //이미지업로드 관련=============================================
+
+    const imgRef = useRef()
+    
+  
+    const [imgList, setImgList] = useState([])
+    const [files, setFiles] = useState([])
+  
     const onCamera = () => {
         imgRef.current.click()
     }
-  
-    const onImgInput = (e) => {
-        const imgfiles = Array.from(e.target.files)
-        var imgArray = []
-  
-        imgfiles.map(item => {
-            const objectURL = URL.createObjectURL(item)
-            imgArray.push(objectURL)
-            return imgArray;
-        })
+
+    const onImgInput = (e) => {  //이미지를 선택하면 실행되는 함수
+        const imgFiles = Array.from(e.target.files)//파일을 배열에 담는다.
+        var imgArray = [] //임시배열의 변수를 잡아서
+
+        imgFiles.map(item => {
+            const objectUrl = URL.createObjectURL(item)
+            imgArray.push(objectUrl)
+        }) //map 돌아가는거 안에 차곡차곡 담아라.
+
+        setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
+        setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
     }
-  
-    //사진 등록관련
-    const imgRef = useRef()
-  
+
+    const onUploadSubmit = (e) => {
+        e.preventDefault()
+
+        var formData = new FormData()
+        formData.append('dogsInfoDTO', new Blob([JSON.stringify(dogsInfoDTO)], {type: 'application/json'}))
+        // for(var i=0; i<files.length; i++) {
+        //     formData.append('img', files[i])
+        // }
+        Object.values(files).map((item,index) => {
+            formData.append('img', item)
+        })
+
+        axios.post('/mypage/upload', formData,{
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        }) 
+        .then(res=>{
+            alert('이미지 업로드 완료')
+            navigate('/mypage/MydogProfile')
+        })
+        .catch(error=> console.log(error)) 
+    }
+
+    const onReset = (e) => {
+        e.preventDefault()
+
+        setdogsInfoDTO({
+            imageName: '',
+            imageContent: '',
+            imageFileName: '',
+            imageOriginalName: ''
+        })
+
+        setImgList([])
+        imgRef.current.value = ''
+    }
+
+    //==============================================================이미지업로드 관련/
     return (
         <div>
             <Header></Header>            
@@ -95,11 +156,11 @@ const MydogProfileRegister = () => {
                                                 사 진
                                             </div>&nbsp;&nbsp;&nbsp;
                                             <img src='/image/date/camera.jpg' alt="카메라"
-                                                        onClick={ onCamera }
+                                                        //onClick={  }
                                                         style={{width:70, height:50, borderRadius:20}} />
                                             <input type="file"name="img[]"
                                                     multiple="multiple"
-                                                    onChange={ onImgInput } 
+                                                    //onChange={ onImgInput } 
                                                     ref={ imgRef } style={{visibility:'hidden'}} />
                                             </div>
                                         </Form.Group>
@@ -120,7 +181,7 @@ const MydogProfileRegister = () => {
                                 </InputGroup.Text>
                                 <Form.Control
                                 aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
+                                aria-describedby="inputGroup-sizing-default" name='name' value={name} onChange={onInput}
                                 />
                             </InputGroup>
                         </Col>
@@ -137,7 +198,7 @@ const MydogProfileRegister = () => {
                                 </InputGroup.Text>
                                 <Form.Control
                                 aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
+                                aria-describedby="inputGroup-sizing-default" name='age' value={age} onChange={onInput}
                                 />
                             </InputGroup>
                         </Col>
@@ -154,7 +215,7 @@ const MydogProfileRegister = () => {
                                 </InputGroup.Text>
                                 <Form.Control
                                 aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
+                                aria-describedby="inputGroup-sizing-default"  name='dogsBreed' value={dogsBreed} onChange={onInput}
                                 />
                             </InputGroup>
                         </Col>
@@ -173,10 +234,10 @@ const MydogProfileRegister = () => {
                             <div className={Mypage.MyprofileUpdate_Text} style={{marginTop:'5px'}} >
                                 &nbsp;&nbsp;&nbsp;
                                 <div className={` d-flex justify-content-right`} style={{marginLeft:'40px'}}>
-                                                    <input id='genderBox1' type='radio' name='gender'  value='남아' />
+                                                    <input id='genderBox1' type='radio' name='gender'  value='남아'  onChange={onInput} />
                                                     <label className={Mypage.labelClass1} htmlFor='genderBox1'>남 아</label>
                                                     &nbsp;&nbsp;
-                                                    <input id='genderBox2' type='radio' name='gender'  value='여아' />
+                                                    <input id='genderBox2' type='radio' name='gender'  value='여아' onChange={onInput} />
                                                     <label className={Mypage.labelClass2} htmlFor='genderBox2'>여 아</label>
                                 </div>
                             </div>
@@ -194,7 +255,7 @@ const MydogProfileRegister = () => {
                                         중성화 여부
                                     </div>&nbsp;&nbsp;&nbsp;
                                     <div className={`d-flex justify-content-left`}>
-                                        <input id='neutralizationBox' type='checkbox' value='neutralization' />
+                                        <input id='neutralizationBox' type='checkbox' value='true'  name='isNeutralized' onChange={onInput}  />
                                         <label className={`${Mypage.neutralizationLabel} ${Mypage.labelClass3}`} htmlFor='neutralizationBox'></label>
                                     </div>
                                 </div>
@@ -205,7 +266,7 @@ const MydogProfileRegister = () => {
                     <div className='row'>
                         <div className='col-sm-3 d-flex justify-content-center'></div>
                         <div className='col-sm-6 d-flex justify-content-center'>
-                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}}>등록하기</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>등록하기</Button>{''} 
                         </div>
                     </div>
             </Container>

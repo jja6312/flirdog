@@ -6,47 +6,49 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 import lombok.NonNull;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "userTable")
+@Table(name = "dogsInfoTable")
+@Data
 public class DogsInfoDTO {
 	
-	   	@Id
+
+		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	   	@Column(name="id")
 	    private Long id;
 
-		@NonNull
+		//@NonNull 업로드 때문에 뺐음.
 		@Column(name="name", length=50)
 	    private String name;
 
-		@NonNull
+		//@NonNull 업로드 때문에 뺐음.
 		@Column(name="age", length=50)
 	    private String age;
 
-		@NonNull
+		//@NonNull 업로드 때문에 뺐음.
 		@Column(name="gender", length=50)
 	    private String gender;
 
-		@NonNull
+		//@NonNull 업로드 때문에 뺐음.
 		@Column(name="dogsBreed", length=50)
-	    private DogsBreed dogsBreed; //품종
+	    private String dogsBreed; //품종
 
 		@Column(name="isNeutralized", length=50)
 	    private Boolean isNeutralized; //중성화 여부 했으면 true 안했으면 false
 
-		@Column(name="image", length=50)
-	    private String image;
-
+		@Column(name="image", nullable = false, length = 100)
+	    private String image; //이미지의 원래 이름
+		
+		@Column(name="imagefilename", nullable = false, length = 100)
+		private String imageFileName; //UUID에서 얻은 이름
+		
 		@Column(name="score", length=50)
 	    private String score;
 
-		@NonNull
+		//@NonNull 업로드 때문에 뺐음.
 		@Column(name="dogsInfo", length=50)
 	    private String dogsInfo;
 }

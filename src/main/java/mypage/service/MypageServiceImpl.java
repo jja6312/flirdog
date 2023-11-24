@@ -1,6 +1,8 @@
 package mypage.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import mypage.repository.MypageDogsInfoDTORepository;
@@ -39,7 +41,16 @@ public class MypageServiceImpl implements MypageService {
 	}
 	@Override
 	public void write(DogsInfoDTO dogsInfoDTO) {
+//		System.out.println("MypageServiceImpl 부분에서 " + dogsInfoDTO.getName() );
 		mypageDogsInfoDTORepository.save(dogsInfoDTO);
 		
+	}
+	@Override
+	public Page<DogsInfoDTO> getDogInfoList(Pageable pageable) {	
+		//DB
+		Page<DogsInfoDTO> list = mypageDogsInfoDTORepository.findAll(pageable);
+		System.out.println(list.getContent());
+		
+		return list;
 	}
 }
