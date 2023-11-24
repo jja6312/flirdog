@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import rightContent from "../../../css/admin/rightContent.module.css";
 import styles from "../../../css/admin/adminMainContent.module.css";
 import AiSupportList from "./AiSupportList";
@@ -6,25 +6,28 @@ import Banner from "./Banner";
 import AiOutput from "./AiOutput";
 import { Alert } from "react-bootstrap";
 import ChatAi from "./ChatAi";
-import axios from "axios";
 
 const AdminMainContent = () => {
-  const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
-  const onSubmitChatAi = (e) => {
-    const request = e.target.value;
-    alert("간다");
-    axios
-      .post("http://localhost:8080/chatGPT/getAiDogProfileImage", {
-        request: request,
-      })
-      .then((res) => {
-        alert("나 갓다왓어");
-        console.log(res.data);
-        setAiDogProfileImgUrl(res.data);
-      })
-      .catch((error) => console.log(error));
-  };
+  // const testGo = () => {
+  //   axios
+  //     .get("http://localhost:8080/admin/testGo")
+  //     .then((res) => {
+  //       alert(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
+  // axios
+  //       .get(`/user/getUserList?page=${page}`)
+  //       .then((res) => {
+  //         setList(res.data.content);
+  //         setPagingArray(
+  //           Array.from({ length: res.data.totalPages }, (_, index) => index + 1)
+  //         );
+  //       })
+  //       .catch((error) => console.log(error));
   return (
     <>
       <div
@@ -108,7 +111,7 @@ const AdminMainContent = () => {
                 </div>
               </div>
               <div className={`${styles.leftContainerElement} p-3`}>
-                <AiOutput aiDogProfileImgUrl={aiDogProfileImgUrl}></AiOutput>
+                <AiOutput></AiOutput>
               </div>
             </div>
             <div
@@ -149,7 +152,7 @@ const AdminMainContent = () => {
               </div>
             </div>
           </div>
-          <ChatAi onSubmitChatAi={onSubmitChatAi}></ChatAi>
+          <ChatAi></ChatAi>
 
           <div style={{ height: "300px" }}></div>
         </div>

@@ -60,9 +60,6 @@ dependencies {
 	//s3
 	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
 
-	//chatGPT
-		implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
-
 }
 
 tasks.named('test') {
