@@ -23,8 +23,7 @@ import org.springframework.web.client.RestTemplate;
 public class ChatGPTService {
 
 	private RestTemplate restTemplate = new RestTemplate();
-	// @Value("${openai.key}")
-	private String apiKey = "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";
+	private String apiKey = "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";
 
 	public void OpenAiService(RestTemplateBuilder restTemplateBuilder) {
 		this.restTemplate = restTemplateBuilder.build();

@@ -25,7 +25,7 @@ const AdminMainContent = () => {
         },
         {
           headers: {
-            Authorization: `Bearer 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`,
+            Authorization: `Bearer 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`,
           },
         }
       );
