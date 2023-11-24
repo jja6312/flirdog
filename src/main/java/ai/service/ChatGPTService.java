@@ -1,4 +1,5 @@
 package ai.service;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
@@ -20,36 +21,37 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ChatGPTService {
-	
-	  private RestTemplate restTemplate = new RestTemplate();
-	  	@Value("${openai.key}")
-	    private String apiKey;
 
-	    public void OpenAiService(RestTemplateBuilder restTemplateBuilder) {
-	        this.restTemplate = restTemplateBuilder.build();
-	    }
+	private RestTemplate restTemplate = new RestTemplate();
+	// @Value("${openai.key}")
+	private String apiKey = "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";
 
-	    public String fetchImageUrl(String prompt) {
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.set("Authorization", "Bearer " + apiKey);
-	        headers.setContentType(MediaType.APPLICATION_JSON);
+	public void OpenAiService(RestTemplateBuilder restTemplateBuilder) {
+		this.restTemplate = restTemplateBuilder.build();
+	}
 
-	        HttpEntity<Map<String, Object>> request = new HttpEntity<>(Map.of("prompt", prompt), headers);
-	        ResponseEntity<Map> response = restTemplate.postForEntity("https://api.openai.com/v1/images/generations", request, Map.class);
+	public String fetchImageUrl(String prompt) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", "Bearer " + apiKey);
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-	        // OpenAI 응답에서 이미지 URL 추출 (응답 구조에 따라 조정 필요)
-	        String imageUrl = (String) response.getBody().get("url");
-	        return imageUrl;
-	    }
+		HttpEntity<Map<String, Object>> request = new HttpEntity<>(Map.of("prompt", prompt), headers);
+		ResponseEntity<Map> response = restTemplate.postForEntity("https://api.openai.com/v1/images/generations",
+				request, Map.class);
 
-	    public void downloadAndSaveImage(String imageUrl, String fileName) throws Exception {
-	        URL url = new URL(imageUrl);
-	        Resource resource = new UrlResource(url);
+		// OpenAI 응답에서 이미지 URL 추출 (응답 구조에 따라 조정 필요)
+		String imageUrl = (String) response.getBody().get("url");
+		return imageUrl;
+	}
 
-	        Path path = Paths.get("path/to/save/" + fileName); // 이미지를 저장할 경로
-	        try (InputStream inputStream = resource.getInputStream()) {
-	            Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
-	        }
-	    }
+	public void downloadAndSaveImage(String imageUrl, String fileName) throws Exception {
+		URL url = new URL(imageUrl);
+		Resource resource = new UrlResource(url);
+
+		Path path = Paths.get("path/to/save/" + fileName); // 이미지를 저장할 경로
+		try (InputStream inputStream = resource.getInputStream()) {
+			Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
+		}
+	}
 
 }
