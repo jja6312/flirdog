@@ -27,7 +27,7 @@ const SomoimDetail = () => {
     //const [somoimIdState, setSomoimId] = useState('1');
 
     const { user } = useContext(UserContext); // 유저 컨텍스트
-    //const {passwd, email} = user;
+    const { name } = user;
     
     const { somoimName, introduceSub, address, address2, cost, memberCount, target, accountEmail, accountPhone } = formData
 
@@ -89,7 +89,7 @@ const SomoimDetail = () => {
                                 <hr className="Line13" style={{ width: '100%', height: '0px', position: 'relative', border: '1.5px #F56084 solid', opacity: 1 }} />
                                 <div className='detail d-flex' style={{ lineHeight: '0.4rem' }}>
                                     <div style={{ flex: 1, color:'#726C69' }}>
-                                        <p className='detail'>이름 : 굿모임</p>
+                                        <p className='detail'>이름 : { name }</p>
                                         {/* <p className='detail'>연락처: 02-1234-5678</p> */}
                                         <p className='detail'>연락처 : { accountPhone }</p>
                                         {/* <p className='detail'>이메일: sulmukja@naver.com</p> */}
