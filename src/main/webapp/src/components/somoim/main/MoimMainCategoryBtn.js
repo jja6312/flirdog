@@ -5,17 +5,56 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavbarToggle from 'react-bootstrap/NavbarToggle'
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import styles from '../../../css/somoim/main/MoimMainCategoryBtn.module.css';
+import axios from 'axios';
 
-const MoimMainCategoryBtn = () => {
+const MoimMainCategoryBtn = ({ onSearch,  }) => {
     const [showMenu, setShowMenu] = useState(false);
+    const [search, setSearch] = useState('');
+    const [searchData, setSearchData] = useState([]);
 
     const expand = window.innerWidth >= 768 ? 'md' : false;
 
     const handleToggle = () => setShowMenu(!showMenu);
     const handleClose = () => setShowMenu(false);
+
+    const onInput = (e) => {
+        console.log(e.target.value)
+        setSearch(e.target.value);
+    }
+
+    // const onSearchButtonClick = async () => {
+    //     try {
+    //         const res = await axios.get('/somoim/getSomoimList')
+    //         console.log(res.data);
+    //         setSearchData(res.data)
+    //         console.log('MoimMainCategoryBtn searchData : ' + JSON.stringify(searchData) )
+    
+    //         onSearch({ search, searchData });
+    //         console.log('MoimMainCategoryBtn onSearch : ' + onSearch)
+    //     } catch(e) {
+    //         console.error(e);
+    //     }
+    // }
+
+    const onSearchButtonClick = async () => {
+        try {
+            const res = await axios.get('/somoim/getSomoimList')
+            setSearchData(res.data);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    useEffect(() => {
+        //console.log('MoimMainCategoryBtn searchData : ' + JSON.stringify(searchData));
+        console.log('MoimMainCategoryBtn search : ' + search);
+        onSearch({ search });
+        //onSearch({ search, searchData });
+        console.log('MoimMainCategoryBtn onSearch : ' + onSearch);
+    }, [searchData]);
 
     return (
         <>
@@ -38,13 +77,15 @@ const MoimMainCategoryBtn = () => {
                                 <div className={`${styles.title}  text-nowrap pt-1 pb-1`}>제 목</div>
                                 <div className={styles.Line2}></div>
                                 <Form.Control
-                                type="search"
-                                placeholder="검색어를 입력하세요"
-                                className="me-2"
-                                style={{ width: 'calc(100% - 50px)', marginLeft: '85px' }}
-                                aria-label="Search"
+                                    type="search"
+                                    value={ search }
+                                    onChange={ onInput }
+                                    placeholder="검색어를 입력하세요"
+                                    className="me-2"
+                                    style={{ width: 'calc(100% - 50px)', marginLeft: '85px' }}
+                                    aria-label="Search"
                                 />
-                                <Button className={`${styles.search}  text-nowrap pt-1 pb-1`} variant="dark">검 색</Button>
+                                <Button className={`${styles.search}  text-nowrap pt-1 pb-1`} variant="dark" onClick={ onSearchButtonClick } >검 색</Button>
                             </div>
                         </Form>
                         

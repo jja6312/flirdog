@@ -14,10 +14,18 @@ const SomoimMainBody = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null); // 캐러셀 호버 이벤트
     const { somoimId } = useParams();
     const [selectedLocation, setSelectedLocation] = useState(null); // 필터링
+    const [searchList, setSearchList] = useState([]); // 검색
 
     const handleSelectLocation = (location) => {
         setSelectedLocation(location);
     };
+
+    const handleSearch = (searchData) => {
+        setSearchList({searchData})
+        //console.log('somoimMainBody searchData :' + JSON.stringify(searchData));
+        const { search } = searchData;
+        console.log('somoimMainBody search:', search);
+    }
 
     const settings = {
         //rows: 1,                    //이미지를 몇 줄로 표시할지 개수
@@ -153,9 +161,9 @@ const SomoimMainBody = () => {
                     </div>
                 </div>
             </Container>         
-            <SomoimMainFilter onSelectLocation={handleSelectLocation}></SomoimMainFilter>
+            <SomoimMainFilter onSelectLocation={handleSelectLocation} onSearch={ handleSearch } ></SomoimMainFilter>
             {/* <SomoimMainList></SomoimMainList> */}
-            <SomoimMainList selectedLocation={selectedLocation} />
+            <SomoimMainList selectedLocation={selectedLocation} searchList={ searchList } setSelectedLocation={setSelectedLocation} setSearchList={setSearchList} />
         </>
     );
 };
