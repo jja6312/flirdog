@@ -1,5 +1,6 @@
 package admin.service;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
@@ -72,5 +73,20 @@ public class NCPObjectStorageService implements ObjectStorageService {
 		System.out.println("삭제완료!");
 
 	}
+	@Override
+	public String uploadFile(String bucketName, String directoryPath, InputStream inputStream, String contentType) throws IOException {
+        String fileName = UUID.randomUUID().toString();
+
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentType(contentType);
+
+        PutObjectRequest objectRequest = new PutObjectRequest(bucketName,
+                directoryPath + fileName,
+                inputStream,
+                objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead);
+
+        s3.putObject(objectRequest);
+        return fileName;
+    }
 
 }

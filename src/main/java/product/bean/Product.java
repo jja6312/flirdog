@@ -4,12 +4,8 @@ import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import order.bean.Order;
-import user.bean.DogsInfo;
-import user.bean.User;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter

@@ -1,14 +1,9 @@
 package admin.controller;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import application.FlirdogApplication;
 
 @WebMvcTest(AdminController.class) // AdminController 클래스에 대한 웹 MVC 테스트 어노테이션
 @ContextConfiguration(classes = AdminController.class) // AdminController 클래스를 컨텍스트에 등록

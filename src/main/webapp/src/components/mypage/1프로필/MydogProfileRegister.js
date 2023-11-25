@@ -1,157 +1,191 @@
-import React from 'react';
+import React, {useRef } from 'react';
 import Container from 'react-bootstrap/esm/Container';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
-import Button from 'react-bootstrap/esm/Button';
-
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
 
 const MydogProfileRegister = () => {
+    const onCamera = () => {
+        imgRef.current.click()
+    }
+  
+    const onImgInput = (e) => {
+        const imgfiles = Array.from(e.target.files)
+        var imgArray = []
+  
+        imgfiles.map(item => {
+            const objectURL = URL.createObjectURL(item)
+            imgArray.push(objectURL)
+            return imgArray;
+        })
+  
+    // setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
+        // setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
+    }
+    // const [imgList, setImgList] = useState([]) //배열은 []
+    // const [files, setFiles] = useState('')
+  
+    //사진 등록관련
+    const imgRef = useRef()
+  
     return (
         <div>
-        <Header></Header>            
-        <Container className='px-10 mt-8'> {/* 회원 정보 수정 글씨 */}
-                <div className='row '>
-                    <div className='col-lg-4 d-flex justify-content-center'></div>
-                    <div className='col-lg-4 d-flex justify-content-center'>
-                        <span className={Mypage.PageUpdateLetter}>반려견 등록</span>
-                    </div>
-                    <div className='col-lg-4 d-flex justify-content-center'></div>
-                </div>
-        </Container>
-        <Container className='px-10 mt-4'> {/* 강아지이미지부분 */}
-                <Row>
-                    <Col xs={5} md={4}>
-                    </Col>
-                    <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                        <Image src="data:image/png;base64,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" roundedCircle className={Mypage.RoundedCircle} />
-                    </Col>
-                    <Col xs={5} md={4}>
-                    </Col>
-                </Row>
-        </Container>
-        <Container className='px-10 mt-4'> {/* 사진선택 및 내용 란 */}
-            <div className='row'> 
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText}>
-                        <label className={Mypage.UploadFileLabel} for='uploadFile'>
-                            <img alt="camera" style={{width:'30px',height:'30px'}} src='/image/mypage/cameramypage.png'></img>
-                            <span style={{fontSize:'12px'}}>사진선택</span>
-                        </label>
-                        <input type="file" id="uploadFile" className={Mypage.UploadFile} style={{display:'none'}}></input>                 
-                        <span className={Mypage.MydogProfileRegisterTextInner}>등록 사진은 1개만 첨부 가능합니다.</span>
-                    </div>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-            </div>
-            <div className='row mt-2'> {/* 이름 입력란  */}
-                <div className='col-lg-4 d-flex justify-content-end'>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText}>
-                        <span style={{color:'red'}}>*</span>
-                        <input  type='text' placeholder='이름' style={{padding:'6px 10px',width:'99%'}}></input> 
-                    </div>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-            </div>
-            <div className='row mt-2'> {/* 이름 체크란  */}
-                <div className='col-lg-4 d-flex justify-content-end'>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterTextCheck}>
-                        ex 닉네임은 숫자와 문자를 사용해 1-10자를 입력해 주세요.
-                    </div>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-            </div>
-            <div className='row mt-2'> {/* 생년월일 입력란  */}
-                <div className='col-lg-4 d-flex justify-content-end'>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText}>
-                        <div>
-                            <span style={{color:'red'}}>*</span>
-                            <input type='text' pattern="[0-9]*" maxLength='8' placeholder='반려동물의 생년월일 8자리를 입력해주세요' style={{padding:'6px 10px',width:'99%'}}/>
+            <Header></Header>            
+            <Container className='px-10 mt-6'> {/* 회원 정보 수정 글씨 */}
+                    <div className='row '>
+                        <div className='col-lg-4 d-flex justify-content-center'></div>
+                        <div className='col-lg-4 d-flex justify-content-center'>
+                            <span className={Mypage.PageUpdateLetter}>반려견 등록</span>
                         </div>
-                    </div>{/*과제 숫자만 입력되게 소스수정필요 */}
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-            </div>
-            <div className='row mt-2'> {/* 품종 입력란  */}
-                <div className='col-lg-4 d-flex justify-content-end'>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText}>
-                        <span style={{color:'red'}}>*</span>
-                        <select className={Mypage.MydogProfileRegisterText5} size="1" aria-label="size 1 select example" style={{padding:'6px 6px',width:'99%'}}>
-                            <option selected>품종</option>
-                            <option value="1">웰시코기</option>
-                            <option value="2">말티즈</option>
-                            <option value="3">시츄</option>
-                        </select>
+                        <div className='col-lg-4 d-flex justify-content-center'></div>
                     </div>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-            </div>
-            
-            <div className='row mt-2'> {/* 남아 여아 체크박스 위에 필수별표 */}
-                <div className='col-lg-4 d-flex justify-content-center'>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText4}>
-                        <div className={``}>
-                            <span style={{color:'red'}}>*</span>
-                            <span style={{padding:'6px'}}>{' '}성별</span>
-                        </div>
-                    </div>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                </div>
-            </div>
-            <div className='row mt-2'> {/* 남아 여아 체크박스 부분 */}
-                <div className='col-lg-4 d-flex justify-content-center'>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText4}>
-                        <div className={``}>
-                            <div class='form-check form-check-inline' style={{marginRight:'13%', marginLeft:'25%'}}>
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-                                <label class="form-check-label" for="inlineRadio1">남아</label>
+            </Container>
+            <Container className='px-10 mt-6'> {/* 사진이미지부분 */}
+                    <Row>
+                        <Col xs={5} md={4}>
+                        </Col>
+                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
+                            <Image src="data:image/jpeg;base64,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" roundedCircle className={Mypage.RoundedCircle} />
+                        </Col>
+                        <Col xs={5} md={4}>
+                        </Col>
+                    </Row>
+                    <br/>
+                    <Row>
+                        <Col xs={5} md={4}>
+                        </Col>
+                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
+                            <div className='row'>
+                                <div className='col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center'></div>
+                                <div className='col-lg-3 col-md-3 col-sm-3  d-flex justify-content-center' style={{marginLeft:'18px'}}>
+                                    <Row>
+                                        <Form.Group as={Col} controlId="formUploadimage">
+                                            <div className={Mypage.FormTitleDiv} style={{
+                                            color:'gray',
+                                            }}>
+                                            <div className={Mypage.FormTitleNameDiv} >
+                                                사 진
+                                            </div>&nbsp;&nbsp;&nbsp;
+                                            <img src='/image/date/camera.jpg' alt="카메라"
+                                                        onClick={ onCamera }
+                                                        style={{width:70, height:50, borderRadius:20}} />
+                                            <input type="file"name="img[]"
+                                                    multiple="multiple"
+                                                    onChange={ onImgInput } 
+                                                    ref={ imgRef } style={{visibility:'hidden'}} />
+                                            </div>
+                                        </Form.Group>
+                                    </Row> 
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-                                <label class="form-check-label" for="inlineRadio2">여아</label>
+                        </Col>
+                        <Col xs={5} md={4}>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={5} md={4}>
+                        </Col>
+                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="inputGroup-sizing-default" style={{color:'#f56084'}}>
+                                이름
+                                </InputGroup.Text>
+                                <Form.Control
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                                />
+                            </InputGroup>
+                        </Col>
+                        <Col xs={5} md={4}>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={5} md={4}>
+                        </Col>
+                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="inputGroup-sizing-default" style={{color:'#f56084'}}>
+                                나이
+                                </InputGroup.Text>
+                                <Form.Control
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                                />
+                            </InputGroup>
+                        </Col>
+                        <Col xs={5} md={4}>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={5} md={4}>
+                        </Col>
+                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="inputGroup-sizing-default" style={{color:'#f56084'}}>
+                                품종
+                                </InputGroup.Text>
+                                <Form.Control
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                                />
+                            </InputGroup>
+                        </Col>
+                        <Col xs={5} md={4}>
+                        </Col>
+                    </Row>
+                    <div className='row'>
+                        <div className='col-lg-4 d-flex justify-content-center'></div>
+                        <div className='col-lg-4 d-flex justify-content-right'> 
+                            <div>
+                                    <div className={Mypage.FormTitleNameDiv} 
+                                                style={{fontSize:'0.8em'}}>
+                                                성별
+                                    </div>&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div className={Mypage.MyprofileUpdate_Text} style={{marginTop:'5px'}} >
+                                &nbsp;&nbsp;&nbsp;
+                                <div className={` d-flex justify-content-right`} style={{marginLeft:'40px'}}>
+                                                    <input id='genderBox1' type='radio' name='gender'  value='남아' />
+                                                    <label className={Mypage.labelClass1} htmlFor='genderBox1'>남 아</label>
+                                                    &nbsp;&nbsp;
+                                                    <input id='genderBox2' type='radio' name='gender'  value='여아' />
+                                                    <label className={Mypage.labelClass2} htmlFor='genderBox2'>여 아</label>
+                                </div>
                             </div>
                         </div>
+                        <div className='col-lg-4 d-flex justify-content-center'></div>
                     </div>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                </div>
-            </div>
-            <div className='row mt-2'>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <div className={Mypage.MydogProfileRegisterText4}>
-                        <p><label><input type="checkbox" name="nb[]" value="01"/>{" "}<span style={{marginLeft:'5%'}}> 중성화여부  </span></label></p>
+                    <div className='row'>
+                        <div className='col-lg-4 d-flex justify-content-center'></div>
+                        <div className='col-lg-4 d-flex justify-content-right'> 
+                            <Form.Group as={Col} controlId="formGridEmail">
+                                <div className={Mypage.FormTitleDiv} >
+                                    <div className={Mypage.FormTitleNameDiv} 
+                                        style={{fontSize:'0.8em'}}
+                                    >
+                                        중성화 여부
+                                    </div>&nbsp;&nbsp;&nbsp;
+                                    <div className={`d-flex justify-content-left`}>
+                                        <input id='neutralizationBox' type='checkbox' value='neutralization' />
+                                        <label className={`${Mypage.neutralizationLabel} ${Mypage.labelClass3}`} htmlFor='neutralizationBox'></label>
+                                    </div>
+                                </div>
+                            </Form.Group>
+                        </div>
+                        <div className='col-lg-4 d-flex justify-content-center'></div>
                     </div>
-                </div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                </div>
-            </div>
-            <div className='row mt-2'>
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-                <div className='col-lg-4 d-flex justify-content-center'>
-                    <Button variant="outline-danger" className={`${Mypage.Btn4}`} >
-                                        추가하기
-                    </Button>{''}</div>
-                <div className='col-lg-4 d-flex justify-content-center'></div>
-            </div>
-        </Container>
+                    <div className='row'>
+                        <div className='col-sm-3 d-flex justify-content-center'></div>
+                        <div className='col-sm-6 d-flex justify-content-center'>
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}}>등록하기</Button>{''} 
+                        </div>
+                    </div>
+            </Container>
         </div>
     );
 };

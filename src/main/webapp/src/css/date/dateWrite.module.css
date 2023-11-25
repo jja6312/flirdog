@@ -147,8 +147,6 @@ input[type="checkbox"]:checked + .neutralizationLabel::before {
     display: none;
 }
 
-element.style {
-}
 .dropdown-item {
     display: block;
     width: 100%;

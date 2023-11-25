@@ -34,7 +34,7 @@ const UserList = ({
   const goUserEditForm = (e) => {
     const editBtnId = e.target.id;
     const popupWidth = 600;
-    const popupHeight = 800;
+    const popupHeight = 600;
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
     const left = screenWidth / 2 - popupWidth / 2;

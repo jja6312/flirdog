@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import matching.repository.MatchingRepository;
 import user.bean.DogsInfo;
-import user.bean.User;
 
 @Service
 public class DogsInfoServiceImpl implements DogsInfoService {
