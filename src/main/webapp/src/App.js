@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UserProvider from "./contexts/UserContext";
 import Main from "./components/main/Main";
 
 import "./css/reset.css";
@@ -42,13 +43,17 @@ import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRo
 import ProductDetail from "./components/product/ProductDetail";
 import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
 import UserEditForm from "./components/admin/2회원관리/UserEditForm";
+import Login from "./components/user/Login";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <UserProvider>
       <>
         {/* 화면에 보이는 영역 */}
         <Routes>
+          <Route path="/login" element={<Login />} />
+
           {/* //김찬영마이페이지================================================================= */}
           <Route path="/mypage/Mypoint" element={<Mypoint />} />
           <Route path="/mypage/Mysetting" element={<Mysetting />} />
@@ -142,6 +147,7 @@ const App = () => {
           </Route>
         </Routes>
       </>
+      </UserProvider>
     </BrowserRouter>
   );
 };

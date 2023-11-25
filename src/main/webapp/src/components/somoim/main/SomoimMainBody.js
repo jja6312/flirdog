@@ -15,6 +15,7 @@ const SomoimMainBody = () => {
     const { somoimId } = useParams();
     const [selectedLocation, setSelectedLocation] = useState(null); // 필터링
     const [searchList, setSearchList] = useState([]); // 검색
+    //const {id, email, passwd} = login;
 
     const handleSelectLocation = (location) => {
         setSelectedLocation(location);
@@ -163,7 +164,9 @@ const SomoimMainBody = () => {
             </Container>         
             <SomoimMainFilter onSelectLocation={handleSelectLocation} onSearch={ handleSearch } ></SomoimMainFilter>
             {/* <SomoimMainList></SomoimMainList> */}
-            <SomoimMainList selectedLocation={selectedLocation} searchList={ searchList } setSelectedLocation={setSelectedLocation} setSearchList={setSearchList} />
+            <SomoimMainList selectedLocation={selectedLocation} searchList={ searchList } 
+                setSelectedLocation={setSelectedLocation} setSearchList={setSearchList}
+                 />
         </>
     );
 };

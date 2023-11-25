@@ -1,12 +1,13 @@
-    import React, { useState } from 'react';
+    import React, { useContext, useEffect, useState } from 'react';
     import Header from '../main/Header';
     import Footer from '../main/Footer';
     import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
-    import { useNavigate } from 'react-router-dom';
+    import { useNavigate, useParams } from 'react-router-dom';
     import axios from 'axios';
 
     import styles from '../../css/somoim/main/somoimNew.module.css';
-
+    import { UserContext } from '../../contexts/UserContext';
+    
     const SomoimNew = () => {
         const [formData, setFormData] = useState({
             somoimName: '',
@@ -20,7 +21,9 @@
             address2:'',
             accountEmail:'',
             accountPhone:''
-        })
+        });
+        
+
         //const [createdId, setCreatedId] = useState('John Doe')
         const [validated, setValidated] = useState(false);
         //const [showAlert, setShowAlert] = useState(false);
@@ -29,6 +32,9 @@
 
         const {somoimName, introduceSub, introduceDetail, memberCount, 
                 cost, target, address, address2, accountEmail, accountPhone } = formData
+
+        const { user } = useContext(UserContext); // 유저 컨텍스트
+        const {id, email, passwd, name, nickname} = user;
 
         const handleChange = (e) => {
             const { name, value } = e.target;
@@ -275,7 +281,7 @@
                                                     id='createdId' 
                                                     name='createdId'
                                                     type="text" 
-                                                    value='John Doe'
+                                                    value={name}
                                                     placeholder="John Doe" readOnly/>
                                         </Col>
                                     </Row>

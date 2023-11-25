@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Container from 'react-bootstrap/esm/Container';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../../contexts/UserContext';
 
 //import styles from '../../../css/somoim/main/SomoimMainList.module.css';
 import { Button, Card } from 'react-bootstrap';
@@ -9,6 +11,8 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
     const [somoimList, setSomoimList] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
+    //const {id, email, passwd} = login; // 로그인
+    const navigate = useNavigate();
 
     useEffect(() => {
         const filterList = async () => {
@@ -51,6 +55,14 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
         setIsSearching(false)
       }, [selectedLocation])
 
+      const handleButtonClick = (item) => {
+        // 사용자 정보 업데이트
+        //updateUser({ ...login, selectedSomoim: item });
+    
+        // 상세 페이지로 이동
+        navigate(`/somoim/detailMain/${item.id}`);
+      };
+
     return (
         <>
             <Container className="px-8 mt-5 col-12">
@@ -74,7 +86,7 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
                                         <div>가입비용 : {item.cost} 원</div>
                                         <div>⩢ {item.location}</div>
                                     </Card.Text>
-                                    <Card.Link href={`/somoim/detailMain/${item.id}`}>
+                                    <Card.Link onClick={() => handleButtonClick(item)}>
                                         <Button variant="primary">상세 보기
                                         </Button>
                                         </Card.Link>   

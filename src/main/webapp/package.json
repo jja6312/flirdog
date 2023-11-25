@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@egjs/react-infinitegrid": "^4.11.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -24,7 +25,7 @@
     "react-bootstrap-icons": "^1.10.3",
     "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.17.0",
+    "react-router-dom": "^6.20.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "recoil": "^0.7.7",

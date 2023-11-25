@@ -61,7 +61,7 @@ public class Somoim extends BaseEntity{
 	private String address2;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "created_id", nullable = true)
+	@JoinColumn(name = "created_id", nullable = false)
 	private User user;
 	
 	@NonNull
