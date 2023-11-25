@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+
 import { MasonryInfiniteGrid } from "@egjs/react-infinitegrid";
 import { Container } from 'react-bootstrap';
 
@@ -16,8 +16,8 @@ const getItems = (nextGroupKey, count) => {
   
 
 const SomoimDetailPhoto = ({somoimId}) => {
-    const [formData, setFormData] = useState({});
-    const { introduceDetail } = formData;
+    // const [formData, setFormData] = useState({});
+    // const { introduceDetail } = formData;
     ///////////////////////////////////////////
     const [items, setItems] = useState(() => getItems(0, 10));
     const igRef = useRef();

@@ -10,7 +10,7 @@ import {useEffect, useState} from 'react';
 import styles from '../../../css/somoim/main/MoimMainCategoryBtn.module.css';
 import axios from 'axios';
 
-const MoimMainCategoryBtn = ({ onSearch,  }) => {
+const MoimMainCategoryBtn = ({ onSearch  }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [search, setSearch] = useState('');
     const [searchData, setSearchData] = useState([]);
@@ -54,7 +54,7 @@ const MoimMainCategoryBtn = ({ onSearch,  }) => {
         onSearch({ search });
         //onSearch({ search, searchData });
         console.log('MoimMainCategoryBtn onSearch : ' + onSearch);
-    }, [searchData]);
+    }, [searchData, onSearch, search]);
 
     return (
         <>

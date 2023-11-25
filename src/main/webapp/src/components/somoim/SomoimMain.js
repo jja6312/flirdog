@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
 import SomoimMainBody from './main/SomoimMainBody';

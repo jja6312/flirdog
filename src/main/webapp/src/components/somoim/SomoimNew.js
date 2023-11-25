@@ -1,8 +1,8 @@
-    import React, { useContext, useEffect, useState } from 'react';
+    import React, { useContext, useState } from 'react';
     import Header from '../main/Header';
     import Footer from '../main/Footer';
     import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
-    import { useNavigate, useParams } from 'react-router-dom';
+    import { useNavigate } from 'react-router-dom';
     import axios from 'axios';
 
     import styles from '../../css/somoim/main/somoimNew.module.css';
@@ -34,7 +34,7 @@
                 cost, target, address, address2, accountEmail, accountPhone } = formData
 
         const { user } = useContext(UserContext); // 유저 컨텍스트
-        const {id, email, passwd, name, nickname} = user;
+        const {name} = user;
 
         const handleChange = (e) => {
             const { name, value } = e.target;

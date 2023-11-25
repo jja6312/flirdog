@@ -27,7 +27,7 @@ const SomoimDetail = () => {
     //const [somoimIdState, setSomoimId] = useState('1');
 
     const { user } = useContext(UserContext); // 유저 컨텍스트
-    const {passwd, email} = user;
+    //const {passwd, email} = user;
     
     const { somoimName, introduceSub, address, address2, cost, memberCount, target, accountEmail, accountPhone } = formData
 

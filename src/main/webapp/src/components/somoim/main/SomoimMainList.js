@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../../contexts/UserContext';
+//import { UserContext } from '../../../contexts/UserContext';
 
 //import styles from '../../../css/somoim/main/SomoimMainList.module.css';
 import { Button, Card } from 'react-bootstrap';
