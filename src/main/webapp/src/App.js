@@ -22,7 +22,7 @@ import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 import SomoimMain from "./components/somoim/SomoimMain";
 
 import SomoimNew from "./components/somoim/SomoimNew";
-import SomoimDetail from "./components/somoim/detail/SomoimDetail"
+import SomoimDetail from "./components/somoim/detail/SomoimDetail";
 
 import MypageMain from "./components/mypage/MypageMain";
 import Myarticle from "./components/mypage/2내가작성한글/Myarticle";
@@ -42,6 +42,8 @@ import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRo
 import ProductDetail from "./components/product/ProductDetail";
 import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
 import UserEditForm from "./components/admin/2회원관리/UserEditForm";
+import Login from "./components/login/Login";
+import JoinAuth from "./components/login/loginAPI/JoinAuth";
 
 const App = () => {
   return (
@@ -85,11 +87,14 @@ const App = () => {
           <Route path="/date/dateReadMore" element={<DateReadMore />} />
 
           <Route path="/admin" element={<Admin />} />
-          
+
           {/* 소모임 페이지!! */}
-          <Route path="/somoim" element={<SomoimMain/>}/>
-          <Route path="/somoim/somoimNew" element={<SomoimNew/>} />
+          <Route path="/somoim" element={<SomoimMain />} />
+          <Route path="/somoim/somoimNew" element={<SomoimNew />} />
           <Route path="/somoim/:subMenu/:somoimId" element={<SomoimDetail />} />
+
+          <Route path="/login" element={<Login></Login>} />
+          <Route path="/join/auth" element={<JoinAuth></JoinAuth>} />
 
           {/* 상품관리 */}
           <Route
