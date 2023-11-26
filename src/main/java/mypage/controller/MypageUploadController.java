@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -33,7 +34,7 @@ public class MypageUploadController {
 		
 		//실제 폴더
 		String filePath = session.getServletContext().getRealPath("/public/storage");
-		System.out.println("실제폴더 = " + filePath);
+		System.out.println("실제폴더11111111111 = " + filePath);
 		
 		File file;
 		String originalFileName;
@@ -76,5 +77,10 @@ public class MypageUploadController {
 		//DB
 		mypageUploadService.upload(dogsImageList);
 	}
-	
+
+	@GetMapping(path="uploadList")
+	public List<DogsInfoDTO>  uploadList(){
+		return mypageUploadService.uploadList();
+	}
+
 }

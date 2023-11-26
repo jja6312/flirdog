@@ -17,6 +17,9 @@ const MypageCategory = () => {
             <div style={{ width: "100%", textAlign: "center" }}>
                 <Link to="/mypage/MydogProfileRegister2">이미지업로드테스트</Link>
             </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/MydogProfile2">이미지조회</Link>
+            </div>
         </div>
     );
 };

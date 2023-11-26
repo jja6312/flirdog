@@ -21,4 +21,9 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 		mypageDogsInfoDTOUploadRepository.saveAll(dogsImageList);
 	}
 
+	@Override
+	public List<DogsInfoDTO> uploadList() {
+		return mypageDogsInfoDTOUploadRepository.findAll();//쿼리 메소드
+		
+	}
 }
