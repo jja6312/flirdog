@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import message.bean.Message;
 import message.bean.MessageRoom;
+import message.service.MessageRoomService;
 import message.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -22,22 +23,22 @@ public class MessageController {
 	private MessageService messageService;
 
 	@Autowired
-	private SimpMessagingTemplate messageTemplate;
+	private MessageRoomService messageRoomService;
+
 
 	@PostMapping(path = "createRoom")
 	public void createRoom(@RequestBody MessageRoom messageRoom, @RequestParam List<Integer> userIds) {
-		messageService.createRoom(messageRoom, userIds);
+		messageRoomService.createRoom(messageRoom, userIds);
 	}
 
 
-	@MessageMapping("/publish/chat{chatRoomId}-{userId}")
-	public void sendMessage(@DestinationVariable String chatRoomId, @DestinationVariable String userId, Message message) {
-		messageService.send(message);
+	@MessageMapping("/publish/{topic}")
+	public void sendMessage(@DestinationVariable String topic, Message message) {
+		messageService.send(topic, message);
 	}
 
-
-
-	public void broadcastMessageToClients(Message message) {
-		messageTemplate.convertAndSend("/subscribe/chat", message);
+	@MessageMapping("/subscribe/{consumerGroupId}")
+	public void listen(@DestinationVariable String consumerGroupId, Message message) {
+		messageService.listen(consumerGroupId);
 	}
 }

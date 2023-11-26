@@ -10,7 +10,7 @@ import SearchBar from "./Object/SearchBar";
 import EventBanner from "./Object/EventBanner";
 
 const Product = () => {
-    const loading = true
+    const loading = useRecoilValue(LoadingAtom)
 
     return (
         <div>

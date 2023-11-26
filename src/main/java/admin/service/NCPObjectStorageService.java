@@ -31,7 +31,6 @@ public class NCPObjectStorageService implements ObjectStorageService {
 						new BasicAWSCredentials(naverConfiguration.getAccessKey(),
 								naverConfiguration.getSecretKey())))
 				.build();
-
 	}
 
 	@Override
@@ -68,9 +67,7 @@ public class NCPObjectStorageService implements ObjectStorageService {
 		System.out.println("이미지파일네임:");
 		System.out.println(imageFileName);
 		s3.deleteObject(bucketName, imageFileName);
-
 		System.out.println("삭제완료!");
-
 	}
 
 }

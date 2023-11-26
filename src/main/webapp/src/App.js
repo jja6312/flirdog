@@ -39,6 +39,7 @@ import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
 import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
 import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
 import ProductDetail from "./components/product/ProductDetail";
+import MessageRoom from "./components/message/MessageRoom";
 
 const App = () => {
     return (
@@ -118,6 +119,10 @@ const App = () => {
                     <Route path="product">
                         <Route path="" element={<Product/>}/>
                         <Route path=":id" element={<ProductDetail/>}/>
+                    </Route>
+
+                    <Route path="message">
+                        <Route path=":topic" element={<MessageRoom />} />
                     </Route>
                 </Routes>
             </>
