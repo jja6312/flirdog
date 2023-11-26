@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping(path = "message")
+@CrossOrigin(origins = "http://localhost:3000")
 public class MessageController {
 	@Autowired
 	private MessageService messageService;
@@ -34,6 +34,7 @@ public class MessageController {
 
 	@MessageMapping("/publish/{topic}")
 	public void sendMessage(@DestinationVariable String topic, Message message) {
+		System.out.println("sendmessage");
 		messageService.send(topic, message);
 	}
 

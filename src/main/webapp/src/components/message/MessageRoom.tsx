@@ -1,72 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import SockJS from 'sockjs-client';
-import Stomp, { Client } from 'stompjs';
+import React, {useEffect, useState} from 'react';
+import {Client} from '@stomp/stompjs';
 
 type Message = {
+    roomNo: number;
+    userId: number;
+    nickName: string;
+    messageType: number;
     content: string;
-    sender: string;
 };
 
 type Props = {
     userId: number;
-    topic : string;
-    nickname : string;
-}
+    topic: string;
+    nickName: string;
+    roomNo: number;
+};
 
-const MessageRoom: React.FC<Props> = ({userId, nickname, topic}) => {
+const MessageRoom: React.FC<Props> = ({userId, nickName, topic, roomNo}) => {
     const [stompClient, setStompClient] = useState<Client | null>(null);
     const [messages, setMessages] = useState<Message[]>([]);
     const [messageInput, setMessageInput] = useState<string>('');
-    const [image, setImage] = useState<File | null>(null);
-    const url = 'http://localhost:8080/ws';
+    const url = 'ws://localhost:8080/ws';
+
     const handleMessageInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMessageInput(event.target.value);
     };
 
-    const sendMessage = () => {
-        if (stompClient) {
-            const message: Message = {
-                content: messageInput,
-                sender: nickname,
-            };
-            stompClient.send(`/publish/${topic}`, {}, JSON.stringify(message));
-            setMessageInput('');
-        }
-    };
-
     useEffect(() => {
-        const socket = new SockJS(url);
-        const stomp = Stomp.over(socket);
-        stomp.connect({}, () => {
-            setStompClient(stomp);
+        const stomp = new Client({
+            brokerURL: url,
+            connectHeaders: {},
+            debug: (str) => {
+                console.log(str);
+            },
         });
+
+        stomp.onConnect = () => {
+            console.log('Connected to WebSocket');
+            setStompClient(stomp);
+
+            stomp.subscribe(`/subscribe/${topic}-${userId}`, (message) => {
+                const newMessage: Message = JSON.parse(message.body);
+                setMessages((prevMessages) => [...prevMessages, newMessage]);
+            });
+        };
+
+        stomp.activate();
 
         return () => {
             if (stompClient) {
-                stompClient.disconnect(()=>{});
+                stompClient.deactivate();
             }
         };
     }, []);
 
-    useEffect(() => {
-        if (stompClient) {
-            const subscription = stompClient.subscribe(`/subscribe/${topic}-${userId}`, (message) => {
-                const newMessage: Message = JSON.parse(message.body);
-                setMessages((prevMessages) => [...prevMessages, newMessage]);
-            });
 
-            return () => {
-                subscription.unsubscribe();
-            };
+    const sendMessage = () => {
+        if (stompClient && messageInput.trim() !== '') {
+            const message: Message = {
+                roomNo,
+                userId,
+                nickName,
+                messageType: 0,
+                content: messageInput
+            }
+            stompClient.publish({destination: `/publish/${topic}`, body: JSON.stringify(message)});
+            setMessageInput('');
         }
-    }, [stompClient]);
+    };
 
     return (
         <div>
             <div>
                 {messages.map((message, index) => (
                     <div key={index}>
-                        <strong>{message.sender}:</strong> {message.content}
+                        <strong>{message.userId}:</strong> {message.content}
                     </div>
                 ))}
             </div>

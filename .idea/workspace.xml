@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/message/service/ImageMessageUpload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageRoomService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageUpload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/message/service/TextMessageUpload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/src/components/message/MessageRoom.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/src/setupProxy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -17,29 +13,22 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/NCPObjectStorageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/admin/service/NCPObjectStorageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/JoinUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/bean/JoinUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/ConsumerContainerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/config/ConsumerContainerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/WebSocketConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/config/WebSocketConfiguration.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/controller/MessageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/controller/MessageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/repository/MessageRoomRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/repository/MessageRoomRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/user/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ConsumerConfiguration.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ConsumerContainerFactory.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ImageMessageUpload.class.uniqueId6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/KafkaConstants.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageController.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageService.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/ProducerConfiguration.class.uniqueId5" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/admin/service/NCPObjectStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/admin/service/NCPObjectStorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/config/ConsumerContainerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/config/ConsumerContainerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/config/KafkaConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/config/KafkaConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/message/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/message/Message.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/message/MessageRoom.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/components/message/MessageRoom.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/product/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/components/product/Product.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/src/components/product/ProductDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/src/components/product/ProductDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,9 +58,10 @@
       <list>
         <option value="Enum" />
         <option value="TypeScript File" />
-        <option value="JavaScript File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="TypeScript JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -92,6 +82,9 @@
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-websocket/6.0.13/ae627be80eda66e33fa6a9fc1aed97c25d155db9/spring-websocket-6.0.13-sources.jar!/org/springframework/web/socket/config/annotation/WebSocketMessageBrokerConfigurer.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/jbr-17.0.8.1/Contents/Home/lib/src.zip!/java.base/java/io/Serializable.java" root0="SKIP_INSPECTION" />
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -207,7 +200,7 @@
       <workItem from="1700762037159" duration="3827000" />
       <workItem from="1700789660044" duration="15508000" />
       <workItem from="1700924518577" duration="3201000" />
-      <workItem from="1700956516119" duration="9339000" />
+      <workItem from="1700956516119" duration="17211000" />
     </task>
     <servers />
   </component>

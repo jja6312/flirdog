@@ -9,10 +9,7 @@ const ProductDetail = () => {
             <Header/>
             <div className="px-10">
                 <div style={{width:"50%"}}>
-                    <MessageRoom userId={1} topic={"chat1"} nickname={"Jongin"} />
-                </div>
-                <div style={{width:"50%"}}>
-                    <MessageRoom userId={2} topic={"chat1"} nickname={"Hyuna"} />
+                    <MessageRoom userId={1} topic={"chat1"} nickName={"Jongin"} roomNo={1}/>
                 </div>
             </div>
             <Footer></Footer>

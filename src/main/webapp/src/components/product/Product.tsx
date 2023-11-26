@@ -8,6 +8,7 @@ import {useRecoilValue} from "recoil";
 import {LoadingAtom} from "../LoadindAtom";
 import SearchBar from "./Object/SearchBar";
 import EventBanner from "./Object/EventBanner";
+import MessageRoom from "../message/MessageRoom";
 
 const Product = () => {
     const loading = useRecoilValue(LoadingAtom)
@@ -19,6 +20,9 @@ const Product = () => {
             <SearchBar />
             <EventBanner EventBannerImg={EventBannerImg}/>
 
+            <div style={{width:"50%"}}>
+                <MessageRoom userId={2} topic={"chat1"} nickName={"Hyuna"} roomNo={1}/>
+            </div>
             <ProductBody />
             <Footer></Footer>
         </div>
