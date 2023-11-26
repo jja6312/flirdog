@@ -1,4 +1,4 @@
-import React, { useRef,useState } from 'react';
+import React, { useEffect, useRef,useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Container from 'react-bootstrap/esm/Container';
@@ -10,8 +10,16 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+
 
 const MydogProfileRegister2 = () => {
+
+    useEffect(() => {
+        document.getElementById('imgDelBefore').style.display = 'none'
+        document.getElementById('imgDelBefore2').style.display = 'none'
+    },[]) // 빈배열로 한번만 실행
+
     const imgRef = useRef()
 
     const [dogsInfoDTO, setDogsInfoDTO] = useState({
@@ -34,6 +42,10 @@ const MydogProfileRegister2 = () => {
 
     const navigate = useNavigate()
     
+    const back = () => {    
+        navigate('/mypage/MydogProfile')
+    }
+
     const onInput = (e) =>{
         const { name, value } = e.target
         
@@ -59,12 +71,14 @@ const MydogProfileRegister2 = () => {
 
         setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
         setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
-    }
+        document.getElementById('imgDel').style.display = 'none' //기존 디폴트 이미지 삭제.
+        document.getElementById('imgDel2').style.display = 'none' //기존 디폴트 이미지 삭제.
+        document.getElementById('imgDelBefore').style.display = 'block' //새로운 이미지 보이게 하기
+        document.getElementById('imgDelBefore2').style.display = 'block'
+        }
 
     const onUploadSubmit = (e) => {
         e.preventDefault()
-
-        alert(dogsInfoDTO.age)
         console.log(dogsInfoDTO);
 
         var formData = new FormData()
@@ -105,18 +119,16 @@ const MydogProfileRegister2 = () => {
 
         setImgList([])
         imgRef.current.value = ''
+        
+        document.getElementById('imgDel').style.display = 'block'
+        document.getElementById('imgDel2').style.display = 'block' 
     }
 
 
     return (
         <div>
             <Header />
-            <h3>
-        		<Link to='/'>
-        		    <img src="data:image/jpeg;base64,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" alt='망상토끼' width='50' height='50' />
-        		</Link>
-        	</h3>
-            <Container className='px-10 mt-6'> {/* 회원 정보 수정 글씨 */}
+            <Container className='px-10 mt-2'> {/* 회원 정보 수정 글씨 */}
                     <div className='row '>
                         <div className='col-lg-4 d-flex justify-content-center'></div>
                         <div className='col-lg-4 d-flex justify-content-center'>
@@ -129,8 +141,21 @@ const MydogProfileRegister2 = () => {
                     <Row>
                         <Col xs={5} md={4}>
                         </Col>
-                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                            <Image src="data:image/jpeg;base64,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" roundedCircle className={Mypage.RoundedCircle} />
+                        <Col xs={2} md={4} className={`${Mypage.Imagecenter} d-flex justify-content-center`}>
+                            <div className={Mypage.main_image}>
+                                <Image id='imgDel' src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_pug_icon_130225.png" roundedCircle className={Mypage.RoundedCircle} style={{border:'1px solid'}} />                            
+                                <h1  id='imgDel2' className={Mypage.main_image_text}>이미지를 선택해 주세요.</h1>
+                            </div>
+                            <div id='imgDelBefore'>
+                                <span id='imgDelBefore2' >
+                                            {
+                                                imgList.map((item,index) =>
+                                                //  <img key={ index } src={ item } 선생님이 한거 원래/>
+                                                <Image key={ index } src={ item } roundedCircle className={Mypage.RoundedCircle} />
+                                                )
+                                            }
+                                </span>
+                            </div>
                         </Col>
                         <Col xs={5} md={4}>
                         </Col>
@@ -140,10 +165,6 @@ const MydogProfileRegister2 = () => {
                         <Col xs={5} md={4}>
                         </Col>
                         <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                            <div className='row'>
-                                <div className='col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center'></div>
-                                <div className='col-lg-3 col-md-3 col-sm-3  d-flex justify-content-center' style={{marginLeft:'18px'}}>
-                                    <Row>
                                         <Form.Group as={Col} controlId="formUploadimage">
                                             <div className={Mypage.FormTitleDiv} style={{
                                             color:'gray',
@@ -157,12 +178,9 @@ const MydogProfileRegister2 = () => {
                                             <input type="file"name="img[]"
                                                     multiple="multiple"
                                                     onChange={ onImgInput } 
-                                                    ref={ imgRef } style={{visibility:'hidden'}} />
+                                                    ref={ imgRef } style={{visibility:'hidden' ,width:'10px'}} />
                                             </div>
                                         </Form.Group>
-                                    </Row> 
-                                </div>
-                            </div>
                         </Col>
                         <Col xs={5} md={4}>
                         </Col>
@@ -218,18 +236,19 @@ const MydogProfileRegister2 = () => {
                         <Col xs={5} md={4}>
                         </Col>
                     </Row>
-                    <div className='row'>
-                        <div className='col-lg-4 d-flex justify-content-center'></div>
-                        <div className='col-lg-4 d-flex justify-content-right'> 
+                    <Row>
+                        <Col xs={5} md={4}>
+                        </Col>
+                        <Col xs={2} md={4} className={`${Mypage.Imagecenter} d-flex justify-content-start `}>
                             <div>
-                                    <div className={Mypage.FormTitleNameDiv} 
-                                                style={{fontSize:'0.8em'}}>
-                                                성별
-                                    </div>&nbsp;&nbsp;&nbsp;
+                                <div className={Mypage.FormTitleNameDiv} 
+                                            style={{fontSize:'0.8em'}}>
+                                            성별
+                                </div>&nbsp;&nbsp;&nbsp;
                             </div>
                             <div className={Mypage.MyprofileUpdate_Text} style={{marginTop:'5px'}} >
                                 &nbsp;&nbsp;&nbsp;
-                                <div className={` d-flex justify-content-right`} style={{marginLeft:'40px'}}>
+                                <div className={` d-flex justify-content-right`}>
                                                     <input id='genderBox1' type='radio' name='gender'  value='남아'  onChange={onInput} />
                                                     <label className={Mypage.labelClass1} htmlFor='genderBox1'>남 아</label>
                                                     &nbsp;&nbsp;
@@ -237,12 +256,14 @@ const MydogProfileRegister2 = () => {
                                                     <label className={Mypage.labelClass2} htmlFor='genderBox2'>여 아</label>
                                 </div>
                             </div>
-                        </div>
-                        <div className='col-lg-4 d-flex justify-content-center'></div>
-                    </div>
-                    <div className='row'>
-                        <div className='col-lg-4 d-flex justify-content-center'></div>
-                        <div className='col-lg-4 d-flex justify-content-right'> 
+                        </Col>
+                        <Col xs={5} md={4}>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={5} md={4}>
+                        </Col>
+                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
                             <Form.Group as={Col} controlId="formGridEmail">
                                 <div className={Mypage.FormTitleDiv} >
                                     <div className={Mypage.FormTitleNameDiv} 
@@ -256,40 +277,30 @@ const MydogProfileRegister2 = () => {
                                     </div>
                                 </div>
                             </Form.Group>
-                        </div>
-                        <div className='col-lg-4 d-flex justify-content-center'></div>
-                    </div>
-                    <div className='row'>
-                        <div className='col-sm-3 d-flex justify-content-center'></div>
-                        <div className='col-sm-6 d-flex justify-content-center'>
-                            <textarea  style={{border:'1px solid grey',width:'25rem',height:'50px',marginTop:'10px'}} name='dogsInfo' rows='10' cols='60' value={ dogsInfo } onChange={ onInput }></textarea>
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col-sm-3 d-flex justify-content-center'></div>
-                        <div className='col-sm-6 d-flex justify-content-center'>
-                                <span>
-                                        {
-                                        imgList.map((item,index) => <img key={ index } 
-                                                                            src={ item } 
-                                                                            style={{ width: '45px' , height: '45px' }} />)
-                                        }
-                                </span>
-
-                                <img src="data:image/jpeg;base64,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"  alt="카메라"
-                                     onClick={ onCamera }
-                                     style={{ width: 30, height: 30, borderRadius: 20 }} />
-                                <input type="file" name="img[]" multiple='multiple'
-                                       ref={ imgRef } 
-                                       onChange={ onImgInput }
-                                       style={{ visibility: 'hidden' }} />
-                        </div>
-                    </div>
+                        </Col>
+                        <Col xs={5} md={4}>
+                        </Col>
+                    </Row>
+                    <Row style={{marginTop:'10px'}}>
+                        <Col xs={5} md={4}></Col>
+                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
+                            <FloatingLabel controlId="floatingTextarea2" label="*반려견 소개를 입력하세요." style={{color:'#f56084',fontSize:'15px', height: '100%' ,width:'100%'}}>
+                            <Form.Control
+                                as="textarea"
+                                placeholder="Leave a comment here"
+                                style={{ height: '100%' ,width:'100%',fontSize:'15px'}}
+                                name='dogsInfo' value={dogsInfo} onChange={onInput}
+                                />
+                            </FloatingLabel>
+                        </Col>
+                        <Col xs={5} md={4}></Col>
+                    </Row>
                     <div className='row'>
                         <div className='col-sm-3 d-flex justify-content-center'></div>
                         <div className='col-sm-6 d-flex justify-content-center'>
                             <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>등록하기</Button>{''} 
-                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>취소</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onReset }>취소</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ back }>뒤로가기</Button>{''} 
                         </div>
                     </div>
             </Container>
