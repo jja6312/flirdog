@@ -18,6 +18,7 @@ public interface MypageService {
 	public void write(DogsInfoDTO dogsInfoDTO);
 
 	public Page<DogsInfoDTO> getDogInfoList(Pageable pageable);
-	
+
+	public void delete(String id);
 
 }

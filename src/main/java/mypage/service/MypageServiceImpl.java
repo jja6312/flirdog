@@ -53,4 +53,9 @@ public class MypageServiceImpl implements MypageService {
 		
 		return list;
 	}
+	@Override
+	public void delete(String id) {
+		mypageDogsInfoDTORepository.deleteById(id);
+	}
+
 }

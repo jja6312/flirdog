@@ -1,9 +1,4 @@
-import React,{useState,useEffect} from 'react';
-import Container from 'react-bootstrap/esm/Container';
-import { Link, useNavigate, useParams } from "react-router-dom";
-import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
-import Button from 'react-bootstrap/Button';
-import MypageSubHeader12 from '../5공통/MypageSubHeader1_2';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 const MydogProfile2 = () => {
     const[list,setList] = useState([])
