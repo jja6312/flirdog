@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Swal from 'sweetalert2';
 
 
 const MydogProfileRegister2 = () => {
@@ -97,8 +98,14 @@ const MydogProfileRegister2 = () => {
             }
         }) 
         .then(res=>{
-
-            alert('이미지 업로드 완료')
+            //sweet alert로 이미지 업로드 완료를 예쁘게 만들어줘
+            Swal.fire({
+                icon: 'success',
+                title: '이미지 업로드 완료',
+                text: '반려견 등록이 완료되었습니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#f56084'
+            })
             navigate('/mypage/MydogProfile')
         })
         .catch(error=> console.log(error)) 

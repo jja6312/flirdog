@@ -10,8 +10,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import Mypage2 from '../../../css/main/100마이페이지/mypage2.module.css';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Swal from 'sweetalert2';
 
 const MydogUpdateForm2 = () => {  
     const { userId } = useParams();
@@ -29,7 +29,7 @@ const MydogUpdateForm2 = () => {
     const [myUserId, setMyUserId] = useState('') //로그인한 유저의 아이디
     useEffect(() => {
         setMyUserId(userId)
-    },[userId])
+    },[userId]) // userId 가 렌더링 되어야 setMyUserId(userId) 이걸 셋팅해주겠다고 하는것임.
     
     useEffect(() => {
 
@@ -37,7 +37,6 @@ const MydogUpdateForm2 = () => {
              .then(res => {
                 setDogsInfoDTO(res.data);
                      console.log(dogsInfoDTO);
-                     console.log(myUserId)
     })
              .catch(error => console.log(error))
     }, [])
@@ -51,9 +50,11 @@ const MydogUpdateForm2 = () => {
 
     useEffect(() => {
         console.log(dogsInfoDTO)
+        console.log(myUserId)
     },[dogsInfoDTO]) //dogsInfoDTO가 바뀔때마다 실행
 
-    const { id,name, dogsInfo,image,gender,dogsBreed,dogsWeight,age,isNeutralized } = dogsInfoDTO
+    
+      const { id,name, dogsInfo,image,gender,dogsBreed,dogsWeight,age,isNeutralized } = dogsInfoDTO;
     
 
     const imgRef = useRef()
@@ -98,12 +99,19 @@ const MydogUpdateForm2 = () => {
         document.getElementById('imgDelBefore2').style.display = 'block'
         }
 
-    const onUploadSubmit = (e) => {
+    const onUploadSubmit = async (e) => {
         e.preventDefault()
+        
         console.log(dogsInfoDTO);
 
-    // 먼저 기존 데이터를 삭제합니다.
-            // 삭제가 성공하면 업로드를 진행합니다.
+        // 먼저 기존 데이터를 삭제합니다.
+        // 삭제가 성공하면 업로드를 진행합니다.
+        
+        try {
+            // First, delete the existing data
+            await axios.delete(`/mypage/deleteDogInfo?id=${myUserId}`);
+            
+            // If deletion is successful, proceed with the upload
             var formData = new FormData();
             formData.append('dogsInfoDTO', new Blob([JSON.stringify(dogsInfoDTO)], { type: 'application/json' }));
 
@@ -115,19 +123,22 @@ const MydogUpdateForm2 = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            })
-            .then(res => {
-                alert('이미지 업로드 완료');
-            })
-            .catch(error => console.log(error));
+            });
 
-            
-            axios.delete(`/mypage/deleteDogInfo?id=${userId}`)
-            .then(() => {
-                console.log('삭제성공')
-                navigate('/mypage/MydogProfile');
-            })
+            // 비동기 방식이어서 순서상관없이 수행이된다. await써서 동기를 깨거나 , 다른 버튼 안에 담아서 수행해야한다.
+            //이미지등록 헀을때 alert창 예쁘게 만들어줘
+            Swal.fire({
+                position: 'middle',
+                icon: 'success',
+                title: '수정이 완료되었습니다.',
+                showConfirmButton: false,
+                timer: 1500
+                })
+            navigate('/mypage/MydogProfile');
 
+        } catch (error) {
+            console.log(error);
+        }
 
     };
 
@@ -156,12 +167,36 @@ const MydogUpdateForm2 = () => {
     
     const onDeleteSubmit = (e) => {
         e.preventDefault()
-        
-        axios.delete(`/mypage/deleteDogInfo?id=${userId}`)
+
+        //sweetAlert2 로 삭제 여부 확인
+        Swal.fire({
+            title: '정말로 삭제하시겠습니까?',
+            text: "삭제하시면 복구가 불가능합니다.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#f56084',
+            cancelButtonColor: '#d3d3d3',
+            confirmButtonText: '삭제하기',
+            cancelButtonText: '취소하기'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/mypage/deleteDogInfo?id=${userId}`)
              .then(
-                alert('반려견의 정보를 삭제하였습니다.'),
+                // alert창 예쁘게 만들어줘
+                Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: '삭제가 완료되었습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                    }),
                 navigate('/mypage/MydogProfile'))
              .catch(error => console.log(error))
+            }
+
+            })
+
+        
     }
 
     return (
