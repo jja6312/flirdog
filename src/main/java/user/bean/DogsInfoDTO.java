@@ -50,4 +50,7 @@ public class DogsInfoDTO {
 		//@NonNull 업로드 때문에 뺐음.
 		@Column(name="dogsInfo", length=50)
 	    private String dogsInfo;
+
+		@Column(name="dogsWeight", length=50)
+	    private String dogsWeight;
 }

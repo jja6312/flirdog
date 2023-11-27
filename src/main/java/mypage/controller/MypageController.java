@@ -65,11 +65,6 @@ public class MypageController {
 		return mypageService.getDogInfoList(pageable);
 	}
 
-	@GetMapping(path="getDogInfo")
-	public Optional<DogsInfoDTO> getDogInfo(@RequestParam String id) {
-	    Long userId = Long.parseLong(id);
-		return mypageService.getDogInfo(userId);
-	}
 	
 
 }

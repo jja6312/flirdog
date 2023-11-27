@@ -60,7 +60,7 @@ const MydogProfile = () => {
                                                     {item.name}
                                             </div>
                                             <div style={{ textAlign: 'end', marginTop: '10px',color:'#9F8FA5' }}>
-                                                {item.dogsInfo}
+                                                {item.dogsInfo} 
                                             </div>
                                         </div> 
                                     </div>    

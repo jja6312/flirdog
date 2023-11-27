@@ -22,6 +22,5 @@ public interface MypageService {
 
 	public Page<DogsInfoDTO> getDogInfoList(Pageable pageable);
 
-	public Optional<DogsInfoDTO> getDogInfo(Long userId);
 
 }

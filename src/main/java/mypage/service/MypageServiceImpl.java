@@ -55,10 +55,5 @@ public class MypageServiceImpl implements MypageService {
 		
 		return list;
 	}
-	@Override
-	public Optional<DogsInfoDTO> getDogInfo(Long userId) {
-		// TODO Auto-generated method stub
-	    return mypageDogsInfoDTORepository.findById(userId);
-	}
 
 }

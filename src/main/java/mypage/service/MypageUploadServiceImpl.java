@@ -1,6 +1,7 @@
 package mypage.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,9 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 		return mypageDogsInfoDTOUploadRepository.findAll();//쿼리 메소드
 		
 	}
-	
+
+	@Override
+	public Optional<DogsInfoDTO> getDogInfo(Long userId) {
+	    return mypageDogsInfoDTOUploadRepository.findById(userId);
+	}
 }
