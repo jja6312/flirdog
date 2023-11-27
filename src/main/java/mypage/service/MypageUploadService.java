@@ -12,4 +12,6 @@ public interface MypageUploadService {
 	public List<DogsInfoDTO> uploadList();
 	
 	public Optional<DogsInfoDTO> getDogInfo(Long userId);
+	
+	public void deleteDogInfo(Long userId);
 }

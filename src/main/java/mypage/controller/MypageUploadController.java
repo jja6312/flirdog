@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,9 @@ public class MypageUploadController {
 	public void upload( @RequestPart("dogsInfoDTO") DogsInfoDTO dogsInfoDTO,
 						@RequestPart("img") List<MultipartFile> list,
 						HttpSession session) {
+		
+		System.out.println("@@@등록하러왔음");
+		System.out.println(dogsInfoDTO.getName());
 		
 		
 		
@@ -89,6 +93,13 @@ public class MypageUploadController {
 	public Optional<DogsInfoDTO> getDogInfo(@RequestParam String id) {
 	    Long userId = Long.parseLong(id);
 		return mypageUploadService.getDogInfo(userId);
+	}
+
+	@DeleteMapping(path="deleteDogInfo")
+	public void deleteDogInfo(@RequestParam String id) {
+		
+		Long userId = Long.parseLong(id);
+		mypageUploadService.deleteDogInfo(userId);
 	}
 
 }

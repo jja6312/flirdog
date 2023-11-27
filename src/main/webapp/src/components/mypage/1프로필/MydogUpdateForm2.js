@@ -1,5 +1,5 @@
 import React, { useEffect, useRef,useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
@@ -10,33 +10,53 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Mypage2 from '../../../css/main/100마이페이지/mypage2.module.css';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
+const MydogUpdateForm2 = () => {  
+    const { userId } = useParams();
+    const [dogsInfoDTO, setDogsInfoDTO] = useState({
+        name: '',
+        id: userId,
+        dogsInfo: '',
+        image: '',
+        gender: '',
+        dogsBreed: '',
+        dogsWeight: '',
+        age: '',
+        isNeutralized: '',
+    })
+    const [myUserId, setMyUserId] = useState('') //로그인한 유저의 아이디
+    useEffect(() => {
+        setMyUserId(userId)
+    },[userId])
+    
+    useEffect(() => {
 
-const MydogProfileRegister2 = () => {
+        axios.get(`/mypage/getDogInfo?id=${userId}`)
+             .then(res => {
+                setDogsInfoDTO(res.data);
+                     console.log(dogsInfoDTO);
+                     console.log(myUserId)
+    })
+             .catch(error => console.log(error))
+    }, [])
 
+    
+    
     useEffect(() => {
         document.getElementById('imgDelBefore').style.display = 'none'
         document.getElementById('imgDelBefore2').style.display = 'none'
     },[]) // 빈배열로 한번만 실행
 
+    useEffect(() => {
+        console.log(dogsInfoDTO)
+    },[dogsInfoDTO]) //dogsInfoDTO가 바뀔때마다 실행
+
+    const { id,name, dogsInfo,image,gender,dogsBreed,dogsWeight,age,isNeutralized } = dogsInfoDTO
+    
+
     const imgRef = useRef()
-
-    const [dogsInfoDTO, setDogsInfoDTO] = useState({
-        name: '강아지',
-        dogsInfo: '강아지정보',
-        image: '이미지',
-        age: '00',
-        gender: '남아',
-        dogsBreed: '미상',
-        isNeutralized: 'true',
-        score: '100',
-        imageFileName: '',
-        dogsWeight: '10',
-
-    })  
-
-    const {name ,age,gender,dogsBreed,isNeutralized,image,score,dogsInfo,imageFileName ,dogsWeight} = dogsInfoDTO
 
     const [imgList, setImgList] = useState([])
     const [files, setFiles] = useState([])
@@ -82,27 +102,34 @@ const MydogProfileRegister2 = () => {
         e.preventDefault()
         console.log(dogsInfoDTO);
 
-        var formData = new FormData()
-        formData.append('dogsInfoDTO', new Blob([JSON.stringify(dogsInfoDTO)], {type: 'application/json'}))
-        // for(var i=0; i<files.length; i++) {
-        //     formData.append('img', files[i])
-        // }
-        Object.values(files).map((item,index) => {
-            formData.append('img', item)
-        })
+    // 먼저 기존 데이터를 삭제합니다.
+            // 삭제가 성공하면 업로드를 진행합니다.
+            var formData = new FormData();
+            formData.append('dogsInfoDTO', new Blob([JSON.stringify(dogsInfoDTO)], { type: 'application/json' }));
 
-        axios.post('/mypage/upload', formData,{
-            headers: {
-                'Content-Type' : 'multipart/form-data'
-            }
-        }) 
-        .then(res=>{
+            Object.values(files).map((item, index) => {
+                formData.append('img', item);
+            });
 
-            alert('이미지 업로드 완료')
-            navigate('/mypage/MydogProfile')
-        })
-        .catch(error=> console.log(error)) 
-    }
+            axios.post('/mypage/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(res => {
+                alert('이미지 업로드 완료');
+            })
+            .catch(error => console.log(error));
+
+            
+            axios.delete(`/mypage/deleteDogInfo?id=${userId}`)
+            .then(() => {
+                console.log('삭제성공')
+                navigate('/mypage/MydogProfile');
+            })
+
+
+    };
 
     const onReset = (e) => {
         e.preventDefault()
@@ -116,6 +143,7 @@ const MydogProfileRegister2 = () => {
             image: '',
             score: '',
             dogsInfo: '',
+            dogsWeight: '7.1',
         })
 
         setImgList([])
@@ -124,16 +152,26 @@ const MydogProfileRegister2 = () => {
         document.getElementById('imgDel').style.display = 'block'
         document.getElementById('imgDel2').style.display = 'block' 
     }
-
+  
+    
+    const onDeleteSubmit = (e) => {
+        e.preventDefault()
+        
+        axios.delete(`/mypage/deleteDogInfo?id=${userId}`)
+             .then(
+                alert('반려견의 정보를 삭제하였습니다.'),
+                navigate('/mypage/MydogProfile'))
+             .catch(error => console.log(error))
+    }
 
     return (
         <div>
-            <Header />
+            <Header></Header> 
             <Container className='px-10 mt-2'> {/* 회원 정보 수정 글씨 */}
                     <div className='row '>
                         <div className='col-lg-4 d-flex justify-content-center'></div>
                         <div className='col-lg-4 d-flex justify-content-center'>
-                            <span className={Mypage.PageUpdateLetter}>반려견 등록</span>
+                            <span className={Mypage.PageUpdateLetter}>반려견 정보수정</span>
                         </div>
                         <div className='col-lg-4 d-flex justify-content-center'></div>
                     </div>
@@ -144,8 +182,9 @@ const MydogProfileRegister2 = () => {
                         </Col>
                         <Col xs={2} md={4} className={`${Mypage.Imagecenter} d-flex justify-content-center`}>
                             <div className={Mypage.main_image}>
-                                <Image id='imgDel' src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_pug_icon_130225.png" roundedCircle className={Mypage.RoundedCircle} style={{border:'1px solid'}} />                            
-                                <h1  id='imgDel2' className={Mypage.main_image_text}>이미지를 선택해 주세요.</h1>
+                                {/* <Image id='imgDel' src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_pug_icon_130225.png" roundedCircle className={Mypage.RoundedCircle} style={{border:'1px solid'}} />                             */}
+                                <Image id='imgDel' alt={name} src={`/storage/${encodeURIComponent(image)}`} roundedCircle className={Mypage.RoundedCircle} style={{  border: '1px solid #ddd' }} />
+                               <h1  id='imgDel2' className={Mypage.main_image_text}>이미지를 선택해 주세요.</h1>
                             </div>
                             <div id='imgDelBefore'>
                                 <span id='imgDelBefore2' >
@@ -215,23 +254,6 @@ const MydogProfileRegister2 = () => {
                                 aria-label="Default"
                                 aria-describedby="inputGroup-sizing-default" name='age' value={age} onChange={onInput}
                                 />
-                            </InputGroup>
-                        </Col>
-                        <Col xs={5} md={4}>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={5} md={4}>
-                        </Col>
-                        <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                            <InputGroup className="mb-3" >
-                                <InputGroup.Text id="inputGroup-sizing-default" style={{color:'#f56084'}}>
-                                무게
-                                </InputGroup.Text>
-                                <Form.Control
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default" name='dogsWeight' value={dogsWeight} onChange={onInput}
-                                /><span style={{ marginLeft: '5px' }}>kg</span>
                             </InputGroup>
                         </Col>
                         <Col xs={5} md={4}>
@@ -316,14 +338,14 @@ const MydogProfileRegister2 = () => {
                     <div className='row'>
                         <div className='col-sm-3 d-flex justify-content-center'></div>
                         <div className='col-sm-6 d-flex justify-content-center'>
-                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>등록하기</Button>{''} 
-                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onReset }>취소</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>수정하기</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onDeleteSubmit }>삭제하기</Button>{''} 
                             <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ back }>뒤로가기</Button>{''} 
                         </div>
                     </div>
-            </Container>
+            </Container>        
         </div>
     );
 };
 
-export default MydogProfileRegister2;
+export default MydogUpdateForm2;

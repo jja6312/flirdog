@@ -32,4 +32,15 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 	public Optional<DogsInfoDTO> getDogInfo(Long userId) {
 	    return mypageDogsInfoDTOUploadRepository.findById(userId);
 	}
+
+
+	@Override
+	public void deleteDogInfo(Long userId) {
+		//deleteById (delete from usertable where id=?)
+		//deleteById()는 내부적으로 findById() 수행하고 delete 를 처리한다.
+		//아이디가 없으면 EmptyResultDataAccessException이 발생한다.
+		
+		//delete()는 findById() 수행하지 않고 바로 delete 를 처리한다.
+		mypageDogsInfoDTOUploadRepository.deleteById(userId);
+	}
 }

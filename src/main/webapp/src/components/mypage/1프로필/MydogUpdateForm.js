@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useRef} from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Mypage2 from '../../../css/main/100마이페이지/mypage2.module.css';
@@ -17,22 +17,14 @@ const MydogUpdateForm = () => {
         image: '',
         gender: '',
         dogsBreed: '',
-        dogsWeight: '',
+        dogsWeight: '7.1',
+        age: '',
     })
-    const { name, dogsInfo,image,gender,dogsBreed,dogsWeight } = dogsInfoDTO
+    const { name, dogsInfo,image,gender,dogsBreed,dogsWeight,age} = dogsInfoDTO
 
     const navigate = useNavigate()
 
-    const [reset, setReset] = useState(false)
 
-    const onInput = (e) => {
-        const { name, value } = e.target
-
-        setdogsInfoDTO({
-            ...dogsInfoDTO,
-            [name]: value 
-        })
-    }
     
     useEffect(() => {
         axios.get(`/mypage/getDogInfo?id=${userId}`)
@@ -43,10 +35,7 @@ const MydogUpdateForm = () => {
              .catch(error => console.log(error))
     }, [])
 
-    const onReset = (e) => {
-        setReset(!reset)
-    }
-
+  
     return (
         <div>
             <Header></Header> 
@@ -59,19 +48,20 @@ const MydogUpdateForm = () => {
                             </div>
                             <h4 className={Mypage2.MydogUpdateFormImgae2} style={{marginTop:'20px',marginBottom:'20px'}}>{name}</h4>
                         </div>
-                        <div className={Mypage2.MydogUpldateFormItem}> 생일 : {dogsInfo} </div>
+                        <div className={Mypage2.MydogUpldateFormItem}> 나이 : {age} 세  </div>
                         <div className={Mypage2.MydogUpldateFormItem}> 품종 : {dogsBreed}</div>
                         <div className={Mypage2.MydogUpldateFormItem}> 성별 : {gender}</div>
                         <div className={Mypage2.MydogUpldateFormItem}> 몸무게 : {dogsWeight} kg</div>
                     </div>
                     <div className={Mypage2.MydogUpldateButton}> 
                         <button className={Mypage2.MydogUpldateButton2} onClick={ () => navigate('/mypage/MydogProfile') }>목록으로</button>
-                        <Link  className={Mypage2.MydogUpldateButton3} to={`/mypage/MydogUpdateForm/${userId}`}>
+                        <Link  className={Mypage2.MydogUpldateButton3} to={`/mypage/MydogUpdateForm2/${userId}`}>
                             <span className= {Mypage2.MydogUpldateButton4} >수정하기</span>
                         </Link>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

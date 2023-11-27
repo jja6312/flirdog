@@ -52,7 +52,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
             className={styleDesktop.customDropdownItem}
             href={
               window.location.pathname !== "/"
-                ? "../mypage/MypageCategoryWrapper"
+                ? `${window.location.origin}/mypage/MypageMain` // 현재 페이지가 메인페이지가 아닐 경우 절대 경로로 이동
                 : "mypage/MypageCategoryWrapper"
             }
           >
