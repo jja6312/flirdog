@@ -1,4 +1,32 @@
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0%);
+    visibility: visible; /* 요소가 보이게 설정 */
+    opacity: 1; /* 완전 불투명 */
+  }
+  100% {
+    transform: translateX(-100%);
+    visibility: hidden; /* 요소를 숨김 */
+    opacity: 0; /* 완전 투명 */
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 .loginForm {
+  position: fixed;
+  display: flex;
   width: 100%;
 }
 .joinAuthForm {
@@ -8,6 +36,14 @@
 .loginFormElementDiv {
   width: 340px;
   height: 60px;
+}
+.loginFormElementLater {
+  cursor: pointer;
+}
+
+.loginFormElementDivSmall {
+  width: 340px;
+  height: 40px;
 }
 
 .kakaoDiv {
@@ -39,6 +75,16 @@
   background-color: #fe7394;
 }
 
+.loginBtn2 {
+  background-color: #ffffff;
+  color: #f56084;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.loginBtn2:hover {
+  background-color: #e3e3e3;
+}
+
 .disabledBtn {
   background-color: gray;
   cursor: pointer;
@@ -46,6 +92,10 @@
 
 .loginBtnSpan {
   color: white;
+  font-size: 20px;
+}
+.loginBtnSpan2 {
+  color: #f56084;
   font-size: 20px;
 }
 
@@ -70,6 +120,15 @@
 
   color: black;
 }
+.JoinAuthFont4 {
+  font-size: 22px;
+
+  color: black;
+}
+.underlineStyle {
+  text-decoration: underline;
+  color: black;
+}
 
 .phoneStyle {
   width: 100%;
@@ -88,4 +147,11 @@
 .linkNoneStyle {
   text-decoration: none;
   color: black;
+}
+
+.slideInRight {
+  animation: slideInRight 0.5s ease-in-out forwards;
+}
+.slideOutLeft {
+  animation: slideOutLeft 0.5s ease-in-out forwards;
 }

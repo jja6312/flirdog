@@ -1,5 +1,7 @@
 package somoim.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import api.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -60,6 +62,7 @@ public class Somoim extends BaseEntity{
 	@NonNull // 22일추가
 	private String address2;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "created_id", nullable = true)
 	private User user;

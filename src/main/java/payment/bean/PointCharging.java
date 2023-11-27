@@ -1,5 +1,7 @@
 package payment.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -20,7 +22,7 @@ public class PointCharging extends BaseEntity {
     private int price;
 
     private int chargingPoint;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

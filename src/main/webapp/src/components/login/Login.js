@@ -1,18 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../../css/login/login.module.css";
 import SocialKakao from "./loginAPI/SocialKaKao";
 import { Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { login } = useContext(UserContext);
+  const [credentials, setCredentials] = useState({
+    email: "",
+    passwd: "",
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("로그인 시도:", email, password);
-    // 로그인 로직 구현
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setCredentials(() => ({
+      ...credentials,
+      [name]: value,
+    }));
   };
+
+  useEffect(() => {
+    console.log("credentials");
+    console.log(credentials);
+  }, [credentials]);
+
+  const handleLogin = () => {
+    console.log("credentials.passwd");
+    console.log(credentials.passwd);
+
+    login(credentials);
+  };
+
   return (
     <div
       className={`${styles.loginForm} d-flex justify-content-start align-items-center flex-column`}
@@ -63,10 +83,13 @@ const Login = () => {
       >
         <InputGroup size="lg">
           <Form.Control
+            name="email"
             aria-label="Large"
             aria-describedby="inputGroup-sizing-lg"
             placeholder="이메일 주소"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              handleChange(e);
+            }}
           />
         </InputGroup>
       </div>
@@ -75,14 +98,18 @@ const Login = () => {
       >
         <InputGroup size="lg">
           <Form.Control
+            name="passwd"
             aria-label="Large"
             aria-describedby="inputGroup-sizing-lg"
             placeholder="비밀번호"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              handleChange(e);
+            }}
           />
         </InputGroup>
       </div>
       <div
+        onClick={handleLogin}
         className={`${styles.loginFormElementDiv} ${styles.loginBtn} mt-2 d-flex justify-content-center align-items-center rounded`}
       >
         <span className={styles.loginBtnSpan}>로그인</span>
