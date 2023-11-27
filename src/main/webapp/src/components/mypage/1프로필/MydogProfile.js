@@ -49,7 +49,7 @@ const MydogProfile = () => {
                     <div className='col-lg-4 justify-content-center'>
                         {list.map(item => (
                             
-                            <Link className={Mypage.subjectA} to={`/mypage/updateForm/${item.id}`}>
+                            <Link className={Mypage.subjectA} to={`/mypage/MydogUpdateForm/${item.id}`}>
                                 <div key={item.id} className={Mypage.MydogProfileMarging} style={{ marginBottom: '10px', border: '1px solid #f56084', padding: '10px', borderRadius: '100px' }}>
                                     <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                                         <div style={{ textAlign: 'start' }}>

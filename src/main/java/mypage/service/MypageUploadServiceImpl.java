@@ -26,4 +26,5 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 		return mypageDogsInfoDTOUploadRepository.findAll();//쿼리 메소드
 		
 	}
+	
 }

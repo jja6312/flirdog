@@ -1,6 +1,8 @@
 package mypage.controller;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,9 +65,11 @@ public class MypageController {
 		return mypageService.getDogInfoList(pageable);
 	}
 
-	@DeleteMapping(path="delete")
-	public void delete(@RequestParam String id) {
-		mypageService.delete(id);
+	@GetMapping(path="getDogInfo")
+	public Optional<DogsInfoDTO> getDogInfo(@RequestParam String id) {
+	    Long userId = Long.parseLong(id);
+		return mypageService.getDogInfo(userId);
 	}
+	
 
 }

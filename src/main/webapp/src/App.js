@@ -44,6 +44,7 @@ import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
 import UserEditForm from "./components/admin/2회원관리/UserEditForm";
 import MydogProfileRegister2 from "./components/mypage/1프로필/MydogProfileRegister2";
 import MydogProfile2 from "./components/mypage/1프로필/MydogProfile2";
+import MydogUpdateForm from "./components/mypage/1프로필/MydogUpdateForm";
 
 const App = () => {
   return (
@@ -63,7 +64,6 @@ const App = () => {
             element={<MypageCategoryWrapper />}
           />
           <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
           <Route
             path="/mypage/MydogProfileUpdate"
             element={<MydogProfileUpdate />}
@@ -78,6 +78,9 @@ const App = () => {
           <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />} />
           <Route path="/mypage/MydogProfileRegister2" element={<MydogProfileRegister2 />} />
           <Route path="/mypage/MydogProfile2" element={<MydogProfile2 />} /> 
+          <Route path="/mypage/MydogUpdateForm">
+              <Route path=':userId' element={ <MydogUpdateForm /> } />
+          </Route>
           {/* 김찬영마이페이지//================================================================= */}
 
           {/* 매칭페이지 */}

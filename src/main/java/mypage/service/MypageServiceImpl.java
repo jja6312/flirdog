@@ -1,5 +1,7 @@
 package mypage.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,8 +56,9 @@ public class MypageServiceImpl implements MypageService {
 		return list;
 	}
 	@Override
-	public void delete(String id) {
-		mypageDogsInfoDTORepository.deleteById(id);
+	public Optional<DogsInfoDTO> getDogInfo(Long userId) {
+		// TODO Auto-generated method stub
+	    return mypageDogsInfoDTORepository.findById(userId);
 	}
 
 }

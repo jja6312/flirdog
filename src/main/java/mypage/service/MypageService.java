@@ -1,11 +1,14 @@
 package mypage.service;
 
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import payment.bean.PointChargingDTO;
 import user.bean.DogsInfoDTO;
 import user.bean.User;
 import user.bean.UserDTO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public interface MypageService {
 
@@ -19,6 +22,6 @@ public interface MypageService {
 
 	public Page<DogsInfoDTO> getDogInfoList(Pageable pageable);
 
-	public void delete(String id);
+	public Optional<DogsInfoDTO> getDogInfo(Long userId);
 
 }
