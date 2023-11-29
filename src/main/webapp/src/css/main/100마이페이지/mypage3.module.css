@@ -39,8 +39,8 @@
 .div6_1{
     cursor: pointer;
     margin-left: 5px;
-    min-width: 210px;
-    max-width: 210px;
+    min-width: 245px;
+    max-width: 245px;
     border-radius: 18px;
     padding: 16px 20px;
     background: #fffdf4;
@@ -55,7 +55,7 @@
     align-items: center;
     grid-gap: 5px;
     gap: 5px;
-    background: #fcd11e;
+    background: #f56084;
     border-radius: 25px;
     font-style: normal;
     font-weight: 700;
@@ -452,7 +452,7 @@
 .pagination{    
     display: flex;
     justify-content: center;
-    margin-top: 41px;
+    margin-top: 40px;
     list-style: none;
     padding: 0;
     margin-block-start: 1em;

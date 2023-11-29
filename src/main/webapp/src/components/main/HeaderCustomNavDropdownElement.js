@@ -58,6 +58,9 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
           >
             마이페이지
           </a>
+          <a className={styleDesktop.customDropdownItem} href={`${window.location.origin}/mypage/WeatherAndStroll`}>
+            집사생활
+          </a>
         </div>
       </div>
 

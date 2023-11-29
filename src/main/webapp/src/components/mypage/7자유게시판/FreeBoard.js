@@ -8,10 +8,11 @@ const FreeBoard = () => {
     const handleInputChange = () => {
         // 오류 방지용. 나중에 지울 것.
     }
-
+    // div1, div7 접어서 보면 보기 편함.
     return (
         <div>
             <Header/>
+            {/* 검색 이랑 에 인기 게시판 */}
             <div className={Mypage3.div1}>
                 <div className={Mypage3.div2}>
                     <div className={Mypage3.div3}>
@@ -162,6 +163,8 @@ const FreeBoard = () => {
                 </div>
             </div>
             <hr className={Mypage3.hr}/>
+            
+            {/* 하단에 필터링 부분 이랑 글쓰기 부분이랑 페이징 까지 */}
             <div className={Mypage3.div7}>
                 <div className={Mypage3.div8}>
                     <div className={Mypage3.div9}>
