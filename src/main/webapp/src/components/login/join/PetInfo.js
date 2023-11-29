@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import login from "../../../css/login/login.module.css";
 
 import { Form, InputGroup } from "react-bootstrap";
@@ -17,6 +17,8 @@ const PetInfo = ({
   setDogsColor,
   selectedBreed,
   setSelectedBreed,
+  setSatisfyAllConditionPetInfo,
+  dogsColor,
 }) => {
   const onInput = (e) => {
     const value =
@@ -26,6 +28,23 @@ const PetInfo = ({
       [e.target.name]: value,
     });
   };
+
+  useEffect(() => {
+    // 반려견 정보가 모두 입력되었는지 확인
+    console.log(dogsInfo);
+
+    if (
+      dogsInfo.name &&
+      dogsInfo.age &&
+      dogsInfo.gender &&
+      selectedBreed !== "선택" &&
+      dogsColor.length > 0
+    ) {
+      setSatisfyAllConditionPetInfo(true);
+    } else {
+      setSatisfyAllConditionPetInfo(false);
+    }
+  }, [dogsInfo, selectedBreed, dogsColor]);
 
   return (
     <>

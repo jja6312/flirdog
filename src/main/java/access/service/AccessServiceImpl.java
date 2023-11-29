@@ -62,9 +62,9 @@ public class AccessServiceImpl implements AccessService {
 		 		MultipartFile image = joinRequest.getImage();
 		   
 		 	// 이미지가 없는 경우 지정된 이미지사용
-				if (image.isEmpty()) {
-					imagePaths.add("/image/nullImage/nullImage1.png"); // 대체 이미지 경로 또는 빈 문자열
-				} else {
+		 		if (image == null || image.isEmpty()) {
+		 	        imagePaths.add("/image/nullImage/nullImage1.png"); // 대체 이미지 경로 또는 빈 문자열
+		 	    } else {
 		   
 				originalFileName = image.getOriginalFilename();
 				System.out.println("originalFileName: " + originalFileName);
@@ -107,6 +107,11 @@ public class AccessServiceImpl implements AccessService {
 	        
 	        
 	    }
+
+	@Override
+	public boolean checkEmailExist(String email) {
+		return accessRepository.findByEmail(email).isPresent();
+	}
 
 
 }

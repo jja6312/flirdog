@@ -13,8 +13,10 @@ import Swal from "sweetalert2";
 import PetImage from "../join/PetImage";
 import translateText from "../translateText";
 import PetModal from "../join/PetModal";
+import { useNavigate } from "react-router-dom";
 
 const JoinAuth = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     passwd: "",
@@ -44,6 +46,7 @@ const JoinAuth = () => {
   const [isClickNext4, setIsClickNext4] = useState(false);
   const [isClickNext5, setIsClickNext5] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isEmailCheck, setIsEmailCheck] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [satisfyAllCondition, setSatisfyAllCondition] = useState(false);
@@ -51,16 +54,21 @@ const JoinAuth = () => {
     useState(false);
 
   const [selectedBreed, setSelectedBreed] = useState("선택");
-  const [modalShow, setModalShow] = useState(false);
 
   const [imgFiles, setImgFiles] = useState();
   const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
 
-  const [image, setImage] = useState();
-  const [imageAiProfile, setImageAiProfile] = useState("");
+  const [image, setImage] = useState([]);
+  const [imageAiProfile, setImageAiProfile] = useState(
+    "/image/nullImage/nullImage1.png"
+  );
 
   const [dogsBreed, setDogsBreed] = useState("");
   const [dogsColor, setDogsColor] = useState("");
+  useEffect(() => {
+    console.log(satisfyAllConditionPetInfo);
+  }, [dogsInfo]);
+
   useEffect(
     (e) => {
       setUser({
@@ -107,13 +115,22 @@ const JoinAuth = () => {
       isValidPassword &&
       isPasswordMatch &&
       address !== "" &&
-      addressDetail.length > 0
+      addressDetail.length > 0 &&
+      isEmailCheck
     ) {
       setSatisfyAllCondition(true);
     } else {
       setSatisfyAllCondition(false);
     }
-  }, [isValidEmail, isValidPassword, isPasswordMatch, address, addressDetail]);
+  }, [
+    isValidEmail,
+    isValidPassword,
+    isPasswordMatch,
+    address,
+    addressDetail,
+    isEmailCheck,
+    isValidEmail,
+  ]);
 
   const handleInputChange = (field) => (e) => {
     setUser({ ...user, [field]: e.target.value });
@@ -149,7 +166,7 @@ const JoinAuth = () => {
     if (!satisfyAllCondition) {
       Swal.fire({
         icon: "error",
-        title: "모든 정보를 입력해주세요",
+        title: "작성 양식을 확인해주세요.",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -158,6 +175,15 @@ const JoinAuth = () => {
     setIsClickNext2(true);
   };
   const handleSendAuthCode3 = () => {
+    if (!satisfyAllConditionPetInfo) {
+      Swal.fire({
+        icon: "error",
+        title: "작성 양식을 확인해주세요.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
     if (selectedBreed !== "선택") {
       setIsClickNext3(true);
     } else {
@@ -182,7 +208,7 @@ const JoinAuth = () => {
   };
   const onAcceptAiImage = () => {
     setImageAiProfile(aiDogProfileImgUrl);
-    setModalShow(true);
+
     // Swal.fire({
     //   icon: "success",
     //   title: "회원가입이 완료되었습니다!",
@@ -198,17 +224,14 @@ const JoinAuth = () => {
 
   const onJoin = async () => {
     try {
-      alert('ss')
-      alert(image[0]);
-      alert(aiDogProfileImgUrl);
-      console.log(image[0]);
-      console.log(aiDogProfileImgUrl);
       const formData = new FormData();
       formData.append("user", JSON.stringify(user));
-      formData.append("dogsInfo", JSON.stringify(dogsInfo));
-      formData.append("image", image[0]);
-      formData.append("imageAiProfile", aiDogProfileImgUrl);
-      formData.append("dogsBreed", dogsBreed);
+      if (satisfyAllConditionPetInfo) {
+        formData.append("dogsInfo", JSON.stringify(dogsInfo));
+        formData.append("dogsBreed", dogsBreed);
+        formData.append("image", image[0]);
+        formData.append("imageAiProfile", aiDogProfileImgUrl);
+      }
 
       const response = await axios.post(
         "http://localhost:8080/access/join",
@@ -227,6 +250,7 @@ const JoinAuth = () => {
         showConfirmButton: false,
         timer: 1000,
       });
+      navigate("/modalEvaluateOtherDogs");
     } catch (error) {
       console.log(error);
       Swal.fire("회원가입 중 에러가 발생했습니다.", error.message);
@@ -281,9 +305,6 @@ const JoinAuth = () => {
     }
   };
 
-  const goJoinComplete = () => {
-    // axios.post("http://localhost:8080/join",
-  };
   //------------------------------------------------------------
   return (
     <>
@@ -373,6 +394,8 @@ const JoinAuth = () => {
             setEmail={setEmail}
             isValidEmail={isValidEmail}
             setIsValidEmail={setIsValidEmail}
+            setSatisfyAllCondition={setSatisfyAllCondition}
+            setIsEmailCheck={setIsEmailCheck}
           ></EmailInput>
           <PwdInput
             setPassword={setPassword}
@@ -421,9 +444,16 @@ const JoinAuth = () => {
               setDogsColor={setDogsColor}
               selectedBreed={selectedBreed}
               setSelectedBreed={setSelectedBreed}
+              setSatisfyAllConditionPetInfo={setSatisfyAllConditionPetInfo}
+              dogsColor={dogsColor}
             ></PetInfo>
             <div
-              className={`${login.loginFormElementDiv} mt-2 d-flex justify-content-center align-items-center rounded ${login.loginBtn}`}
+              className={`${
+                login.loginFormElementDiv
+              } mt-2 d-flex justify-content-center align-items-center rounded 
+              ${
+                satisfyAllConditionPetInfo ? login.loginBtn : login.disabledBtn
+              }`}
               onClick={handleSendAuthCode3}
             >
               <span className={login.loginBtnSpan}>등록</span>
@@ -433,7 +463,7 @@ const JoinAuth = () => {
               ${login.loginFormElementDivSmall}
               ${login.loginFormElementLater}
               mt-2 d-flex justify-content-center align-items-center rounded `}
-              onClick={handleSendAuthCode3}
+              onClick={onJoin}
             >
               <span style={{ color: "#fe7394" }}>나중에 할래요</span>
             </div>
@@ -471,7 +501,7 @@ const JoinAuth = () => {
             ${login.loginFormElementDivSmall}
             ${login.loginFormElementLater}
             mt-2 d-flex justify-content-center align-items-center rounded `}
-            onClick={goJoinComplete}
+            onClick={onJoin}
           >
             <span style={{ color: "#fe7394" }}>나중에 할래요</span>
           </div>
@@ -498,12 +528,6 @@ const JoinAuth = () => {
             user={user}
             setUser={setUser}
           ></PetAiImage>
-          {modalShow && (
-            <PetModal
-              modalShow={modalShow}
-              setModalShow={setModalShow}
-            ></PetModal>
-          )}
         </div>
       )}
     </>

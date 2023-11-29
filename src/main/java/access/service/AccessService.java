@@ -18,4 +18,6 @@ public interface AccessService {
 
 	void processJoin(JoinRequestDTO joinRequest, HttpSession session);
 
+	boolean checkEmailExist(String email);
+
 }

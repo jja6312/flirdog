@@ -68,6 +68,7 @@ public class AccessController {
         }
 
     }
+    
 
     @PostMapping(path = "getFiveDogsInfo")
     public List<DogsInfo> getFiveDogsInfo() {
@@ -81,31 +82,48 @@ public class AccessController {
     @PostMapping(path="join")
     public ResponseEntity<?> join(
         @RequestPart("user") String userJson,
-        @RequestPart("dogsInfo") String dogsInfoJson,
-        @RequestPart("imageAiProfile") String imageAiProfile,
-        @RequestPart("dogsBreed") String dogsBreedString,
-        @RequestPart(value="image",required = false) MultipartFile image,
+        @RequestPart(value="dogsInfo", required = false) String dogsInfoJson,
+        @RequestPart(value="imageAiProfile", required = false) String imageAiProfile,
+        @RequestPart(value="dogsBreed", required = false) String dogsBreedString,
+        @RequestPart(value="image", required = false) MultipartFile image,
         HttpSession session
     ) throws Exception {
-    	System.out.println("###join");
-//    	  JSON 문자열을 Java 객체로 변환
-        User user = objectMapper.readValue(userJson, User.class);
-        DogsInfo dogsInfo = objectMapper.readValue(dogsInfoJson, DogsInfo.class);
+        System.out.println("###join");
 
-        DogsBreed dogsBreed = DogsBreed.valueOf(dogsBreedString.toUpperCase()); // 문자열을 Enum으로 변환
+        User user = objectMapper.readValue(userJson, User.class);
+        DogsInfo dogsInfo = null;
+        if (dogsInfoJson != null) {
+            dogsInfo = objectMapper.readValue(dogsInfoJson, DogsInfo.class);
+        }
+
+        DogsBreed dogsBreed = null;
+        if (dogsBreedString != null && !dogsBreedString.isEmpty()) {
+            dogsBreed = DogsBreed.valueOf(dogsBreedString.toUpperCase());
+        }
 
         JoinRequestDTO joinRequest = new JoinRequestDTO();
         joinRequest.setUser(user);
         joinRequest.setDogsInfo(dogsInfo);
         joinRequest.setImage(image);
-        System.out.println("image: "+image);
-        System.out.println("imageAiProfile: "+imageAiProfile);
+        System.out.println("image: " + image);
+        System.out.println("imageAiProfile: " + imageAiProfile);
         joinRequest.setImageAiProfile(imageAiProfile);
         joinRequest.setDogsBreed(dogsBreed);
 
-        accessService.processJoin(joinRequest,session);
+        accessService.processJoin(joinRequest, session);
 
         return ResponseEntity.ok().build();
+    }
+
+    
+    @PostMapping(path = "checkEmailIsExist")
+    public ResponseEntity<?> checkEmailIsExist(@RequestParam String email) {
+        boolean isExist = accessService.checkEmailExist(email);
+        if(isExist) {
+            return ResponseEntity.ok(true); // 혹은 복잡한 응답 구조 사용 가능
+        } else {
+            return ResponseEntity.ok(false);
+        }
     }
 }
 // private DefaultMessageService messageService;

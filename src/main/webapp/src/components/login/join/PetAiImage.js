@@ -3,6 +3,7 @@ import axios from "axios";
 import ScratchCard from "./ScratchCard";
 import loginStyles from "../../../css/login/login.module.css";
 import { Form, InputGroup } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const PetAiImage = ({
   user,
@@ -14,6 +15,16 @@ const PetAiImage = ({
   onAcceptAiImage,
   onJoin,
 }) => {
+  const NononononoJoin = () => {
+    Swal.fire({
+      icon: "error",
+      title: "닉네임을 입력해주세요.",
+      showConfirmButton: false,
+      timer: 800,
+      position: "top",
+    });
+  };
+
   const onInput = (e) => {
     const { value } = e.target;
 
@@ -74,19 +85,14 @@ const PetAiImage = ({
       <div
         className={`${
           user.nickname.length > 0
-            ? loginStyles.loginFormElementDiv
-            : loginStyles.loginFormElementDiv2
-        } mt-2 d-flex justify-content-center align-items-center rounded 
-        ${
-          user.nickname.length > 0
             ? loginStyles.loginBtn
-            : loginStyles.loginBtn2
-        }`}
-        onClick={
-          user.nickname.length > 0
-            ? onJoin
-            : () => alert("닉네임을 입력해주세요.")
-        }
+            : loginStyles.disabledBtn
+        } mt-2 d-flex justify-content-center align-items-center rounded 
+        
+          ${loginStyles.loginFormElementDiv}
+            
+        `}
+        onClick={user.nickname.length > 0 ? onJoin : NononononoJoin}
       >
         <span className={login.loginBtnSpan}>프로필 설정 및 회원가입 완료</span>
       </div>
