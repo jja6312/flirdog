@@ -105,8 +105,12 @@ const MydogProfileRegister2 = () => {
                 text: '반려견 등록이 완료되었습니다.',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#f56084'
-            })
-            navigate('/mypage/MydogProfile')
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 마이페이지 반려견 프로필로 이동
+                    navigate('/mypage/MydogProfile');
+                } 
+            });
         })
         .catch(error=> console.log(error)) 
     }

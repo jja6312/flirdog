@@ -7,6 +7,7 @@ import Header from '../../main/Header';
 import smmile from './smmile.jpg';
 import normaldog from './normaldog.jpg';
 import saddog from './saddog.jpg';
+import Container from 'react-bootstrap/esm/Container';
 
 const WeatherAndStroll = () => {
     const API_KEY = "1e7c80253e0b45e8952c959aa383dda5"; 
@@ -41,6 +42,15 @@ const WeatherAndStroll = () => {
         <AppWrap>
         <Header/>
         <div className="appContentWrap">
+          <Container className='px-10 mt-2'>
+            <div className='row '>
+                <div className='col-lg-4 d-flex justify-content-center'></div>
+                <div className='col-lg-4 d-flex justify-content-center'>
+                    <span style={{textAlign:'center',fontWeight:'700',fontSize:'20px',color:'#2E8B57'}}>산책 지수</span>
+                </div>
+                <div className='col-lg-4 d-flex justify-content-center'></div>
+            </div>
+          </Container>
           {Object.keys(result).length !== 0 && (
             <ResultWrap>
               <div className="date">{formmattedDate}</div>
@@ -133,6 +143,16 @@ const WeatherAndStroll = () => {
                     <div className='message2'>황사가 있으니 마스크를 챙기세요~</div>
                   </>
                 )}
+                {Math.abs(Math.round((result.data.main.temp - 273.15) * 10) / 10 + 1) > 0.01 && (
+                  <>
+                    <div className='message2'>날씨가 너무 춥지도 않아서 나가도 될거같아요.</div>
+                  </>
+                )}
+                {Math.abs(Math.round((result.data.main.temp - 273.15) * 10) / 10 + 1) < 0.01 && (
+                  <>
+                    <div className='message2'>(대신에, 날씨는 너무 춥습니다.ㅠㅠ) </div>
+                  </>
+                )}
               </div>
             </ResultWrap>
           )}
@@ -172,7 +192,7 @@ const AppWrap = styled.div`
     `;
     
     const ResultWrap = styled.div`
-      margin-top: 60px;
+      margin-top: 30px;
       border: 1px black solid;
       padding: 100px;
       border-radius: 8px;
