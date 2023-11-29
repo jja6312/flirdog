@@ -90,7 +90,9 @@
 }
 
 .Email{
-    width: 30px;
+    width: 50px;
+    height: 50px;
+    border-style: none;
 }
 .Btn{
     width: 100%;
