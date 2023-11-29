@@ -1,5 +1,6 @@
 package access.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import access.bean.JoinRequestDTO;
 import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
+import jakarta.servlet.http.HttpSession;
+import user.bean.DogsBreed;
+import user.bean.DogsInfo;
 import user.bean.User;
 
 @CrossOrigin
@@ -25,6 +34,8 @@ import user.bean.User;
 public class AccessController {
     @Autowired
     AccessService accessService;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @PostMapping("translate")
     public ResponseEntity<String> translate(@RequestBody TranslateRequestDTO requestText) {
@@ -58,6 +69,44 @@ public class AccessController {
 
     }
 
+    @PostMapping(path = "getFiveDogsInfo")
+    public List<DogsInfo> getFiveDogsInfo() {
+
+        List<DogsInfo> dogsInfo = accessService.getFiveDogsInfo();
+
+        return dogsInfo;
+
+    }
+
+    @PostMapping(path="join")
+    public ResponseEntity<?> join(
+        @RequestPart("user") String userJson,
+        @RequestPart("dogsInfo") String dogsInfoJson,
+        @RequestPart("imageAiProfile") String imageAiProfile,
+        @RequestPart("dogsBreed") String dogsBreedString,
+        @RequestPart(value="image",required = false) MultipartFile image,
+        HttpSession session
+    ) throws Exception {
+    	System.out.println("###join");
+//    	  JSON 문자열을 Java 객체로 변환
+        User user = objectMapper.readValue(userJson, User.class);
+        DogsInfo dogsInfo = objectMapper.readValue(dogsInfoJson, DogsInfo.class);
+
+        DogsBreed dogsBreed = DogsBreed.valueOf(dogsBreedString.toUpperCase()); // 문자열을 Enum으로 변환
+
+        JoinRequestDTO joinRequest = new JoinRequestDTO();
+        joinRequest.setUser(user);
+        joinRequest.setDogsInfo(dogsInfo);
+        joinRequest.setImage(image);
+        System.out.println("image: "+image);
+        System.out.println("imageAiProfile: "+imageAiProfile);
+        joinRequest.setImageAiProfile(imageAiProfile);
+        joinRequest.setDogsBreed(dogsBreed);
+
+        accessService.processJoin(joinRequest,session);
+
+        return ResponseEntity.ok().build();
+    }
 }
 // private DefaultMessageService messageService;
 //

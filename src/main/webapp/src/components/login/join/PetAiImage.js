@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ScratchCard from "./ScratchCard";
+import loginStyles from "../../../css/login/login.module.css";
+import { Form, InputGroup } from "react-bootstrap";
 
 const PetAiImage = ({
+  user,
+  setUser,
   dogsInfo,
   aiDogProfileImgUrl,
   setAiDogProfileImgUrl,
   login,
   onAcceptAiImage,
+  onJoin,
 }) => {
+  const onInput = (e) => {
+    const { value } = e.target;
+
+    setUser({ ...user, nickname: value });
+  };
   useEffect(() => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init("b3eef06a2754cfd6cae91b650e23a921");
@@ -53,20 +63,36 @@ const PetAiImage = ({
         />
       </div>
 
+      <InputGroup style={{ width: "340px" }} size="lg" className={`mt-2`}>
+        <Form.Control
+          onChange={onInput}
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          placeholder="닉네임을 입력해주세요."
+        />
+      </InputGroup>
       <div
-        className={`${login.loginFormElementDiv} mt-2 d-flex justify-content-center align-items-center rounded ${login.loginBtn}`}
-        onClick={onAcceptAiImage}
+        className={`${
+          user.nickname.length > 0
+            ? loginStyles.loginFormElementDiv
+            : loginStyles.loginFormElementDiv2
+        } mt-2 d-flex justify-content-center align-items-center rounded 
+        ${
+          user.nickname.length > 0
+            ? loginStyles.loginBtn
+            : loginStyles.loginBtn2
+        }`}
+        onClick={
+          user.nickname.length > 0
+            ? onJoin
+            : () => alert("닉네임을 입력해주세요.")
+        }
       >
         <span className={login.loginBtnSpan}>프로필 설정 및 회원가입 완료</span>
       </div>
-      <div
-        className={`${login.loginFormElementDiv} mt-2 d-flex justify-content-center align-items-center rounded ${login.loginBtn2}`}
-        onClick={onAcceptAiImage}
-      >
-        <span className={login.loginBtnSpan2}>설정하지 않고 회원가입 완료</span>
-      </div>
 
       <div
+        className="mt-3"
         style={{
           border: "1px solid lightGray",
           width: "50vw",

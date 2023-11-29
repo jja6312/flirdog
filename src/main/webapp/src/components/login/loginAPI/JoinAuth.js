@@ -17,12 +17,20 @@ import PetModal from "../join/PetModal";
 const JoinAuth = () => {
   const [user, setUser] = useState({
     email: "",
-    password: "",
+    passwd: "",
     name: "",
     phone: "",
     address: "",
     addressDetail: "",
+    nickname: "",
   });
+  const [dogsInfo, setDogsInfo] = useState({
+    name: "",
+    age: "",
+    gender: "",
+    isNeutralized: false,
+  });
+
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,17 +53,12 @@ const JoinAuth = () => {
   const [selectedBreed, setSelectedBreed] = useState("선택");
   const [modalShow, setModalShow] = useState(false);
 
-  const [imgFiles, setImgFiles] = useState("");
+  const [imgFiles, setImgFiles] = useState();
   const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
 
-  const [image, setImage] = useState("");
-  const [imageAi, setImageAi] = useState("");
-  const [dogsInfo, setDogsInfo] = useState({
-    name: "",
-    age: "",
-    gender: "",
-    isNeutralized: false,
-  });
+  const [image, setImage] = useState();
+  const [imageAiProfile, setImageAiProfile] = useState("");
+
   const [dogsBreed, setDogsBreed] = useState("");
   const [dogsColor, setDogsColor] = useState("");
   useEffect(
@@ -63,7 +66,7 @@ const JoinAuth = () => {
       setUser({
         ...user,
         email: email,
-        password: password,
+        passwd: password,
         name: user.name,
         phone: phone,
         address: address,
@@ -168,6 +171,9 @@ const JoinAuth = () => {
   };
   const handleSendAuthCode4 = () => {
     setIsClickNext4(true);
+    console.log("###imgFiles들어오니?");
+    console.log(imgFiles);
+    setImage(imgFiles);
   };
 
   const isValidPhoneNumber = (number) => {
@@ -175,7 +181,7 @@ const JoinAuth = () => {
     return regex.test(number);
   };
   const onAcceptAiImage = () => {
-    setImageAi(aiDogProfileImgUrl);
+    setImageAiProfile(aiDogProfileImgUrl);
     setModalShow(true);
     // Swal.fire({
     //   icon: "success",
@@ -188,6 +194,43 @@ const JoinAuth = () => {
   const onAcceptImage = () => {
     setImage(imgFiles);
     setIsClickNext5(true);
+  };
+
+  const onJoin = async () => {
+    try {
+      alert('ss')
+      alert(image[0]);
+      alert(aiDogProfileImgUrl);
+      console.log(image[0]);
+      console.log(aiDogProfileImgUrl);
+      const formData = new FormData();
+      formData.append("user", JSON.stringify(user));
+      formData.append("dogsInfo", JSON.stringify(dogsInfo));
+      formData.append("image", image[0]);
+      formData.append("imageAiProfile", aiDogProfileImgUrl);
+      formData.append("dogsBreed", dogsBreed);
+
+      const response = await axios.post(
+        "http://localhost:8080/access/join",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(response);
+      Swal.fire({
+        icon: "success",
+        title: "회원가입이 완료되었습니다!",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    } catch (error) {
+      console.log(error);
+      Swal.fire("회원가입 중 에러가 발생했습니다.", error.message);
+    }
   };
 
   //--------------------이미지 생성------------------------
@@ -214,6 +257,7 @@ const JoinAuth = () => {
 
       const imageUrl = response.data.data[0].url; // Adjust this according to the actual response structure
       setAiDogProfileImgUrl(imageUrl);
+      alert("imageUrl: " + imageUrl);
       // alert("Saving image...");
 
       await axios
@@ -450,6 +494,9 @@ const JoinAuth = () => {
             dogsInfo={dogsInfo}
             login={login}
             onAcceptAiImage={onAcceptAiImage}
+            onJoin={onJoin}
+            user={user}
+            setUser={setUser}
           ></PetAiImage>
           {modalShow && (
             <PetModal
