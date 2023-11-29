@@ -10,17 +10,16 @@ import axios from 'axios';
 
 
 const MyprofileUpdate = () => {
-
     const [userDTO, setUserDTO] = useState({
         name: '',
         passwd: '',
         email: '',
         nickname: '',
+        Image : '',
         userRole: '',
         point: 0,
         communityScore: 0,
         introduce : '',
-
         });
 
         useEffect(() => {

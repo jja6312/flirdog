@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import jakarta.servlet.http.HttpSession;
 import mypage.service.MypageUploadService;
 import user.bean.DogsInfoDTO;
+import user.bean.UserDTO;
 
 @CrossOrigin
 @RestController
@@ -102,4 +103,58 @@ public class MypageUploadController {
 		mypageUploadService.deleteDogInfo(userId);
 	}
 
+	
+	@PostMapping(path="uploadProfile" , produces ="application/json;charset=UTF-8")
+	public void upload( @RequestPart("userDTO") UserDTO userDTO,
+						@RequestPart("img") List<MultipartFile> list,
+						HttpSession session) {
+		
+		System.out.println("@@@등록하러왔음");
+		System.out.println(userDTO.getName());
+		
+		
+		
+		//실제 폴더
+		String filePath = session.getServletContext().getRealPath("/public/storage");
+		System.out.println("실제폴더11111111111 = " + filePath);
+		
+		File file;
+		String originalFileName;
+		String fileName;
+		
+		//파일명만 모아서 DB로 보내기
+		List<UserDTO> userImageList = new ArrayList<UserDTO>();
+		
+		for(MultipartFile img : list) {
+			originalFileName = img.getOriginalFilename();
+			System.out.println(originalFileName);
+		
+			fileName = "noname";
+			
+			file = new File(filePath, originalFileName);
+			
+			
+			try {
+				img.transferTo(file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			UserDTO dto = new UserDTO();
+			dto.setName(userDTO.getName());
+			dto.setNickname(userDTO.getNickname());
+			dto.setPhone(userDTO.getPhone());
+			dto.setIntroduce(userDTO.getIntroduce());
+			dto.setEmail(userDTO.getEmail());
+			dto.setImage(originalFileName);
+			dto.setImageFileName(fileName);
+			
+			userImageList.add(dto);
+			
+		}//for
+		System.out.println(userImageList);
+		
+		//DB
+		mypageUploadService.uploadProfile(userImageList);
+	}
 }

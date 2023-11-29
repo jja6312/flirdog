@@ -55,7 +55,7 @@ const MydogUpdateForm = () => {
                     </div>
                     <div className={Mypage2.MydogUpldateButton}> 
                         <button className={Mypage2.MydogUpldateButton2} onClick={ () => navigate('/mypage/MydogProfile') }>목록으로</button>
-                        <Link  className={Mypage2.MydogUpldateButton3} to={`/mypage/MydogUpdateForm2/${userId}`}>
+                        <Link  className={Mypage2.MydogUpldateButton3} to={`/mypage/MydogUpdateForm2/${userId}`} style={{textAlign:'center'}}>
                             <span className= {Mypage2.MydogUpldateButton4} >수정하기</span>
                         </Link>
                     </div>

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import mypage.repository.MypageDogsInfoDTOUploadRepository;
+import mypage.repository.MypageUserDTORepository;
 import user.bean.DogsInfoDTO;
+import user.bean.UserDTO;
 
 @Service
 @Transactional
@@ -16,6 +18,9 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 
 	@Autowired
 	private MypageDogsInfoDTOUploadRepository mypageDogsInfoDTOUploadRepository;
+	
+	@Autowired
+	private MypageUserDTORepository mypageUserDTORepository;
 	
 	@Override
 	public void upload(List<DogsInfoDTO> dogsImageList) {
@@ -42,5 +47,10 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 		
 		//delete()는 findById() 수행하지 않고 바로 delete 를 처리한다.
 		mypageDogsInfoDTOUploadRepository.deleteById(userId);
+	}
+
+	@Override
+	public void uploadProfile(List<UserDTO> userImageList) {
+		mypageUserDTORepository.saveAll(userImageList);
 	}
 }
