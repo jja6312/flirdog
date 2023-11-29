@@ -26,6 +26,10 @@ const MypageCategory = () => {
             <div style={{ width: "100%", textAlign: "center" }}>
                 <Link to="/mypage/Location">위치기능</Link>
             </div>
+            
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/FreeBoard">자유게시판메인</Link>
+            </div>
         </div>
     );
 };
