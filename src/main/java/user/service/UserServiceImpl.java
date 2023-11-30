@@ -17,4 +17,11 @@ public class UserServiceImpl implements UserService {
     public Optional<User> login(String email, String passwd) {
         return userRepository.findByEmailAndPasswd(email, passwd);
     }
+
+	@Override
+	public Optional<User> findId(Long id) {
+		Optional<User> user = userRepository.findById(id);
+		System.out.println("UserService id값 찾기 : " + user.get().getId());
+		return user;
+	}
 }

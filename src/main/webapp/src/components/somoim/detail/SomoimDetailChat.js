@@ -4,7 +4,7 @@ const SomoimDetailChat = () => {
     return (
         <>
             {/* <div className='col-lg-3 col-12 d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid brown', padding: 0 }}> */}
-            <div className='col-lg-3 col-12 d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', padding: 0 }}>
+            <div className='col-lg-3 col-12 d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-start', padding: 0 }}>
                    <div style={{ width: '290px', height: '964px', position: 'relative', paddingRight: '90%' }}>
                        <div className="Rectangle56" style={{ width: '308px', height: '965.79px', left: '0px', position: 'absolute', background: '#FFF4F4' }}></div>
                        <div style={{ width: '278px', height: '924px', left: '17px', top: '14px', position: 'absolute', background: 'white' }}></div>

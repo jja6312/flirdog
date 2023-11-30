@@ -16,7 +16,6 @@ const UserProvider = ({ children }) => {
     createdAt: '',
     modifiedAt: '',
     userRole: '',
-
   });
   const navigate = useNavigate();
 

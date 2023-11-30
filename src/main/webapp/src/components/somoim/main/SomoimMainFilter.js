@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Button from 'react-bootstrap/Button';
 import SomoimMainCategoryVarContainer from './SomoimMainCategoryVarContainer';
@@ -8,10 +8,16 @@ import SomoimMainFilterCategory from '../../../css/somoim/main/SomoimMainFilter.
 
 import {CustomMenu, CustomToggle} from './SomoimMainCategoryToggle';
 import {Dropdown} from 'react-bootstrap';
+import { UserContext } from '../../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const SomoimMainFilter = ({ onSelectLocation, onSearch }) => {
     const [categoryToggle, setCategoryToggle] = useState(false);
     const locations = ["전국", "서울", "인천", "경기", "대전", "대구", "부산", "광주", "울산", "세종", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"];
+
+    const { user } = useContext(UserContext); // 유저 컨텍스트
+    const { id } = user;
+    const navigate = useNavigate();
 
     const handleSearch  = (searchData) => {
         const { search } = searchData;
@@ -33,6 +39,14 @@ const SomoimMainFilter = ({ onSelectLocation, onSearch }) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    // (() => { ... })()로 함수를 정의하고 즉시 실행
+    const preLogin = () => {
+        id ? navigate('/somoim/somoimNew') : (() => {
+          alert('먼저 로그인 하세요');
+          navigate('/login');
+        })();
+      }
 
     return (
         <div>
@@ -71,7 +85,7 @@ const SomoimMainFilter = ({ onSelectLocation, onSearch }) => {
                         <MoimMainCategoryBtn onSearch={ handleSearch } ></MoimMainCategoryBtn>
                     </div>
                     <div className='col-3 col-md-2 d-flex justify-content-center'>
-                        <Button variant="outline-secondary" className='text-nowrap btn-sm w-100' href='/somoim/somoimNew'>모임 개설하기</Button>
+                        <Button variant="outline-secondary" className='text-nowrap btn-sm w-100' onClick={preLogin}>모임 개설하기</Button>
                     </div>
                     
                     {/* <div className='col-md-12 col-4 d-flex justify-content-center' style={{width: 1332.53, height: 279.20, position: 'relative'}}>

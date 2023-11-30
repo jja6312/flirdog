@@ -2,10 +2,11 @@ package user.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import api.BaseEntity;
 import community.bean.Community;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,7 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-import lombok.ToString;
 import matching.bean.Matching;
 import payment.bean.PointCharging;
 import somoim.bean.Somoim;
@@ -28,7 +28,6 @@ import somoim.bean.Somoim;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@ToString
 public class User extends BaseEntity{
     @Id
     //@Column(name="user_Id")

@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 //import styles from '../../../css/somoim/main/SomoimMainList.module.css';
 import { Button, Card } from 'react-bootstrap';
 import axios from 'axios';
+import moment from 'moment';
 
 const SomoimMainList = ({ selectedLocation, searchList }) => {
     const [somoimList, setSomoimList] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
+    const imageUrl = 'https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/flirdogStorage/somoim/';
     //const {id, email, passwd} = login; // 로그인
     const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
       }, [searchList]);
 
       
-      useEffect(() => {
+      useEffect(() => {  // 필터기능
         let filteredList = [...somoimList];
     
         if (isSearching) {
@@ -63,19 +65,24 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
         navigate(`/somoim/detailMain/${item.id}`);
       };
 
+      //날짜 표현
+      const createdAtDate =moment(somoimList.createdAt).format('YYYY년 MM월 DD일');
+      //const createdAtTime =moment(somoimList.createdAt).format('HH:mm');
+
     return (
         <>
             <Container className="px-8 mt-5 col-12">
                 <div className='row row-cols-lg-3 row-cols-md-2 row-cols-sm-1'>
             {
                 filteredResults.map((item, index) => {return (
+                // filteredResults.reverse().map((item, index) => {return ( // 순서 거꾸로 정렬 (현재는 서버단에서 수행중)
                 <div key={index}>
                     <>
                         <Card className='mb-5 h-80' border="danger" bg="white">
                                 <Card.Header>Featured</Card.Header>
                                 <Card.Img 
                                     variant="top" 
-                                    src="/image/main/main1.png" 
+                                    src= { item.introducePhotoUUID ? imageUrl + item.introducePhotoUUID : "/image/main/main1.png" }
                                     style={{ width: 'auto', height: '11rem', objectFit: 'cover' }} />
                                 <Card.Body>
                                     <Card.Title>{ item.somoimName }</Card.Title>
@@ -91,7 +98,7 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
                                         </Button>
                                         </Card.Link>   
                                 </Card.Body>
-                                <Card.Footer className="text-muted">개설일 : { item.createdAt }</Card.Footer>
+                                <Card.Footer className="text-muted">개설일 : { createdAtDate }</Card.Footer>
                         </Card>
                     </>
                 </div>)})

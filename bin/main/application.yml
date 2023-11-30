@@ -17,11 +17,15 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: user
+    #password: qwe123!@#
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: user
-    password: qwe123!@#
-
+    url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
+    username: study
+    password: bitcamp!@#123
+    
   jpa:
     hibernate:
       ddl-auto: update
