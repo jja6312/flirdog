@@ -49,6 +49,7 @@ import MydogUpdateForm2 from "./components/mypage/1프로필/MydogUpdateForm2";
 import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
 import Location from "./components/mypage/5공통/Location";
 import FreeBoard from "./components/mypage/7자유게시판/FreeBoard";
+import FreeBoardOne from "./components/mypage/7자유게시판/FreeBoardOne";
 
 const App = () => {
   return (
@@ -93,6 +94,7 @@ const App = () => {
           <Route path="/mypage/Location"  element={<Location />} />
           
           <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
+          <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
           {/* 김찬영마이페이지//================================================================= */}
 
           {/* 매칭페이지 */}

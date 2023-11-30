@@ -470,3 +470,7 @@
     list-style: none;
     cursor: pointer;
 }
+.LinkReset{
+    text-decoration: none;
+    color: inherit;
+}

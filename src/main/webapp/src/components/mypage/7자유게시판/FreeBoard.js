@@ -3,6 +3,7 @@ import Header from '../../main/Header';
 import Mypage3 from '../../../css/main/100마이페이지/mypage3.module.css';
 // 특정한 이미지 주소를 import하는 방법.밑에서 이미지 쓸거임
 import pen  from './pen.png';
+import { Link } from 'react-router-dom';
 const FreeBoard = () => {
     
     const handleInputChange = () => {
@@ -16,12 +17,13 @@ const FreeBoard = () => {
             <div className={Mypage3.div1}>
                 <div className={Mypage3.div2}>
                     <div className={Mypage3.div3}>
-                        <input className={Mypage3.input1}  placeholder="찾으시는 라운지 글이 있으신가요?" maxLength="130"  enterKeyHint="search" value="" onChange={handleInputChange}></input>
+                        <input className={Mypage3.input1}  placeholder="찾으시는 게시판 글이 있으신가요?" maxLength="130"  enterKeyHint="search" value="" onChange={handleInputChange}></input>
                     </div>
                     <div>
                         <div className={Mypage3.div4}>인기 자유게시판</div>
                         <div className={Mypage3.div5}>{/* 인기게시판 내용들 */}
                             <div className={Mypage3.div6}>
+                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
                                 <div className={Mypage3.div6_1}>
                                     <div className={Mypage3.div6_2}>
                                         <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
@@ -49,6 +51,9 @@ const FreeBoard = () => {
                                         </div>
                                     </div>
                                 </div>
+                              </Link>
+                              
+                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
                                 <div className={Mypage3.div6_1}>
                                     <div className={Mypage3.div6_2}>
                                         <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
@@ -76,6 +81,9 @@ const FreeBoard = () => {
                                         </div>
                                     </div>
                                 </div>
+                              </Link>
+                              
+                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
                                 <div className={Mypage3.div6_1}>
                                     <div className={Mypage3.div6_2}>
                                         <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
@@ -103,6 +111,9 @@ const FreeBoard = () => {
                                         </div>
                                     </div>
                                 </div>
+                              </Link>
+                                
+                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
                                 <div className={Mypage3.div6_1}>
                                     <div className={Mypage3.div6_2}>
                                         <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
@@ -130,6 +141,9 @@ const FreeBoard = () => {
                                         </div>
                                     </div>
                                 </div>
+                              </Link>
+                                
+                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
                                 <div className={Mypage3.div6_1}>
                                     <div className={Mypage3.div6_2}>
                                         <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
@@ -157,6 +171,7 @@ const FreeBoard = () => {
                                         </div>
                                     </div>
                                 </div>
+                              </Link>
                             </div>
                         </div>
                     </div>
