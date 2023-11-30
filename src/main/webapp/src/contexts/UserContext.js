@@ -28,7 +28,6 @@ const UserProvider = ({ children }) => {
   }, []);
 
   const login = (userData) => {
-    alert("userData.passwd: " + userData.passwd);
     axios
       .post("http://localhost:8080/access/login", null, {
         params: {
@@ -40,7 +39,7 @@ const UserProvider = ({ children }) => {
         setUser(res.data);
         console.log(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
-        alert("로그인 되었습니다.");
+
         navigate("/");
         console.log("user");
         console.log(user);
@@ -52,7 +51,7 @@ const UserProvider = ({ children }) => {
     if (window.confirm("정말 로그아웃하시겠습니까?")) {
       localStorage.removeItem("user");
       setUser({});
-      alert("로그아웃 되었습니다.");
+
       navigate("/");
     }
   };

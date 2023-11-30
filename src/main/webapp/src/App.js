@@ -45,7 +45,6 @@ import UserEditForm from "./components/admin/2회원관리/UserEditForm";
 import Login from "./components/login/Login";
 import JoinAuth from "./components/login/loginAPI/JoinAuth";
 import UserProvider from "./contexts/UserContext";
-import ModalEvaluateOtherDogs from "./components/login/ModalEvaluateOtherDogs";
 
 const App = () => {
   return (
@@ -109,11 +108,8 @@ const App = () => {
             />
 
             <Route path="/login" element={<Login></Login>} />
+            <Route path="/login/:showModal" element={<Login></Login>} />
             <Route path="/join/auth" element={<JoinAuth></JoinAuth>} />
-            <Route
-              path="/modalEvaluateOtherDogs"
-              element={<ModalEvaluateOtherDogs></ModalEvaluateOtherDogs>}
-            />
 
             {/* 상품관리 */}
             <Route

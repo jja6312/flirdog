@@ -125,6 +125,14 @@ public class AccessController {
             return ResponseEntity.ok(false);
         }
     }
+    @PostMapping(path = "saveDogScore")
+    public void saveDogScore(@RequestParam String dogId,
+    						@RequestParam String score) {
+    	System.out.println("dogsId: "+dogId);
+    	System.out.println("score: "+score);
+    	accessService.saveDogScore(dogId,score);
+    	
+    }
 }
 // private DefaultMessageService messageService;
 //

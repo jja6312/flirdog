@@ -20,4 +20,6 @@ public interface AccessService {
 
 	boolean checkEmailExist(String email);
 
+	void saveDogScore(String dogsId, String score);
+
 }

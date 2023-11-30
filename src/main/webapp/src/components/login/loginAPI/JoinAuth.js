@@ -250,7 +250,7 @@ const JoinAuth = () => {
         showConfirmButton: false,
         timer: 1000,
       });
-      navigate("/modalEvaluateOtherDogs");
+      navigate("/login/true");
     } catch (error) {
       console.log(error);
       Swal.fire("회원가입 중 에러가 발생했습니다.", error.message);

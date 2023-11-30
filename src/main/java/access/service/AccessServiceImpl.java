@@ -41,7 +41,7 @@ public class AccessServiceImpl implements AccessService {
 
 	   @Override
 	   public List<DogsInfo> getFiveDogsInfo() {
-	       return accessRepository.getFiveDogsInfo();
+	       return accessDogsInfoRepository.getFiveDogsInfo();
 	   }
 
 	   @Override
@@ -90,21 +90,25 @@ public class AccessServiceImpl implements AccessService {
 		   
 	        User user = joinRequest.getUser();
 	        DogsInfo dogsInfo = joinRequest.getDogsInfo();
-	        String imageAiProfile = joinRequest.getImageAiProfile();
-	        DogsBreed dogsBreed = joinRequest.getDogsBreed();
-	        Score score = new Score();
-	        score.setTotalScore((double) 0);
-	        score.setVoteCount(0);
-	        score.setAverageScore((double)0);        
-	        user.setPoint((long) 0);
-	        User savedUser = accessRepository.save(user);
-	        dogsInfo.setUser(savedUser);
-	        dogsInfo.setImageAiProfile(imageAiProfile);
-	        dogsInfo.setDogsBreed(dogsBreed);	        
-	        dogsInfo.setScore(score);        
-	        dogsInfo.setImage(imagePaths.get(0));
-	        accessDogsInfoRepository.save(dogsInfo);
 	        
+	        if (dogsInfo != null) {
+		        String imageAiProfile = joinRequest.getImageAiProfile();
+		        DogsBreed dogsBreed = joinRequest.getDogsBreed();
+		        Score score = new Score();
+		        score.setTotalScore((double) 0);
+		        score.setVoteCount(0);
+		        score.setAverageScore((double)0);        
+		        user.setPoint((long) 0);
+		        User savedUser = accessRepository.save(user);
+		        dogsInfo.setUser(savedUser);
+		        dogsInfo.setImageAiProfile(imageAiProfile);
+		        dogsInfo.setDogsBreed(dogsBreed);	        
+		        dogsInfo.setScore(score);        
+		        dogsInfo.setImage(imagePaths.get(0));
+		        accessDogsInfoRepository.save(dogsInfo);
+	        }else {
+	        	System.out.println("### 회원가입시 dogsInfo null값들어옴.");
+	        }
 	        
 	    }
 
@@ -112,6 +116,29 @@ public class AccessServiceImpl implements AccessService {
 	public boolean checkEmailExist(String email) {
 		return accessRepository.findByEmail(email).isPresent();
 	}
+
+	@Override
+	public void saveDogScore(String dogsIdStr, String scoreStr) {
+	    Double scoreValue = Double.parseDouble(scoreStr);
+	    Long dogsId = Long.parseLong(dogsIdStr);
+	    Optional<DogsInfo> optionalDogsInfo = accessDogsInfoRepository.findById(dogsId);
+
+	    if (optionalDogsInfo.isPresent()) {
+	        DogsInfo dogsInfo = optionalDogsInfo.get();
+	        Score dogScore = dogsInfo.getScore();
+
+	        if (dogScore == null) {
+	            dogScore = new Score();
+	            dogsInfo.setScore(dogScore);
+	        }
+
+	        dogScore.calulateAverageScore(scoreValue);
+	        accessDogsInfoRepository.save(dogsInfo);
+	    } else {
+	      System.out.println("dogsInfo를 찾을수없음!");
+	    }
+	}
+
 
 
 }
