@@ -39,7 +39,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
             isOpen ? styleDesktop.customShow : ""
           }`}
         >
-          <a className={styleDesktop.customDropdownItem} href="#action/3.1">
+          <a className={styleDesktop.customDropdownItem} href={`${window.location.origin}/mypage/FreeBoard`}>
             자유 게시판
           </a>
           <a className={styleDesktop.customDropdownItem} href="#action/3.2">

@@ -34,8 +34,8 @@ public class MypageUploadController {
 						@RequestPart("img") List<MultipartFile> list,
 						HttpSession session) {
 		
-		System.out.println("@@@등록하러왔음");
-		System.out.println(dogsInfoDTO.getName());
+//		System.out.println("@@@등록하러왔음");
+//		System.out.println(dogsInfoDTO.getName());
 		
 		
 		

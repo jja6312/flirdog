@@ -43,14 +43,19 @@ const MypageMain = () => {
     }, []);
 
     const getEmailLogo = () => {
-        if(userDTO.email.includes("@gmail.com")){
-            return 'https://littledeep.com/wp-content/uploads/2019/03/google_logo_download_thumbnail.png';
-        } else if (userDTO.email.includes("@daum.net")){
-            return 'https://t1.daumcdn.net/cfile/tistory/99818D3F5C95936E0C';
-        } else if (userDTO.email.includes("@naver.com")) {
-            return 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbOW7USKibIUFj2meDeSG3T3XBoo43Yyv5UXIHFZR-2FyZI7v-cLOTR7etRdINAGgXavs&usqp=CAU';
-        } else {
-            return 'https://littledeep.com/wp-content/uploads/2019/03/google_logo_download_thumbnail.png';
+        try {
+            if(userDTO.email.includes("@gmail.com")){
+                return 'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc';
+            } else if (userDTO.email.includes("@daum.net")){
+                return 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Daum_communication_logo.svg/2560px-Daum_communication_logo.svg.png';
+            } else if (userDTO.email.includes("@naver.com")) {
+                return 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxNxSXeJZ1HXb0496ON1Fdvpg81u2dl5AMqw&usqp=CAU';
+            } else {
+                return 'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/5rH/image/aFrEyVpANu07FvoBZQbIB4aF_uc';
+            }
+        } 
+        catch (error) {
+            console.error('Error:', error.message);
         }
     }
 
@@ -62,7 +67,7 @@ const MypageMain = () => {
                     <Col xs={5} md={4}>
                     </Col>
                     <Col xs={2} md={4} className={Mypage.Imagecenter}>
-                        <Image src="https://cdn.eyesmag.com/content/uploads/sliderImages/2022/12/30/3-fb9fd982-6568-4662-8ed1-d16ceb53ada9.jpg" roundedCircle className={Mypage.RoundedCircle} />
+                        <Image alt={userDTO.name} src={`../storage/${encodeURIComponent(userDTO.image)}`} roundedCircle className={Mypage.RoundedCircle} />
                     </Col>
                     <Col xs={5} md={4}>
                     </Col>
@@ -85,7 +90,7 @@ const MypageMain = () => {
                     <div className='col-lg-4 d-flex justify-content-center'></div>
                     <div className='col-lg-4 d-flex justify-content-start'> 
                         <div className={`row ${Mypage.Text}`}>
-                            <span className='col-6 d-flex justify-content-start' style={{marginTop:'10px'}}>{userDTO.email}</span>
+                            <span className='col-6 d-flex justify-content-start' style={{marginBottom:'3px',marginTop:'1px'}}>{userDTO.email}</span>
                             <span className='col-6 d-flex justify-content-end'>
                             <img
                                 alt='img'
