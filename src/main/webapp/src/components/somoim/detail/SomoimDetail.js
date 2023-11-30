@@ -146,7 +146,7 @@ const SomoimDetail = () => {
                                         {/* <p className='detail'>이메일: sulmukja@naver.com</p> */}
                                         <p className='detail'>이메일 : { accountEmail }</p>
                                     </div>
-                                    {isAdmin ? '트루' : '펄스'}
+                                    {/* {isAdmin ? '트루' : '펄스'} */}
                                     {
                                         
                                         isAdmin || <Button variant="outline-danger" onClick={ joinSomoim } style={{ alignSelf: 'center'}}>가입하기</Button> 

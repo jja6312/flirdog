@@ -51,7 +51,7 @@ public class User extends BaseEntity{
     private Long point;
 
     private int communityScore;
-
+    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DogsInfo> dogsInfos;
 
@@ -64,6 +64,7 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Community> communities;
 
+    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 

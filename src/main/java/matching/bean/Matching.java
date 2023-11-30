@@ -9,6 +9,8 @@ import user.bean.User;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -33,6 +35,7 @@ public class Matching extends BaseEntity {
     @Embedded
     private Hit hit;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

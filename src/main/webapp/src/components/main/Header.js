@@ -5,10 +5,12 @@ import Navbar from "react-bootstrap/Navbar";
 import styles from "../../css/main/Header.module.css";
 import { Link } from "react-router-dom";
 import HeaderCustomNavDropdownElement from "./HeaderCustomNavDropdownElement";
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext } from "../../contexts/UserContext";
 
 const Header = () => {
   const { user, logout } = useContext(UserContext);
+  // 로그인 여부를 확인하는 새로운 로직
+  const isLoggedIn = user && user.email;
 
   const logoutBtn = () => {
     logout();

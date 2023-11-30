@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,9 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		// 1-3. 이미지 경로
 		// 실제 폴더
-		String filePath = session.getServletContext().getRealPath("/public/storage");
+//s3문제
+//		String filePath = session.getServletContext().getRealPath("/public/storage");
+		String filePath = session.getServletContext().getRealPath("/public/image/product/");
 		System.out.println("실제폴더 = " + filePath);
 
 		File file;
@@ -62,11 +65,17 @@ public class AdminProductServiceImpl implements AdminProductService {
 			for (MultipartFile img : imgFilesList) {
 				originalFileName = img.getOriginalFilename();
 				System.out.println("originalFileName: " + originalFileName);
+//s3문제
+//				fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
+				fileName = UUID.randomUUID().toString() + ".png";
+				
+//s3문제
+//				file = new File(filePath, originalFileName);
+				file = new File(filePath, fileName);
 
-				fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
-				file = new File(filePath, originalFileName);
-
-				imagePaths.add("flirdogStorage/" + fileName);
+//s3문제
+//				imagePaths.add("flirdogStorage/" + fileName);
+				imagePaths.add("/image/product/" + fileName);
 
 				try {
 					img.transferTo(file);
@@ -194,7 +203,9 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		// 1-3. 이미지 경로
 		// 실제 폴더
-		String filePath = session.getServletContext().getRealPath("/public/storage");
+//s3문제
+//		String filePath = session.getServletContext().getRealPath("/public/storage");
+		String filePath = session.getServletContext().getRealPath("/public/image/product");
 		System.out.println("실제폴더 = " + filePath);
 
 		File file;

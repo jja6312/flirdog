@@ -23,7 +23,7 @@ import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 import SomoimMain from "./components/somoim/SomoimMain";
 
 import SomoimNew from "./components/somoim/SomoimNew";
-import SomoimDetail from "./components/somoim/detail/SomoimDetail"
+import SomoimDetail from "./components/somoim/detail/SomoimDetail";
 
 import MypageMain from "./components/mypage/MypageMain";
 import Myarticle from "./components/mypage/2내가작성한글/Myarticle";
@@ -81,65 +81,23 @@ const App = () => {
           <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />} />
           {/* 김찬영마이페이지//================================================================= */}
 
-          {/* 매칭페이지 */}
-          <Route path="/" element={<Main></Main>} />
-          <Route path="/user/userTest" element={<Test />} />
-          <Route path="/date/dateList" element={<DateList />} />
-          <Route path="/date/dateWrite" element={<DateWrite />} />
-          <Route path="/date/dateUpdate" element={<DateUpdate />} />
-          <Route path="/date/dateReadMore" element={<DateReadMore />} />
+            {/* 매칭페이지 */}
+            <Route path="/" element={<Main></Main>} />
+            <Route path="/user/userTest" element={<Test />} />
+            <Route path="/date/dateList" element={<DateList />} />
+            <Route path="/date/dateWrite" element={<DateWrite />} />
+            <Route path="/date/dateUpdate" element={<DateUpdate />} />
+            <Route path="/date/dateReadMore" element={<DateReadMore />} />
 
-          <Route path="/admin" element={<Admin />} />
-          
-          {/* 소모임 페이지!! */}
-          <Route path="/somoim" element={<SomoimMain/>}/>
-          <Route path="/somoim/somoimNew" element={<SomoimNew/>} />
-          <Route path="/somoim/:subMenu/:somoimId" element={<SomoimDetail />} />
+            <Route path="/admin" element={<Admin />} />
 
-          {/* 상품관리 */}
-          <Route
-            path="/admin/productUploadForm"
-            element={<ProductUploadForm openLeftside="0"></ProductUploadForm>}
-          />
-          <Route
-            path="/admin/productPopup"
-            element={<ProductPopup></ProductPopup>}
-          />
-          <Route
-            path="/admin/productListForm"
-            element={<ProductListForm openLeftside="0" />}
-          />
-          <Route
-            path="/admin/productEditForm/:productId"
-            element={<ProductEditForm openLeftside="0" />}
-          />
-          {/* 회원관리 */}
-          <Route
-            path="/admin/userListForm"
-            element={<UserListForm openLeftside="1" />}
-          />
-          {/* 주문관리 */}
-          <Route
-            path="/admin/orderListForm"
-            element={<OrderListForm openLeftside="2" />}
-          />
-          <Route
-            path="/admin/orderCheckForm"
-            element={<OrderCheckForm openLeftside="2" />}
-          />
-          <Route
-            path="/admin/orderShippingForm"
-            element={<OrderShippingForm openLeftside="2" />}
-          />
-          {/* 문의 조회/답변*/}
-          <Route
-            path="/admin/reviewListForm"
-            element={<ReviewListForm openLeftside="3" />}
-          />
-          <Route
-            path="/admin/userEditForm/:userId"
-            element={<UserEditForm />}
-          />
+            {/* 소모임 페이지!! */}
+            <Route path="/somoim" element={<SomoimMain />} />
+            <Route path="/somoim/somoimNew" element={<SomoimNew />} />
+            <Route
+              path="/somoim/:subMenu/:somoimId"
+              element={<SomoimDetail />}
+            />
 
           <Route path="product">
             <Route path="" element={<Product />} />
