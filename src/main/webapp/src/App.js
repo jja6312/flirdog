@@ -86,8 +86,12 @@ const App = () => {
             <Route path="/user/userTest" element={<Test />} />
             <Route path="/date/dateList" element={<DateList />} />
             <Route path="/date/dateWrite" element={<DateWrite />} />
-            <Route path="/date/dateUpdate" element={<DateUpdate />} />
-            <Route path="/date/dateReadMore" element={<DateReadMore />} />
+            <Route path="/date/dateUpdate">
+              <Route path=':seq' element={<DateUpdate />}/>
+            </Route>
+            <Route path="/date/dateReadMore">
+              <Route path=':seq' element={<DateReadMore />}/>
+            </Route>
 
             <Route path="/admin" element={<Admin />} />
 
