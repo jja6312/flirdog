@@ -11,8 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import access.repository.AccessDogsInfoRepository;
 import admin.service.ObjectStorageService;
-import jakarta.persistence.TypedQuery;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.Matching;
 import matching.bean.MatchingDTO;
@@ -21,6 +21,7 @@ import matching.bean.MatchingState;
 import matching.repository.MatchingDTORepository;
 import matching.repository.MatchingRepository;
 import user.bean.DogsInfo;
+import user.bean.Score;
 import user.bean.User;
 
 @Service
@@ -35,6 +36,9 @@ public class DateMatchingServiceImpl implements DateMatchingService {
 
 	@Autowired
 	private MatchingDTORepository matchingDTORepository;
+	
+	@Autowired
+	private AccessDogsInfoRepository accessDogsInfoRepository;
 
 	@Override
 	public void dateWriteTest(MatchingDTO matchingDTO, List<MultipartFile> imgFiles, HttpSession session) {
@@ -173,9 +177,24 @@ public class DateMatchingServiceImpl implements DateMatchingService {
 
 	@Override
 	public List<MatchingDTO> getAllMatchingList() {
-		Sort sort = Sort.by(Sort.Direction.DESC, "id");
-		return matchingDTORepository.findAll(sort);
+	    Sort sort = Sort.by(Sort.Direction.DESC, "id");
+	    List<MatchingDTO> matchingDTOList = matchingDTORepository.findAll(sort);
+
+	    
+	    for (int i = 0; i < matchingDTOList.size(); i++) {
+	        Long userId = matchingDTOList.get(i).getUserId();
+	        String dogName = matchingDTOList.get(i).getDogName();
+	        //빨리찾기
+	        DogsInfo dogsInfo = accessDogsInfoRepository.findByUserIdAndName(userId, dogName);
+	        Score score = dogsInfo.getScore();
+	        Double averageScore = score.getAverageScore();
+	        String averageScoreStr = averageScore.toString();
+	        matchingDTOList.get(i).setAverageScore(averageScoreStr);
+	    }
+
+	    return matchingDTOList;
 	}
+
 
 	@Override
 	public Optional<MatchingDTO> dateReadMore(String id) {
