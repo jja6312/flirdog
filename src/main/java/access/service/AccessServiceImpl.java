@@ -94,7 +94,9 @@ public class AccessServiceImpl implements AccessService {
 	        
 	        if (dogsInfo != null) {
 		        String imageAiProfile = joinRequest.getImageAiProfile();
+		        System.out.println("###dogsInfo에넣을게?: "+joinRequest.getDogsBreed());
 		        DogsBreed dogsBreed = joinRequest.getDogsBreed();
+		        System.out.println("###dogsInfo에넣음: "+dogsBreed);
 		        Score score = new Score();
 		        score.setTotalScore((double) 0);
 		        score.setVoteCount(0);

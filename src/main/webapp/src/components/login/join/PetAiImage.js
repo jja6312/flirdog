@@ -25,10 +25,8 @@ const PetAiImage = ({
       position: "top",
     });
   };
-
   const onInput = (e) => {
     const { value } = e.target;
-
     setUser({ ...user, nickname: value });
   };
   useEffect(() => {
@@ -36,11 +34,9 @@ const PetAiImage = ({
       window.Kakao.init("b3eef06a2754cfd6cae91b650e23a921");
     }
   }, []);
-
   useEffect(() => {
     setImgUrl(aiDogProfileImgUrl);
   }, [aiDogProfileImgUrl]);
-
   const sendKakaoMessage = () => {
     window.Kakao.Link.sendDefault({
       objectType: "feed",
@@ -55,7 +51,6 @@ const PetAiImage = ({
       },
     });
   };
-
   return (
     <>
       <div
@@ -78,7 +73,6 @@ const PetAiImage = ({
           height="300px"
         />
       </div>
-
       <InputGroup style={{ width: "340px" }} size="lg" className={`mt-2`}>
         <Form.Control
           onChange={onInput}
@@ -92,16 +86,13 @@ const PetAiImage = ({
           user.nickname.length > 0
             ? loginStyles.loginBtn
             : loginStyles.disabledBtn
-        } mt-2 d-flex justify-content-center align-items-center rounded 
-        
+        } mt-2 d-flex justify-content-center align-items-center rounded
           ${loginStyles.loginFormElementDiv}
-            
         `}
         onClick={user.nickname.length > 0 ? onJoin : NononononoJoin}
       >
         <span className={login.loginBtnSpan}>프로필 설정 및 회원가입 완료</span>
       </div>
-
       <div
         className="mt-3"
         style={{
