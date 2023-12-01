@@ -14,6 +14,6 @@ public class S3ImgUpload {
     private int seq;
     private String imageName;
     private String imageContent;
-    private String imageFileName;
-    private String imageOriginalName;
+    private String imageFileName;      // UUID (주소)
+    private String imageOriginalName;  // 파일명
 }
