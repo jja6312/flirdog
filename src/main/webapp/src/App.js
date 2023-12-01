@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UserProvider from "./contexts/UserContext";
 import Main from "./components/main/Main";
 
 import "./css/reset.css";
@@ -44,7 +45,6 @@ import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
 import UserEditForm from "./components/admin/2회원관리/UserEditForm";
 import Login from "./components/login/Login";
 import JoinAuth from "./components/login/loginAPI/JoinAuth";
-import UserProvider from "./contexts/UserContext";
 import PwdFind from "./components/login/login/PwdFind";
 
 const App = () => {
@@ -54,6 +54,8 @@ const App = () => {
         <>
           {/* 화면에 보이는 영역 */}
           <Routes>
+            <Route path="/login" element={<Login />} />
+
             {/* //김찬영마이페이지================================================================= */}
             <Route path="/mypage/Mypoint" element={<Mypoint />} />
             <Route path="/mypage/Mysetting" element={<Mysetting />} />
@@ -95,8 +97,12 @@ const App = () => {
             <Route path="/user/userTest" element={<Test />} />
             <Route path="/date/dateList" element={<DateList />} />
             <Route path="/date/dateWrite" element={<DateWrite />} />
-            <Route path="/date/dateUpdate" element={<DateUpdate />} />
-            <Route path="/date/dateReadMore" element={<DateReadMore />} />
+            <Route path="/date/dateUpdate">
+              <Route path=":seq" element={<DateUpdate />} />
+            </Route>
+            <Route path="/date/dateReadMore">
+              <Route path=":seq" element={<DateReadMore />} />
+            </Route>
 
             <Route path="/admin" element={<Admin />} />
 

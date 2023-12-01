@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum MatchingPurpose {
-    DATE("연애"),
-    WALK("산책");
+    연애("연애"),
+    산책("산책");
 
     private final String text;
 }

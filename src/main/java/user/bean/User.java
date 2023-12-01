@@ -2,7 +2,6 @@ package user.bean;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import api.BaseEntity;
 import community.bean.Community;
@@ -26,10 +25,11 @@ import somoim.bean.Somoim;
 
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 public class User extends BaseEntity{
     @Id
+    //@Column(name="user_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

@@ -18,8 +18,9 @@ const SomoimDetailMain = ({somoimId}) => {
 
     return (
         <div>
-            소모임 메인 페이지 입니다.<br/>
-            { introduceDetail }
+            {/* 소모임 메인 페이지 입니다.<br/> */}
+            {/* { introduceDetail } */}
+            <div dangerouslySetInnerHTML={{ __html: introduceDetail }} />
         </div>
     );
 };
