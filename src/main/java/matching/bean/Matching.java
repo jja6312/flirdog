@@ -1,18 +1,32 @@
 package matching.bean;
 
+import java.util.List;
+
 import api.BaseEntity;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
 import product.bean.Hit;
 import user.bean.DogsInfo;
 import user.bean.User;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 public class Matching extends BaseEntity {
     @Id
@@ -33,10 +47,9 @@ public class Matching extends BaseEntity {
     private MatchingState matchingState;
         
     @Embedded
-    private Hit hit;
+    private Hit hit = new Hit(); // 명시적으로 new 해서 기본값 0으로 설정했습니다.(현성)
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) // cascade 옵션 추가
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -55,7 +68,8 @@ public class Matching extends BaseEntity {
 
     @Builder(toBuilder = true)
     private Matching(Long id, @NonNull String title, String content, String image, MatchingPurpose matchingPurpose,
-                    MatchingState matchingState, Hit hit, User user, DogsInfo dogsInfo) {
+                    MatchingState matchingState, Hit hit, User user, DogsInfo dogsInfo, String matchingDate, String matchingAddress,
+                    String dogMBTI) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -65,6 +79,10 @@ public class Matching extends BaseEntity {
         this.hit = hit;
         this.user = user;
         this.dogsInfo = dogsInfo;
+        this.matchingDate = matchingDate;
+        this.matchingAddress = matchingAddress;
+        this.dogMBTI = dogMBTI;
+        this.user = user;
     }
 
     public Matching create(List<String> imgs, Matching matching) {

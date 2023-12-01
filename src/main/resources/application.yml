@@ -22,6 +22,16 @@ spring:
       max-request-size: 10MB
 
   datasource:
+    #url: jdbc:mysql://db-ioa7c-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: user
+    #password: qwe123!@#
+    # s3문제
+    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: root
+    #password: 1234
+
     # url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     # driver-class-name: com.mysql.cj.jdbc.Driver
     # username: user

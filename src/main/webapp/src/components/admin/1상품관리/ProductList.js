@@ -133,8 +133,8 @@ const ProductList = ({
                     item.image === "/image/nullImage/nullImage1.png"
                       ? item.image
                       : //s3문제
-                        // : `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-111/${item.image}`
-                        `${item.image}`
+                        `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${item.image}`
+                    // `${item.image}`
                   }`}
                 ></img>
               </div>

@@ -1,4 +1,6 @@
-import React, {useRef } from 'react';
+import React, { useRef,useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Container from 'react-bootstrap/esm/Container';
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Header from '../../main/Header';
@@ -10,6 +12,45 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
 const MydogProfileRegister = () => {
+    
+    const [dogsInfoDTO, setdogsInfoDTO] = useState({
+        name: '찬영개기본값',
+        age: '11기본값',
+        gender: '남아기본값',
+        dogsBreed: '말티즈',
+        isNeutralized: 'true',
+        image: '이미지는 아직 구현하지 않았습니다.',
+        score: '스코어는 모릅니다.',
+        dogsInfo: '강아지 정보는 아직 미정입니다.',
+      });
+      const {name ,age,gender,dogsBreed,isNeutralized,image,score,dogsInfo } = dogsInfoDTO
+
+      const onInput = (e) => {
+        const {name, value} = e.target
+
+        setdogsInfoDTO({
+            ...dogsInfoDTO,
+            [name]: value
+        })
+      }
+      
+    const navigate = useNavigate()
+      
+    const onWriteSubmit = (e) => {
+        
+        e.preventDefault()
+        console.log(dogsInfoDTO)
+
+        axios.post('/mypage/write', null, { params: dogsInfoDTO })
+                .then(
+                    alert(dogsInfoDTO.name),
+                    alert('회원가입을 축하합니다.'),
+                    navigate('/mypage/MydogProfile')
+                ).catch(error => console.log(error))
+    }
+
+
+
     const onCamera = () => {
         imgRef.current.click()
     }
@@ -23,12 +64,7 @@ const MydogProfileRegister = () => {
             imgArray.push(objectURL)
             return imgArray;
         })
-  
-    // setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
-        // setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
     }
-    // const [imgList, setImgList] = useState([]) //배열은 []
-    // const [files, setFiles] = useState('')
   
     //사진 등록관련
     const imgRef = useRef()
@@ -97,7 +133,7 @@ const MydogProfileRegister = () => {
                                 </InputGroup.Text>
                                 <Form.Control
                                 aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
+                                aria-describedby="inputGroup-sizing-default" name='name' value={name} onChange={onInput}
                                 />
                             </InputGroup>
                         </Col>
@@ -114,7 +150,7 @@ const MydogProfileRegister = () => {
                                 </InputGroup.Text>
                                 <Form.Control
                                 aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
+                                aria-describedby="inputGroup-sizing-default" name='age' value={age} onChange={onInput}
                                 />
                             </InputGroup>
                         </Col>
@@ -131,7 +167,7 @@ const MydogProfileRegister = () => {
                                 </InputGroup.Text>
                                 <Form.Control
                                 aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
+                                aria-describedby="inputGroup-sizing-default"  name='dogsBreed' value={dogsBreed} onChange={onInput}
                                 />
                             </InputGroup>
                         </Col>
@@ -150,10 +186,10 @@ const MydogProfileRegister = () => {
                             <div className={Mypage.MyprofileUpdate_Text} style={{marginTop:'5px'}} >
                                 &nbsp;&nbsp;&nbsp;
                                 <div className={` d-flex justify-content-right`} style={{marginLeft:'40px'}}>
-                                                    <input id='genderBox1' type='radio' name='gender'  value='남아' />
+                                                    <input id='genderBox1' type='radio' name='gender'  value='남아'  onChange={onInput} />
                                                     <label className={Mypage.labelClass1} htmlFor='genderBox1'>남 아</label>
                                                     &nbsp;&nbsp;
-                                                    <input id='genderBox2' type='radio' name='gender'  value='여아' />
+                                                    <input id='genderBox2' type='radio' name='gender'  value='여아' onChange={onInput} />
                                                     <label className={Mypage.labelClass2} htmlFor='genderBox2'>여 아</label>
                                 </div>
                             </div>
@@ -171,7 +207,7 @@ const MydogProfileRegister = () => {
                                         중성화 여부
                                     </div>&nbsp;&nbsp;&nbsp;
                                     <div className={`d-flex justify-content-left`}>
-                                        <input id='neutralizationBox' type='checkbox' value='neutralization' />
+                                        <input id='neutralizationBox' type='checkbox' value='true'  name='isNeutralized' onChange={onInput}  />
                                         <label className={`${Mypage.neutralizationLabel} ${Mypage.labelClass3}`} htmlFor='neutralizationBox'></label>
                                     </div>
                                 </div>
@@ -182,7 +218,7 @@ const MydogProfileRegister = () => {
                     <div className='row'>
                         <div className='col-sm-3 d-flex justify-content-center'></div>
                         <div className='col-sm-6 d-flex justify-content-center'>
-                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}}>등록하기</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onWriteSubmit }>등록하기</Button>{''} 
                         </div>
                     </div>
             </Container>

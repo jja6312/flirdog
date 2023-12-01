@@ -49,7 +49,7 @@ const AdminMainContent = () => {
                     ></AiSupportList>
                   </div>
 
-                  <div
+                  {/* <div
                     className={`${styles.aiContentsContainer} d-flex justify-content-between align-items-center`}
                   >
                     <div className={`${styles.aiContents} ${styles.col4M1}`}>
@@ -71,7 +71,7 @@ const AdminMainContent = () => {
                         title="확장사업별 세부작업 추천"
                       ></AiSupportList>
                     </div>
-                  </div>
+                  </div> */}
                   <div
                     className={`${styles.aiOutput} ${styles.col12M1} d-flex justify-content-center align-items-center`}
                   >
@@ -127,12 +127,12 @@ const AdminMainContent = () => {
                   style={{ width: "100%" }}
                 ></img>
               </div>
-              <div className={`${styles.rightContainerElement} mt-2`}>
+              {/* <div className={`${styles.rightContainerElement} mt-2`}>
                 <Banner
                   imgSrc1="/image/admin/aiAdminAdBanner2.png"
                   imgSrc2="/image/admin/aiAdminAdBanner2.png"
                 ></Banner>
-              </div>
+              </div> */}
               <div className={`${styles.rightContainerElement} mt-2`}>
                 <Banner
                   imgSrc1="/image/admin/aiAdminAdBanner3.png"

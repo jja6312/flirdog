@@ -12,6 +12,8 @@ const Header = () => {
   // 로그인 여부를 확인하는 새로운 로직
   const isLoggedIn = user && user.email;
 
+  const isUserRole = user && user.role === "1";
+
   const logoutBtn = () => {
     logout();
   };
@@ -53,9 +55,16 @@ const Header = () => {
               </Nav.Link>
               <HeaderCustomNavDropdownElement theme="커뮤니티" />
               {user.email ? (
-                <Nav.Link className={`${styles.navText} mx-2`} onClick={ logoutBtn }>로그아웃</Nav.Link>
+                <Nav.Link
+                  className={`${styles.navText} mx-2`}
+                  onClick={logoutBtn}
+                >
+                  로그아웃
+                </Nav.Link>
               ) : (
-                <Nav.Link className={`${styles.navText} mx-2`} href="/login">로그인</Nav.Link>
+                <Nav.Link className={`${styles.navText} mx-2`} href="/login">
+                  로그인
+                </Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>

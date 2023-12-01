@@ -1,515 +1,972 @@
-import React, {  useState } from 'react';
-import Header from '../main/Header';
-import Container from 'react-bootstrap/esm/Container';
-import "../../css/reset.css"
+import React, { useEffect, useState } from "react";
+import Header from "../main/Header";
+import Container from "react-bootstrap/esm/Container";
+import "../../css/reset.css";
 import dateList from "../../css/date/dateList.module.css";
 import dateCheck from "../../css/date/dateCheck.module.css";
-import Carousel from 'react-bootstrap/Carousel';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Footer from '../main/Footer';
-import { Link} from 'react-router-dom';
+import Dropdown from "react-bootstrap/Dropdown";
+import Footer from "../main/Footer";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const DateList = () => {
-    const [selectedRegion, setSelectedRegion] = useState('지역 선택');
+  //전체 목록 조회
+  const [allMatchingList, setAllMatchingList] = useState([]);
 
-    const handleRegionSelect = (region) => {
-        setSelectedRegion(region);
-    };
+  //상위 3개 조회
+  const [topMatchingList, setTopMatchingList] = useState([]);
 
-    const scrollToTop = () => {
-        window.scrollTo(0, 0);
-    };
+  //필터
+  //1. 성별
+  const [selectedGender, setSelectedGender] = useState(null);
+  //2. 목적
+  const [selectedPurpose, setSelectedPurpose] = useState(null);
+  //3. 중성화 여부
+  const [selectedNeutralization, setSelectedNeutralization] = useState(null);
+  //4. 매칭 상태
+  const [selectedMatchingState, setSelectedMatchingState] = useState(null);
+  //5. 지역
+  const [selectedRegion, setSelectedRegion] = useState("지역 선택");
 
-    return (
-        <div>
-            <Header></Header>
-            <br />
-            <br />
+  useEffect(() => {
+    // handleRegionSelect에서 선택된 지역값을 사용할 수 있습니다.
+    // 이 부분에 선택된 지역값을 이용한 로직을 추가하세요.
+    console.log("Selected Region:", selectedRegion);
+  }, [selectedRegion]);
 
-            {/* 메인 타이틀 */}
-            <div style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center'}}>
-                <div className="Group66" style={{width: "14.5vw", height: "7vh", background: '#F56084', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                    <div style={{width: "9.5vw", color: 'white', fontSize: "1.7vw", fontFamily: 'Inter', fontWeight: '700', wordWrap: 'break-word'}}>애견 매칭</div>   
-                </div>
-                &emsp;&emsp;<img alt='' src='/image/date/image1.jpg' style={{width:'70%'}}></img>
-                <img alt='' src='/image/date/image2.png' style={{width:'10%'}}></img>
-            </div>
-            <br/>
+  // 전체 목록 조회
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/date/getAllMatchingList")
+      .then((res) => {
+        console.log("주소");
+        console.log(res.data);
+        setAllMatchingList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-            {/* 메인 이미지 */}
-            <Container className='px-10'>
-                <div style={{display: 'flex', justifyContent:'center'}}>
-                        <img alt='' src='/image/date/image3.png' className="d-block w-100" style={{width:'100%'}}></img>
-                </div>
-            </Container>
-            <br /><br />
-            
-            <hr className={dateList.dateHr}/>
-            <br /><br />
-            
-            {/* 캐러셀 */}
-            <Container className='px-11'>
-            <Carousel data-bs-theme="dark">
-                <Carousel.Item className={dateList.carouselItem}>
-                    <div>
-                        <div className={dateList.carouselItemDiv}>
-                            <div className='d-flex justify-content-center'
-                                >
-                                <div className={dateList.carouselItemDivImg}>
-                                    <div className='d-flex flex-column'
-                                        style={{
-                                            backgroundColor:'white',
-                                            borderRadius: 20,
-                                            padding: '3vw',
-                                            marginRight: '5%',
-                                            width: '60vw'
-                                        }}>
-                                    
-                                        <img
-                                            className="d-block col-lg-4 dogCarousel"
-                                            src="/image/date/starDog1.jpg"
-                                            alt="First slide"
-                                            style={{width:'100%',
-                                            minWidth:250, 
-                                            height:'40vh', 
-                                            objectFit: 'cover',
-                                            borderRadius: 20,
-                                        }}
-                                        />
+  // 상위 3개 조회
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/date/getTopMatchingThree")
+      .then((res) => {
+        console.log("주소");
+        console.log(res.data);
+        setTopMatchingList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-                                        <div className={`${dateList.starScore} d-flex justify-content-center`}>
-                                            <span>별 점</span>
-                                        </div>
-                                    </div>
-                                    <div className={dateList.carouselContent} >
-                                        <div
-                                        style={{
-                                            backgroundColor:'white',
-                                            borderRadius: 20,
-                                            padding: '2vw',
-                                            height: '100%',
-                                            marginRight: '5%',
-                                        }}>
-                                        <div className={dateList.carouselDogName}>강아지1</div>
-                                            <p className={dateList.carouselDogContent}>
-                                                귀엽당<br/>
-                                                영어로는 큐트<br/>
-                                                일본어로는 카와이<br/>
-                                                중국어로는 크아이<br/>
-                                                하와이어로는 오루오루<br/>
-                                                왜 줄바꿈이 안될까여<br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Carousel.Item>
-            </Carousel>
-            </Container>
+  // 체크박스 초기화
+  const handleCheckboxChange = (gender) => {
+    setSelectedGender((prevGender) => (prevGender === gender ? null : gender));
+  };
+  const handlePurposeCheckboxChange = (purpose) => {
+    setSelectedPurpose((prevPurpose) =>
+      prevPurpose === purpose ? null : purpose
+    );
+  };
+  const handleNeutralizationCheckboxChange = (neutralization) => {
+    setSelectedNeutralization((prevNeutralization) =>
+      prevNeutralization === neutralization ? null : neutralization
+    );
+  };
+  const handleMatchingStateCheckboxChange = (matchingState) => {
+    setSelectedMatchingState((prevMatchingState) =>
+      prevMatchingState === matchingState ? null : matchingState
+    );
+  };
+  const handleRegionSelect = (region) => {
+    setSelectedRegion(region);
+  };
 
-            <br /><br />
-            <hr className={dateList.dateHr}/>
-            <br /><br />
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
 
-            <Container className='px-10'>
-                {/* 필터 */}
-                <div className={dateList.filterList}>
-                    <div className={dateList.filters}>
-                        <div className={dateList.filterDiv}>
-                            <div style={{
-                                 backgroundColor:'#F56084',
-                                 borderRadius: '20px',
-                                 padding:'5%',
-                            }}>
-                                <div className={dateList.filterTitle}>
-                                필 터
-                                </div>
+  return (
+    <div>
+      <Header></Header>
+      <br />
+      <br />
 
-                                <div className={dateList.filterContent}>
-                                    <div className='genderCheck'>성 별
-                                        <div className={`${dateCheck.genderCheckBox} d-flex justify-content-left`}>
-                                            <input id='checkbox1' type='checkbox' value='남 아' />
-                                            <label className={dateCheck.labelClass} htmlFor='checkbox1'>남 아</label>
-                                            &nbsp;&nbsp;
-                                            <input id='checkbox2' type='checkbox' value='여 아' />
-                                            <label className={dateCheck.labelClass} htmlFor='checkbox2'>여 아</label>
-                                        </div>
-                                    </div>
+      {/* 메인 타이틀 */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+        <div
+          className="Group66"
+          style={{
+            width: "14.5vw",
+            height: "7vh",
+            background: "#F56084",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "9.5vw",
+              color: "white",
+              fontSize: "1.7vw",
+              fontFamily: "Inter",
+              fontWeight: "700",
+              wordWrap: "break-word",
+            }}
+          >
+            애견 매칭
+          </div>
+        </div>
+        &emsp;&emsp;
+        <img alt="" src="/image/date/image1.jpg" style={{ width: "70%" }}></img>
+        <img alt="" src="/image/date/image2.png" style={{ width: "10%" }}></img>
+      </div>
+      <br />
 
-                                    <div className='purposeCheck'style={{
-                                        marginTop:'10px' }}>글 분류
-                                        <div className={`${dateCheck.purposeCheckBox} d-flex justify-content-left`}>
-                                            <input id='checkbox3' type='checkbox' value='date' />
-                                            <label className={dateCheck.labelClass} htmlFor='checkbox3'>연 애</label>
-                                            &nbsp;&nbsp;
-                                            <input id='checkbox4' type='checkbox' value='walk' />
-                                            <label className={dateCheck.labelClass} htmlFor='checkbox4'>산 책</label>
-                                        </div>
-                                    </div>
+      {/* 메인 이미지 */}
+      <Container className="px-10">
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            alt=""
+            src="/image/date/image3.png"
+            className="d-block w-100"
+            style={{ width: "100%" }}
+          ></img>
+        </div>
+      </Container>
+      <br />
+      <br />
 
-                                    <div className='neutralizationCheck' style={{
-                                        marginTop:'10px' }}>중성화 여부 &nbsp;&nbsp;
-                                        <div className={`${dateCheck.neutralizationCheckBox} d-flex justify-content-left`}>
-                                            <input id='checkbox5' type='checkbox' value='중성화' />
-                                            <label className={`${dateCheck.neutralizationLabel} ${dateCheck.labelClass}`} htmlFor='checkbox5'></label>
-                                        </div>
-                                    </div>
-                                    <div className='matchingStateCheck' style={{
-                                        marginTop:'10px' }}>매칭 상태 &nbsp;&nbsp;
-                                        <div className={`${dateCheck.matchingStateCheckBox} d-flex justify-content-left`}>
-                                            <input id='checkbox6' type='checkbox' value='기다림' />
-                                            <label className={dateCheck.labelStateClass} htmlFor='checkbox6'>기다림</label>
-                                            &nbsp;&nbsp;
-                                            <input id='checkbox7' type='checkbox' value='매칭중' />
-                                            <label className={dateCheck.labelStateClass} htmlFor='checkbox7'>매칭중</label>
-                                            &nbsp;&nbsp;
-                                            <input id='checkbox8' type='checkbox' value='완료' />
-                                            <label className={dateCheck.labelStateClass} htmlFor='checkbox8'>완료</label>
-                                        </div>
-                                    </div>
-                                    <div className='filterAddress' style={{
-                                        marginTop:'10px',
-                                        marginBottom:'10px'
-                                         }}>지 역 &nbsp;&nbsp;
-                                        <div className={`${dateCheck.filterAddressBtn} d-flex justify-content-left`}>
-                                        <Dropdown>
-                                            <Dropdown.Toggle className={dateCheck.filterDropdownBtn} variant="success" id="dropdown-basic"
-                                                style={{
-                                                    border:'2px solid white',
-                                                    backgroundColor: '#F56084',
-                                                    fontWeight:'bold',
-                                                    opacity: 1
-                                                }}
-                                            >
-                                            {selectedRegion}
-                                            </Dropdown.Toggle>
-                                            <Dropdown.Menu className='dropdown-menu scrollContainer' 
-                                            style={{ maxHeight: '200px', overflowY: 'auto' }}
-                                                
-                                                >
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-1" onClick={() => handleRegionSelect('서울특별시')} >서울특별시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-2" onClick={() => handleRegionSelect('부산광역시')}>부산광역시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-3" onClick={() => handleRegionSelect('대구광역시')}>대구광역시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-4" onClick={() => handleRegionSelect('인천광역시')}>인천광역시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-5" onClick={() => handleRegionSelect('광주광역시')}>광주광역시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-6" onClick={() => handleRegionSelect('대전광역시')}>대전광역시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-7" onClick={() => handleRegionSelect('울산광역시')}>울산광역시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-8" onClick={() => handleRegionSelect('세종특별자치시')}>세종특별자치시</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-9" onClick={() => handleRegionSelect('경기도')}>경기도</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-10" onClick={() => handleRegionSelect('충북')}>충북</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-11" onClick={() => handleRegionSelect('충남')}>충남</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-12" onClick={() => handleRegionSelect('전북')}>전북</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-13" onClick={() => handleRegionSelect('전남')}>전남</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-14" onClick={() => handleRegionSelect('경북')}>경북</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-15" onClick={() => handleRegionSelect('경남')}>경남</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-16" onClick={() => handleRegionSelect('강원도')}>강원도</Dropdown.Item>
-                                                <Dropdown.Item style={{ opacity: 1 }} href="#/action-17" onClick={() => handleRegionSelect('제주도')}>제주도</Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <hr className={dateList.dateHr} />
+      <br />
+      <br />
 
-                        <br />
-                        <div className={dateList.dogMBTI}>
-                            <div className={dateList.MBTIDiv}>
-                                <img src='/image/date/dogMBTI.png'
-                                style={{width:'15vw',
-                                        borderRadius: '10px' 
-                                        }} 
-                                alt="DogMBTI"
+      {/* 캐러셀 */}
+      <Container className="px-11">
+        <div
+          id="carouselExample"
+          className="carousel slide"
+          style={{
+            backgroundColor: "pink",
+            borderRadius: "20px",
+            border: "20px solid white",
+            boxShadow: "0 0 20px rgba(0, 0, 0, 0.6)",
+          }}
+        >
+          <div
+            className="carousel-inner"
+            style={{
+              borderRadius: "20px",
+            }}
+          >
+            <div>
+              {topMatchingList.map((matchingItem, index) => (
+                <div
+                  key={index}
+                  className={`carousel-item ${index === 0 ? "active" : ""}`}
+                >
+                  {/* 내용을 동적으로 생성 */}
+                  <div className="d-flex justify-content-center align-items-center">
+                    <div
+                      className="justify-content-center align-items-center"
+                      style={{
+                        width: "700px",
+                        height: "470px",
+                        margin: "3%",
+                        marginLeft: "5%",
+                        marginBottom: "8%",
+                      }}
+                    >
+                      <img
+                        src={`${
+                          matchingItem.image ===
+                          "/image/nullImage/nullImage1.png"
+                            ? matchingItem.image
+                            : `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${
+                                matchingItem.image.split(",")[0]
+                              }`
+                        }`}
+                        alt=""
+                        style={{
+                          borderRadius: "20px",
+                          height: "100%",
+                          objectFit: "cover",
+                          border: "20px solid white",
+                        }}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          paddingRight: "15px",
+                        }}
+                      >
+                        <div
+                          className={dateList.listStarScore}
+                          style={{
+                            height: "90px",
+                            border: "15px solid white",
+                            backgroundColor: "#D3D3D3",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "20px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontWeight: "bold",
+                              height: "40px",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            {[1, 2, 3, 4, 5].map((starIndex) => {
+                              let starImage;
+                              const score = matchingItem.averageScore;
+
+                              if (starIndex <= Math.floor(score)) {
+                                starImage = "star1";
+                              } else if (
+                                score % 1 > 0 &&
+                                score % 1 <= 0.5 &&
+                                starIndex === Math.round(score)
+                              ) {
+                                starImage = "halfstar";
+                              } else if (
+                                score % 1 > 0 &&
+                                score % 1 < 0.5 &&
+                                starIndex === Math.round(score)
+                              ) {
+                                starImage = "star0";
+                              } else {
+                                starImage = "star0";
+                              }
+
+                              return (
+                                <img
+                                  key={starIndex}
+                                  src={`/image/date/${starImage}.png`}
+                                  width={40}
+                                  alt="별"
+                                  style={{
+                                    marginRight: starIndex === 5 ? "0" : "40px",
+                                  }}
                                 />
-                            </div>
+                              );
+                            })}
+                          </div>
                         </div>
-                        
-                        <br />
-                        <Link to="/date/dateWrite" style={{ textDecoration: 'none', color: 'inherit' }} onClick={scrollToTop}>
-                        <div className={dateList.matchingWriteBtn}>
-                            <div className={dateList.matchingNullDiv}></div>
-                                매칭 글 작성
-                            <img
-                                src='/image/date/heart.png'
-                                style={{
-                                width: '4vw',
-                                }}
-                                alt="Heart"
-                            />
-                        </div>
-                        </Link>
+                      </div>
                     </div>
-                    
-                    <div className={dateList.filterDateList}>
-                        <div className={dateList.filterDateListDiv}>
-                        <Link to='/date/dateReadMore'
-                        style={{textDecoration:'none',
-                        color:'black'
+
+                    <div
+                      className={dateList.filterDateContent}
+                      style={{
+                        backgroundColor: "white",
+                        padding: "2%",
+                        margin: "3%",
+                        height: "100%",
+                        marginRight: "5%",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          height: "600px",
+                        }}
+                      >
+                        <div
+                          className={dateList.filterDateContentDogname}
+                          style={{ fontSize: "2vw" }}
+                        >
+                          {matchingItem.title}
+                        </div>
+                        <div
+                          className={dateList.filterDateContentDogTitle}
+                          style={{ fontSize: "2vw" }}
+                        >
+                          {matchingItem.content}
+                        </div>
+                        <div className={dateList.filterDateContentSiteScore}>
+                          <img
+                            alt=""
+                            src="/image/main/likeBone.png"
+                            width={50}
+                          />
+                          &nbsp;&nbsp;
+                          <span style={{ fontSize: "2vw" }}>
+                            {matchingItem.communityScore}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 5,
+                          left: 65,
+                          width: "30%",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center", // 수평 가운데 정렬을 위한 속성
+                            borderRadius: "5px",
+                            color: "white",
+                            fontWeight: "bold",
+                            padding: "3%",
+                            border: "10px solid white",
+                            boxShadow:
+                              "0 0 5px rgba(0, 0, 0, 0.6)" /* 그림자 효과 설정 */,
+                            fontSize: "2vw",
+                            backgroundColor:
+                              matchingItem.matchingState === "매칭중"
+                                ? "#ffc107"
+                                : matchingItem.matchingState === "매칭완료"
+                                ? "darkgray"
+                                : matchingItem.matchingState === "매칭대기" &&
+                                  matchingItem.matchingPurpose === "연애"
+                                ? "#FFB6C1"
+                                : matchingItem.matchingState === "매칭대기" &&
+                                  matchingItem.matchingPurpose === "산책"
+                                ? "#ADD8E6"
+                                : "initial", // 기본값은 initial로 설정
+                          }}
+                        >
+                          {matchingItem.matchingState}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+      </Container>
+
+      <br />
+      <br />
+      <hr className={dateList.dateHr} />
+      <br />
+      <br />
+
+      <Container className="px-10">
+        {/* 필터 */}
+        <div className={dateList.filterList}>
+          <div className={dateList.filters}>
+            <div className={dateList.filterDiv}>
+              <div
+                style={{
+                  backgroundColor: "#F56084",
+                  borderRadius: "20px",
+                  padding: "5%",
+                }}
+              >
+                <div className={dateList.filterTitle}>필 터</div>
+
+                <div className={dateList.filterContent}>
+                  <div className="genderCheck">
+                    성 별
+                    <div
+                      className={`${dateCheck.genderCheckBox} d-flex justify-content-left`}
+                    >
+                      <input
+                        id="checkbox1"
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange("Male")}
+                        checked={selectedGender === "Male"}
+                      />
+                      <label
+                        className={dateCheck.labelClass}
+                        htmlFor="checkbox1"
+                      >
+                        남 아
+                      </label>
+                      &nbsp;&nbsp;
+                      <input
+                        id="checkbox2"
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange("Female")}
+                        checked={selectedGender === "Female"}
+                      />
+                      <label
+                        className={dateCheck.labelClass}
+                        htmlFor="checkbox2"
+                      >
+                        여 아
+                      </label>
+                    </div>
+                  </div>
+
+                  <div
+                    className="purposeCheck"
+                    style={{
+                      marginTop: "10px",
+                    }}
+                  >
+                    글 분류
+                    <div
+                      className={`${dateCheck.purposeCheckBox} d-flex justify-content-left`}
+                    >
+                      <input
+                        id="checkbox3"
+                        type="checkbox"
+                        onChange={() => handlePurposeCheckboxChange("연애")}
+                        checked={selectedPurpose === "연애"}
+                      />
+                      <label
+                        className={dateCheck.labelClass}
+                        htmlFor="checkbox3"
+                      >
+                        연 애
+                      </label>
+                      &nbsp;&nbsp;
+                      <input
+                        id="checkbox4"
+                        type="checkbox"
+                        onChange={() => handlePurposeCheckboxChange("산책")}
+                        checked={selectedPurpose === "산책"}
+                      />
+                      <label
+                        className={dateCheck.labelClass}
+                        htmlFor="checkbox4"
+                      >
+                        산 책
+                      </label>
+                    </div>
+                  </div>
+
+                  <div
+                    className="neutralizationCheck"
+                    style={{
+                      marginTop: "10px",
+                    }}
+                  >
+                    중성화 여부 &nbsp;&nbsp;
+                    <div
+                      className={`${dateCheck.neutralizationCheckBox} d-flex justify-content-left`}
+                    >
+                      <input
+                        id="checkbox5"
+                        type="checkbox"
+                        value="중성화"
+                        onChange={() =>
+                          handleNeutralizationCheckboxChange("중성화")
+                        }
+                      />
+                      <label
+                        className={`${dateCheck.neutralizationLabel} ${dateCheck.labelClass}`}
+                        htmlFor="checkbox5"
+                      ></label>
+                    </div>
+                  </div>
+                  <div
+                    className="matchingStateCheck"
+                    style={{
+                      marginTop: "10px",
+                    }}
+                  >
+                    매칭 상태 &nbsp;&nbsp;
+                    <div
+                      className={`${dateCheck.matchingStateCheckBox} d-flex justify-content-left`}
+                    >
+                      <input
+                        id="checkbox6"
+                        type="checkbox"
+                        onChange={() =>
+                          handleMatchingStateCheckboxChange("매칭대기")
+                        }
+                      />
+                      <label
+                        className={dateCheck.labelStateClass}
+                        htmlFor="checkbox6"
+                      >
+                        기다림
+                      </label>
+                      &nbsp;&nbsp;
+                      <input
+                        id="checkbox7"
+                        type="checkbox"
+                        onChange={() =>
+                          handleMatchingStateCheckboxChange("매칭중")
+                        }
+                      />
+                      <label
+                        className={dateCheck.labelStateClass}
+                        htmlFor="checkbox7"
+                      >
+                        매칭중
+                      </label>
+                      &nbsp;&nbsp;
+                      <input
+                        id="checkbox8"
+                        type="checkbox"
+                        onChange={() =>
+                          handleMatchingStateCheckboxChange("매칭완료")
+                        }
+                      />
+                      <label
+                        className={dateCheck.labelStateClass}
+                        htmlFor="checkbox8"
+                      >
+                        완료
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    className="filterAddress"
+                    style={{
+                      marginTop: "10px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    지 역 &nbsp;&nbsp;
+                    <div
+                      className={`${dateCheck.filterAddressBtn} d-flex justify-content-left`}
+                    >
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          className={dateCheck.filterDropdownBtn}
+                          variant="success"
+                          id="dropdown-basic"
+                          style={{
+                            border: "2px solid white",
+                            backgroundColor: "#F56084",
+                            fontWeight: "bold",
+                            opacity: 1,
+                          }}
+                        >
+                          {selectedRegion}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu
+                          className="dropdown-menu scrollContainer"
+                          style={{ maxHeight: "200px", overflowY: "auto" }}
+                        >
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-1"
+                            onClick={() => handleRegionSelect("전체선택")}
+                          >
+                            지역전체
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-1"
+                            onClick={() => handleRegionSelect("서울")}
+                          >
+                            서울
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-2"
+                            onClick={() => handleRegionSelect("부산")}
+                          >
+                            부산
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-3"
+                            onClick={() => handleRegionSelect("대구")}
+                          >
+                            대구광역시
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-4"
+                            onClick={() => handleRegionSelect("인천")}
+                          >
+                            인천광역시
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-5"
+                            onClick={() => handleRegionSelect("광주")}
+                          >
+                            광주광역시
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-6"
+                            onClick={() => handleRegionSelect("대전")}
+                          >
+                            대전광역시
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-7"
+                            onClick={() => handleRegionSelect("울산")}
+                          >
+                            울산광역시
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-8"
+                            onClick={() => handleRegionSelect("세종")}
+                          >
+                            세종특별시
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-9"
+                            onClick={() => handleRegionSelect("경기")}
+                          >
+                            경기
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-10"
+                            onClick={() => handleRegionSelect("충북")}
+                          >
+                            충북
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-11"
+                            onClick={() => handleRegionSelect("충남")}
+                          >
+                            충남
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-12"
+                            onClick={() => handleRegionSelect("전북")}
+                          >
+                            전북
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-13"
+                            onClick={() => handleRegionSelect("전남")}
+                          >
+                            전남
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-14"
+                            onClick={() => handleRegionSelect("경북")}
+                          >
+                            경북
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-15"
+                            onClick={() => handleRegionSelect("경남")}
+                          >
+                            경남
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-16"
+                            onClick={() => handleRegionSelect("강원")}
+                          >
+                            강원
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            style={{ opacity: 1 }}
+                            href="#/action-17"
+                            onClick={() => handleRegionSelect("제주")}
+                          >
+                            제주
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <div className={dateList.dogMBTI}>
+              <div className={dateList.MBTIDiv}>
+                <img
+                  src="/image/date/dogMBTI.png"
+                  style={{ width: "15vw", borderRadius: "10px" }}
+                  alt="DogMBTI"
+                />
+              </div>
+            </div>
+
+            <br />
+            <Link
+              to="/date/dateWrite"
+              style={{ textDecoration: "none", color: "inherit" }}
+              onClick={scrollToTop}
+            >
+              <div className={dateList.matchingWriteBtn}>
+                <div className={dateList.matchingNullDiv}></div>
+                매칭 글 작성
+                <img
+                  src="/image/date/heart.png"
+                  style={{
+                    width: "4vw",
+                  }}
+                  alt="Heart"
+                />
+              </div>
+            </Link>
+          </div>
+
+          <div className={dateList.filterDateList}>
+            <div className={dateList.filterDateListDiv}>
+              {allMatchingList
+                .filter(
+                  (matchingItem) =>
+                    (!selectedGender ||
+                      matchingItem.dogGender === selectedGender) &&
+                    (!selectedPurpose ||
+                      matchingItem.matchingPurpose === selectedPurpose) &&
+                    (!selectedNeutralization ||
+                      matchingItem.neutralization === selectedNeutralization) &&
+                    (!selectedMatchingState ||
+                      matchingItem.matchingState === selectedMatchingState) &&
+                    (selectedRegion === "지역 선택" ||
+                      selectedRegion === "전체선택" ||
+                      (matchingItem.matchingAddress &&
+                        matchingItem.matchingAddress.includes(selectedRegion)))
+                )
+                .map(
+                  (matchingItem, index) =>
+                    //데이터가 존재하는지 확인 후 렌더링
+                    //상세보기 링크
+                    matchingItem.id && (
+                      <Link
+                        to={`/date/dateReadMore/${matchingItem.id}`}
+                        style={{
+                          textDecoration: "none",
+                          color: "black",
                         }}
                         onClick={scrollToTop}
+                        key={index}
+                      >
+                        <div
+                          key={index}
+                          className={dateList.filterDate}
+                          alt={matchingItem.matchingPurpose}
+                          style={{
+                            marginBottom: "3%",
+                            backgroundColor:
+                              matchingItem.matchingPurpose === "연애"
+                                ? "#F9D6DC"
+                                : matchingItem.matchingPurpose === "산책"
+                                ? "#ADD8E6"
+                                : "white", // 기본 값은 'white'로 설정
+                          }}
                         >
-                        <div className={dateList.filterDate}
-                                 style={{marginBottom:'3%'}}>
-                                <div className={dateList.filterDateImg}>
-                                    <div style={{
-                                        display:'flex',
-                                        flexDirection: 'column', // 세로로 나열하도록 변경
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <div style={{
-                                             display: 'flex',
-                                             justifyContent: 'center',
-                                             alignItems: 'center',
-                                             borderRadius:'10px',
-                                             width:275,
-                                             height:200,
-                                             overflow:'hidden'
-                                        }}>
-                                            <img alt='' src='/image/date/starDog1.jpg'
-                                                    style={{
-                                                    width:'100%',
-                                                    objectFit:'cover'
-                                                    }}
-                                                    
-                                            />
-                                        </div>
-                                        
-                                        <div className={dateList.listStarScore}>
-                                        <div style={{
-                                                fontWeight: 'bold',
-                                                height: '40px',
-                                                display: 'flex',
-                                                justifyContent: 'center', /* 세로 중앙 정렬 */
-                                                alignItems: 'center' /* 가로 중앙 정렬 */
-                                                }}>
-                                                    {[1, 2, 3, 4, 5].map((index) => (
-                                                        <img key={index} src='/image/date/starScore.png' width={25} alt="별"
-                                                        style={{ marginRight: index === 5 ? '0' : '10px' }} />
-                                                    ))}
-                                                </div>
-                                        </div>
-                                    </div>
+                          <div className={dateList.filterDateImg}>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  position: "relative",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  borderRadius: "10px",
+                                  width: "100%",
+                                  height: 200,
+                                  overflow: "hidden",
+                                }}
+                              >
+                                <img
+                                  alt=""
+                                  src={`${
+                                    matchingItem.image ===
+                                    "/image/nullImage/nullImage1.png"
+                                      ? matchingItem.image
+                                      : `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${
+                                          matchingItem.image.split(",")[0]
+                                        }`
+                                  }`}
+                                  style={{ width: "100%", objectFit: "cover" }}
+                                />
+                                <div
+                                  style={{
+                                    position: "absolute",
+                                    top: 10,
+                                    left: 10,
+                                    width: "30%",
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      flexDirection: "column",
+                                      justifyContent: "center",
+                                      alignItems: "center", // 수평 가운데 정렬을 위한 속성
+                                      borderRadius: "5px",
+                                      color: "white",
+                                      fontWeight: "bold",
+                                      padding: "5%",
+                                      border: "4px solid white",
+                                      boxShadow:
+                                        "0 0 5px rgba(0, 0, 0, 0.6)" /* 그림자 효과 설정 */,
+                                      backgroundColor:
+                                        matchingItem.matchingState === "매칭중"
+                                          ? "#ffc107"
+                                          : matchingItem.matchingState ===
+                                            "매칭완료"
+                                          ? "darkgray"
+                                          : matchingItem.matchingState ===
+                                              "매칭대기" &&
+                                            matchingItem.matchingPurpose ===
+                                              "연애"
+                                          ? "#FFB6C1"
+                                          : matchingItem.matchingState ===
+                                              "매칭대기" &&
+                                            matchingItem.matchingPurpose ===
+                                              "산책"
+                                          ? "#ADD8E6"
+                                          : "initial", // 기본값은 initial로 설정
+                                    }}
+                                  >
+                                    {matchingItem.matchingState}
+                                  </div>
                                 </div>
-                                <div className={dateList.filterDateContent}
-                                     style={{ 
-                                     }}>
-                                        <div style={{ display: 'flex', flexDirection: 'column', height: '100%',
-                                            backgroundColor:'white'
-                                        }}>
-                                           <div className={dateList.filterDateContentDogname}>
-                                              강아지 이름
-                                            </div>
-                                            <div className={dateList.filterDateContentDogTitle}>
-                                              강아지 설명
-                                            </div>
-                                            <div className={dateList.filterDateContentSiteScore}>
-                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
-                                              커뮤니티 활동점수
-                                            </div> 
-                                        </div>
-                                </div>
-                            </div>
-                            </Link>
-                            
-                            {/* 2번강아지 */}
-                            <div className={dateList.filterDate}
-                                 style={{marginBottom:'3%',
-                                 backgroundColor:'lightblue'
-                                 }}>
-                                <div className={dateList.filterDateImg}>
-                                    <div style={{
-                                        display:'flex',
-                                        flexDirection: 'column', // 세로로 나열하도록 변경
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <div style={{
-                                             display: 'flex',
-                                             justifyContent: 'center',
-                                             alignItems: 'center',
-                                             borderRadius:'10px',
-                                             width:275,
-                                             height:200,
-                                             overflow:'hidden'
-                                        }}>
-                                            <img alt='' src='/image/date/starDog2.jpg'
-                                                    style={{
-                                                    width:'100%',
-                                                    objectFit:'cover'
-                                                    }}
-                                                    
-                                            />
-                                        </div>
-                                        
-                                        <div className={dateList.listStarScore}>
-                                        <div style={{
-                                                fontWeight: 'bold',
-                                                height: '40px',
-                                                display: 'flex',
-                                                justifyContent: 'center', /* 세로 중앙 정렬 */
-                                                alignItems: 'center' /* 가로 중앙 정렬 */
-                                                }}>
-                                                    {[1, 2, 3, 4, 5].map((index) => (
-                                                        <img key={index} src='/image/date/starScore.png' width={25} alt="별"
-                                                        style={{ marginRight: index === 5 ? '0' : '10px' }} />
-                                                    ))}
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={dateList.filterDateContent}
-                                     style={{ 
-                                     }}>
-                                        <div style={{ display: 'flex', flexDirection: 'column', height: '100%'}}>
-                                           <div className={dateList.filterDateContentDogname}>
-                                              강아지 이름
-                                            </div>
-                                            <div className={dateList.filterDateContentDogTitle}>
-                                              강아지 설명
-                                            </div>
-                                            <div className={dateList.filterDateContentSiteScore}>
-                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
-                                              커뮤니티 활동점수
-                                            </div> 
-                                        </div>
-                                </div>
-                            </div>
-                            
-                            {/* 3번강아지 */}
-                            <div className={dateList.filterDate}
-                                 style={{marginBottom:'3%'}}>
-                                <div className={dateList.filterDateImg}>
-                                    <div style={{
-                                        display:'flex',
-                                        flexDirection: 'column', // 세로로 나열하도록 변경
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <div style={{
-                                             display: 'flex',
-                                             justifyContent: 'center',
-                                             alignItems: 'center',
-                                             borderRadius:'10px',
-                                             width:275,
-                                             height:200,
-                                             overflow:'hidden'
-                                        }}>
-                                            <img alt='' src='/image/date/Dog4.jpg'
-                                                    style={{
-                                                    width:'100%',
-                                                    objectFit:'cover'
-                                                    }}
-                                                    
-                                            />
-                                        </div>
-                                        
-                                        <div className={dateList.listStarScore}>
-                                        <div style={{
-                                                fontWeight: 'bold',
-                                                height: '40px',
-                                                display: 'flex',
-                                                justifyContent: 'center', /* 세로 중앙 정렬 */
-                                                alignItems: 'center' /* 가로 중앙 정렬 */
-                                                }}>
-                                                    {[1, 2, 3, 4, 5].map((index) => (
-                                                        <img key={index} src='/image/date/starScore.png' width={25} alt="별"
-                                                        style={{ marginRight: index === 5 ? '0' : '10px' }} />
-                                                    ))}
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={dateList.filterDateContent}
-                                     style={{ 
-                                     }}>
-                                        <div style={{ display: 'flex', flexDirection: 'column', height: '100%'}}>
-                                           <div className={dateList.filterDateContentDogname}>
-                                              강아지 이름
-                                            </div>
-                                            <div className={dateList.filterDateContentDogTitle}>
-                                              강아지 설명
-                                            </div>
-                                            <div className={dateList.filterDateContentSiteScore}>
-                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
-                                              커뮤니티 활동점수
-                                            </div> 
-                                        </div>
-                                </div>
-                            </div>
-                            
-                            {/* 4번강아지 */}
-                            <div className={dateList.filterDate}
-                                 style={{marginBottom:'3%'}}>
-                                <div className={dateList.filterDateImg}>
-                                    <div style={{
-                                        display:'flex',
-                                        flexDirection: 'column', // 세로로 나열하도록 변경
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <div style={{
-                                             display: 'flex',
-                                             justifyContent: 'center',
-                                             alignItems: 'center',
-                                             borderRadius:'10px',
-                                             width:275,
-                                             height:200,
-                                             overflow:'hidden'
-                                        }}>
-                                            <img alt='' src='/image/date/Dog5.jpg'
-                                                    style={{
-                                                    width:'100%',
-                                                    objectFit:'cover'
-                                                    }}
-                                                    
-                                            />
-                                        </div>
-                                        
-                                        <div className={dateList.listStarScore}>
-                                        <div style={{
-                                                fontWeight: 'bold',
-                                                height: '40px',
-                                                display: 'flex',
-                                                justifyContent: 'center', /* 세로 중앙 정렬 */
-                                                alignItems: 'center' /* 가로 중앙 정렬 */
-                                                }}>
-                                                    {[1, 2, 3, 4, 5].map((index) => (
-                                                        <img key={index} src='/image/date/starScore.png' width={25} alt="별"
-                                                        style={{ marginRight: index === 5 ? '0' : '10px' }} />
-                                                    ))}
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={dateList.filterDateContent}
-                                     style={{ 
-                                     }}>
-                                        <div style={{ display: 'flex', flexDirection: 'column', height: '100%'}}>
-                                           <div className={dateList.filterDateContentDogname}>
-                                              근 육 견
-                                            </div>
-                                            <div className={dateList.filterDateContentDogTitle}>
-                                              3대30 거뜬함
-                                            </div>
-                                            <div className={dateList.filterDateContentSiteScore}>
-                                                <img alt='' src='/image/main/likeBone.png' width={20}/>
-                                              커뮤니티 활동점수
-                                            </div> 
-                                        </div>
-                                </div>
-                            </div>
+                              </div>
+                              <div className={dateList.listStarScore}>
+                                <div
+                                  style={{
+                                    fontWeight: "bold",
+                                    height: "40px",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  {[1, 2, 3, 4, 5].map((starIndex) => {
+                                    let starImage;
+                                    const score = matchingItem.averageScore;
 
+                                    if (starIndex <= Math.floor(score)) {
+                                      starImage = "star1";
+                                    } else if (
+                                      score % 1 > 0 &&
+                                      score % 1 <= 0.5 &&
+                                      starIndex === Math.round(score)
+                                    ) {
+                                      starImage = "halfstar";
+                                    } else if (
+                                      score % 1 > 0 &&
+                                      score % 1 < 0.5 &&
+                                      starIndex === Math.round(score)
+                                    ) {
+                                      starImage = "star0";
+                                    } else {
+                                      starImage = "star0";
+                                    }
+
+                                    return (
+                                      <img
+                                        key={starIndex}
+                                        src={`/image/date/${starImage}.png`}
+                                        width={25}
+                                        alt="별"
+                                        style={{
+                                          marginRight:
+                                            starIndex === 5 ? "0" : "10px",
+                                        }}
+                                      />
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className={dateList.filterDateContent}
+                            style={{ backgroundColor: "white" }}
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                height: "100%",
+                              }}
+                            >
+                              <div
+                                className={dateList.filterDateContentDogname}
+                              >
+                                {matchingItem.title}
+                              </div>
+                              <div
+                                className={dateList.filterDateContentDogTitle}
+                              >
+                                {matchingItem.content}
+                              </div>
+                              <div
+                                className={dateList.filterDateContentSiteScore}
+                              >
+                                <img
+                                  alt=""
+                                  src="/image/main/likeBone.png"
+                                  width={20}
+                                />
+                                {matchingItem.communityScore}
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                    </div>        
-                </div>
-            </Container>
-
-            <Footer></Footer>
+                      </Link>
+                    )
+                )}
+            </div>
+          </div>
         </div>
-    );
+      </Container>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default DateList;

@@ -59,6 +59,7 @@
 /* 필터 */
 .filterList{
     display: flex;
+    margin-bottom: 5%;
 }
 .filters{
     justify-content: column;
@@ -73,6 +74,7 @@
 }
 .filterDiv:hover{
     opacity: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* 그림자 효과 설정 */
 }
 .filterTitle{
     color: white;
@@ -92,7 +94,8 @@
 }
 .dogMBTI:hover{
     cursor: pointer;
-    opacity: 0.9;
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* 그림자 효과 설정 */
 }
 .MBTIDiv{
     border-radius: 20px; /* 내부 div에 둥근 테두리를 적용 */
@@ -112,12 +115,15 @@
     opacity: 0.6;
 }
 .matchingWriteBtn:hover{
-    opacity: 0.9;
+    opacity: 1;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* 그림자 효과 설정 */
 }
 .matchingNullDiv{
     width: 3vw;
 }
+
+/*색상 변경*/
 .filterDateList{
     width: 65%;
     margin-left: 5%;
@@ -147,6 +153,7 @@
 .filterDate:hover{
     cursor: pointer;
     opacity: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* 그림자 효과 설정 */
 }
 .filterDateImg{
     width: 60%;

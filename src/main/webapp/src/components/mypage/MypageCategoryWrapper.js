@@ -6,7 +6,7 @@ const MypageCategoryWrapper = () => {
     return (
         <div>
         <MypageCategory></MypageCategory>
-
+        
         <Footer></Footer>
         </div>
     );

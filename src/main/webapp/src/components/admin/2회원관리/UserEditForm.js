@@ -88,6 +88,8 @@ const UserEditForm = () => {
               name="email"
               value={userDTO.email}
               onChange={handleChange}
+              style={{ backgroundColor: "#EEEEEE" }}
+              readOnly
             />
           </Form.Group>
 
@@ -99,6 +101,8 @@ const UserEditForm = () => {
               name="passwd"
               value={userDTO.passwd}
               onChange={handleChange}
+              style={{ backgroundColor: "#EEEEEE" }}
+              readOnly
             />
           </Form.Group>
 
@@ -153,6 +157,7 @@ const UserEditForm = () => {
               type="text"
               name="createdAt"
               value={userDTO.createdAt}
+              style={{ backgroundColor: "#EEEEEE" }}
               readOnly // 생성 날짜는 읽기 전용일 수 있습니다.
             />
           </Form.Group>

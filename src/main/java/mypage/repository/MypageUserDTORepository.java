@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import user.bean.UserDTO;
 
-public interface MypageDTORepository extends JpaRepository<UserDTO, Long> {
+public interface MypageUserDTORepository extends JpaRepository<UserDTO, Long> {
 
 }

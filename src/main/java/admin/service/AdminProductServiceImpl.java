@@ -26,7 +26,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 	@Autowired
 	private ObjectStorageService objectStorageService;
-	private String bucketName = "bitcamp-edu-bucket-111";
+	private String bucketName = "bitcamp-edu-bucket-112";
 	@Autowired
 	private AdminProductRepository adminProductRepository;
 
@@ -47,9 +47,10 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		// 1-3. 이미지 경로
 		// 실제 폴더
-//s3문제
-//		String filePath = session.getServletContext().getRealPath("/public/storage");
-		String filePath = session.getServletContext().getRealPath("/public/image/product/");
+		// s3문제
+		String filePath = session.getServletContext().getRealPath("/public/storage");
+		// String filePath =
+		// session.getServletContext().getRealPath("/public/image/product/");
 		System.out.println("실제폴더 = " + filePath);
 
 		File file;
@@ -65,17 +66,17 @@ public class AdminProductServiceImpl implements AdminProductService {
 			for (MultipartFile img : imgFilesList) {
 				originalFileName = img.getOriginalFilename();
 				System.out.println("originalFileName: " + originalFileName);
-//s3문제
-//				fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
-				fileName = UUID.randomUUID().toString() + ".png";
-				
-//s3문제
-//				file = new File(filePath, originalFileName);
-				file = new File(filePath, fileName);
+				// s3문제
+				fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/product/", img);
+				// fileName = UUID.randomUUID().toString() + ".png";
 
-//s3문제
-//				imagePaths.add("flirdogStorage/" + fileName);
-				imagePaths.add("/image/product/" + fileName);
+				// s3문제
+				file = new File(filePath, originalFileName);
+				// file = new File(filePath, fileName);
+
+				// s3문제
+				imagePaths.add("flirdogStorage/product/" + fileName);
+				// imagePaths.add("/image/product/" + fileName);
 
 				try {
 					img.transferTo(file);
@@ -203,9 +204,10 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		// 1-3. 이미지 경로
 		// 실제 폴더
-//s3문제
-//		String filePath = session.getServletContext().getRealPath("/public/storage");
-		String filePath = session.getServletContext().getRealPath("/public/image/product");
+		// s3문제
+		String filePath = session.getServletContext().getRealPath("/public/storage");
+		// String filePath =
+		// session.getServletContext().getRealPath("/public/image/product");
 		System.out.println("실제폴더 = " + filePath);
 
 		File file;

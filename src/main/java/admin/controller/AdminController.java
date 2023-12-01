@@ -18,9 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import admin.service.AdminOrderService;
 import admin.service.AdminProductService;
 import admin.service.AdminUserService;
+import admin.service.ObjectStorageService;
 import jakarta.servlet.http.HttpSession;
+import order.bean.Order;
 import product.bean.Product;
 import user.bean.User;
 
@@ -32,6 +35,10 @@ public class AdminController {
 	private AdminProductService adminProductService;
 	@Autowired
 	private AdminUserService adminUserService;
+	@Autowired
+	private AdminOrderService adminOrderService;
+	@Autowired
+	private ObjectStorageService objectStorageService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -171,5 +178,34 @@ public class AdminController {
 		adminUserService.userEdit(userDTO);
 
 	}
+	
+	// 주문리스트
+	@GetMapping(path = "getOrderList")
+	public List<Order> getOrderList() {
+		List<Order> orderList = adminOrderService.getOrderList();
+
+		return orderList;
+
+	}
+	// 이미지업로드(quillEditor)
+//	@PostMapping(path = "uploadImage")
+//	public String uploadImage(@RequestParam("image") MultipartFile file) {
+//
+//		
+//        if (file.isEmpty()) {
+//            return "파일이 비어 있습니다.";
+//        }
+//        
+//        try {
+//            // 파일 저장 로직
+//            // 예: 파일 시스템에 저장, 데이터베이스에 정보 저장 등
+//            // 저장된 파일의 경로 또는 URL을 반환
+//            String imageUrl = saveFile(file);
+//            return imageUrl;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return "파일 저장 중 오류 발생";
+//        }
+//    }
 
 }

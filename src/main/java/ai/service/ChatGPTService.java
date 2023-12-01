@@ -5,18 +5,32 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import admin.service.ObjectStorageService;
 
+
+
 @Service
+@PropertySource("classpath:ai.properties")
 public class ChatGPTService {
     @Autowired
     private ObjectStorageService objectStorageService;
-    private String bucketName = "bitcamp-edu-bucket-111";
+    private String bucketName = "bitcamp-edu-bucket-112";
+    
+    @Value("${dalle.api.key}")
+    private String apiKeyDalle;
 
     public void downloadAndSaveImage(String imageUrl, String fileName) throws Exception {
         URL url = new URL(imageUrl); // imageUrl을 기반으로 URL 객체 생성
@@ -37,6 +51,30 @@ public class ChatGPTService {
 
         // 콘솔에 업로드된 파일 경로 출력 (디버깅용)
         System.out.println("Uploaded to S3: " + imagePaths.get(0));
+    }
+
+    //Dalle3
+    public String generateImage(String prompt) throws Exception {
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Authorization", "Bearer " + apiKeyDalle);
+
+        // 요청 본문 생성
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("prompt", prompt);
+
+        HttpEntity<String> request = new HttpEntity<>(requestBody.toString(), headers);
+        
+        // OpenAI 이미지 생성 API 호출
+        String apiUrl = "https://api.openai.com/v1/images/generations";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.postForEntity(apiUrl, request, String.class);
+
+        // 응답에서 이미지 URL 추출 및 반환
+        JSONObject responseBody = new JSONObject(response.getBody());
+        return responseBody.getJSONArray("data").getJSONObject(0).getString("url");
+//    	return null;
     }
 }
 

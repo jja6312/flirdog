@@ -42,8 +42,8 @@ public class AccessController {
         String text = requestText.getText();
         String apiUrl = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-NCP-APIGW-API-KEY-ID", "90e1dkex14");
-        headers.set("X-NCP-APIGW-API-KEY", "eKrZeexFTFr41En5qSXUvPFRGXdHOoxPjb7ZjtwZ");
+        headers.set("X-NCP-APIGW-API-KEY-ID", "yd3optkxe1");
+        headers.set("X-NCP-APIGW-API-KEY", "uTnAuUQ0TUj7rhNJ3BgJg3OFigl4MrwPCUJufpJ8");
         headers.set("Content-Type", "application/json");
 
         // 요청 본문 구성
