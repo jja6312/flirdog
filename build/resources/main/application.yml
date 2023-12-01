@@ -15,16 +15,42 @@ spring:
   config:
     activate:
       on-profile: local
+  # 아래 이미지크기제한 널널하게 잡음. - 정지안, 11/29
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
   datasource:
-    url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+
+    #url: jdbc:mysql://db-ioa7c-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: user
+    #password: qwe123!@#
+    # s3문제
+    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: root
+    #password: 1234
+
+    # url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+    # username: user
+    # password: qwe123!@#
+    # s3문제 (아래는 지안님 계정)
+    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: root
+    #password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: user
-    password: qwe123!@#
+    url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
+    username: study
+    password: bitcamp!@#123
+
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     generate-ddl: true
     properties:
@@ -32,9 +58,7 @@ spring:
         format_sql: true
     defer-datasource-initialization: true # (2.5~) Hibernate 초기화 이후 data.sql 실행
     database: mysql
-    database-platform : org.hibernate.dialect.MySQL8Dialect
-
-
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 ---
 spring:
   config:
@@ -55,8 +79,11 @@ spring:
       hibernate:
         format_sql: true
     database: mysql
-    database-platform : org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 
   sql:
     init:
       mode: never
+openai:
+  key: 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
+# chatgpt: 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

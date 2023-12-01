@@ -42,8 +42,8 @@ const WeatherAndStroll = () => {
       <>
         <Header/>
         <AppWrap>
-          <div className="appContentWrap">
-            <Container className='px-10 mt-5'>
+          <div className={`appContentWrap`}>
+            <Container className={`px-10`}>
               <div className='row '>
                   <div className='col-lg-4 d-flex justify-content-center'></div>
                   <div className='col-lg-4 d-flex justify-content-center'>
@@ -64,19 +64,19 @@ const WeatherAndStroll = () => {
                   {/* 눈오거나비오면 슬픈개 이미지 */}
                   {(result.data.weather[0].main ==='Rain' || result.data.weather[0].main ==='Snow') &&  (
                     <>
-                      <img className='img2' src={saddog}></img>
+                      <img className='img2' src={saddog} alt=''></img>
                     </>
                   )}
                   {/* 날이 맑으면 기쁜개 */}
                   {(result.data.weather[0].main ==='Clear' ) &&  (
                     <>
-                      <img className='img2' src={smmile}></img>
+                      <img className='img2' src={smmile} alt=''></img>
                     </>
                   )}
                   {/* 비오거나 눈오거나 아니면 평범한개 나머지는 평범한개*/}
                   {(result.data.weather[0].main !=='Rain' && result.data.weather[0].main !=='Snow'&& result.data.weather[0].main !=='Clear') &&  (
                     <>
-                      <img className='img2' src={normaldog}></img>
+                      <img className='img2' src={normaldog} alt=''></img>
                     </>
                   )}
                 </div>
@@ -193,6 +193,7 @@ const AppWrap = styled.div`
         transform: translate(-50%, -50%);
         position: absolute;
         padding: 20px;
+        margin-top: 5rem;
       }
       input {
         padding: 16px;
@@ -207,6 +208,7 @@ const AppWrap = styled.div`
       border: 1px black solid;
       padding: 100px;
       border-radius: 8px;
+
     
       .city {
         text-align: center;
@@ -240,5 +242,8 @@ const AppWrap = styled.div`
         font-size: 20px;
         text-align: center;
         margin-top: 8px;
+      }
+      .AppWrap .appContentWrap .px-10.mt-10.MarginRem {
+        margin-top: 100rem;
       }
 `;
