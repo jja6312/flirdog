@@ -36,7 +36,7 @@ import MydogProfile from "./components/mypage/1프로필/MydogProfile";
 import MypageHeader from "./components/mypage/MypageHeader";
 import Product from "./components/product/Product";
 import MydogProfileUpdate from "./components/mypage/1프로필/MydogProfileUpdate";
-import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileRegister";
+import MydogProfileRegister2 from "./components/mypage/1프로필/MydogProfileRegister2";
 import MypointRecharge from "./components/mypage/3포인트/MypointRecharge";
 import MyarticleRepl from "./components/mypage/2내가작성한글/MyarticleRepl";
 import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRounge";
@@ -46,6 +46,10 @@ import UserEditForm from "./components/admin/2회원관리/UserEditForm";
 import Login from "./components/login/Login";
 import JoinAuth from "./components/login/loginAPI/JoinAuth";
 import PwdFind from "./components/login/login/PwdFind";
+import FreeBoard from "./components/mypage/7자유게시판/FreeBoard";
+import FreeBoardOne from "./components/mypage/7자유게시판/FreeBoardOne";
+
+import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
 
 const App = () => {
   return (
@@ -78,8 +82,8 @@ const App = () => {
             />
             <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
             <Route
-              path="/mypage/MydogProfileRegister"
-              element={<MydogProfileRegister />}
+              path="/mypage/MydogProfileRegister2"
+              element={<MydogProfileRegister2 />}
             />
             <Route
               path="/mypage/MypointRecharge"
@@ -89,6 +93,12 @@ const App = () => {
             <Route
               path="/mypage/MyarticleRounge"
               element={<MyarticleRounge />}
+            />
+            <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
+            <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
+            <Route
+              path="/mypage/WeatherAndStroll"
+              element={<WeatherAndStroll />}
             />
             {/* 김찬영마이페이지//================================================================= */}
 

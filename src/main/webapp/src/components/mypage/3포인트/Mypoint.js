@@ -13,14 +13,14 @@ const Mypoint = () => {
         email: '',
         nickname: '',
         userRole: '',
-        point: 0,
-        communityScore: 0,
+        point: '디비연결안됨',
+        communityScore: '',
         // 나머지 필드들에 대해서도 테이블의 컬럼에 따라 추가해주세요.
         // 예를 들면, dogsInfos, popularity, matching 등...
       });
       
     const [pointChargingDTO, setPointChargingDTO] = useState({
-		price: 0,
+		price: '디비연결안됨',
 		
       });
       

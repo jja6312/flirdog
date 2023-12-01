@@ -35,9 +35,9 @@ const MyarticleRounge = () => {
                     <Col xs={3} md={4}>
                     </Col>
                     <Col xs={6} md={4} className={Mypage.Imagecenter}>
-                        <Link to=''>
+                        <Link to='/mypage/FreeBoard'>
                             <Button variant="outline-danger" className={`col-lg-4 ${Mypage.Myarticle3}`} >
-                                라운지로 이동하기
+                                게시판으로 이동하기
                             </Button>{''} 
                         </Link>
                     </Col>

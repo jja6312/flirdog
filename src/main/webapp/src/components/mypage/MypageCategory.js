@@ -14,6 +14,22 @@ const MypageCategory = () => {
             <div style={{ width: "100%", textAlign: "center" }}>
                 <Link to="/mypage/MypageHeaderTest">마이페이지헤더테스트</Link>
             </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/MydogProfileRegister2">이미지업로드테스트</Link>
+            </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/MydogProfile2">이미지조회</Link>
+            </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/WeatherAndStroll">날씨 api기능구현</Link>
+            </div>
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/Location">위치기능</Link>
+            </div>
+            
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <Link to="/mypage/FreeBoard">자유게시판메인</Link>
+            </div>
         </div>
     );
 };

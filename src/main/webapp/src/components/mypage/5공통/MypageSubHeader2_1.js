@@ -152,7 +152,7 @@ const MypageSubHeader2_1 = () => {
                         <ul className='row m-0 p-0'>    
                             <li className='col-lg-3 col-md-3 col-md-3 col-sm-3 d-flex justify-content-center'></li>
                             <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/Myarticle" className={Mypage.Link}><span className={` Mypage.LiVisible ${changeColor2_1 ? Mypage.borderbottomPink : Mypage.borderbottomPinkOff}`}>Q&A</span> </Link></li>
-                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/MyarticleRounge" className={Mypage.Link}><span className={` Mypage.LiVisible`}>라운지</span></Link></li>
+                            <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/MyarticleRounge" className={Mypage.Link}><span className={` Mypage.LiVisible`}>게시판</span></Link></li>
                             <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'><Link to="/mypage/MyarticleRepl" className={Mypage.Link}><span className={` Mypage.LiVisible`}>댓글</span></Link></li>
                             <li className='col-lg-2 col-md-2 col-md-2 col-sm-2 d-flex justify-content-center'></li>
                         </ul>
