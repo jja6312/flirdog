@@ -51,7 +51,9 @@ const ModalGoMatching = ({
                   <img
                     className="rounded"
                     alt="강아지 사진"
-                    src={modaldogsInfo[currentDogIndex].image}
+                    src={modaldogsInfo[currentDogIndex].image.contains(
+                      "flirdog"
+                    )}
                     style={{
                       width: "100%",
                       height: "100%",

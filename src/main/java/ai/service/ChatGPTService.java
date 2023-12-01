@@ -27,7 +27,7 @@ import admin.service.ObjectStorageService;
 public class ChatGPTService {
     @Autowired
     private ObjectStorageService objectStorageService;
-    private String bucketName = "bitcamp-edu-bucket-111";
+    private String bucketName = "bitcamp-edu-bucket-112";
     
     @Value("${dalle.api.key}")
     private String apiKeyDalle;

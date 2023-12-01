@@ -275,29 +275,31 @@ const JoinAuth = () => {
       setAiDogProfileImgUrl(imageUrl);
       alert("imageUrl: " + imageUrl);
 
-      //s3문제
-      //     await axios
-      //       .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
-      //         params: {
-      //           imageUrl: imageUrl,
-      //         },
-      //       })
-      //       .then((res) => {
-      //         console.log("JoinAuth.js, 이미지 저장 성공!.");
-      //         alert(res.data);
-      //       })
-      //       .catch((error) => {
-      //         console.log("JoinAuth.js, 이미지 저장 실패.");
-      //         console.log(error);
-      //       });
-      //   } catch (error) {
-      //     console.log(error);
-      //     console.error("Error fetching image:", error);
-      //     alert("Failed to fetch image.");
-      //   }
+      await axios
+        .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
+          params: {
+            imageUrl: imageUrl,
+          },
+        })
+        .then((res) => {
+          console.log("JoinAuth.js, 이미지 저장 성공!.");
+
+          Swal.fire({
+            icon: "success",
+            title: "ai 이미지 저장 성공!",
+            showConfirmButton: false,
+            timer: 600,
+          });
+        })
+        .catch((error) => {
+          Swal.fire("ai 이미지 저장중 중 에러가 발생했습니다.", error.message);
+          console.log(error);
+        });
     } catch (error) {
+      console.log(error);
       console.error("Error fetching image:", error);
-      alert("Failed to fetch image.");
+      //sweetAlert 을 error메시지와함께
+      Swal.fire("이미지 저장중 중 에러가 발생했습니다.", error.message);
     }
   };
 
@@ -315,12 +317,12 @@ const JoinAuth = () => {
   //       "https://api.openai.com/v1/images/generations",
   //       {
   //         prompt: prompt,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer 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`,
-  //         },
   //       }
+  //       // {
+  //       //   headers: {
+  //       //     Authorization: `Bearer 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`,
+  //       //   },
+  //       // }
   //     );
 
   //     const imageUrl = response.data.data[0].url; // Adjust this according to the actual response structure

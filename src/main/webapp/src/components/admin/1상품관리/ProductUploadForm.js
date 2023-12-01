@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import LeftSide from "../LeftSide";
 import AdminHeader from "../AdminHeader";
@@ -16,6 +16,8 @@ import ProductThumnail from "./5상품대표이미지/ProductThumnail";
 import axios from "axios";
 import ProductCategory from "./1상품분류정보/ProductCategory";
 import { useNavigate } from "react-router-dom";
+import Reactquill from "../../somoim/Reactquill";
+import TextEditor from "../../TextEditor";
 
 const ProductUploadForm = ({ openLeftside }) => {
   const [productDTO, setProductDTO] = useState({
@@ -23,7 +25,7 @@ const ProductUploadForm = ({ openLeftside }) => {
     content: "",
     price: "",
     stock: "",
-    // contentDetail: "",
+    contentDetail: "",
   });
 
   const nameRef = useRef();
@@ -135,6 +137,10 @@ const ProductUploadForm = ({ openLeftside }) => {
       .catch((error) => console.log(error));
   };
 
+  useEffect(() => {
+    console.log(productDTO);
+  }, [productDTO]);
+
   return (
     <>
       <AdminHeader></AdminHeader>
@@ -190,8 +196,12 @@ const ProductUploadForm = ({ openLeftside }) => {
             setImgFiles={setImgFiles}
           ></ProductThumnail>
 
-          <AdminPageInfoText title="상품 상세 정보" isNessasary={false} />
+          {/* <AdminPageInfoText title="상품 상세 정보" isNessasary={false} /> */}
           {/* <EditorBox style={{ width: "60%" }}></EditorBox> */}
+          {/* <TextEditor
+            setContentUseState={setProductDTO}
+            name="contentDetail"
+          ></TextEditor> */}
         </Container>
 
         <ProductNoticeBanner

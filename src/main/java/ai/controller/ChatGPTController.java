@@ -1,5 +1,7 @@
 package ai.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,27 +25,27 @@ public class ChatGPTController {
     @PostMapping("downloadAndSaveImage")
     public String image(@RequestParam String imageUrl) {
         // s3문제
-        // try {
-        // if (imageUrl != null && !imageUrl.isEmpty()) {
-        // System.out.println("@@@imageUrl:"+imageUrl);
-        // // 이미지 파일 이름을 생성합니다.
-        // String fileName = UUID.randomUUID().toString();
-        // fileName+=".jpg";
-        // chatGPTService.downloadAndSaveImage(imageUrl, fileName);
-        // return "Image saved successfully: " + fileName;
-        // } else {
-        // System.out.println("@@@이미지가 널값인디?");
-        // return "Image URL not found.";
-        // }
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // System.out.println(e);
-        // System.out.println("@@@문제발생");
-        // return "Error occurred: " + e.getMessage();
-        // }
-    	return null;
+        try {
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                System.out.println("@@@imageUrl:" + imageUrl);
+                // 이미지 파일 이름을 생성합니다.
+                String fileName = UUID.randomUUID().toString();
+                fileName += ".jpg";
+                chatGPTService.downloadAndSaveImage(imageUrl, fileName);
+                return "Image saved successfully: " + fileName;
+            } else {
+                System.out.println("@@@이미지가 널값인디?");
+                return "Image URL not found.";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+            System.out.println("@@@문제발생");
+            return "Error occurred: " + e.getMessage();
+        }
+        // return null;
     }
-    
+
     @PostMapping("generateImage")
     public ResponseEntity<?> generateImage(@RequestBody String prompt) {
         try {
@@ -53,7 +55,7 @@ public class ChatGPTController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                 .body("Error occurred: " + e.getMessage());
+                    .body("Error occurred: " + e.getMessage());
         }
     }
 
