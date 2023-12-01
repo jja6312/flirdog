@@ -1,10 +1,11 @@
 package ai.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,4 +43,18 @@ public class ChatGPTController {
         // }
     	return null;
     }
+    
+    @PostMapping("generateImage")
+    public ResponseEntity<?> generateImage(@RequestBody String prompt) {
+        try {
+            // 외부 API를 호출하는 서비스 메소드
+            String imageUrl = chatGPTService.generateImage(prompt);
+            return ResponseEntity.ok(imageUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("Error occurred: " + e.getMessage());
+        }
+    }
+
 }

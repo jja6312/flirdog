@@ -19,6 +19,7 @@ import user.bean.DogsBreed;
 import user.bean.DogsInfo;
 import user.bean.Score;
 import user.bean.User;
+import user.bean.UserRole;
 
 @Service
 public class AccessServiceImpl implements AccessService {
@@ -99,6 +100,7 @@ public class AccessServiceImpl implements AccessService {
 		        score.setVoteCount(0);
 		        score.setAverageScore((double)0);        
 		        user.setPoint((long) 0);
+		        user.setUserRole(UserRole.USER);
 		        User savedUser = accessRepository.save(user);
 		        dogsInfo.setUser(savedUser);
 		        dogsInfo.setImageAiProfile(imageAiProfile);

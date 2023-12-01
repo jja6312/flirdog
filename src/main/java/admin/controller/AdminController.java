@@ -18,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import admin.service.AdminOrderService;
 import admin.service.AdminProductService;
 import admin.service.AdminUserService;
 import jakarta.servlet.http.HttpSession;
+import order.bean.Order;
 import product.bean.Product;
 import user.bean.User;
 
@@ -32,6 +34,8 @@ public class AdminController {
 	private AdminProductService adminProductService;
 	@Autowired
 	private AdminUserService adminUserService;
+	@Autowired
+	private AdminOrderService adminOrderService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -171,5 +175,14 @@ public class AdminController {
 		adminUserService.userEdit(userDTO);
 
 	}
+	
+	// 주문리스트
+		@GetMapping(path = "getOrderList")
+		public List<Order> getOrderList() {
+			List<Order> orderList = adminOrderService.getOrderList();
+
+			return orderList;
+
+		}
 
 }

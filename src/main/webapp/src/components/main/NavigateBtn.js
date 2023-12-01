@@ -13,16 +13,15 @@ const NavigateBtn = ({
   absoluteTop,
   absoluteRight,
   opacity,
+  setModalShow,
 }) => {
   return (
     <>
-      <Link
-        to={url}
-        style={{
-          textDecoration: "none",
-        }}
-      >
+      {url === "modal" ? (
         <div
+          onClick={() => {
+            setModalShow(true);
+          }}
           className={`${
             theme === "white" ? styles.navigateBtnWhite : styles.navigateBtnPink
           }`}
@@ -34,11 +33,38 @@ const NavigateBtn = ({
             top: absoluteTop,
             right: absoluteRight,
             opacity,
+            cursor: "pointer",
           }}
         >
           {text}
         </div>
-      </Link>
+      ) : (
+        <Link
+          to={url}
+          style={{
+            textDecoration: "none",
+          }}
+        >
+          <div
+            className={`${
+              theme === "white"
+                ? styles.navigateBtnWhite
+                : styles.navigateBtnPink
+            }`}
+            style={{
+              fontSize,
+              width: btnWidth,
+              height: btnHeight,
+              position: absolute ? "absolute" : "",
+              top: absoluteTop,
+              right: absoluteRight,
+              opacity,
+            }}
+          >
+            {text}
+          </div>
+        </Link>
+      )}
     </>
   );
 };

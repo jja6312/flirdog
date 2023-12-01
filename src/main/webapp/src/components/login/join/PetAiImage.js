@@ -15,6 +15,7 @@ const PetAiImage = ({
   onAcceptAiImage,
   onJoin,
 }) => {
+  const [imgUrl, setImgUrl] = useState("");
   const NononononoJoin = () => {
     Swal.fire({
       icon: "error",
@@ -35,6 +36,10 @@ const PetAiImage = ({
       window.Kakao.init("b3eef06a2754cfd6cae91b650e23a921");
     }
   }, []);
+
+  useEffect(() => {
+    setImgUrl(aiDogProfileImgUrl);
+  }, [aiDogProfileImgUrl]);
 
   const sendKakaoMessage = () => {
     window.Kakao.Link.sendDefault({

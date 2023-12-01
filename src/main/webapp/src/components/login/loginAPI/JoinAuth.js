@@ -257,9 +257,8 @@ const JoinAuth = () => {
     }
   };
 
-  //--------------------이미지 생성------------------------
   const fetchData = async () => {
-    console.log("JoinAuth.js ,NCP 파파고 번역 api 작동시작");
+    console.log("JoinAuth.js, NCP 파파고 번역 api 작동 시작");
     const dogsColorTranslated = await translateText(dogsColor);
 
     const prompt = `Draw a cute Korean-style puppy (kind of ${dogsBreed}) character. The color is ${dogsColorTranslated}.`;
@@ -268,44 +267,89 @@ const JoinAuth = () => {
     console.log("JoinAuth.js, 이미지 생성 시작");
     try {
       const response = await axios.post(
-        "https://api.openai.com/v1/images/generations",
-        {
-          prompt: prompt,
-        },
-        {
-          headers: {
-            Authorization: `Bearer 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`,
-          },
-        }
+        "http://localhost:8080/chatGPT/generateImage",
+        { prompt }
       );
 
-      const imageUrl = response.data.data[0].url; // Adjust this according to the actual response structure
+      const imageUrl = response.data; // 서버로부터 반환된 이미지 URL
       setAiDogProfileImgUrl(imageUrl);
       alert("imageUrl: " + imageUrl);
-      // alert("Saving image...");
 
-      await axios
-        .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
-          params: {
-            imageUrl: imageUrl,
-          },
-        })
-        .then((res) => {
-          console.log("JoinAuth.js, 이미지 저장 성공!.");
-          alert(res.data);
-        })
-        .catch((error) => {
-          console.log("JoinAuth.js, 이미지 저장 실패.");
-          console.log(error);
-        });
+      //s3문제
+      //     await axios
+      //       .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
+      //         params: {
+      //           imageUrl: imageUrl,
+      //         },
+      //       })
+      //       .then((res) => {
+      //         console.log("JoinAuth.js, 이미지 저장 성공!.");
+      //         alert(res.data);
+      //       })
+      //       .catch((error) => {
+      //         console.log("JoinAuth.js, 이미지 저장 실패.");
+      //         console.log(error);
+      //       });
+      //   } catch (error) {
+      //     console.log(error);
+      //     console.error("Error fetching image:", error);
+      //     alert("Failed to fetch image.");
+      //   }
     } catch (error) {
-      console.log(error);
       console.error("Error fetching image:", error);
       alert("Failed to fetch image.");
     }
   };
 
-  //------------------------------------------------------------
+  // //--------------------이미지 생성------------------------
+  // const fetchData = async () => {
+  //   console.log("JoinAuth.js ,NCP 파파고 번역 api 작동시작");
+  //   const dogsColorTranslated = await translateText(dogsColor);
+
+  //   const prompt = `Draw a cute Korean-style puppy (kind of ${dogsBreed}) character. The color is ${dogsColorTranslated}.`;
+  //   console.log("prompt: ", prompt);
+
+  //   console.log("JoinAuth.js, 이미지 생성 시작");
+  //   try {
+  //     const response = await axios.post(
+  //       "https://api.openai.com/v1/images/generations",
+  //       {
+  //         prompt: prompt,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer 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`,
+  //         },
+  //       }
+  //     );
+
+  //     const imageUrl = response.data.data[0].url; // Adjust this according to the actual response structure
+  //     setAiDogProfileImgUrl(imageUrl);
+  //     alert("imageUrl: " + imageUrl);
+  //     // alert("Saving image...");
+
+  //     await axios
+  //       .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
+  //         params: {
+  //           imageUrl: imageUrl,
+  //         },
+  //       })
+  //       .then((res) => {
+  //         console.log("JoinAuth.js, 이미지 저장 성공!.");
+  //         alert(res.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log("JoinAuth.js, 이미지 저장 실패.");
+  //         console.log(error);
+  //       });
+  //   } catch (error) {
+  //     console.log(error);
+  //     console.error("Error fetching image:", error);
+  //     alert("Failed to fetch image.");
+  //   }
+  // };
+
+  // //------------------------------------------------------------
   return (
     <>
       <div
