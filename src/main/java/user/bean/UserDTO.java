@@ -1,6 +1,5 @@
 package user.bean;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,31 +35,31 @@ public class UserDTO {
 	@Column(name="point", length=50)
     private Long point;
 
-	@Column(name="communityScore", length=50)
+    @Column(name = "communityScore", length = 50)
     private int communityScore;
 
-	@Column(name="dogsInfos", length=50)
+    @Column(name = "dogsInfos", length = 50)
     private String dogsInfos;
 
-	@Column(name="popularity", length=50)
+    @Column(name = "popularity", length = 50)
     private String popularity;
 
-	@Column(name="matching", length=50)
+    @Column(name = "matching", length = 50)
     private String matching;
 
-	@Column(name="communities", length=50)
+    @Column(name = "communities", length = 50)
     private String communities;
 
-	@Column(name="addresses", length=50)
+    @Column(name = "addresses", length = 50)
     private String addresses;
 
-	@Column(name="pointChargings", length=50)
+    @Column(name = "pointChargings", length = 50)
     private String pointChargings;
-    
-	@Column(name="phone", length=50)
+
+    @Column(name = "phone", length = 50)
     private String phone;
-	
-	@Column(name="introduce", length=500)
+
+    @Column(name = "introduce", length = 500)
     private String introduce;
 
 	@Column(name="image", nullable = false, length = 100)

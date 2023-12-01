@@ -2,8 +2,12 @@ package user.bean;
 
 
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Embeddable
+@Setter
+@Getter
 public class Score {
     private Double totalScore;
     private int voteCount;

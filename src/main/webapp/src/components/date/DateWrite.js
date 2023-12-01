@@ -15,308 +15,343 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
 const DateWrite = () => {
-  //글 등록 정보
-  const [matchingDTO, setMatchingDTO] = useState({
-    title : '',
-    content : '',
-    matchingPurpose : '',
-    matchingState : 'PENDING',
-    user : '',
-    dogsInfo : '',
-    matchingDate : '',
-    matchingAddress : ''
-  })
-
-  //애견정보
-  const [dogsDTO, setDogsDTO] = useState({
-    id : '',
-    dogName : '',
-    dogAge : '',
-    dogGender : '',
-    dogsBreed : '',
-    dogMBTI : '',
-    isNeutralized : '',
-    image : '',
-    score : '',
-    owner : ''
-  })
-
-  const { dogName, dogAge, dogGender, dogsBreed, dogMBTI, isNeutralized } = dogsDTO
-  const { title, content, matchingPurpose } = matchingDTO
-
-  const [dogsInfo, setDogsInfo] = useState([]);
-
-  const [titleDiv, setTitleDiv] = useState('')
-  const [matchingPurposeDiv, setMatchingDivPurpose] = useState('')
-  const [contentDiv, setContentDiv] = useState('')
-  const [dogNameDiv, setDogNameDiv] = useState('')
-  const [dogAgeDiv, setDogAgeDiv] = useState('')
-  const [dogGenderDiv, setDogGenderDiv]  = useState('')
-  const [dogsBreedDiv, setDogsBreedDiv] = useState('')
-  const [dogMBTIDiv, setDogMBTIDiv] = useState('')
-  const [matchingDateDiv, setMatchingDateDiv] = useState('')
-  const [matchingAddressDiv, setMatchingAddressDiv] = useState('')
-  const [imageDiv, setImageDiv] = useState('')
-  const [matchingState, setMatchingState] = useState('')
-
-  const [seq, setSeq] = useState(0);
-  const [selectDogName, setSelectDogName] = useState('애견 선택');
-  const [purposeSelect, setPurposeSelect] = useState('글 분류');
-  const [dogBreedSelect, setdogBreedSelect] = useState('애견 종 선택');
-  const [daySelect, setDaySelect] = useState('날짜 선택');
-  const [matchingAddress, setMatchingAddress] = useState('');
-  const [buttonClicked, setButtonClicked] = useState(false);
-  const [value, onChange] = useState(new Date());
-  const moment = require('moment');
-
-  const [imgFiles, setImgFiles] = useState("");
-
-  //유저와 개정보를 받아옴---------------------------
-  useEffect(()=>{
-    const fetchData = async () => {
-      try{
-        const res  = await axios.get(`http://localhost:8080/date/getDogsInfoWithUserId?userId=1`);
-
-        console.log(res.data);     
-        setDogsInfo(res.data);
-
-        } catch (error){
-          console.error('Error fetching data:', error);
-        }
-      }
-    fetchData();  
-  },[])
-
-  useEffect(()=>{
-    if (dogsInfo.length > 0) {
-                const data = dogsInfo[seq];
-                setDogsDTO({
-                    id: data.id,
-                    dogName: data.name,
-                    dogAge: data.age,
-                    dogGender: data.gender,
-                    dogsBreed: data.dogsBreed,
-                    isNeutralized: data.isNeutralized,
-                    image: data.image,
-                });
-            }
-  }, [seq, dogsInfo]);
-
-  //입력
-  const onInput = (e) =>{
-    const {name, value} = e.target;
-
-    setMatchingDTO({...matchingDTO,
-      [name]:value
-    })
-
-    setDogsDTO({...dogsDTO,
-      [name]:value
-    })
-  }
-
-  const navigate = useNavigate()
-
-
-  const handlePurposeSelect = (purpose) => {
-    setPurposeSelect(purpose);
-    if(purpose==='연 애'){
-      setMatchingDTO({
-        ...matchingDTO,
-        [matchingPurpose]:'DATE'
-      })
-    }else if(purpose==='산 책'){
-      setMatchingDTO({
-        ...matchingDTO,
-        [matchingPurpose]:'WALK'
-      })
-    }
-  };
   
-  console.log(imageDiv);
+      //글 등록 정보
+      const [matchingDTO2, setMatchingDTO2] = useState({
+        userId:'',
+        title: '',
+        content: '',
+        dogName: '',
+        dogAge: '',
+        dogGender: '',
+        isNeutralized: '',
+        dogMBTI: '',
+        dogBreed: '',
+        date: '', // 날짜 형식에 맞게 수정
+        matchingState: '매칭대기',
+        matchingAddress:  '',
+        matchingPurpose: '',
+        averageScore:'',
+        communityScore:'',
+        hit: 0
+      });
 
-  const handlePetSelect = (index) => {
-    console.log('Selected Dog Index:', index);
-    setSeq(index);
-
-    // 해당 개의 이름 가져오기
-    const selectedDogName = dogsInfo[index]?.name || '';
-    const selectedDogBreed = dogsInfo[index]?.dogsBreed || '';
-    setSelectDogName(selectedDogName)
-    setdogBreedSelect(selectedDogBreed);
-  };
-
-  // 드롭다운 아이템 생성
-  const dropdownItems = dogsInfo.map((dog, index) => (
-    <Dropdown.Item key={index} onClick={() => handlePetSelect(index)} onChange={onInput}>
-        {dog.name}
-    </Dropdown.Item>
-));
-
-  const handleDogBreedSelect = (selectedBreed) => {
-    setdogBreedSelect(selectedBreed);
-  };
-
-  const handleDaySelect = (day) => {
-    setDaySelect(day);
-  };
-
-  const textareaStyle = {
-    resize: 'none', // 사용자가 크기를 조절하지 못하도록 설정
-  };
-
-  const handleInputChange = (event) => {
-    // 입력값이 변경될 때마다 matchingAddress 상태를 업데이트
-    setMatchingAddress(event.target.value);
-  };
-
-  const handleSearchButtonClick = (event) => {
-    // 검색 버튼 클릭 시에 실행되는 로직
-    handleAddressSelection(matchingAddress);
-    setButtonClicked(true);
-  };
-
-  const handleAddressSelection = (matchingAddress) => {
-    setMatchingAddress(matchingAddress);
-  };
-  
-  //사진 등록관련
-  const imgRef = useRef()
-
-  const [imgList, setImgList] = useState([]) //배열은 []
-  const [files, setFiles] = useState('')
-
-  console.log(files);
-
-  const onCamera = () => {
-      imgRef.current.click()
-  }
-
-  const onImgInput = (e) => {
-      const imgfiles = Array.from(e.target.files)
-      var imgArray = []
-
-      imgfiles.map(item => {
-          const objectURL = URL.createObjectURL(item)
-          imgArray.push(objectURL)
-          return imgArray;
+      //애견 정보
+      const [dogsDTO, setDogsDTO] = useState({
+        id : '',
+        dogName : '',
+        dogAge : '',
+        dogGender : '',
+        dogsBreed : '',
+        isNeutralized : '',
+        image : '',
+        score : '',
+        owner : '',
       })
 
-      setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
-      setImgFiles(imgfiles)
-      setFiles(e.target.files) //formData에 넣어서 서버로(스프링 부트) 보내기 용도
-  }
+      //const { title, content, dogMBTI} = matchingDTO
+      const { title : dtoTitle, content, dogMBTI : dtoDogMBTI} = matchingDTO2
+      const { dogName, dogAge, dogGender, dogsBreed, isNeutralized } = dogsDTO
 
-    const onUploadSubmit = (e) => {
-      e.preventDefault()
-
-      var sw = 1
-
+      const [dogsInfo, setDogsInfo] = useState([]);
       
+      const [seq, setSeq] = useState(-1);
+      const [selectDogName, setSelectDogName] = useState('애견 선택');
+      const [purposeSelect, setPurposeSelect] = useState('글 분류');
+      const [dogBreedSelect, setdogBreedSelect] = useState('애견 종 선택');
+      const [daySelect, setDaySelect] = useState('날짜 선택');
+      const [nowDate, setNowDate] = useState("날짜 선택");
+      const [matchingAddress, setMatchingAddress] = useState('');
+      const [buttonClicked, setButtonClicked] = useState(false);
+      const [value, onChange] = useState(new Date());
+      const moment = require('moment');
+
       //유효성 검사
-      if(!title){
-        setTitleDiv('제목 입력')
-        sw = 0
-      }
-      if(purposeSelect === '글 분류'){
-        setMatchingDivPurpose('목적을 선택하세요.')
-        sw = 0
-      }
-      if(!dogName){
-        setDogNameDiv('애견 이름 입력')
-        sw = 0
-      }
-      if(!dogGender){
-        setDogGenderDiv('애견 성별 선택')
-        sw = 0
-      }
-      if(!dogAge){
-        setDogAgeDiv('애견 나이 입력')
-        sw = 0
-      }
-      if(dogBreedSelect === '애견 종 선택'){
-        console.log(dogsBreedDiv)
-        setDogsBreedDiv('애견 종을 선택하세요.')
-        sw = 0
-      }
-      if(!dogMBTI){
-        setDogMBTIDiv('애견 MBTI 입력')
-        sw = 0
-      }
-      if(daySelect === '날짜 선택'){
-        console.log(matchingDateDiv)
-        setMatchingDateDiv('날짜를 선택하세요.')
-        sw = 0
-      }
-      if(!matchingAddress){
-        console.log(matchingAddressDiv)
-        setMatchingAddressDiv('만남 장소를 선택하세요.')
-        sw = 0
-      }
-      if(!imgList){
-        setImageDiv('애견 이미지를 등록하세요.')
-        sw = 0
-      }
-      if(!content){
-        setContentDiv('내용을 작성하세요.')
-        sw = 0
-      }
-    
+      const [titleDiv, setTitleDiv] = useState('');
+      const [matchingPurposeDiv, setMatchingPurposeDiv] = useState('');
+      const [selectDogDiv, setSelectDogDiv] = useState('');
+      const [daySelectDiv, setDaySelectDiv] = useState('');
+      const [matchingAddressDiv, setMatchingAddressDiv] = useState('');
+      const [contentDiv, setContentDiv] = useState('');
 
-      //글 등록---------------------------
-      if(sw === 1 ){
-        setMatchingState('PENDING');
+      useEffect(() => {
+        setDaySelect(nowDate);
+      
+        setMatchingDTO2(prevMatchingDTO2 => ({
+          ...prevMatchingDTO2,
+          date: nowDate,
+        }));
+      }, [nowDate]);
 
-        const formData = new FormData();
+      const [swNum, setSwNum] = useState(0);
 
-        formData.append("matchingDTO", JSON.stringify(matchingDTO))
-        formData.append("dogsDTO", JSON.stringify(dogsDTO))
-        formData.append("matchingPurpose", matchingPurpose)
-        formData.append("matchingState", matchingState)
+      useEffect(() => {
+        console.log('SwNum:', swNum);
+      }, [swNum]);
 
-        for (var i = 0; i < imgFiles.length; i++) {
-          formData.append("imgFiles", imgFiles[i]);
-        }
-        if (imgFiles.length === 0) {
-          formData.append("imgFiles", new File([], ""));
-        }
 
-        console.log(formData.entries());
-        console.log(formData.get('matchingDTO'))
-        console.log(formData.get('dogsDTO'))
-        console.log(formData.get('matchingPurpose'))
-        console.log(formData.get('matchingState'))
+      //유저와 개정보를 받아옴---------------------------
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const res = await axios.get(`http://localhost:8080/date/getDogsInfoWithUserId?userId=1`);
+            const userRes = await axios.get(`http://localhost:8080/date/getUser?userId=1`);
+            console.log(res.data);
+            console.log(userRes.data);
+            console.log(userRes.data.id);
 
-        axios.post(`/date/dateWrite`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }).then(
-          (res) => {
-            setTimeout(() => {
-              Swal.fire({
-                position: "top",
-                icon: "success",
-                title: "매칭 글 등록",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }, 1000);
-    
-            setTimeout(() => {
-              navigate('/date/dateList')
-            }, 1600);
+            setDogsInfo(res.data);
+
+            setMatchingDTO2(prevMatchingDTO2 => ({
+              ...prevMatchingDTO2,
+              userId: userRes.data.id,
+              communityScore: userRes.data.communityScore,
+            }));
+          } catch (error) {
+            console.error('Error fetching data:', error);
           }
-            
-        ).catch(error => console.log(error))       
+        };
+
+        fetchData();
+      }, []);
+
+      useEffect(() => {
+        if (dogsInfo.length > 0 && swNum === 1) {
+          const data = dogsInfo[seq];
+      
+          setDogsDTO(prevDogsDTO => ({
+            ...prevDogsDTO,
+            id: data.id,
+            dogName: data.name,
+            dogAge: data.age,
+            dogGender: data.gender,
+            dogsBreed: data.dogsBreed,
+            isNeutralized: data.isNeutralized,
+            image: data.image,
+            score: data.score,
+          }));
+      
+          setMatchingDTO2(prevMatchingDTO2 => ({
+            ...prevMatchingDTO2,
+            dogName: data.name,
+            dogAge: data.age,
+            dogGender: data.gender,
+            dogBreed: data.dogsBreed,
+            isNeutralized: data.isNeutralized,
+            image: data.image,
+            averageScore: data.score.averageScore,
+          }));
+        }
+      }, [seq, dogsInfo, swNum]);
+
+      //입력
+      const onInput = (e) =>{
+        const {name, value} = e.target;
+
+        setDogsDTO({...dogsDTO,
+          [name]:value
+        })
+
+        setMatchingDTO2((prevMatchingDTO2) => ({
+          ...prevMatchingDTO2,
+          [name]: value,
+        }));
+
+        console.log('matchingDTO2:', matchingDTO2);
       }
-  }
+
+      useEffect(() => {
+        console.log('matchingDTO2:', matchingDTO2);
+      }, [matchingDTO2]);
+
+      const onInputMatchingAddress = (e) =>{
+        setMatchingAddress(e.target.value);
+      }
+      
+      const navigate = useNavigate()
+
+
+      const handlePurposeSelect = (purpose) => {
+        setPurposeSelect(purpose);
+
+        setMatchingDTO2({
+          ...matchingDTO2,
+          matchingPurpose: purpose,
+        });
+      };
+
+      const handlePetSelect = (index) => {
+        console.log('Selected Dog Index:', index);
+        setSwNum(1);
+        setSeq(index);
+        
+
+        // 해당 개의 이름 가져오기
+        const selectedDogName = dogsInfo[index]?.name || '';
+        const selectedDogBreed = dogsInfo[index]?.dogsBreed || '';
+        setSelectDogName(selectedDogName)
+        setdogBreedSelect(selectedDogBreed);
+      };
+
+      // 드롭다운 아이템 생성
+      const dropdownItems = dogsInfo.map((dog, index) => (
+        <Dropdown.Item key={index} onClick={() => handlePetSelect(index)} onChange={onInput}>
+          {dog.name}
+        </Dropdown.Item>
+      ));
+
+      const handleDogBreedSelect = (selectedBreed) => {
+        setdogBreedSelect(selectedBreed);
+
+        setMatchingDTO2({
+          ...matchingDTO2,
+          dogsBreed: selectedBreed
+        })
+      };
+
+
+
+      const textareaStyle = {
+        resize: 'none', // 사용자가 크기를 조절하지 못하도록 설정
+      };
+
+      const handleSearchButtonClick = (event) => {
+        // 검색 버튼 클릭 시에 실행되는 로직
+        handleAddressSelection(matchingAddress);
+        setButtonClicked(true);
+      };
+
+      const handleAddressSelection = (matchingAddress) => {
+        setMatchingAddress(matchingAddress);
+
+        setMatchingDTO2({
+          ...matchingDTO2,
+          matchingAddress: matchingAddress
+        })
+
+        console.log('주소:', matchingDTO2.matchingAddress);
+      };
   
-  const onBack = () => {
-    window.scrollTo(0, 0);
-    navigate('/date/dateList')
-  }
+      //사진 등록관련
+      const imgRef = useRef()
+
+      const [imgList, setImgList] = useState([]) //배열은 []
+      const [imgFiles, setImgFiles] = useState("");
+
+      const onCamera = () => {
+          imgRef.current.click()
+      }
+
+      const onImgInput = (e) => {
+          const imgfiles = Array.from(e.target.files)
+          var imgArray = []
+
+          imgfiles.map(item => {
+              const objectURL = URL.createObjectURL(item)
+              imgArray.push(objectURL)
+              return imgArray;
+          })
+
+          setImgList(imgArray) //카메라 아이콘을 누르면 이미지 미리보기 용도
+          setImgFiles(imgfiles)
+      }
+      
+      const onUploadSubmit = (e) => {
+        e.preventDefault()
+
+        var sw = 1;
+
+          if (matchingDTO2.title === '') {
+            setTitleDiv(<div style={{color:'red'}}>제목을 입력해주세요.</div>);
+            sw = 0;
+          }
+          if (matchingDTO2.matchingPurpose === '') {
+            setMatchingPurposeDiv(<div style={{color:'red'}}>글 분류를 선택해주세요.</div>);
+            sw = 0;
+          }
+          if (selectDogName === '애견 선택') {
+            setSelectDogDiv(<div style={{color:'red'}}>애견을 선택해주세요.</div>);
+            sw = 0;
+          } 
+          
+          if (matchingDTO2.date === '날짜 선택'){
+            setDaySelectDiv(<div style={{color:'red'}}>날짜를 선택해주세요.</div>);
+            sw = 0;
+          }
+
+          if (matchingDTO2.matchingAddress === ''){
+            setMatchingAddressDiv(<div style={{color:'red'}}>만남 장소를 입력해주세요.</div>);
+            sw = 0;
+          }
+
+          if (matchingDTO2.content === ''){
+            setContentDiv(<div style={{color:'red'}}>상세 내용을 입력해주세요.</div>);
+            sw = 0;
+          }
+          
+          if(sw === 0){
+            Swal.fire({
+              icon: 'error',
+              title: '글 등록 실패!',
+              text: '필수 항목들을 입력하세요!',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+
+          if(sw === 1){
+            console.log('matchingDTO2:', matchingDTO2);
+
+            const formData = new FormData();
+            formData.append("matchingDTO2", new Blob([JSON.stringify(matchingDTO2)], {type: 'application/json'}))
+
+
+            for (var i = 0; i < imgFiles.length; i++) {
+              formData.append("imgFiles", imgFiles[i]);
+            }
+            if (imgFiles.length === 0) {
+              formData.append("imgFiles", new File([], ""));
+            }
+
+            // Content-Type을 명시적으로 설정
+              const config = {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              };
+
+              // 서버로 POST 요청 보내기
+              axios.post(`/date/dateWriteTest`, formData, config)
+                .then((response) => {
+                  console.log('서버 응답:', response.data);
+                  Swal.fire({
+                    icon: 'success',
+                    title: '글 등록 성공!',
+                    text: '매칭 글이 등록되었습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  navigate('/date/dateList')
+                })
+                .catch((error) => {
+                  Swal.fire({
+                    icon: 'error',
+                    title: '글 등록 실패!',
+                    text: '매칭 글 등록에 실패했습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                });
+              }
+          }   
+    
+  
+      const onBack = () => {
+        window.scrollTo(0, 0);
+        navigate('/date/dateList')
+      }
 
     return (
         <div>
@@ -341,10 +376,10 @@ const DateWrite = () => {
                           <div className={TableCss.FormTitleNameDiv} >
                             제 목
                           </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={TableCss.FormSubjectTitleInput} size="lg" type="text" name='title' value={title || ''} onChange={onInput} placeholder="제목을 입력해주세요." />
+                          <Form.Control className={TableCss.FormSubjectTitleInput} size="lg" type="text" name='title' value={dtoTitle || ''} onChange={onInput} placeholder="제목을 입력해주세요. (20자 이내)" />
                           &nbsp;&nbsp;&nbsp;
-                          <div id="titleDiv">{ titleDiv} </div>
                         </div>
+                        <div id="titleDiv">{ titleDiv} </div>
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formGridTitle">
@@ -372,6 +407,7 @@ const DateWrite = () => {
                               </Dropdown.Menu>
                           </Dropdown>
                         </div>
+                        <div>{selectDogDiv}</div>
                       </Form.Group>
                     </Row>
 
@@ -397,8 +433,8 @@ const DateWrite = () => {
                               <Dropdown.Menu className='dropdown-menu scrollContainer' 
                               style={{ maxHeight: '200px', overflowY: 'auto' }}    
                                   >
-                                  <Dropdown.Item href="#/action-1" onClick={() => handlePurposeSelect('연 애')} name='matchingPurpose' value={purposeSelect || ''} onChange={onInput}>연 애</Dropdown.Item>
-                                  <Dropdown.Item href="#/action-2" onClick={() => handlePurposeSelect('산 책')} name='matchingPurpose' value={purposeSelect || ''} onChange={onInput}>산 책</Dropdown.Item>
+                                  <Dropdown.Item href="#/action-1" onClick={() => handlePurposeSelect('연애')}>연 애</Dropdown.Item>
+                                  <Dropdown.Item href="#/action-2" onClick={() => handlePurposeSelect('산책')}>산 책</Dropdown.Item>
                               </Dropdown.Menu>
                           </Dropdown>
                         </div>
@@ -410,9 +446,11 @@ const DateWrite = () => {
                           <div className={TableCss.FormTitleNameDiv} >
                             애견 이름
                           </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={TableCss.FormTitleInput} size="lg" type="text" name='dogName' value={dogName || ''} onChange={onInput} placeholder="애견 이름 입력" />
-                          &nbsp;&nbsp;&nbsp;<div>{dogNameDiv}</div>
-                        </div>
+                          <Form.Control 
+                          className={TableCss.FormTitleInput} 
+                          size="lg" type="text" name='dogName' value={dogName || ''} onChange={onInput} placeholder="애견 이름 입력" />
+                          &nbsp;&nbsp;&nbsp;
+                        </div>  
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formDogGender">
@@ -427,7 +465,6 @@ const DateWrite = () => {
                                             <input id='genderBox2' type='radio' name='dogGender' value={dogGender || ''} onChange={onInput} checked={dogGender === 'Female'}/>
                                             <label className={TableCss.labelClass2} htmlFor='genderBox2'>여 아</label>
                           </div>&nbsp;&nbsp;&nbsp;
-                          <div>{dogGenderDiv}</div>
                         </div>
                       </Form.Group>
                     </Row>
@@ -439,8 +476,7 @@ const DateWrite = () => {
                             나 이
                           </div>&nbsp;&nbsp;&nbsp;
                           <Form.Control className={TableCss.FormTitleInput} size="lg" type="text" name='dogAge' value={dogAge || ''} onChange={onInput} placeholder="나이 입력" />
-                        </div>&nbsp;&nbsp;&nbsp;
-                        <div>{dogAgeDiv}</div>
+                        </div>
                       </Form.Group>
 
                       <Form.Group as={Col} controlId="formGridEmail">
@@ -462,9 +498,8 @@ const DateWrite = () => {
                           <div className={TableCss.FormTitleNameDiv} >
                             멍BTI
                           </div>&nbsp;&nbsp;&nbsp;
-                          <Form.Control className={TableCss.FormTitleInput} size="lg" type="text" name='dogMBTI' value={dogMBTI || ''} onChange={onInput} placeholder="애견 MBTI 입력" />
+                          <Form.Control className={TableCss.FormTitleInput} size="lg" type="text" name='dogMBTI' value={dtoDogMBTI || ''} onChange={onInput} placeholder="애견 MBTI 입력" />
                           &nbsp;&nbsp;&nbsp;
-                          <div>{dogMBTIDiv}</div>
                         </div>
                       </Form.Group>
                     </Row>
@@ -516,7 +551,6 @@ const DateWrite = () => {
                           <div className={TableCss.FormTitleNameDiv} >
                             매칭 날짜
                           </div>&nbsp;&nbsp;&nbsp;
-
                           <Dropdown>
                               <Dropdown.Toggle className={TableCss.dayDropdownBtn} variant="success" id="dropdown-basic"
                                   style={{
@@ -528,13 +562,22 @@ const DateWrite = () => {
                                       borderRadius:'10px'
                                   }}
                               >
-                              {daySelect}
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu className='dropdown-menu scrollContainer'>
-                                  <Dropdown.Item href="#/action-1" onClick={() => handleDaySelect(moment(value).format("YYYY년 MM월 DD일"))} ><Calendar onChange={onChange} value={value|| ''} /></Dropdown.Item>
+                          {daySelect}
+                          </Dropdown.Toggle>
+                              <Dropdown.Menu className="dropdown-menu scrollContainer">
+                                <Dropdown.Item href="#/action-1">
+                                  <Calendar
+                                    onChange={(e) => {
+                                      onChange();
+                                      setNowDate(moment(e).format("YYYY년 MM월 DD일"));
+                                    }}
+                                    value={value || ""}
+                                  />
+                                </Dropdown.Item>
                               </Dropdown.Menu>
-                          </Dropdown>
+                            </Dropdown>
                         </div>
+                        <div>{daySelectDiv}</div>
                       </Form.Group>
                       <Form.Group as={Col} controlId="formMatchingNull">
                       </Form.Group>
@@ -551,7 +594,7 @@ const DateWrite = () => {
                           }}>
                             <Form.Control className={TableCss.FormAddressInput} size="lg" type="text" 
                             value={matchingAddress|| ''}
-                            onChange={handleInputChange}
+                            onChange={onInputMatchingAddress}
                             placeholder="주소 및 검색어 입력" />
                           </div>&nbsp;&nbsp;&nbsp;
                           <Button variant="primary"
@@ -576,6 +619,7 @@ const DateWrite = () => {
                             ></KakaoMap>
                           </div>
                         )}
+                        <div>{matchingAddressDiv}</div>
                       </Form.Group>
                     </Row>
 
@@ -590,7 +634,9 @@ const DateWrite = () => {
                           사진 버튼클릭!
                           <img src='/image/date/camera.jpg' alt="카메라"
                                     onClick={ onCamera }
-                                    style={{width:70, height:50, borderRadius:20}} />
+                                    style={{width:70, height:50, borderRadius:20,
+                                    cursor: 'pointer'
+                                    }} />
                           <input type="file"name="img[]"
                                   multiple="multiple"
                                   onChange={ onImgInput }

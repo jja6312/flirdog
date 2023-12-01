@@ -15,18 +15,38 @@ spring:
   config:
     activate:
       on-profile: local
+  # 아래 이미지크기제한 널널하게 잡음. - 정지안, 11/29
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
-# s3문제
-  # datasource:
-  #   url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-  #   driver-class-name: com.mysql.cj.jdbc.Driver
-  #   username: user
-  #   password: qwe123!@#
   datasource:
-    url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+
+    #url: jdbc:mysql://db-ioa7c-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: user
+    #password: qwe123!@#
+    # s3문제
+    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: root
+    #password: 1234
+
+    # url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+    # username: user
+    # password: qwe123!@#
+    # s3문제 (아래는 지안님 계정)
+    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #username: root
+    #password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
+    url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
+    username: study
+    password: bitcamp!@#123
+
 
   jpa:
     hibernate:
@@ -45,17 +65,11 @@ spring:
     activate:
       on-profile: test
 
-# s3문제
-  # datasource:
-  #   url: jdbc:mysql://db-jgnlo-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-  #   driver-class-name: com.mysql.cj.jdbc.Driver
-  #   username: user
-  #   password: qwe123!@#
   datasource:
-    url: jdbc:mysql://localhost:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-jgnlo-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
+    username: user
+    password: qwe123!@#
 
   jpa:
     hibernate:
@@ -70,3 +84,7 @@ spring:
   sql:
     init:
       mode: never
+openai:
+  key: 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
+# chatgpt: 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
+

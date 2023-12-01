@@ -60,6 +60,15 @@ dependencies {
 	//s3
 	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
 
+	// //Twilio SDK 휴대전화 본인 인증
+	// implementation 'com.twilio.sdk:twilio:8.8.0'
+
+	// //	coolSMS
+	// implementation 'net.nurigo:sdk:4.2.7'
+
+
+
+	
 }
 
 tasks.named('test') {

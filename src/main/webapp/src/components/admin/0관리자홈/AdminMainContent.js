@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import rightContent from "../../../css/admin/rightContent.module.css";
 import styles from "../../../css/admin/adminMainContent.module.css";
 import AiSupportList from "./AiSupportList";
@@ -6,28 +6,13 @@ import Banner from "./Banner";
 import AiOutput from "./AiOutput";
 import { Alert } from "react-bootstrap";
 import ChatAi from "./ChatAi";
+import axios from "axios";
 
 const AdminMainContent = () => {
-  // const testGo = () => {
-  //   axios
-  //     .get("http://localhost:8080/admin/testGo")
-  //     .then((res) => {
-  //       alert(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
+  const [AiImageInputText, setAiImageInputText] = useState("");
+  const [isContent, setIsContent] = useState(false);
 
-  // axios
-  //       .get(`/user/getUserList?page=${page}`)
-  //       .then((res) => {
-  //         setList(res.data.content);
-  //         setPagingArray(
-  //           Array.from({ length: res.data.totalPages }, (_, index) => index + 1)
-  //         );
-  //       })
-  //       .catch((error) => console.log(error));
   return (
     <>
       <div
@@ -93,14 +78,20 @@ const AdminMainContent = () => {
                     <div
                       className={`d-flex justify-content-center align-items-center flex-column`}
                     >
-                      <span className={`${styles.aiOutputTextExplain}`}>
-                        컨텐츠 표시 화면
-                      </span>
-                      <span
-                        className={`${styles.aiOutputText} ${styles.flicker}`}
-                      >
-                        I'll save your time.
-                      </span>
+                      {isContent ? (
+                        <AiOutput aiDogProfileImgUrl={aiDogProfileImgUrl} />
+                      ) : (
+                        <>
+                          <span className={`${styles.aiOutputTextExplain}`}>
+                            컨텐츠 표시 화면
+                          </span>
+                          <span
+                            className={`${styles.aiOutputText} ${styles.flicker}`}
+                          >
+                            I'll save your time.
+                          </span>
+                        </>
+                      )}
                     </div>
                     <div>
                       <div
@@ -110,9 +101,7 @@ const AdminMainContent = () => {
                   </div>
                 </div>
               </div>
-              <div className={`${styles.leftContainerElement} p-3`}>
-                <AiOutput></AiOutput>
-              </div>
+              <div className={`${styles.leftContainerElement} p-3`}></div>
             </div>
             <div
               className={`${styles.rightContainer} d-flex flex-column justify-content-start`}
@@ -152,7 +141,10 @@ const AdminMainContent = () => {
               </div>
             </div>
           </div>
-          <ChatAi></ChatAi>
+          <ChatAi
+            AiImageInputText={AiImageInputText}
+            setAiImageInputText={setAiImageInputText}
+          ></ChatAi>
 
           <div style={{ height: "300px" }}></div>
         </div>
