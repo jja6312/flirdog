@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UserProvider from "./contexts/UserContext";
 import Main from "./components/main/Main";
 
 import "./css/reset.css";
@@ -42,52 +43,43 @@ import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRo
 import ProductDetail from "./components/product/ProductDetail";
 import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
 import UserEditForm from "./components/admin/2회원관리/UserEditForm";
-import Login from "./components/login/Login";
-import JoinAuth from "./components/login/loginAPI/JoinAuth";
-import UserProvider from "./contexts/UserContext";
+import Login from "./components/user/Login";
 
 const App = () => {
   return (
     <BrowserRouter>
       <UserProvider>
-        <>
-          {/* 화면에 보이는 영역 */}
-          <Routes>
-            {/* //김찬영마이페이지================================================================= */}
-            <Route path="/mypage/Mypoint" element={<Mypoint />} />
-            <Route path="/mypage/Mysetting" element={<Mysetting />} />
-            <Route path="/mypage/Myarticle" element={<Myarticle />} />
-            <Route
-              path="/mypage/MyprofileUpdate"
-              element={<MyprofileUpdate />}
-            />
-            <Route path="/mypage/MypageMain" element={<MypageMain />} />
-            <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
-            <Route
-              path="/mypage/MypageCategoryWrapper"
-              element={<MypageCategoryWrapper />}
-            />
-            <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-            <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-            <Route
-              path="/mypage/MydogProfileUpdate"
-              element={<MydogProfileUpdate />}
-            />
-            <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
-            <Route
-              path="/mypage/MydogProfileRegister"
-              element={<MydogProfileRegister />}
-            />
-            <Route
-              path="/mypage/MypointRecharge"
-              element={<MypointRecharge />}
-            />
-            <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
-            <Route
-              path="/mypage/MyarticleRounge"
-              element={<MyarticleRounge />}
-            />
-            {/* 김찬영마이페이지//================================================================= */}
+      <>
+        {/* 화면에 보이는 영역 */}
+        <Routes>
+          <Route path="/login" element={<Login />} />
+
+          {/* //김찬영마이페이지================================================================= */}
+          <Route path="/mypage/Mypoint" element={<Mypoint />} />
+          <Route path="/mypage/Mysetting" element={<Mysetting />} />
+          <Route path="/mypage/Myarticle" element={<Myarticle />} />
+          <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />} />
+          <Route path="/mypage/MypageMain" element={<MypageMain />} />
+          <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
+          <Route
+            path="/mypage/MypageCategoryWrapper"
+            element={<MypageCategoryWrapper />}
+          />
+          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route
+            path="/mypage/MydogProfileUpdate"
+            element={<MydogProfileUpdate />}
+          />
+          <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
+          <Route
+            path="/mypage/MydogProfileRegister"
+            element={<MydogProfileRegister />}
+          />
+          <Route path="/mypage/MypointRecharge" element={<MypointRecharge />} />
+          <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
+          <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />} />
+          {/* 김찬영마이페이지//================================================================= */}
 
             {/* 매칭페이지 */}
             <Route path="/" element={<Main></Main>} />
@@ -111,61 +103,12 @@ const App = () => {
               element={<SomoimDetail />}
             />
 
-            <Route path="/login" element={<Login></Login>} />
-            <Route path="/login/:showModal" element={<Login></Login>} />
-            <Route path="/join/auth" element={<JoinAuth></JoinAuth>} />
-
-            {/* 상품관리 */}
-            <Route
-              path="/admin/productUploadForm"
-              element={<ProductUploadForm openLeftside="0"></ProductUploadForm>}
-            />
-            <Route
-              path="/admin/productPopup"
-              element={<ProductPopup></ProductPopup>}
-            />
-            <Route
-              path="/admin/productListForm"
-              element={<ProductListForm openLeftside="0" />}
-            />
-            <Route
-              path="/admin/productEditForm/:productId"
-              element={<ProductEditForm openLeftside="0" />}
-            />
-            {/* 회원관리 */}
-            <Route
-              path="/admin/userListForm"
-              element={<UserListForm openLeftside="1" />}
-            />
-            {/* 주문관리 */}
-            <Route
-              path="/admin/orderListForm"
-              element={<OrderListForm openLeftside="2" />}
-            />
-            <Route
-              path="/admin/orderCheckForm"
-              element={<OrderCheckForm openLeftside="2" />}
-            />
-            <Route
-              path="/admin/orderShippingForm"
-              element={<OrderShippingForm openLeftside="2" />}
-            />
-            {/* 문의 조회/답변*/}
-            <Route
-              path="/admin/reviewListForm"
-              element={<ReviewListForm openLeftside="3" />}
-            />
-            <Route
-              path="/admin/userEditForm/:userId"
-              element={<UserEditForm />}
-            />
-
-            <Route path="product">
-              <Route path="" element={<Product />} />
-              <Route path=":id" element={<ProductDetail />} />
-            </Route>
-          </Routes>
-        </>
+          <Route path="product">
+            <Route path="" element={<Product />} />
+            <Route path=":id" element={<ProductDetail />} />
+          </Route>
+        </Routes>
+      </>
       </UserProvider>
     </BrowserRouter>
   );

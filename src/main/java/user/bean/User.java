@@ -29,6 +29,7 @@ import somoim.bean.Somoim;
 @Entity
 public class User extends BaseEntity{
     @Id
+    //@Column(name="user_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
