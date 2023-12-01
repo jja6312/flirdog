@@ -51,9 +51,11 @@ const ModalGoMatching = ({
                   <img
                     className="rounded"
                     alt="강아지 사진"
-                    src={modaldogsInfo[currentDogIndex].image.contains(
-                      "flirdog"
-                    )}
+                    src={
+                      modaldogsInfo[currentDogIndex].image.includes("flirdog")
+                        ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${modaldogsInfo[currentDogIndex].image}`
+                        : "/image/nullImage/nullImage1.png"
+                    }
                     style={{
                       width: "100%",
                       height: "100%",
