@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
-import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, InputGroup, Modal, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from '../../css/somoim/main/somoimNew.module.css';
 import { UserContext } from '../../contexts/UserContext';
 import Reactquill from './Reactquill';
+import SomoimPostcode from './SomoimPostcode';
 
 
 const SomoimNew = () => {
@@ -20,6 +21,8 @@ const SomoimNew = () => {
         target:'',
         address:'',
         address2:'',
+        zipcode:'',
+        accountName: '',
         accountEmail:'',
         accountPhone:'',
     });
@@ -28,6 +31,8 @@ const SomoimNew = () => {
     const [showImgSrc,setShowImgSrc]  = useState('') // 이미지 미리보기
 
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth > 992); // 이미지 업로드 그리드 반응형설정
+
+    const [modalState, setModalState] = useState(false); // 주소 모달창
 
     useEffect(() => {
         const handleResize = () => {
@@ -48,7 +53,7 @@ const SomoimNew = () => {
     const navigate = useNavigate();
 
     const {somoimName, introduceSub, introduceDetail, memberCount, 
-            target, address, address2, accountEmail, accountPhone } = formData
+             target, address, address2, zipcode, accountEmail, accountPhone } = formData
 
     const { user } = useContext(UserContext); // 유저 컨텍스트
     const { name, id } = user;
@@ -57,6 +62,22 @@ const SomoimNew = () => {
     const onCamera = () => { 
         imgRef.current.click()
     }
+    const searchAddress = () => { // 주소 컴포넌트 호출
+        console.log('주소버튼')
+        setModalState(true);
+    }
+
+    const handleAddressChange = (data) => { // 주소 입력값 데이터 담기
+        setFormData({
+            ...formData,
+            zipcode: data.zonecode,
+            address: data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress,
+            address2: ''
+        });
+
+        setModalState(false);
+    }
+
 
     const readURL = (input) => {  // 파일 업로드
         if (input.files && input.files[0]) {
@@ -157,6 +178,7 @@ const SomoimNew = () => {
                     const updatedFormData = {
                         somoim: {
                             ...formData,
+                            accountName: name,
                         },
                         user: {
                             id
@@ -278,6 +300,7 @@ const SomoimNew = () => {
                             <Col sm>
                                 {/* <Form.Label className={`${styles.defaultLayout}`} htmlFor="name">소모임 이름</Form.Label> */}
                                 <Form.Label htmlFor="name">소모임 이름</Form.Label>
+                                <span  className={`${styles.badge}`}>필수</span>
                                 <Form.Control 
                                         id='somoimName' 
                                         name='somoimName' 
@@ -293,6 +316,7 @@ const SomoimNew = () => {
                             <Col sm>
                                 {/* <Form.Label className={`${styles.defaultLayout}`} htmlFor="introduceSub">소모임 한 줄 소개</Form.Label> */}
                                 <Form.Label htmlFor="introduceSub">소모임 한 줄 소개</Form.Label>
+                                <span  className={`${styles.badge}`}>필수</span>
                                 <Form.Control 
                                         id='introduceSub' 
                                         name='introduceSub' 
@@ -319,7 +343,7 @@ const SomoimNew = () => {
                                     {
                                         showImgSrc ? 
                                         <img src={ showImgSrc } alt={ file } style={{ width: '252px', height: '203px' }} /> : 
-                                        <img src='/image/somoim/null_image.png' alt='빈 이미지' style={{ width: '252px', height: '203px' }} /> 
+                                        <img src='/image/somoim/null_image.png' alt='빈 이미지' style={{  width: '252px', height: '252px' }} /> 
                                     }
                                 </Form.Label>
                                 <div style={{marginTop: '13px',display: 'flex', justifyContent: 'center', marginBottom: '0px', alignItems: 'center'}}>
@@ -442,7 +466,16 @@ const SomoimNew = () => {
                                 </Row> 
                                 <Row className='col-12 mb-4'>
                                     <Form.Label className='mt-4' htmlFor="target">주 모임장소 설정</Form.Label>
-                                    <Col className={`${styles.address} col-md-7`}>
+                                    <Col className={`${styles.address} col-md-2`}>
+                                        <Form.Control 
+                                                id='zipcode' 
+                                                name='zipcode' 
+                                                type="text" 
+                                                value={zipcode}
+                                                onChange={handleChange}
+                                                placeholder="우편번호" required />
+                                    </Col>
+                                    <Col className={`${styles.address} col-md-6`} style={{ padding: 0 }}>
                                         <Form.Control 
                                                 id='address' 
                                                 name='address' 
@@ -453,7 +486,7 @@ const SomoimNew = () => {
                                         <Form.Control.Feedback type="invalid">주 모임장소를 입력해주세요!</Form.Control.Feedback>
                                     </Col>
                                     <Col md='auto'>
-                                        <Button variant="secondary" size="md">검색</Button>
+                                        <Button variant="secondary" size="md" onClick={ searchAddress }>검색</Button>
                                     </Col>
                                     <Col className={`${styles.address} col-md-8 mt-2`}>
                                         <Form.Control 
@@ -465,6 +498,20 @@ const SomoimNew = () => {
                                                 placeholder="나머지 주소를 입력해 주세요." required />
                                         <Form.Control.Feedback type="invalid">나머지 장소를 입력해주세요!</Form.Control.Feedback>
                                     </Col>
+                                    <Modal show={modalState} onHide={() => setModalState(false)}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>주소 검색</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <SomoimPostcode
+                                                onAddressChange={handleAddressChange}
+                                                isOpen={modalState}
+                                                onClose={() => setModalState(false)}
+                                            />
+                                        </Modal.Body>
+                                    </Modal>
+
+                                    
                                 </Row>
                             </Col>
                             {/* </div> */}
@@ -477,7 +524,7 @@ const SomoimNew = () => {
                             </Form.Label>
                             <Col className= {`${styles.groupDetail}  ${styles.groupForm} mb-4`} style={{ border: '2px solid #dddddd',  padding: '21px 20px 31px 24px' }}>
                                 <Row className='col-12 mb-3 d-flex align-items-center'>
-                                    <Form.Label className='col-1 mt-3' htmlFor="createdId" style={{ width: 'max-content' }}>아이디 : </Form.Label>
+                                    <Form.Label className='col-1 mt-3' htmlFor="createdId" style={{ width: 'max-content' }}>이&nbsp;&nbsp;&nbsp;&nbsp;름 : </Form.Label>
                                     <Col className={`col-md-6`}>
                                         <Form.Control 
                                                 id='createdId' 

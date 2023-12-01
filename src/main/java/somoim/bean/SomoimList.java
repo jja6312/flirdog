@@ -38,9 +38,9 @@ public class SomoimList extends BaseEntity {
     private User user;
 
     @Column(nullable = false)
-    private boolean isAdmin;
+    private int isAdmin;
 
-    public SomoimList(Somoim somoim, User user, boolean isAdmin) {
+    public SomoimList(Somoim somoim, User user, int isAdmin) {
         this.somoim = somoim;
         this.user = user;
         this.isAdmin = isAdmin;
@@ -51,11 +51,17 @@ public class SomoimList extends BaseEntity {
         if (this.somoim != null && this.user != null) {
 
             // isAdmin 값을 설정하는 로직
-            this.isAdmin = this.user.getId().equals(this.somoim.getUser().getId());
-            // 만약 일치하지 않는 경우 isAdmin을 false로 설정
-            if (!this.isAdmin) {
-                this.isAdmin = false;
-            }
+        	if(this.user.getId().equals(this.somoim.getUser().getId())) {
+        		this.isAdmin = 1; // 소모임 개설자
+        	} else if (this.isAdmin != 1) {
+        		this.isAdmin = 0; // 소모임 참가자
+        	}
+
+//            this.isAdmin = this.user.getId().equals(this.somoim.getUser().getId());
+//            // 만약 일치하지 않는 경우 isAdmin을 false로 설정
+//            if (!this.isAdmin) {
+//                this.isAdmin = false;
+//            }
         }
     }
 }
