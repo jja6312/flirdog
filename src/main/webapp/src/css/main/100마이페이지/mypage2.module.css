@@ -1,0 +1,82 @@
+.MydogUpdateFormWrapper{
+    
+    margin-top: 200px;
+    width: 100%;
+    min-height: calc(100vh - 52px);
+}
+.MydogUpdateFormWrapper2{
+    width: 300px;
+    margin: 0 auto;
+    max-width: 1024px;
+}
+.MydogUpdateFormImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.MydogUpdateFormImage1{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #f56084;
+    border-radius: 50%;
+}
+
+
+.MydogUpdateFormImage2{
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    
+}
+.MydogUpldateFormItem{
+    line-height: 1.5;
+    font-weight: 450;
+}
+.MydogUpldateButton{
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    grid-gap: 8px;
+    gap: 8px;
+
+}
+.MydogUpldateButton2{
+    padding: 13.5px 27px;
+    width: 50%;
+    font-weight: 700;
+    font-size: 16.5px;
+    line-height: 20px;
+    border-radius: 50px;
+    border: none;
+    background-color: #f6f6f9;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.15);
+    box-shadow: 0 3px 6px rgba(0,0,0,.15);
+}
+.MydogUpldateButton3{
+    padding: 13.5px 27px;
+    width: 50%;
+    font-weight: 700;
+    font-size: 16.5px;
+    line-height: 20px;
+    border-radius: 50px;
+    border: none;
+    background-color: #f56084;
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.15);
+    box-shadow: 0 3px 6px rgba(0,0,0,.15);
+    text-decoration: none !important;
+}
+.MydogUpldateButton4{
+    color: black;
+    font-weight: 700;
+}
+.MydogUpldateButton2:hover , .MydogUpldateButton4:hover{
+    color: rgb(0, 60, 255);
+    font-weight: 700;
+}
