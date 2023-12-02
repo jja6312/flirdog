@@ -22,4 +22,6 @@ public interface AccessService {
 
 	void saveDogScore(String dogsId, String score);
 
+	void updatePwd(String email, String passwd);
+
 }

@@ -194,6 +194,7 @@ const Login = () => {
             onChange={(e) => {
               handleChange(e);
             }}
+            type="password"
           />
         </InputGroup>
       </div>

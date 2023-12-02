@@ -133,6 +133,13 @@ public class AccessController {
     	accessService.saveDogScore(dogId,score);
     	
     }
+    @PostMapping(path = "updatePwd")
+    public void updatePwd(@RequestParam String email,
+    					@RequestParam String passwd) {
+
+    	accessService.updatePwd(email,passwd);
+    	
+    }
 }
 // private DefaultMessageService messageService;
 //

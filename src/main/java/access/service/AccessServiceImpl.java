@@ -148,4 +148,17 @@ public class AccessServiceImpl implements AccessService {
 		}
 	}
 
+	@Override
+	public void updatePwd(String email, String passwd) {
+		Optional<User> userOptional = accessRepository.findByEmail(email);
+		if (userOptional.isPresent()) {
+	        User user = userOptional.get();
+	        user.setPasswd(passwd); 
+	        accessRepository.save(user);
+		}else {
+			System.out.println("###유저가 없어요!");
+		}
+		
+	}
+
 }

@@ -1,60 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import login from "../../../css/login/login.module.css";
 import { Form, InputGroup } from "react-bootstrap";
 import axios from "axios";
-import Swal from "sweetalert2";
+
+import EmailButton from "../loginAPI/EmailButton";
 
 const EmailInput = ({
+  email,
   setEmail,
   isValidEmail,
   setIsValidEmail,
+  isEmailCheck,
   setIsEmailCheck,
+  setShowAuthKeyInput,
+  setAuthCode,
 }) => {
-  const [email, setEmailLocal] = useState("");
+  const onInput = (e) => {
+    setEmail(e.target.value);
+  };
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
 
-  const handleEmailChange = (e) => {
-    const emailInput = e.target.value;
-    setEmailLocal(emailInput);
-    setEmail(emailInput);
-    setIsValidEmail(validateEmail(emailInput));
+  const handleEmailChange = () => {
+    setIsValidEmail(validateEmail(email));
     setIsEmailCheck(false);
+    onCheckEmailIsExist(email);
   };
 
+  useEffect(
+    (e) => {
+      if (email) {
+        handleEmailChange(e);
+      }
+    },
+    [email]
+  );
+
   const onCheckEmailIsExist = () => {
-    axios
-      .post("http://localhost:8080/access/checkEmailIsExist", null, {
-        params: {
-          email: email,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data === true || !isValidEmail) {
-          Swal.fire({
-            icon: "error",
-            title: "이미 존재하거나 잘못된 이메일 형식입니다.",
-            text: "다른 이메일을 입력해주세요.",
-            showConfirmButton: false,
-            timer: 800,
-            position: "top",
-          });
-        } else if (res.data === false && isValidEmail) {
-          setIsEmailCheck(true);
-          Swal.fire({
-            icon: "success",
-            title: "사용 가능한 이메일입니다.",
-            text: "다음 단계로 넘어가주세요.",
-            showConfirmButton: false,
-            timer: 800,
-            position: "top",
-          });
-        }
-      });
+    if (isValidEmail) {
+      axios
+        .post("http://localhost:8080/access/checkEmailIsExist", null, {
+          params: {
+            email: email,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data === true || !isValidEmail) {
+            setIsEmailCheck(false);
+          } else if (res.data === false && isValidEmail) {
+            setIsEmailCheck(true);
+          }
+        });
+    }
   };
 
   return (
@@ -77,14 +78,22 @@ const EmailInput = ({
           <InputGroup size="lg" className={`mt-2`} style={{ width: "80%" }}>
             <Form.Control
               value={email}
-              onChange={handleEmailChange}
               aria-label="Large"
               aria-describedby="inputGroup-sizing-lg"
-              placeholder="이메일 주소를 입력해주세요."
+              placeholder="이메일 주소 입력"
               isInvalid={!isValidEmail}
+              onChange={onInput}
             />
           </InputGroup>
-          <div
+
+          <EmailButton
+            email={email}
+            isValidEmail={isValidEmail}
+            setShowAuthKeyInput={setShowAuthKeyInput}
+            setAuthCode={setAuthCode}
+            isEmailCheck={isEmailCheck}
+          ></EmailButton>
+          {/* <div
             className={`mt-2 d-flex justify-content-center align-items-center rounded`}
             style={{
               width: "20%",
@@ -93,21 +102,35 @@ const EmailInput = ({
               cursor: "pointer",
               fontSize: "0.9rem",
             }}
-            onClick={onCheckEmailIsExist}
+            onClick={}
           >
-            <span className="text-white">확인</span>
-          </div>
+            <span className="text-white">인증</span>
+          </div> */}
         </div>
-        <div
-          style={{ color: "red", width: "100%" }}
-          className={`d-flex justify-content-start`}
-        >
-          {!isValidEmail && email ? (
+        {!isValidEmail && email ? (
+          <div
+            style={{ color: "red", width: "100%", marginLeft: "15px" }}
+            className={`d-flex justify-content-start`}
+          >
             <span>잘못된 이메일 형식입니다</span>
-          ) : (
-            <div style={{ height: "24px" }}></div>
-          )}
-        </div>
+          </div>
+        ) : null}
+        {isValidEmail && isEmailCheck && (
+          <div
+            style={{ color: "green", width: "100%", marginLeft: "15px" }}
+            className={`d-flex justify-content-start`}
+          >
+            <span>사용 가능한 이메일입니다.</span>
+          </div>
+        )}
+        {isValidEmail && !isEmailCheck && (
+          <div
+            style={{ color: "red", width: "100%", marginLeft: "15px" }}
+            className={`d-flex justify-content-start`}
+          >
+            <span>이미 사용중인 이메일입니다.</span>
+          </div>
+        )}
       </div>
     </div>
   );
