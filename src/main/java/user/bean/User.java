@@ -2,6 +2,7 @@ package user.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import api.BaseEntity;
 import community.bean.Community;
@@ -26,6 +27,7 @@ import somoim.bean.Somoim;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
+@JsonSerialize(using = UserSerializer.class)
 @Entity
 public class User extends BaseEntity{
     @Id

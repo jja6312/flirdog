@@ -8,6 +8,6 @@ import somoim.bean.SomoimList;
 
 public interface SomoimListRepository extends JpaRepository<SomoimList, Long>{
 
-	Optional<SomoimList> findByUserIdAndSomoimId(Long userId, Long somoimId);
-
+	Optional<SomoimList> findByUserIdAndSomoimId(Long somoimId, Long id);
+	
 }

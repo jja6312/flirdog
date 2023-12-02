@@ -21,7 +21,7 @@ public interface SomoimService {
 
 	public List<Somoim> getSomoimList();
 
-	public Optional<SomoimList> joinSomoim(Long somoimId, Long userId);
+	public Optional<SomoimList> joinSomoim(Long somoimId, Long id);
 
 	public Optional<SomoimList> isSomoimMember(Long userId, Long somoimId);
 	

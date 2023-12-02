@@ -22,17 +22,20 @@ const SomoimDetail = () => {
     //     window.scrollTo(0, 0);
     // }, [location.pathname]);
     const [formData, setFormData] = useState({});
-    const { subMenu = 'detailMain', somoimId } = useParams();
+    const { subMenu = 'detailMain', somoimId } = useParams(); // 소모임id값 하위 컴포넌트에 전달
     //const [somoimIdState, setSomoimId] = useState('1');
     const [isAdmin, setIsAdmin] = useState();
     const [somoimJoin, setSomoimJoin] = useState({});
-    const [, forceUpdate] = useState({}); // 컴포넌트 강제 리렌더링을 위한 state
+    //const [, forceUpdate] = useState({}); // 컴포넌트 강제 리렌더링을 위한 state
     
-    const location = useLocation(); // 리스트로부터 아이디값 정보 받아옴
-    const { state } = location;
+    const location = useLocation(); // 소모임 리스트로부터 아이디값 정보 받아옴
+    const { state = {} } = location;
+    const user = state ? state.user : null;
 
     // state에 전달된 user 정보 확인
-    console.log('state에 전달된 user 정보 확인' + state.user.id);
+    //console.log('state에 전달된 user 정보 확인' + state.user.id);
+    console.log('state에 전달된 user 정보 확인 : ' + (state && state.user ? state.user.id : 'User 정보 없음'));
+    console.log('state에 전달된 user 정보만 찍어보기 : ' + (user ? user.id : 'User 정보 없음'));
 
     const navigate = useNavigate();
 
@@ -56,27 +59,36 @@ const SomoimDetail = () => {
             }).catch(error => console.log(error))
         }
         isJoin();
-    },[])
+    },[somoimId])
 
     //가입 여부 확인 및 초기 데이터 로딩
     useEffect(() => {
-        console.log('user객체 id정보 : ' + state.user.id)
-        //console.log('somoimId : ' + somoimId)
+        const user = state ? state.user : null;
+        console.log('user객체 id정보 : ' + user)
+        //console.log('user객체 id정보 : ' + user.id)
+        console.log('somoimId : ' + somoimId)
+
         const isJoin = async () => {
-            await axios.get(`/somoim/isSomoimMember?somoimId=${somoimId}&userId=${state.user.id}`)
-            .then(res => {
-                console.log('해당 소모임에 대한 권한 : ' + res.data)
-                setIsAdmin(res.data)
-                // 강제 리렌더링
-                forceUpdate({});
-            })
-            .catch(e => console.error('가입 여부 확인 중 오류:' + e))
+            if (user && user.id) {
+                await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
+                    .then(res => {
+                        setIsAdmin(res.data)
+                        if(res.data) {
+                            console.log('해당 소모임에 대한 권한 : ' + res.data)
+                            console.log('해당 소모임에 접속한 user의 id : ', user.id);
+                        }
+                        // 강제 리렌더링
+                        //forceUpdate({});
+                    })
+                    .catch(e => console.error('가입 여부 확인 중 오류:' + e))
+            }//if
         };
 
         isJoin();
-    }, [somoimId, state.user.id]);
+    }, [somoimId, state]);
 
-    const joinSomoim = async (e) => { // 소모임 회원가입
+    // 소모임 회원가입
+    const joinSomoim = async (e) => { 
         const confirmed = window.confirm('해당 소모임에 참여하시겠습니까?');
         if(!state.user.id) {
             alert('먼저 로그인해 주십시오.')
@@ -85,7 +97,7 @@ const SomoimDetail = () => {
         if (confirmed) {
             await axios.post(`/somoim/joinSomoim`, {
               somoimId: somoimId,
-              userId: state.user.id,
+              id: state.user.id,
             }).then(res => {
                 setSomoimJoin(res.data)
                 console.log(somoimJoin)
@@ -136,9 +148,17 @@ const SomoimDetail = () => {
                                         <p className='detail'>연락처 : { accountPhone }</p>
                                         <p className='detail'>이메일 : { accountEmail }</p>
                                     </div>
-                                    {isAdmin === 0 ? '가입자' : '미가입자(0이 아닐 경우)'} / {isAdmin === 1 ? '개설자' : '미가입자 혹은 비로그인'}
-                                    {
+                                    {isAdmin === 0 ? '가입자(0)일 경우' : '가입자(0)가 아닐 경우'} / {isAdmin === 1 ? '개설자(1)일 경우' : '개설자(1)가 아닌 경우'}<br/><br/><br/><br/>
+                                    {isAdmin === 2 && '미가입자(2)일 경우'}
+                                    {/* {
                                         isAdmin !== 0 && isAdmin !== 1 && (
+                                            <Button variant="outline-danger" onClick={joinSomoim} style={{ alignSelf: 'center' }}>
+                                                가입하기
+                                            </Button>
+                                        )
+                                    } */}
+                                    {
+                                        isAdmin === 2 && (
                                             <Button variant="outline-danger" onClick={joinSomoim} style={{ alignSelf: 'center' }}>
                                                 가입하기
                                             </Button>
@@ -155,18 +175,18 @@ const SomoimDetail = () => {
             <div className='row'>
                 {/* <div className='col-sm-9 col-12 d-flex justify-content-left' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid green', wordWrap:'break-word', whiteSpace:'nowrap' }}> */}
                 <div className='col-sm-9 col-12 d-flex justify-content-left' style={{ textAlign: 'center', alignSelf: 'flex-end', wordWrap:'break-word', whiteSpace:'nowrap' }}>
-                    <SomoimDetailCategoryBarContainer somoimId={somoimId}></SomoimDetailCategoryBarContainer>
+                    <SomoimDetailCategoryBarContainer somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin} />
                 </div>
                 {/* <div className='col-lg-3 d-none d-lg-block d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid green', wordWrap:'break-word', whiteSpace:'nowrap', padding: 0, height: '40px' }}></div> */}
                 <div className='col-lg-3 d-none d-lg-block d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', wordWrap:'break-word', whiteSpace:'nowrap', padding: 0, height: '40px' }}>
                     <div className='col-4 d-flex' style={{ height: '41px', justifyContent: 'center', alignItems : 'center', fontSize: '1.2rem', backgroundColor: '#FFF4F4', color: 'black' }}>채팅</div>
                 </div>
                 <div className='col-lg-9 col-12 d-flex justify-content-center' style={{ textAlign: 'center', alignItems: 'center', border: '1px solid purple', padding: '20px', minHeight:'600px', height:'fit-content' }}>
-                    {subMenu === 'detailMain' && <SomoimDetailMain somoimId={somoimId} />}
-                    {subMenu === 'detailBoard' && <SomoimDetailBoard somoimId={somoimId}  />}
-                    {subMenu === 'detailPhoto' && <SomoimDetailPhoto somoimId={somoimId}  />}
-                    {subMenu === 'detailSche' && <SomoimDetailSchedule somoimId={somoimId}  />}
-                    {subMenu === 'detailMem' && <SomoimDetailMember somoimId={somoimId}  />}
+                    {subMenu === 'detailMain' && <SomoimDetailMain somoimId={somoimId} user={state && state.user ? state.user : {}} isAdmin={isAdmin} />}
+                    {subMenu === 'detailBoard' && <SomoimDetailBoard somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin} />}
+                    {subMenu === 'detailPhoto' && <SomoimDetailPhoto somoimId={somoimId}  user={user && user.id ? user.id : null} isAdmin={isAdmin} />}
+                    {subMenu === 'detailSche' && <SomoimDetailSchedule somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin}  />}
+                    {subMenu === 'detailMem' && <SomoimDetailMember somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin} />}
                 </div>
                 <SomoimDetailChat />
             </div>

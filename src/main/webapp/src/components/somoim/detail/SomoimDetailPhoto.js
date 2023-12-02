@@ -5,6 +5,7 @@ import { Button, Container, Modal } from 'react-bootstrap';
 
 import styles from '../../../css/somoim/detail/SomoimPhotoModal_style.module.css';
 import ImageModal from './ImageModal';
+import axios from 'axios';
 // import Pin from './Pin';
 // import Modal from './Modal';
 
@@ -20,10 +21,26 @@ const getItems = (nextGroupKey, count) => {
   };
   
 
-const SomoimDetailPhoto = ({somoimId}) => {
+const SomoimDetailPhoto = ({ somoimId, user, isAdmin } ) => {
     // const [formData, setFormData] = useState({});
     // const { introduceDetail } = formData;
     ///////////////////////////////////////////
+    const [formData, setFormData] = useState({});
+
+    useEffect(() => {
+        console.log('소모임 사진첩에서 부르는 로그인 유저 아이디 :' + (user && user.id ? user.id : 'User 정보 없음'));
+        console.log('소모임 사진첩에서 부르는 소모임 아이디 :' + somoimId)
+
+        //if (user && user.id) {
+            axios.get(`/somoim/getSomoimForm?id=${somoimId}`)
+                .then(res => {
+                    setFormData(res.data)
+                })
+                .catch(error => console.log(error))
+        //}
+    },[somoimId])
+
+
     const [items, setItems] = useState(() => getItems(0, 10));
     const igRef = useRef();
 
@@ -58,6 +75,14 @@ const SomoimDetailPhoto = ({somoimId}) => {
     return (
         <>
             <Container className="mb-3">
+                (이즈머드민 : {isAdmin})
+                {
+                isAdmin === 2 && (
+                    <div>
+                        <div>(당신은 아직 미가입자 입니다.)</div><br/>
+                    </div>
+                )
+            }
                 <div className="navigation_bar d-flex justify-content-end">
                     <div
                         onClick={handleShow}

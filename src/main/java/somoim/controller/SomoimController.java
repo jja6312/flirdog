@@ -178,16 +178,45 @@ public class SomoimController {
 	// @RequestParam(required=false)는 클라이언트측에서 값을 안받아도 된다.
 	@GetMapping(path="/isSomoimMember")
 	public int isSomoimMember(@RequestParam Long somoimId,
-							  @RequestParam(required=false) Long userId){
-		System.out.println("controller 소모임 회원가입 여부 조회용 아이디 : " + userId);
-		Optional<SomoimList> isJoin = null;
-		if(userId != null ) {
-			isJoin = somoimService.isSomoimMember(userId, somoimId);
-			System.out.println("isAdmin : " + isJoin.get().getIsAdmin());
-		} 
-		System.out.println("isJoin 통째로 : " + isJoin);
-		return isJoin.get().getIsAdmin();
+							  @RequestParam(required=false) Long id){
+		System.out.println("controller 소모임 회원가입 여부 조회용 아이디 : " + id);
+		Optional<SomoimList> isJoin = somoimService.isSomoimMember(somoimId, id);
+		System.out.println("controller isJoin : " + isJoin);
+		// 미가입시 controller isJoin : Optional.empty 반환
+		
+		if (isJoin.isPresent()) {
+	        SomoimList somoimList = isJoin.get();
+	        int isAdmin = somoimList.getIsAdmin();
+	        System.out.println("isAdmin: " + isAdmin);
+	        return isAdmin;
+	    } else {
+	        System.out.println("해당 유저는 소모임에 가입되어 있지 않습니다.");
+	        return 2; // 혹은 다른 기본값 또는 처리
+	    }
 	}
+	
+	
+//	@GetMapping(path="/isSomoimMember")
+//	public int isSomoimMember(@RequestParam Long somoimId,
+//							  @RequestParam(required=false) Long id){
+//		System.out.println("controller 소모임 회원가입 여부 조회용 아이디 : " + id);
+//		Optional<SomoimList> isJoin = null;
+//		if(id != null ) {
+//			isJoin = somoimService.isSomoimMember(somoimId, id);
+//			System.out.println("isAdmin : " + isJoin.get().getIsAdmin());
+//		} 
+//		
+//		int isAdmin = 2; // 기본값 설정
+//
+//	    if (isJoin.isPresent()) {
+//	        SomoimList somoimList = isJoin.get();
+//	        isAdmin = somoimList.getIsAdmin();
+//	        System.out.println("isAdmin with isPresent() : " + isAdmin);
+//	    }
+//
+//	    System.out.println("isJoin 통째로 : " + isJoin);
+//	    return isAdmin;
+//	}
 	
 //	@GetMapping("/isSomoimMember")
 //    public List<SomoimListDTO> getSomoimListDTO(@RequestParam Long id) {

@@ -161,8 +161,16 @@ public class SomoimServiceImpl implements SomoimService {
 //    }
 
 	@Override
-	public Optional<SomoimList> isSomoimMember(Long userId, Long somoimId) {		
-		System.out.println("여기는 서비스 소모임가입여부 아이디 : "+userId);
-		return somoimListRepository.findByUserIdAndSomoimId(userId, somoimId);
+	public Optional<SomoimList> isSomoimMember(Long somoimId, Long id) {		
+		System.out.println("여기는 서비스 소모임가입여부 아이디 : "+id);
+		Optional<SomoimList> somoimListOptional  = somoimListRepository.findByUserIdAndSomoimId(somoimId, id);
+		
+		if(somoimListOptional.isPresent()) {
+			SomoimList somoimList = somoimListOptional.get();
+			System.out.println("somoimListOptional.isPresent(): " + somoimListOptional.isPresent());
+		} else {
+			System.out.println("소모임 가입여부 서비스단 레포지토리 조회 에러");
+		}
+		return somoimListOptional;
 	}
 }
