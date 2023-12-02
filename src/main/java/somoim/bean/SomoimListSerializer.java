@@ -13,7 +13,7 @@ public class SomoimListSerializer extends JsonSerializer<SomoimList> {
         gen.writeObjectField("id", somoimList.getId());
         gen.writeObjectField("somoim", somoimList.getSomoim());
         gen.writeObjectField("user", somoimList.getUser());
-        gen.writeBooleanField("isAdmin", somoimList.isAdmin());
+        gen.writeNumberField("isAdmin", somoimList.getIsAdmin());
         // 여기에 다른 필드에 대한 처리 추가
         gen.writeEndObject();
     }

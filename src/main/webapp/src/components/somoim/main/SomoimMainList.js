@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import { useNavigate } from 'react-router-dom';
 //import { UserContext } from '../../../contexts/UserContext';
@@ -7,14 +7,18 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 import moment from 'moment';
+import { UserContext } from '../../../contexts/UserContext';
 
-const SomoimMainList = ({ selectedLocation, searchList }) => {
+const SomoimMainList = ({ selectedLocation, searchList, item }) => {
     const [somoimList, setSomoimList] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
     const imageUrl = 'https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/flirdogStorage/somoim/';
     //const {id, email, passwd} = login; // 로그인
     const navigate = useNavigate();
+
+    const { user } = useContext(UserContext); // 유저 컨텍스트
+    const { id, name } = user
 
     useEffect(() => {
         const filterList = async () => {
@@ -62,7 +66,7 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
         //updateUser({ ...login, selectedSomoim: item });
     
         // 상세 페이지로 이동
-        navigate(`/somoim/detailMain/${item.id}`);
+        navigate(`/somoim/detailMain/${item.id}`, { state: { user } });
       };
 
       //날짜 표현
@@ -72,6 +76,7 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
     return (
         <>
             <Container className="px-8 mt-5 col-12">
+                이름 : {name} 아이디 : {id}
                 <div className='row row-cols-lg-3 row-cols-md-2 row-cols-sm-1'>
             {
                 filteredResults.map((item, index) => {return (
@@ -93,7 +98,7 @@ const SomoimMainList = ({ selectedLocation, searchList }) => {
                                         <div>가입비용 : {item.cost} 원</div>
                                         <div>⩢ {item.location}</div>
                                     </Card.Text>
-                                    <Card.Link onClick={() => handleButtonClick(item)}>
+                                    <Card.Link onClick={() => handleButtonClick(item)} >
                                         <Button variant="primary">상세 보기
                                         </Button>
                                         </Card.Link>   

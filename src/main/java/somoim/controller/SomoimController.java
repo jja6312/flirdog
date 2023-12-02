@@ -117,7 +117,7 @@ public class SomoimController {
 	}*/
  
 	
-	// 소모임 개설
+	// 소모임 디테일 조회
 	@GetMapping("/getSomoimForm")
 	public Optional<Somoim> getSomoimForm(@RequestParam Long id) {
 		System.out.println("controller 소모임정보 : " + id);
@@ -129,8 +129,10 @@ public class SomoimController {
 	     if (somoimOptional.isPresent()) {
 	         String name = somoimOptional.get().getUser().getName();
 	         Long userid = somoimOptional.get().getUser().getId();
+	         String accountName = somoimOptional.get().getAccountName();
 	         System.out.println("somoimOptional 이름 : " + name);
 	         System.out.println("somoimOptional 아이디 : " + userid);
+	         System.out.println("somoimOptional 개설자이름 : " + accountName);
 	     }
 
 	    return somoimOptional;
@@ -165,7 +167,7 @@ public class SomoimController {
 		if (somoimList.isPresent()) {
 			Long joinUserId = somoimList.get().getUser().getId();
 			System.out.println("컨트롤단 somoimList 유저 아이디 조회 : " + joinUserId);
-			somoimList.get().setAdmin(false);
+			somoimList.get().setIsAdmin(0);
 			return ResponseEntity.ok(somoimList.get());
 		} else {
 			return ResponseEntity.notFound().build(); // 또는 다른 적절한 응답 코드로 수정
@@ -173,19 +175,18 @@ public class SomoimController {
 	}
 	
 	// 소모임 회원가입 여부 조회
+	// @RequestParam(required=false)는 클라이언트측에서 값을 안받아도 된다.
 	@GetMapping(path="/isSomoimMember")
-	// false는 클라이언트측에서 값을 안받아도 된다.
-	public boolean  isSomoimMember(@RequestParam Long somoimId,
-											   @RequestParam(required=false) Long userId){
+	public int isSomoimMember(@RequestParam Long somoimId,
+							  @RequestParam(required=false) Long userId){
 		System.out.println("controller 소모임 회원가입 여부 조회용 아이디 : " + userId);
 		Optional<SomoimList> isJoin = null;
 		if(userId != null ) {
-			
 			isJoin = somoimService.isSomoimMember(userId, somoimId);
-			System.out.println("isAdmin : " + isJoin.get().isAdmin());
+			System.out.println("isAdmin : " + isJoin.get().getIsAdmin());
 		} 
 		System.out.println("isJoin 통째로 : " + isJoin);
-		return isJoin.get().isAdmin();
+		return isJoin.get().getIsAdmin();
 	}
 	
 //	@GetMapping("/isSomoimMember")
