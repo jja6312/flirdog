@@ -53,7 +53,6 @@ public class Somoim extends BaseEntity{
 	@NonNull
 	private String introducePhotoUUID;
 	
-	
 	@NonNull
 	private Long memberCount;
 	
@@ -69,10 +68,16 @@ public class Somoim extends BaseEntity{
 	@NonNull // 22일추가
 	private String address2;
 	
+	@NonNull // 22일추가
+	private String zipcode;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "created_id", nullable = false)
 	@JsonIgnore
 	private User user;
+	
+	@NonNull
+	private String accountName;
 	
 	@NonNull
 	private String accountEmail;
@@ -99,6 +104,7 @@ public class Somoim extends BaseEntity{
 	            ", address='" + address + '\'' +
 	            ", address2='" + address2 + '\'' +
 	            ", user=" + (user != null ? user.getId() : null) + // 사용자 객체의 ID 출력
+	            ", accountName='" + accountName + '\'' +
 	            ", accountEmail='" + accountEmail + '\'' +
 	            ", accountPhone=" + accountPhone +
 	            '}';

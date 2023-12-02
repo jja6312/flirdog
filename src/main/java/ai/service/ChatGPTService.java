@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -56,25 +56,25 @@ public class ChatGPTService {
     //Dalle3
     public String generateImage(String prompt) throws Exception {
         
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + apiKeyDalle);
-
-        // 요청 본문 생성
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("prompt", prompt);
-
-        HttpEntity<String> request = new HttpEntity<>(requestBody.toString(), headers);
-        
-        // OpenAI 이미지 생성 API 호출
-        String apiUrl = "https://api.openai.com/v1/images/generations";
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.postForEntity(apiUrl, request, String.class);
-
-        // 응답에서 이미지 URL 추출 및 반환
-        JSONObject responseBody = new JSONObject(response.getBody());
-        return responseBody.getJSONArray("data").getJSONObject(0).getString("url");
-//    	return null;
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.set("Authorization", "Bearer " + apiKeyDalle);
+//
+//        // 요청 본문 생성
+//        JSONObject requestBody = new JSONObject();
+//        requestBody.put("prompt", prompt);
+//
+//        HttpEntity<String> request = new HttpEntity<>(requestBody.toString(), headers);
+//        
+//        // OpenAI 이미지 생성 API 호출
+//        String apiUrl = "https://api.openai.com/v1/images/generations";
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String> response = restTemplate.postForEntity(apiUrl, request, String.class);
+//
+//        // 응답에서 이미지 URL 추출 및 반환
+//        JSONObject responseBody = new JSONObject(response.getBody());
+//        return responseBody.getJSONArray("data").getJSONObject(0).getString("url");
+    	return null;
     }
 }
 

@@ -85,7 +85,9 @@ public class SomoimServiceImpl implements SomoimService {
 		    real.setTarget(somoim.getTarget());
 		    real.setAddress(somoim.getAddress());
 		    real.setAddress2(somoim.getAddress2());
+		    real.setZipcode(somoim.getZipcode());
 		    real.setUser(somoim.getUser());
+		    real.setAccountName(somoim.getAccountName());
 		    real.setAccountEmail(somoim.getAccountEmail());
 		    real.setAccountPhone(somoim.getAccountPhone());
 		    
@@ -132,7 +134,7 @@ public class SomoimServiceImpl implements SomoimService {
 		Optional<User> user = somoimUserRepository.findById(userId);
 		
 		if (somoim.isPresent() && user.isPresent()) {     
-	        SomoimList somoimList = new SomoimList(somoim.get(), user.get(), false);
+	        SomoimList somoimList = new SomoimList(somoim.get(), user.get(), 0);
 	        somoimListRepository.save(somoimList); // 저장
 
 	        // 저장된 SomoimList 엔터티 반환
@@ -160,7 +162,7 @@ public class SomoimServiceImpl implements SomoimService {
 
 	@Override
 	public Optional<SomoimList> isSomoimMember(Long userId, Long somoimId) {		
-		System.out.println("여기는 서비스 소모임가입여부 : "+userId);
+		System.out.println("여기는 서비스 소모임가입여부 아이디 : "+userId);
 		return somoimListRepository.findByUserIdAndSomoimId(userId, somoimId);
 	}
 }

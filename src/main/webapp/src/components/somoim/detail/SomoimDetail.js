@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 import axios from 'axios';
 import Header from '../../main/Header';
@@ -13,7 +13,6 @@ import SomoimDetailSchedule from './SomoimDetailSchedule';
 import SomoimDetailMember from './SomoimDetailMember';
 import SomoimDetailChat from './SomoimDetailChat';
 import styles from '../../../css/somoim/detail/somoimDetailHeader.module.css'
-import { UserContext } from '../../../contexts/UserContext';
 
 
 const SomoimDetail = () => {
@@ -25,24 +24,68 @@ const SomoimDetail = () => {
     const [formData, setFormData] = useState({});
     const { subMenu = 'detailMain', somoimId } = useParams();
     //const [somoimIdState, setSomoimId] = useState('1');
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState();
     const [somoimJoin, setSomoimJoin] = useState({});
+    const [, forceUpdate] = useState({}); // 컴포넌트 강제 리렌더링을 위한 state
+    
+    const location = useLocation(); // 리스트로부터 아이디값 정보 받아옴
+    const { state } = location;
+
+    // state에 전달된 user 정보 확인
+    console.log('state에 전달된 user 정보 확인' + state.user.id);
+
+    const navigate = useNavigate();
 
     const imageUrl = 'https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/flirdogStorage/somoim/';
 
-    const { user } = useContext(UserContext); // 유저 컨텍스트
-   
-    const { id, name } = user
+    // const { user } = useContext(UserContext); // 유저 컨텍스트
+    // const { id } = user
     
-    const { somoimName, introduceSub, address, address2, memberCount, target, accountEmail, accountPhone, introducePhoto, introducePhotoUUID } = formData
+    const { somoimName, introduceSub, address, address2, memberCount, target, accountName, accountEmail, accountPhone, introducePhoto, introducePhotoUUID } = formData
     //const { isAdmin } = somoimJoin || {};
+    //const { somoim, user } = somoimJoin
+
+    // 해당 소모임 정보 출력
+    useEffect(() => {
+        const isJoin = async () => {
+        
+        await axios.get(`/somoim/getSomoimForm?id=${somoimId}`)
+            .then(res => {
+                setFormData(res.data)
+                console.log('소모임 정보 전체 : ', res.data)
+            }).catch(error => console.log(error))
+        }
+        isJoin();
+    },[])
+
+    //가입 여부 확인 및 초기 데이터 로딩
+    useEffect(() => {
+        console.log('user객체 id정보 : ' + state.user.id)
+        //console.log('somoimId : ' + somoimId)
+        const isJoin = async () => {
+            await axios.get(`/somoim/isSomoimMember?somoimId=${somoimId}&userId=${state.user.id}`)
+            .then(res => {
+                console.log('해당 소모임에 대한 권한 : ' + res.data)
+                setIsAdmin(res.data)
+                // 강제 리렌더링
+                forceUpdate({});
+            })
+            .catch(e => console.error('가입 여부 확인 중 오류:' + e))
+        };
+
+        isJoin();
+    }, [somoimId, state.user.id]);
 
     const joinSomoim = async (e) => { // 소모임 회원가입
         const confirmed = window.confirm('해당 소모임에 참여하시겠습니까?');
+        if(!state.user.id) {
+            alert('먼저 로그인해 주십시오.')
+            navigate('/login')
+        }
         if (confirmed) {
             await axios.post(`/somoim/joinSomoim`, {
               somoimId: somoimId,
-              userId: id,
+              userId: state.user.id,
             }).then(res => {
                 setSomoimJoin(res.data)
                 console.log(somoimJoin)
@@ -53,67 +96,21 @@ const SomoimDetail = () => {
             console.log("유저 id 또는 소모임 id가 없습니다.");
           }
     }
-    
-
-    //가입 여부 확인 및 초기 데이터 로딩
-    useEffect(() => {
-        console.log('user객체 id정보 : ' + id)
-        //console.log('somoimId : ' + somoimId)
-        const isJoin = async () => {
-            await axios.get(`/somoim/isSomoimMember?somoimId=${somoimId}&userId=${id}`)
-            .then(res => {
-                console.log('소모임 테스트체크 : ' + res.data)
-                setIsAdmin(res.data)
-                console.log('이즈어드민' + isAdmin)
-            })
-            .catch(e => console.error('가입 여부 확인 중 오류:' + e))
-        };
-
-        isJoin();
-    }, []);
-
-    
-    // 해당 소모임 정보 출력
-    useEffect(() => {
-        const isJoin = async () => {
-        //console.log(`소모임에 접속한 유저의 아이디 : ${id}`)
-        // if (somoimId) {
-        //     setSomoimId(somoimId);
-        // }
-        
-        await axios.get(`/somoim/getSomoimForm?id=${somoimId}`)
-            .then(res => {
-                setFormData(res.data)
-            
-                
-            }).catch(error => console.log(error))
-        // axios.get(`/somoim/getSomoimForm?id=${user_id}`)
-        // .then(res => {
-        //     setFormData(res.data)
-        // }).catch(error => console.log(error))
-        }
-        isJoin();
-    },[])
 
     return (
         <>
         <Header></Header>
         
-        {/* <Container  className='px-10 py-3' style={{border: '1px solid blue', display: 'flex', flexDirection: 'column' }}>  */}
         <Container  className='px-10 py-3' style={{display: 'flex', flexDirection: 'column' }}> 
             <div className='row'>
-                {/* <div className='col-lg-3 col-12 d-flex justify-content-left' style={{ justifyContent:'center', textAlign: 'left', padding: 0, alignItems: 'center', background: '#FFF4F4', border: '1px solid pink' }}> */}
                 <div className='col-lg-3 col-12 d-flex justify-content-left' style={{ justifyContent:'center', textAlign: 'left', padding: 0, alignItems: 'center', background: '#FFF4F4'}}>
                     <img className="responsive-image" style={{ width: '90%', borderRadius: '5px', objectFit: 'cover' }} 
                         src={introducePhoto ? imageUrl + introducePhotoUUID : "https://via.placeholder.com/460x390"} alt="somoim-image1" />
                 </div>
-                {/* <div className={`col-lg-9 col-12 d-flex justify-content-center ${styles.moimMainTitle}`} style={{ background: '#FFF4F4', border: '1px solid black' }}> */}
                 <div className={`col-lg-9 col-12 d-flex justify-content-center ${styles.moimMainTitle}`} style={{ background: '#FFF4F4' }}>
                     <div className="container">
                         <div className={`${styles.header}`}>
-                            {/* <h1>어서오개 한잔하개</h1> */}
                             <h1>{ somoimName }</h1>
-                            {/* <p className='col-lg-8 d-none d-md-block' style={{ textAlign: 'bold' }}>강아지와 술을 사랑하는 모임</p> */}
                             <p className='col-lg-8 d-none d-md-block' style={{ textAlign: 'bold' }}>{ introduceSub }</p>
                             
                         </div>
@@ -127,30 +124,25 @@ const SomoimDetail = () => {
                             </div>
                             <div className="flex-row col-lg-10" style={{ position: 'relative', lineHeight: '0.6rem' }}>
                                 <div className='detail d-flex' style={{ height: '2.1rem' }}>
-                                    {/* <p style={{ lineHeight: '1.3', color:'#726C69' }}>서울 강서구 강서로 정조길 940-11 (영화동) 연세IT미래교육원 빌딩</p> */}
                                     <p style={{ lineHeight: '1.3', color:'#726C69' }}>{ address} {address2 }</p>
                                     <Button className='col-2' variant="secondary" size="sm" style={{ width: '70px', height: '25px', alignSelf:'start', marginLeft: '4px' }}>지도보기</Button>
                                 </div>
-                                {/* <p className='detail' style={{ color:'#726C69' }}>매주 목요일 14:00 ~ 18:00시</p> */}
                                 <p className='detail' style={{ color:'#726C69', marginBottom: '17px' }}>{ memberCount } 명</p>
-                                {/* <p className='detail' style={{ color:'#726C69', marginBottom: '17px', position:'absolute' }}>{ cost } 원</p> */}
-                                {/* <p className='info' style={{ color:'#726C69', position:'relative' , paddingLeft: '2.5rem', marginLeft:'7%' }}> |&nbsp;&nbsp;&nbsp;가입가능인원 총 { memberCount } 명</p> */}
-                                {/* <p className='detail'>성인 이상의 반려견 보유자</p> */}
                                 <p className='detail'>{ target }</p>
                                 <hr className="Line13" style={{ width: '100%', height: '0px', position: 'relative', border: '1.5px #F56084 solid', opacity: 1 }} />
                                 <div className='detail d-flex' style={{ lineHeight: '0.4rem' }}>
                                     <div style={{ flex: 1, color:'#726C69' }}>
-                                        <p className='detail'>이름 : { name }</p>
-                                        {/* <p className='detail'>연락처: 02-1234-5678</p> */}
+                                        <p className='detail'>이름 : { accountName }</p>
                                         <p className='detail'>연락처 : { accountPhone }</p>
-                                        {/* <p className='detail'>이메일: sulmukja@naver.com</p> */}
                                         <p className='detail'>이메일 : { accountEmail }</p>
                                     </div>
-                                    {/* {isAdmin ? '트루' : '펄스'} */}
+                                    {isAdmin === 0 ? '가입자' : '미가입자(0이 아닐 경우)'} / {isAdmin === 1 ? '개설자' : '미가입자 혹은 비로그인'}
                                     {
-                                        
-                                        isAdmin || <Button variant="outline-danger" onClick={ joinSomoim } style={{ alignSelf: 'center'}}>가입하기</Button> 
-                                        
+                                        isAdmin !== 0 && isAdmin !== 1 && (
+                                            <Button variant="outline-danger" onClick={joinSomoim} style={{ alignSelf: 'center' }}>
+                                                가입하기
+                                            </Button>
+                                        )
                                     }
                                 </div>
                             </div>
@@ -159,7 +151,6 @@ const SomoimDetail = () => {
                 </div>
             </div>
         </Container>
-        {/* <Container  className='px-10 py-3' style={{border: '1px solid blue', display: 'flex', flexDirection: 'column' }}> */}
         <Container  className='px-10 py-3' style={{display: 'flex', flexDirection: 'column' }}>
             <div className='row'>
                 {/* <div className='col-sm-9 col-12 d-flex justify-content-left' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid green', wordWrap:'break-word', whiteSpace:'nowrap' }}> */}
