@@ -6,6 +6,7 @@ import axios from "axios";
 import AuthKeyInput from "../join/AuthKeyInput";
 import EmailButton from "../loginAPI/EmailButton";
 import Swal from "sweetalert2";
+import Header from "../../main/Header";
 
 const PwdFind = () => {
   const navigate = useNavigate();
@@ -50,6 +51,17 @@ const PwdFind = () => {
       Swal.fire({
         icon: "error",
         title: "비밀번호가 일치하지 않습니다.",
+        position: "top",
+        timer: 700,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    if (satisfyAllCondition2 === false) {
+      Swal.fire({
+        icon: "error",
+        title: "비밀번호 조건을 확인해주세요.",
         position: "top",
         timer: 700,
         showConfirmButton: false,
@@ -114,6 +126,7 @@ const PwdFind = () => {
 
   return (
     <>
+      <Header></Header>
       <div
         className={`${login.loginForm} 
         ${isClickNext ? login.slideOutLeft : ""}

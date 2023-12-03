@@ -30,25 +30,25 @@ public class ChatGPTService {
     @Value("${dalle.api.key}")
     private String apiKeyDalle;
 
-    public void downloadAndSaveImage(String imageUrl, String fileName) throws Exception {
+    public String downloadAndSaveImage(String imageUrl, String fileName) throws Exception {
         URL url = new URL(imageUrl); // imageUrl을 기반으로 URL 객체 생성
         Resource resource = new UrlResource(url); // url을 이용하여 UrlResource 객체를 생성한다.
 
         // S3 버킷에 업로드할 파일의 경로
-        String s3FilePath = "flirdogStorage/aiDogProfile/" + fileName;
+        String s3FilePath = "flirdogStorage/aiDogProfile/";
 
         // 이미지의 InputStream을 얻는다.
         try (InputStream inputStream = resource.getInputStream()) {
             // S3 버킷에 이미지 업로드
-            objectStorageService.uploadFile(bucketName, s3FilePath, inputStream, "image/jpeg");
+            String s3FileName = objectStorageService.uploadFile(bucketName, s3FilePath, inputStream, "image/jpeg");
+            // 콘솔에 업로드된 파일 경로 출력 (디버깅용)
+            System.out.println("Uploaded to S3: " + s3FilePath);
+            return s3FileName;
         }
+        
 
-        // 업로드된 이미지 경로를 리스트에 추가
-        List<String> imagePaths = new ArrayList<>();
-        imagePaths.add(s3FilePath);
-
-        // 콘솔에 업로드된 파일 경로 출력 (디버깅용)
-        System.out.println("Uploaded to S3: " + imagePaths.get(0));
+        
+        
     }
 
     // Dalle3

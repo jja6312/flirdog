@@ -24,6 +24,7 @@ import access.bean.JoinRequestDTO;
 import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
 import jakarta.servlet.http.HttpSession;
+import matching.bean.MatchingDTO;
 import user.bean.DogsBreed;
 import user.bean.DogsInfo;
 import user.bean.User;
@@ -78,6 +79,7 @@ public class AccessController {
         return dogsInfo;
 
     }
+    
 
     @PostMapping(path="join")
     public ResponseEntity<?> join(
@@ -138,6 +140,31 @@ public class AccessController {
     					@RequestParam String passwd) {
 
     	accessService.updatePwd(email,passwd);
+    	
+    }
+    
+    @PostMapping(path = "getUserInfoAsDogId")
+    public Optional<User> getUserInfoAsDogId(@RequestParam String dogId) {
+    	System.out.println("###컨트롤러, 개 아이디");
+    	System.out.println(dogId);
+    	
+    	Optional<User> user = accessService.getUserInfoAsDogId(dogId);
+    	
+    	return user;
+    	
+    }
+    @PostMapping(path = "getMatchingTable")
+    public Optional<MatchingDTO> getMatchingTable(@RequestParam String dogName,
+    												@RequestParam String userId) {
+    	System.out.println("###컨트롤러 getMatchingTable, 개 이름");
+    	System.out.println(dogName);
+    	System.out.println("###컨트롤러 getMatchingTable, 유저 아이디");
+    	System.out.println(userId);
+    	
+    	
+    	Optional<MatchingDTO> matchingDTO = accessService.getMatchingTable(dogName,userId);
+    	
+    	return matchingDTO;
     	
     }
 }

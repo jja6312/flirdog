@@ -12,9 +12,9 @@ import PetAiImage from "../join/PetAiImage";
 import Swal from "sweetalert2";
 import PetImage from "../join/PetImage";
 import translateText from "../translateText";
-import PetModal from "../join/PetModal";
 import { useNavigate } from "react-router-dom";
 import AuthKeyInput from "../join/AuthKeyInput";
+import Header from "../../main/Header";
 
 const JoinAuth = () => {
   const navigate = useNavigate();
@@ -61,7 +61,12 @@ const JoinAuth = () => {
   const [selectedBreed, setSelectedBreed] = useState("선택");
 
   const [imgFiles, setImgFiles] = useState();
-  const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
+  const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState(
+    "/image/nullImage/nullImage1.png"
+  );
+  const [realImageAiProfile, setRealImageAiProfile] = useState(
+    "/image/nullImage/nullImage1.png"
+  );
 
   const [image, setImage] = useState([]);
   const [imageAiProfile, setImageAiProfile] = useState(
@@ -231,13 +236,6 @@ const JoinAuth = () => {
   };
   const onAcceptAiImage = () => {
     setImageAiProfile(aiDogProfileImgUrl);
-
-    // Swal.fire({
-    //   icon: "success",
-    //   title: "회원가입이 완료되었습니다!",
-    //   showConfirmButton: false,
-    //   timer: 1500,
-    // });
   };
 
   const onAcceptImage = () => {
@@ -253,7 +251,7 @@ const JoinAuth = () => {
         formData.append("dogsInfo", JSON.stringify(dogsInfo));
         formData.append("dogsBreed", dogsBreed);
         formData.append("image", image[0]);
-        formData.append("imageAiProfile", aiDogProfileImgUrl);
+        formData.append("imageAiProfile", realImageAiProfile);
       }
 
       const response = await axios.post(
@@ -273,7 +271,7 @@ const JoinAuth = () => {
         showConfirmButton: false,
         timer: 1000,
       });
-      navigate("/login/true");
+      navigate("/login");
     } catch (error) {
       console.log(error);
       Swal.fire("회원가입 중 에러가 발생했습니다.", error.message);
@@ -305,6 +303,7 @@ const JoinAuth = () => {
           },
         })
         .then((res) => {
+          setRealImageAiProfile(res.data);
           console.log("JoinAuth.js, 이미지 저장 성공!.");
 
           Swal.fire({
@@ -377,6 +376,7 @@ const JoinAuth = () => {
   // //------------------------------------------------------------
   return (
     <>
+      <Header></Header>
       <div
         className={`${login.loginForm} ${
           isClickNext ? login.slideOutLeft : ""
@@ -430,10 +430,10 @@ const JoinAuth = () => {
             className={`${login.joinAuthForm} d-flex justify-content-start align-items-center flex-column`}
           >
             {/* fontsize를 조절하는 부트스트랩 */}
-            <div
-              className={`${login.loginFormElementDiv} mt-4 d-flex justify-content-center align-items-center`}
-            ></div>
-            <span className={login.JoinAuthFont1}>기본 정보 입력</span>
+
+            <span className={`${login.JoinAuthFont1} mt-5`}>
+              기본 정보 입력
+            </span>
             <span className={`${login.JoinAuthFont2} mt-3`}>
               원활한 서비스 제공을 위해, 정보를 입력해주세요.
             </span>

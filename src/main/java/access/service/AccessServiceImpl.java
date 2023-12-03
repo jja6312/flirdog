@@ -12,9 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import access.bean.JoinRequestDTO;
 import access.repository.AccessDogsInfoRepository;
+import access.repository.AccessMatchingRepository;
 import access.repository.AccessRepository;
 import admin.service.ObjectStorageService;
 import jakarta.servlet.http.HttpSession;
+import matching.bean.MatchingDTO;
 import user.bean.DogsBreed;
 import user.bean.DogsInfo;
 import user.bean.Score;
@@ -27,6 +29,10 @@ public class AccessServiceImpl implements AccessService {
 	public AccessRepository accessRepository;
 	@Autowired
 	public AccessDogsInfoRepository accessDogsInfoRepository;
+	@Autowired
+	public AccessMatchingRepository accessMatchingRepository;
+	
+	
 	@Autowired
 	private ObjectStorageService objectStorageService;
 	private String bucketName = "bitcamp-edu-bucket-112";
@@ -160,5 +166,23 @@ public class AccessServiceImpl implements AccessService {
 		}
 		
 	}
+
+	@Override
+	public Optional<User> getUserInfoAsDogId(String dogIdStr) {
+	    Long dogId = Long.parseLong(dogIdStr);
+	    return accessDogsInfoRepository.findById(dogId)
+	            .map(DogsInfo::getUser);
+	}
+
+	@Override
+	public Optional<MatchingDTO> getMatchingTable(String dogName, String userIdStr) {
+	    Long userId = Long.parseLong(userIdStr);
+	    List<MatchingDTO> list = accessMatchingRepository.findTopByDogNameAndUserIdOrderByDesc(dogName, userId);
+	    return list.isEmpty() ? Optional.empty() : Optional.ofNullable(list.get(0));
+	}
+
+
+
+
 
 }

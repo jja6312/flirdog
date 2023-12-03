@@ -63,11 +63,8 @@ const EmailInput = ({
       className={`${login.joinAuthForm} d-flex justify-content-start align-items-center flex-column`}
     >
       {/* fontsize를 조절하는 부트스트랩 */}
-      <div
-        className={`${login.loginFormElementDiv} d-flex justify-content-center align-items-center`}
-      ></div>
 
-      <span className={login.JoinAuthFont1}>회원 가입</span>
+      <span className={`${login.JoinAuthFont1} mt-4`}>회원 가입</span>
       <div style={{ width: "100%" }} className={`d-flex justhfi-content-start`}>
         <span className={`${login.JoinAuthFont3} mt-3`}>이메일 아이디</span>
       </div>
