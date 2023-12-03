@@ -6,7 +6,14 @@ import CategoryBtnContainer from "../CategoryBtnContainer";
 import styles from "../../../css/main/2베스트플러독/navigateBtn.module.css";
 import bestFlirdog from "../../../css/main/2베스트플러독/bestFlirdog.module.css";
 
-const BestFlirdog = () => (
+const BestFlirdog = ({
+  userInfoArray,
+  dogsInfoArray,
+  selectedCategory,
+  setSelectedCategory,
+  selectedLocation,
+  setSelectedLocation,
+}) => (
   <>
     <div className="row mt-10 mx-2">
       <div className="col-12">
@@ -18,12 +25,29 @@ const BestFlirdog = () => (
       </div>
     </div>
     <div className="row mt-8">
-      <CategoryBtnContainer></CategoryBtnContainer>
+      <CategoryBtnContainer
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        selectedLocation={selectedLocation}
+        setSelectedLocation={setSelectedLocation}
+      ></CategoryBtnContainer>
     </div>
     <div className="row mt-8 d-flex justify-content-between">
-      <BestFlirdogImg srcImg="/image/main/dog1.jpg" text="999" />
-      <BestFlirdogImg srcImg="/image/main/dog2.jpg" text="784" />
-      <BestFlirdogImg srcImg="/image/main/dog3.jpg" text="654" />
+      <BestFlirdogImg
+        userInfoArray={userInfoArray}
+        dogsInfoArray={dogsInfoArray}
+        currentIndex="0"
+      />
+      <BestFlirdogImg
+        userInfoArray={userInfoArray}
+        dogsInfoArray={dogsInfoArray}
+        currentIndex="1"
+      />
+      <BestFlirdogImg
+        userInfoArray={userInfoArray}
+        dogsInfoArray={dogsInfoArray}
+        currentIndex="2"
+      />
     </div>
     <div className={`${styles.navigateBtnContainer} mt-8`}>
       <NavigateBtn

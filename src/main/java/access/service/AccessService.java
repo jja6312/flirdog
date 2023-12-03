@@ -29,4 +29,12 @@ public interface AccessService {
 
 	Optional<MatchingDTO> getMatchingTable(String dogName, String userId);
 
+	List<User> getUserInfoArray();
+
+	Optional<DogsInfo> getDogsInfoArray(String userId);
+
+	List<User> getUserInfoArrayLocation(String location);
+
+	
+
 }

@@ -5,7 +5,7 @@ import NavigateBtn from "../NavigateBtn";
 import CategoryBtnContainer from "../CategoryBtnContainer";
 import styles from "../../../css/main/2베스트플러독/navigateBtn.module.css";
 
-const BestFlirdog = () => (
+const BestFlirdog = ({ userInfoArray, dogsInfoArray }) => (
   <>
     <div className="row mt-10 mx-2">
       <div className="col-12">
@@ -20,7 +20,14 @@ const BestFlirdog = () => (
       <CategoryBtnContainer></CategoryBtnContainer>
     </div>
     <div className="row mt-8 d-flex justify-content-between">
-      <BestFlirdogImg srcImg="/image/main/dog1.jpg" text="999" />
+      <BestFlirdogImg
+        srcImg={
+          dogsInfoArray[0]
+            ? dogsInfoArray[0].image
+            : "/image/nullImage/nullImage2.png"
+        }
+        text={userInfoArray[0] ? userInfoArray[0].communityScore : "0"}
+      />
       <BestFlirdogImg srcImg="/image/main/dog2.jpg" text="784" />
       <BestFlirdogImg srcImg="/image/main/dog3.jpg" text="654" />
     </div>
