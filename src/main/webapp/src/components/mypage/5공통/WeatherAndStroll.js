@@ -185,7 +185,6 @@ export default WeatherAndStroll;
 const AppWrap = styled.div`
     width: 100vw;
     height: 100vh;
-    border: 1px solid red;
 
     .appContentWrap {
         left: 50%;
@@ -193,7 +192,7 @@ const AppWrap = styled.div`
         transform: translate(-50%, -50%);
         position: absolute;
         padding: 20px;
-        margin-top: 5rem;
+        margin-top: 8rem;
       }
       input {
         padding: 16px;
