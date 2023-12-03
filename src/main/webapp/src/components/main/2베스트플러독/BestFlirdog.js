@@ -52,7 +52,7 @@ const BestFlirdog = ({
     <div className={`${styles.navigateBtnContainer} mt-8`}>
       <NavigateBtn
         text="등록하러 가기"
-        url="/"
+        url="/date/dateWrite"
         fontSize="2.5vw"
         btnWidth="40vw"
         btnHeight="80px "

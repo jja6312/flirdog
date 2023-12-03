@@ -13,10 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 import access.bean.JoinRequestDTO;
 import access.repository.AccessDogsInfoRepository;
 import access.repository.AccessMatchingRepository;
+import access.repository.AccessProductRepository;
 import access.repository.AccessRepository;
 import admin.service.ObjectStorageService;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
+import product.bean.Product;
 import user.bean.Address;
 import user.bean.DogsBreed;
 import user.bean.DogsInfo;
@@ -32,6 +34,8 @@ public class AccessServiceImpl implements AccessService {
 	public AccessDogsInfoRepository accessDogsInfoRepository;
 	@Autowired
 	public AccessMatchingRepository accessMatchingRepository;
+	@Autowired
+	public AccessProductRepository accessProductRepository;
 
 	@Autowired
 	private ObjectStorageService objectStorageService;
@@ -204,6 +208,12 @@ public class AccessServiceImpl implements AccessService {
 	@Override
 	public List<User> getUserInfoArrayLocation(String location) {
 	    return accessRepository.findTop3ByAddresses_AddressContainingOrderByCommunityScoreDesc(location);
+	}
+
+	@Override
+	public List<Product> getProductInfoArray() {
+		
+		return accessProductRepository.findTop8ByOrderByHitDesc();
 	}
 
 }

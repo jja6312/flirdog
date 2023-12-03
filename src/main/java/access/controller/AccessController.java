@@ -25,6 +25,7 @@ import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
+import product.bean.Product;
 import user.bean.Address;
 import user.bean.DogsBreed;
 import user.bean.DogsInfo;
@@ -198,6 +199,16 @@ public class AccessController {
     	List<User> topRankingThreeUserOfAllUserLocation = accessService.getUserInfoArrayLocation(location);
     	
     	return topRankingThreeUserOfAllUserLocation;
+    	
+    }
+    //메인화면, 인기상품 8개 가져오기
+    @PostMapping(path = "getProductInfoArray")
+    public List<Product> getProductInfoArray() {
+    	
+    	
+    	List<Product> productInfoArray = accessService.getProductInfoArray();
+    	
+    	return productInfoArray;
     	
     }
     
