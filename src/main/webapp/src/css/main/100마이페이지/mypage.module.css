@@ -158,6 +158,11 @@
     display: flex;
     justify-content: left;
 }
+.Imagecenter3{
+    display: flex;
+    justify-content: center;
+    margin-left: 10rem;
+}
 
 .colorFixx{
     font-weight: bold;
@@ -410,6 +415,18 @@
     font-size: 15px;
     margin-top: 4%;
 }
+.Myarticle2_1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    color: #707070;
+    font-size: 15px;
+    margin-top: 4%;
+    margin-left: 17px;
+}
 .Myarticle3{
     position: relative;
     width: 180px;
@@ -585,4 +602,86 @@ input[type=radio]:checked + .labelClass2  {
 }
 .MarginREM{
     margin-top: 15rem !important;
+}
+.Margin0{
+    margin-top: 5rem;
+}
+.Margin1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;   
+}
+.Margin2{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    margin-top: 10px;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 14rem;
+    margin-top: 2rem;
+}
+.Margin2_1{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    margin-top: 10px;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 14rem;
+}
+.Margin4{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 15rem;
+}
+.Myarticle5{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    margin-top: 10px;
+    color: #707070;
+    font-size: 30px;
+    margin-top: 4%;
+    margin-left: 11.5rem;
+    border-bottom: #f56084 2px solid;
+    cursor: pointer;
+}
+.ImgBorder:hover{
+    border: 2px solid #f56084;
+}
+.Myarticle5Input{
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+}
+.Myarticle5Input:focus{
+    outline: none;
+}
+.Margin1PointCHarge{
+    margin-left: 5rem;
+    font-size: 30px;
+    font-weight: 700;
+}
+.ImagecenterPoint{
+    text-align: center;
+    margin-left: 6rem;
+}
+.Margin0 input::-webkit-outer-spin-button,
+.Margin0 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
