@@ -68,7 +68,7 @@ const Mypoint = () => {
                 </div>
                 <div className='row mt-2'>
                     <div className='col-lg-2'></div>
-                    <div className='col-lg-8'><h3 className={Mypage.Point1}>소멸 예정 포인트 (7일 이내)</h3></div>
+                    <div className='col-lg-8'><h3 className={Mypage.Point1}>소멸 예정 포인트! (7일 이내)</h3></div>
                     <div className='col-lg-2'></div>
                 </div>
                 <div className='row mt-2'> {/* P글씨 */}
