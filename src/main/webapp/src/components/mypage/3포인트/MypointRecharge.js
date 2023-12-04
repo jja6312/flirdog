@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import MypageSubHeader31 from '../5공통/MypageSubHeader3_1';
 import Container from 'react-bootstrap/esm/Container';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import Swal from 'sweetalert2';
 
 
 const MypointRecharge = () => {
     // useRef를 사용하여 버튼 엘리먼트를 참조
     const buttonRef = useRef(null);
-    const [merchantUidSuffix, setMerchantUidSuffix] = useState(10);
-    const [amount , setAmount] = useState(10);
-  
+    // const [merchantUidSuffix, setMerchantUidSuffix] = useState(10);
+    const [amount , setAmount] = useState(0);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
       // IMP 초기화
@@ -26,17 +27,39 @@ const MypointRecharge = () => {
       // onClickpay 함수 정의
       const onClickpay = async () => {
         //클릭할때 마다 merchant_uid 뒤에 숫자가 1씩 증가
-        setMerchantUidSuffix((prevSuffix) => prevSuffix + 1);
+        // setMerchantUidSuffix((prevSuffix) => prevSuffix + 1);
 
         IMP.request_pay({
           pg: "kakaopay",
           pay_method: "card",
           amount: `${amount}`,
-          name: "강아지껌",
-        //   merchant_uid: `ORD20231203-00000${merchantUidSuffix}`,
-        merchant_uid: `ORD20231203-000007`,
-        });
-      };
+          name: `${amount}원 포인트 충전`,
+          merchant_uid: `ORD20231203-000028`,
+        //   buyer_email: "",
+        //   buyer_name: "",
+        //   buyer_tel: "",
+        //   buyer_addr: "",
+        //   buyer_postcode: "",
+        },function (response) {
+            const {status, err_msg} = response;
+            if(err_msg){
+                alert(err_msg);
+            }
+            if(status === "paid"){
+                const {imp_uid} = response;
+                Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: `${amount}포인트 충전이 완료 되었습니다.`,
+                    showConfirmButton: false,
+                    timer: 1500
+                    
+                    })
+                    navigate('/mypage/Mypoint');
+    
+            }
+        }
+        )};
   
       // 버튼이 정상적으로 찾아지면 클릭 이벤트를 할당
       if (button) {
@@ -50,7 +73,7 @@ const MypointRecharge = () => {
           button.removeEventListener("click", onClickpay);
         }
       };
-    }, []); // 빈 배열을 전달하여 컴포넌트가 처음 마운트될 때만 실행
+    }, [amount]); // 빈 배열을 전달하여 컴포넌트가 처음 마운트될 때만 실행
   
 
     const [num, setNum] = useState(0);
