@@ -41,6 +41,12 @@ public class MypageController {
 	    return userProfile;
 	}
 	
+	@PostMapping(path="writeUser")
+	public void writeUser(@ModelAttribute UserDTO userDTO) {
+//		System.out.println("MypageController 부분에서 " + dogsInfoDTO.getName() );
+		mypageService.writeUser(userDTO);
+	}
+	
 
 	@GetMapping(path = "getPointCharging")
 	public PointChargingDTO getPointCharging(@RequestParam String userIdStr) {

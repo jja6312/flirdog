@@ -7,9 +7,26 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 const MypointRecharge = () => {
+    
+  const [userObject, setUserObject] = useState({});
+  console.log(userObject); //아무의미없음.userObject빈객체 방지용
+
+  const [userDTO, setUserDTO] = useState({
+    name: '',
+    passwd: '',
+    email: '',
+    nickname: '',
+    userRole: '',
+    point: 0,
+    communityScore: 0,
+    image: '',
+  });
+  const {name,passwd,email,nickname,userRole,point,communityScore,image,} = userDTO;
+
     // useRef를 사용하여 버튼 엘리먼트를 참조
     const buttonRef = useRef(null);
     // const [merchantUidSuffix, setMerchantUidSuffix] = useState(10);
@@ -17,6 +34,16 @@ const MypointRecharge = () => {
     const navigate = useNavigate(); 
 
     useEffect(() => {
+
+      // 로컬스토리지에서 유저 아이디 가져오기
+      const userJsonString = localStorage.getItem('user');
+    
+      const userObject = JSON.parse(userJsonString);
+      console.log(userObject);
+      setUserObject(userObject);
+      const userId = userObject.id;
+
+      console.log("userId"+userId);
       // IMP 초기화
       const IMP = window.IMP;
       IMP.init("imp15772586");
@@ -34,18 +61,30 @@ const MypointRecharge = () => {
           pay_method: "card",
           amount: `${amount}`,
           name: `${amount}원 포인트 충전`,
-          merchant_uid: `ORD20231203-000029`,
+          merchant_uid: `ORD20231203-000030`,
         //   buyer_email: "",
         //   buyer_name: "",
         //   buyer_tel: "",
         //   buyer_addr: "",
-        //   buyer_postcode: "",
+        //   buyer_postcode: "", <== 이런 정보들도 넣을수있음.
         },function (response) {
             const {status, err_msg} = response;
             if(err_msg){
                 alert(err_msg);
             }
             if(status === "paid"){
+              
+                //결제 성공시 user_table에 포인트 데이터 입력되게
+                axios.post(`/mypage/writeUser`) //[ 김찬영  2023-12-4 오후 09:46:33 ]
+                                                //데이터 업데이트 되는걸로 바꿔야됨.
+                .then((res) => {
+                    alert(`${amount}`);
+                    setUserDTO(`${amount}`);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+                
                 const {imp_uid} = response;
                 Swal.fire({
                     position: 'middle',
@@ -55,8 +94,8 @@ const MypointRecharge = () => {
                     timer: 1500
                     
                     })
-                    navigate('/mypage/Mypoint');
-    
+                navigate('/mypage/Mypoint');
+              
             }
         }
         )};
@@ -73,7 +112,7 @@ const MypointRecharge = () => {
           button.removeEventListener("click", onClickpay);
         }
       };
-    }, [amount]); // 빈 배열을 전달하여 컴포넌트가 처음 마운트될 때만 실행
+    }, [amount],[]); // 빈 배열을 전달하여 컴포넌트가 처음 마운트될 때만 실행
   
 
     const [num, setNum] = useState(0);
