@@ -50,7 +50,7 @@ import MydogUpdateForm2 from "./components/mypage/1프로필/MydogUpdateForm2";
 
 import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
 
-import Login from "./components/user/Login";
+import Login from "./components/login/Login";
 import Kakaopay from "./components/mypage/6테스트페이지/Kakaopay";
 
 import JoinAuth from "./components/login/loginAPI/JoinAuth";
@@ -68,7 +68,7 @@ const App = () => {
         <>
           {/* 화면에 보이는 영역 */}
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
 
           {/* //김찬영마이페이지================================================================= */}
           <Route path="/mypage/Mypoint" element={<Mypoint />} />

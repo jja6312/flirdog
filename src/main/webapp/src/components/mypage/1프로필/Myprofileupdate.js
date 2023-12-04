@@ -38,6 +38,7 @@ const MyprofileUpdate = () => {
         });
     const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities,communityScore,dogsinfos,matching,point,point_chargings,popularity,userRole,imgageFileName} = userDTO;
 
+    const [userObject, setUserObject] = useState({});
     const imgRef = useRef()
     const [imgList, setImgList] = useState([])
     const [files, setFiles] = useState([])
@@ -75,7 +76,15 @@ const MyprofileUpdate = () => {
         }
 
         useEffect(() => {
-            axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
+            
+            // 로컬스토리지에서 유저 아이디 가져오기
+            const userJsonString = localStorage.getItem('user');
+            const userObject = JSON.parse(userJsonString);
+            console.log(userObject);
+            setUserObject(userObject);
+            const userId = userObject.id;
+
+            axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
             .then((res) => {
                 //alert('성공')
                 console.log(res.data);
