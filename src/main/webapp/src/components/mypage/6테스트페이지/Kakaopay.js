@@ -19,7 +19,7 @@ const Kakaopay = () => {
         pay_method: "card",
         amount: "10",
         name: "강아지껌",
-        merchant_uid: "ORD20231203-000001",
+        merchant_uid: "ORD20231203-000005",
       });
     };
 
