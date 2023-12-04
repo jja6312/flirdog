@@ -17,7 +17,7 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:mysql://db-jnafp-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#
@@ -38,10 +38,9 @@ spring:
 spring:
   kafka:
     consumer:
-      bootstrap-servers: 223.130.146.216:9092,223.130.146.210:9092,223.130.146.187:9092
-      group-id: message
+      bootstrap-servers: 192.168.0.243:9092
     producer:
-      bootstrap-servers: 223.130.146.216:9092,223.130.146.210:9092,223.130.146.187:9092
+      bootstrap-servers: 192.168.0.243:9092
 
 #  kafka:
 #    consumer:
@@ -55,7 +54,7 @@ spring:
 spring:
   data:
     mongodb:
-      host: jnbjo.pub-vpc.mg.naverncp.com
+      host: k07fd.pub-vpc.mg.naverncp.com
       port: 17017
       database: test
       username: user
@@ -68,7 +67,7 @@ spring:
       on-profile: test
 
   datasource:
-    url: jdbc:mysql://db-jgnlo-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#
