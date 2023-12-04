@@ -36,7 +36,7 @@ const PwdCheckInput = ({
             onChange={handlePasswordCheckChange}
             aria-label="Large"
             aria-describedby="inputGroup-sizing-lg"
-            placeholder="비밀번호를 입력해주세요."
+            placeholder="비밀번호 입력"
             isInvalid={!isPasswordMatch && passwordCheck}
             type="password"
           />

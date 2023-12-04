@@ -15,6 +15,7 @@ const PetAiImage = ({
   onAcceptAiImage,
   onJoin,
 }) => {
+  const [imgUrl, setImgUrl] = useState("");
   const NononononoJoin = () => {
     Swal.fire({
       icon: "error",
@@ -24,10 +25,8 @@ const PetAiImage = ({
       position: "top",
     });
   };
-
   const onInput = (e) => {
     const { value } = e.target;
-
     setUser({ ...user, nickname: value });
   };
   useEffect(() => {
@@ -35,7 +34,9 @@ const PetAiImage = ({
       window.Kakao.init("b3eef06a2754cfd6cae91b650e23a921");
     }
   }, []);
-
+  useEffect(() => {
+    setImgUrl(aiDogProfileImgUrl);
+  }, [aiDogProfileImgUrl]);
   const sendKakaoMessage = () => {
     window.Kakao.Link.sendDefault({
       objectType: "feed",
@@ -50,14 +51,13 @@ const PetAiImage = ({
       },
     });
   };
-
   return (
     <>
       <div
         className="d-flex justify-content-center align-items-center mt-5"
         style={{
-          width: 300,
-          height: 300,
+          width: 250,
+          height: 250,
           backgroundColor: "black",
           //배경이미지 크기 딱맞추기
           backgroundSize: "cover",
@@ -69,11 +69,10 @@ const PetAiImage = ({
         <ScratchCard
           frontImageSrc="/image/login/sticky.png"
           backImageSrc={aiDogProfileImgUrl}
-          width="300px"
-          height="300px"
+          width="250px"
+          height="250px"
         />
       </div>
-
       <InputGroup style={{ width: "340px" }} size="lg" className={`mt-2`}>
         <Form.Control
           onChange={onInput}
@@ -87,16 +86,13 @@ const PetAiImage = ({
           user.nickname.length > 0
             ? loginStyles.loginBtn
             : loginStyles.disabledBtn
-        } mt-2 d-flex justify-content-center align-items-center rounded 
-        
+        } mt-2 d-flex justify-content-center align-items-center rounded
           ${loginStyles.loginFormElementDiv}
-            
         `}
         onClick={user.nickname.length > 0 ? onJoin : NononononoJoin}
       >
         <span className={login.loginBtnSpan}>프로필 설정 및 회원가입 완료</span>
       </div>
-
       <div
         className="mt-3"
         style={{

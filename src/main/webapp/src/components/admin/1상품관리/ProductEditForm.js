@@ -17,6 +17,8 @@ import axios from "axios";
 import ProductCategory from "./1상품분류정보/ProductCategory";
 
 import { useNavigate, useParams } from "react-router-dom";
+import Reactquill from "../../somoim/Reactquill";
+import ReactQuill from "react-quill";
 
 const ProductEditForm = ({ openLeftside }) => {
   const { productId } = useParams();
@@ -29,13 +31,15 @@ const ProductEditForm = ({ openLeftside }) => {
     // contentDetail: "",
   });
 
+  const [subCategoryUseState, setSubCategoryUseState] = useState("");
+
   const nameRef = useRef();
   const contentRef = useRef();
   const priceRef = useRef();
   const stockRef = useRef();
   const imgRef = useRef();
 
-  const [imgList, setImgList] = useState([]); //미리보기 이미지
+  const [imgList, setImgList] = useState(""); //미리보기 이미지
   const [imgFiles, setImgFiles] = useState("");
   const [category1Selected, setCategory1Selected] = useState("");
   const [category2Selected, setCategory2Selected] = useState("");
@@ -107,9 +111,6 @@ const ProductEditForm = ({ openLeftside }) => {
     console.log(formData.entries());
 
     if (imgFiles === "" && imgList.length > 0) {
-      alert(
-        "파일을 새로 업로드하지 않고, 이미지 리스트가 0이 아닐때, db의 이미지를 그대로놔둠."
-      );
       axios
         .post(
           "http://localhost:8080/admin/productUpdateWithoutImage",
@@ -138,7 +139,6 @@ const ProductEditForm = ({ openLeftside }) => {
         .catch((error) => console.log(error));
     } else {
       //----------------else---------------------
-      alert("이미지 리스트가 없거나, 새로운파일이있으면 정상 업데이트");
 
       for (var i = 0; i < imgFiles.length; i++) {
         formData.append("imgFiles", imgFiles[i]);
@@ -196,12 +196,31 @@ const ProductEditForm = ({ openLeftside }) => {
           );
 
         setCategory1Selected(mainCategoryData.text);
+        setSubCategoryUseState(subCategoryData.text);
         setCategory2Selected(subCategoryData.text);
-        const imgArray = res.data.image.split(",").map((item) => item);
-        setImgList([imgArray]);
+        const imgArray = res.data.image;
+
+        setImgList(
+          "https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/" +
+            imgArray
+        );
       })
       .catch((error) => console.log(error));
   }, [productId]);
+
+  useEffect(() => {
+    if (category1Selected !== "") {
+      const mainCategory = ProductCategory.mainCategories.find(
+        (item) => item.text === category1Selected
+      );
+
+      const subCategoryObject = ProductCategory.subCategories.find(
+        (item) => item.value === mainCategory.value
+      );
+
+      setCategory2Selected(subCategoryObject.sub[0].text);
+    }
+  }, [category1Selected]);
 
   return (
     <>

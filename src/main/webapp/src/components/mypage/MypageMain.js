@@ -1,8 +1,9 @@
 
+
 import React, { useEffect, useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/esm/Container';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
@@ -12,9 +13,10 @@ import MypageSubHeader11 from './5공통/MypageSubHeader1_1';
 
 import axios from 'axios';
 
-
-
 const MypageMain = () => {
+
+    //navigate
+    const navigate = useNavigate();
 
     
     const [userDTO, setUserDTO] = useState({
@@ -29,17 +31,45 @@ const MypageMain = () => {
         // 예를 들면, dogsInfos, popularity, matching 등...
       });
 
+      const fetchData = async () => {
+        try {
+            // 로컬스토리지에서 유저 아이디 가져오기
+            const getUserId = localStorage.getItem('userId');
+    
+            // getUserId가 null인 경우
+            if (getUserId === null) {
+                alert('로그인이 필요합니다.');
+                // navigate 함수 정의 확인 필요
+                // navigate('/login');
+            } else {
+                // getUserId가 null이 아닌 경우
+                const response = await axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${getUserId}`);
+                
+                console.log(response.data);
+    
+                // setUserDTO 함수 정의 확인 필요
+                // setUserDTO(response.data);
+            }
+        } catch (e) {
+            console.log(e);
+            alert('실패');
+        }
+    };
 
     useEffect(() => {
-        axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
-        .then((res) => {
-            console.log(res.data);
-            setUserDTO(res.data);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert('실패')
-        });
+
+        
+        fetchData();
+       
+        // axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
+        // .then((res) => {
+        //     console.log(res.data);
+        //     setUserDTO(res.data);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        //     alert('실패')
+        // });
     }, []);
 
     const getEmailLogo = () => {

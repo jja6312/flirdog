@@ -28,7 +28,7 @@ const PetInfo3PetGender = ({ onInput }) => {
                 id="genderBox1"
                 type="radio"
                 name="gender"
-                value="남아"
+                value="Male"
                 onInput={onInput}
               />
               <label
@@ -43,7 +43,7 @@ const PetInfo3PetGender = ({ onInput }) => {
                 id="genderBox2"
                 type="radio"
                 name="gender"
-                value="여아"
+                value="Female"
                 onInput={onInput}
               />
               <label

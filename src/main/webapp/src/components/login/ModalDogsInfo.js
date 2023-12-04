@@ -3,6 +3,7 @@ import dogsBreed from "./join/dogsBreeds";
 
 const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
   const [breedText, setBreedText] = useState("");
+  const averageScore = Math.ceil(dog.score.averageScore * 100) / 100;
 
   useEffect(() => {
     const dogsBreedFind =
@@ -13,16 +14,19 @@ const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
 
   return (
     <div
-      className="d-flex justify-content-center aling-items-start flex-column"
+      className="d-flex justify-content-start aling-items-start flex-column"
       style={{ width: "100%", height: "100%" }}
     >
       <div
         className="d-flex justify-content-center aling-items-start flex-column mt-3"
         style={{ width: "100%" }}
       >
-        <span style={{ color: "gray" }}>강아지 이름</span>
+        <span style={{ fontSize: 31 }}>강아지 정보</span>
+        <span className="mt-4" style={{ color: "gray" }}>
+          강아지 이름
+        </span>
         <div className="d-flex justify-content-start align-items-center">
-          {dog.gender === "남아" ? (
+          {dog.gender === "Male" ? (
             <img
               style={{ width: 16, marginRight: 10 }}
               src="/image/login/man.png"
@@ -35,7 +39,7 @@ const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
               alt="여아"
             />
           )}
-          <span style={{ fontSize: 25 }}>{dog.name}</span>
+          <span style={{ fontSize: 20 }}>{dog.name}</span>
         </div>
       </div>
       <div
@@ -44,7 +48,7 @@ const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
       >
         <span style={{ color: "gray" }}>나이</span>
 
-        <span style={{ fontSize: 25 }}>{dog.age}살</span>
+        <span style={{ fontSize: 20 }}>{dog.age}살</span>
       </div>
 
       <div
@@ -52,7 +56,7 @@ const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
         style={{ width: "100%" }}
       >
         <span style={{ color: "gray" }}>중성화여부</span>
-        <span style={{ fontSize: 25 }}>
+        <span style={{ fontSize: 20 }}>
           {dog.isNeutralized === true ? (
             <img
               style={{ width: 30, marginRight: 10 }}
@@ -73,14 +77,21 @@ const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
         style={{ width: "100%" }}
       >
         <span style={{ color: "gray" }}>견종</span>
-        <span style={{ fontSize: 25 }}>{breedText}</span>
+        <span style={{ fontSize: 20 }}>{breedText}</span>
+      </div>
+      <div
+        className="d-flex justify-content-center aling-items-start flex-column mt-3"
+        style={{ width: "100%" }}
+      >
+        <span style={{ color: "gray" }}>평균 별점</span>
+        <span style={{ fontSize: 20 }}>{averageScore}</span>
       </div>
       <div
         className="d-flex justify-content-center aling-items-start flex-column mt-3"
         style={{ width: "100%" }}
       >
         <span style={{ color: "gray" }}>나와의 거리</span>
-        <span style={{ fontSize: 25 }}>? km</span>
+        <span style={{ fontSize: 20 }}>? km</span>
       </div>
     </div>
   );

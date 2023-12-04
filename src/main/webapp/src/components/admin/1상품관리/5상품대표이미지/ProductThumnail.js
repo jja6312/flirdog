@@ -61,20 +61,20 @@ const ProductThumnail = ({
                 overflow: "hidden",
               }}
             >
-              {imgList.map((item, index) => (
-                <img
-                  alt=""
-                  key={index}
-                  src={item}
-                  style={{ width: "100%", objectFit: "cover" }}
-                />
-              ))}
+              <img
+                alt=""
+                src={`${imgList}`}
+                style={{ width: "100%", objectFit: "cover" }}
+              />
+
               {/* imgRef의 input에 파일이 있다면, <div>생성</div> */}
-              {imgList.length > 0 && (
-                <div onClick={onReset} className={xBox.xBox}>
-                  <span>ㅡ</span>
-                </div>
-              )}
+              {imgList.length > 0 &&
+                imgList !==
+                  "https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112//image/nullImage/nullImage1.png" && (
+                  <div onClick={onReset} className={xBox.xBox}>
+                    <span>ㅡ</span>
+                  </div>
+                )}
             </div>
           </td>
         </tr>

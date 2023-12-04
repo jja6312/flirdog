@@ -23,6 +23,7 @@ public class SomoimSerializer extends JsonSerializer<Somoim> {
         gen.writeStringField("address2", somoim.getAddress2());
         // user 필드는 생략 (id만 직렬화)
         gen.writeObjectField("userId", somoim.getUser() != null ? somoim.getUser().getId() : null);
+        gen.writeStringField("accountName", somoim.getAccountName());
         gen.writeStringField("accountEmail", somoim.getAccountEmail());
         gen.writeNumberField("accountPhone", somoim.getAccountPhone());
         gen.writeEndObject();

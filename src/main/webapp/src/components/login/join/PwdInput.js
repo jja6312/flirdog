@@ -37,7 +37,7 @@ const PwdInput = ({ setPassword, isValidPassword, setIsValidPassword }) => {
             onChange={handlePasswordChange}
             aria-label="Large"
             aria-describedby="inputGroup-sizing-lg"
-            placeholder="비밀번호를 입력해주세요."
+            placeholder="비밀번호 입력"
             type="password"
           />
         </InputGroup>

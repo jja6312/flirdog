@@ -7,7 +7,7 @@ const SomoimDetailMain = ({somoimId}) => {
     const { introduceDetail } = formData;
 
     useEffect(() => {
-        console.log(somoimId)
+        console.log('소모임 메인에서 부르는 소모임 아이디 :' + somoimId)
         if(somoimId) {
             axios.get(`/somoim/getSomoimForm?id=${somoimId}`)
                 .then(res => {

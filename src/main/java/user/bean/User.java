@@ -2,6 +2,7 @@ package user.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import api.BaseEntity;
 import community.bean.Community;
@@ -27,9 +28,10 @@ import somoim.bean.Somoim;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
-public class User extends BaseEntity{
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // 12/2 지안추가. 모달띄울때 user정보를불러오는데, 이때 이게있으니까 잘됨.
+public class User extends BaseEntity {
     @Id
-    //@Column(name="user_Id")
+    // @Column(name="user_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -50,7 +52,7 @@ public class User extends BaseEntity{
     private Long point;
 
     private int communityScore;
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DogsInfo> dogsInfos;
 
@@ -63,14 +65,12 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Community> communities;
 
-    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PointCharging> pointChargings;
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Somoim> somoim;
 }
-

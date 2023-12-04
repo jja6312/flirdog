@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "../../css/login/login.module.css";
 import SocialKakao from "./loginAPI/SocialKaKao";
 import { Form, InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import ProductNoticeBanner from "../admin/1상품관리/ProductNoticeBanner";
 import ModalBtn from "./ModalBtn";
@@ -13,46 +13,25 @@ import ModalDogsInfo from "./ModalDogsInfo";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import ModalGoMatching from "./ModalGoMatching";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { showModal } = useParams();
-
-  const [modalShow, setModalShow] = useState(false);
   const { login } = useContext(UserContext);
+
+  // ModalGoMatching.config.start----------------------------------------------
   const [credentials, setCredentials] = useState({
     email: "",
     passwd: "",
   });
+  const [modalShow, setModalShow] = useState(false);
   const [modaldogsInfo, setModalDogsInfo] = useState([]);
+  const [modalMatchingTable, setModalMatchingTable] = useState([]);
+  const [modalUserInfo, setModalUserInfo] = useState([]);
   const [currentDogIndex, setCurrentDogIndex] = useState(0); // 현재 표시되는 강아지의 인덱스
   const [isSatisfyForNextBtnAuth, setIsSatisfyForNextBtnAuth] = useState(false);
   const [score, setScore] = useState([false, false, false, false, false]);
-
-  const submitScore = () => {
-    axios
-      .post("http://localhost:8080/access/saveDogScore", null, {
-        params: {
-          dogId: modaldogsInfo[currentDogIndex].id,
-          score: score.filter(Boolean).length,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("별점제출에서 오류발생! 콘솔확인");
-      });
-  };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setCredentials(() => ({
-      ...credentials,
-      [name]: value,
-    }));
-  };
-
   const handleNextDog = () => {
     if (isSatisfyForNextBtnAuth === false) {
       Swal.fire({
@@ -81,11 +60,84 @@ const Login = () => {
     setModalShow(false);
     setCurrentDogIndex(0);
   };
+  const submitScore = () => {
+    axios
+      .post("http://localhost:8080/access/saveDogScore", null, {
+        params: {
+          dogId: modaldogsInfo[currentDogIndex].id,
+          score: score.filter(Boolean).length,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("별점제출에서 오류발생! 콘솔확인");
+      });
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setCredentials(() => ({
+      ...credentials,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (modalShow) {
+        try {
+          const res1 = await axios.post(
+            "http://localhost:8080/access/getFiveDogsInfo"
+          );
+          const dogsInfoData = res1.data;
+          setModalDogsInfo(dogsInfoData);
+
+          const userInfoPromises = dogsInfoData.map((dog) =>
+            axios.post(
+              "http://localhost:8080/access/getUserInfoAsDogId",
+              null,
+              {
+                params: { dogId: dog.id },
+              }
+            )
+          );
+
+          const userInfos = await Promise.all(userInfoPromises);
+          setModalUserInfo(userInfos.map((res) => res.data));
+
+          const matchingInfoPromises = userInfos.map((res, i) =>
+            axios.post("http://localhost:8080/access/getMatchingTable", null, {
+              params: {
+                dogName: dogsInfoData[i].name,
+                userId: res.data.id,
+              },
+            })
+          );
+
+          const matchingInfos = await Promise.all(matchingInfoPromises);
+
+          setModalMatchingTable(matchingInfos.map((res) => res.data));
+        } catch (err) {
+          console.log("모달 중 매칭데이터 불러오다 에러: " + err);
+        }
+      }
+    };
+
+    fetchData();
+  }, [modalShow]);
+
+  useEffect(() => {
+    console.log("모달매칭테이블: ", modalMatchingTable);
+  }, [modalMatchingTable]);
+
+  // ModalGoMatching.config.end--------------------------------------------------------
 
   useEffect(() => {
     if (showModal === "true") {
       setModalShow(true);
-      alert(showModal);
     }
   }, [showModal]);
 
@@ -93,26 +145,6 @@ const Login = () => {
     console.log("credentials");
     console.log(credentials);
   }, [credentials]);
-
-  //modalShow가 true이면 useEffect로 getFiveDogsInfo 를 가져온다.
-  useEffect(() => {
-    if (modalShow === false) {
-      setIsSatisfyForNextBtnAuth(false);
-    }
-    if (modalShow) {
-      //랜덤한 강아지 정보 불러오기
-      axios
-        .post("http://localhost:8080/access/getFiveDogsInfo")
-        .then((res) => {
-          setModalDogsInfo(res.data);
-          console.log("modalDogsInifo");
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [modalShow]);
 
   const handleLogin = () => {
     console.log("credentials.passwd");
@@ -193,6 +225,7 @@ const Login = () => {
             onChange={(e) => {
               handleChange(e);
             }}
+            type="password"
           />
         </InputGroup>
       </div>
@@ -205,98 +238,34 @@ const Login = () => {
       <div
         className={`${styles.loginFormElementDiv} mt-2 d-flex justify-content-center align-items-center`}
       >
-        <span className={styles.PwdFindAndJoinSpan}>비밀번호 재설정</span>
+        <span
+          className={styles.PwdFindAndJoinSpan}
+          onClick={() => navigate("/pwdFind")}
+        >
+          비밀번호 재설정
+        </span>
         <div style={{ width: 80 }}></div>
         <Link to="/join/auth" className={`${styles.linkNoneStyle}`}>
           <span className={styles.PwdFindAndJoinSpan}>회원가입</span>
         </Link>
       </div>
-      <Modal
-        size="lg"
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <div className="d-flex justify-content-center align-items-start flex-column">
-            <span style={{ fontSize: 30 }}>
-              미모 투표({currentDogIndex + 1}/{modaldogsInfo.length})
-            </span>
-            <span style={{ color: "gray" }}>
-              강아지 사진을 누르면 1:1채팅이 시작됩니다.
-            </span>
-          </div>
-        </Modal.Header>
-        <Modal.Body>
-          <div
-            className={`d-flex justify-content-center align-items-center flex-column`}
-            style={{ width: "100%", height: 400 }}
-          >
-            <div
-              className={`d-flex justify-content-center align-items-center`}
-              style={{ width: "100%", height: 400 }}
-            >
-              <div
-                className="d-flex justify-content-center align-items-center rounded"
-                style={{ width: "60%", height: 400 }}
-              >
-                {modaldogsInfo.length > 0 && (
-                  <img
-                    className="rounded"
-                    alt="강아지 사진"
-                    src={modaldogsInfo[currentDogIndex].image}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                )}
-              </div>
-              <div style={{ width: "7%" }}></div>
-              <div style={{ width: "20%" }}>
-                {modaldogsInfo.length > 0 && (
-                  <ModalDogsInfo
-                    dog={modaldogsInfo[currentDogIndex]}
-                  ></ModalDogsInfo>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div
-            className={`d-flex justify-content-center align-items-center flex-column`}
-            style={{ width: "100%" }}
-          >
-            <div
-              className="d-flex justify-content-center align-items-center flex-column"
-              style={{ width: "100%" }}
-            >
-              <StarPoint
-                score={score}
-                setScore={setScore}
-                currentDogIndex={currentDogIndex}
-                setIsSatisfyForNextBtnAuth={setIsSatisfyForNextBtnAuth}
-              ></StarPoint>
-              {currentDogIndex < modaldogsInfo.length - 1 ? (
-                <NextBtn
-                  isSatisfyForNextBtnAuth={isSatisfyForNextBtnAuth}
-                  text="다음"
-                  onClick={handleNextDog}
-                ></NextBtn>
-              ) : (
-                <NextBtn
-                  isSatisfyForNextBtnAuth={isSatisfyForNextBtnAuth}
-                  text="완료"
-                  onClick={handleComplete}
-                ></NextBtn>
-              )}
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
-
+      {/* ModalGoMatching.code.start------------------------- */}
+      <ModalGoMatching
+        modalShow={modalShow}
+        setModalShow={setModalShow}
+        modaldogsInfo={modaldogsInfo}
+        currentDogIndex={currentDogIndex}
+        isSatisfyForNextBtnAuth={isSatisfyForNextBtnAuth}
+        setIsSatisfyForNextBtnAuth={setIsSatisfyForNextBtnAuth}
+        score={score}
+        setScore={setScore}
+        handleNextDog={handleNextDog}
+        handleComplete={handleComplete}
+        modalUserInfo={modalUserInfo}
+        modalMatchingTable={modalMatchingTable}
+      ></ModalGoMatching>
       <ModalBtn setModalShow={setModalShow}></ModalBtn>
+      {/*ModalGoMatching.code.end ----------------------------------- */}
     </div>
   );
 };

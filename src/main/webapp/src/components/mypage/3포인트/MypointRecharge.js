@@ -34,7 +34,7 @@ const MypointRecharge = () => {
           pay_method: "card",
           amount: `${amount}`,
           name: `${amount}원 포인트 충전`,
-          merchant_uid: `ORD20231203-000028`,
+          merchant_uid: `ORD20231203-000029`,
         //   buyer_email: "",
         //   buyer_name: "",
         //   buyer_tel: "",
