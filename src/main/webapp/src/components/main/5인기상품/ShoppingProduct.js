@@ -14,7 +14,13 @@ const ShoppingProduct = ({ imgSrc, name, price }) => {
     <div className="col-lg-3 col-sm-6  px-2 rounded mt-4">
       <Link to="/" style={{ textDecoration: "none" }}>
         <Card className={styles.shoppingProductCard}>
-          <Card.Img variant="top" src={imgSrc} />
+          <div style={{ width: "300px", height: "300px" }}>
+            <Card.Img
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              variant="top"
+              src={imgSrc}
+            />
+          </div>
 
           <Card.Body>
             <Card.Title style={{ textAlign: "center" }}>{name}</Card.Title>

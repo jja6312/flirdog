@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import SearchForm from "./SearchForm";
 import axios from "axios";
 import ProductList from "./ProductList";
+import SearchDropdown from "./SearchDropdown";
 
 const ProductListForm = ({ openLeftside }) => {
   const [selectedIcon, setSelectedIcon] = useState("faBorderAll");
@@ -26,24 +27,71 @@ const ProductListForm = ({ openLeftside }) => {
   //품절상품
   const [soldOutProduct, setSoldOutProduct] = useState([]);
 
-  const [useFilter, setUseFilter] = useState(false);
   const [useFilterCheckNumber, setUseFilterCheckNumber] = useState(0);
-  const [searchValueText, setSearchValueText] = useState("");
   const [checkedProducts, setCheckedProducts] = useState([]);
   const [totalFilter, setTotalFilter] = useState([]);
+
+  //----------------SearchDropdown.start------------------
+  const [whatProduct, setWhatProduct] = useState([]);
+  const [searchValueText, setSearchValueText] = useState("");
+  const [useFilter, setUseFilter] = useState(false);
+  const [selectedDropdown, setSelectedDropdown] = useState("상품 이름");
+  const [placeHolderUseState, setPlaceHolderUseState] =
+    useState("상품 이름 검색");
+  //----------------SearchDropdown.end------------------
+
+  useEffect(() => {
+    console.log("searchValueText");
+    console.log(searchValueText);
+  }, [searchValueText]);
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/admin/getProductList")
       .then((res) => {
+        console.log("allProduct");
         console.log(res.data);
 
         setAllProduct(res.data);
+        const initialFilter = res.data;
+
+        // SearchDropdown.selectedDropdown.start----------------------------------
+        let finalFilter = initialFilter; //secondFilter대신 원하는 데이터구조(배열)를 넣어야함.
+        if (useFilter && selectedDropdown) {
+          switch (selectedDropdown) {
+            case "상품 번호":
+              finalFilter = finalFilter.filter((item) =>
+                item.id.toString().includes(searchValueText)
+              );
+              break;
+            // case "유저 이메일":
+            //   // finalFilter = finalFilter.filter(item => item.userEmail.includes(searchValueText));
+            //   break;
+            case "상품 이름":
+              finalFilter = finalFilter.filter((item) =>
+                item.name.includes(searchValueText)
+              );
+              break;
+          }
+        }
+
+        setWhatProduct(finalFilter);
+        setTotalFilter(finalFilter.length);
+        console.log("whatProduct");
+        console.log(finalFilter);
+        // SearchDropdown.selectedDropdown.end----------------------------------
+
         setSellingProduct(res.data.filter((item) => item.stock !== 0));
         setSoldOutProduct(res.data.filter((item) => item.stock === 0));
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [
+    useFilter,
+    selectedDropdown,
+    searchValueText,
+    useFilterCheckNumber,
+    checkedProducts,
+  ]);
 
   const onDeleteCheckedProducts = () => {
     if (checkedProducts.length === 0) {
@@ -133,8 +181,16 @@ const ProductListForm = ({ openLeftside }) => {
           className="d-flex justify-content-end mt-4"
           style={{ width: "100%" }}
         >
+          {/* SearchDropdown.code.start--------------------------------- */}
+          <SearchDropdown
+            type="product" //이 모듈을 쓰려면, type을 새로 추가해서 내부코드를 수정해야함.
+            selectedDropdown={selectedDropdown}
+            setSelectedDropdown={setSelectedDropdown}
+            setPlaceHolderUseState={setPlaceHolderUseState}
+          ></SearchDropdown>
+          {/* SearchDropdown.code.end--------------------------------- */}
           <SearchForm
-            placeHolder="상품 이름 검색"
+            whatLeftMenuInnerText="상품"
             allProduct={allProduct}
             sellingProduct={sellingProduct}
             soldOutProduct={soldOutProduct}
@@ -144,6 +200,10 @@ const ProductListForm = ({ openLeftside }) => {
             setSearchValueText={setSearchValueText}
             useFilterCheckNumber={useFilterCheckNumber}
             setUseFilterCheckNumber={setUseFilterCheckNumber}
+            selectedDropdown={selectedDropdown}
+            setSelectedDropdown={setSelectedDropdown}
+            placeHolderUseState={placeHolderUseState}
+            setPlaceHolderUseState={setPlaceHolderUseState}
           ></SearchForm>
         </div>
 
@@ -202,6 +262,7 @@ const ProductListForm = ({ openLeftside }) => {
                 checkedProducts={checkedProducts}
                 setCheckedProducts={setCheckedProducts}
                 setTotalFilter={setTotalFilter}
+                whatProduct={whatProduct}
               ></ProductList>
             </tbody>
           </Table>

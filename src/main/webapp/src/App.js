@@ -50,6 +50,9 @@ import FreeBoard from "./components/mypage/7자유게시판/FreeBoard";
 import FreeBoardOne from "./components/mypage/7자유게시판/FreeBoardOne";
 
 import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
+import DogListForm from "./components/admin/2회원관리/DogListForm";
+import DogEditForm from "./components/admin/2회원관리/DogEditForm";
+import MatchingListFormAdmin from "./components/admin/5매칭관리/MatchingListFormAdmin";
 
 const App = () => {
   return (
@@ -152,6 +155,10 @@ const App = () => {
               path="/admin/userListForm"
               element={<UserListForm openLeftside="1" />}
             />
+            <Route
+              path="/admin/dogListForm"
+              element={<DogListForm openLeftside="1" />}
+            />
             {/* 주문관리 */}
             <Route
               path="/admin/orderListForm"
@@ -170,9 +177,15 @@ const App = () => {
               path="/admin/reviewListForm"
               element={<ReviewListForm openLeftside="3" />}
             />
+
             <Route
               path="/admin/userEditForm/:userId"
               element={<UserEditForm />}
+            />
+            <Route path="/admin/dogEditForm/:dogId" element={<DogEditForm />} />
+            <Route
+              path="/admin/matchingListForm"
+              element={<MatchingListFormAdmin openLeftside="4" />}
             />
 
             <Route path="product">

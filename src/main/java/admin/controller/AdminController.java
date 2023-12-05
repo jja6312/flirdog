@@ -18,13 +18,17 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import admin.service.AdminDogService;
+import admin.service.AdminMatchingService;
 import admin.service.AdminOrderService;
 import admin.service.AdminProductService;
 import admin.service.AdminUserService;
 import admin.service.ObjectStorageService;
 import jakarta.servlet.http.HttpSession;
+import matching.bean.MatchingDTO;
 import order.bean.Order;
 import product.bean.Product;
+import user.bean.DogsInfo;
 import user.bean.User;
 
 @CrossOrigin
@@ -39,6 +43,10 @@ public class AdminController {
 	private AdminOrderService adminOrderService;
 	@Autowired
 	private ObjectStorageService objectStorageService;
+	@Autowired
+	private AdminDogService adminDogService;
+	@Autowired
+	private AdminMatchingService adminMatchingService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -187,25 +195,74 @@ public class AdminController {
 		return orderList;
 
 	}
-	// 이미지업로드(quillEditor)
-//	@PostMapping(path = "uploadImage")
-//	public String uploadImage(@RequestParam("image") MultipartFile file) {
-//
-//		
-//        if (file.isEmpty()) {
-//            return "파일이 비어 있습니다.";
-//        }
-//        
-//        try {
-//            // 파일 저장 로직
-//            // 예: 파일 시스템에 저장, 데이터베이스에 정보 저장 등
-//            // 저장된 파일의 경로 또는 URL을 반환
-//            String imageUrl = saveFile(file);
-//            return imageUrl;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return "파일 저장 중 오류 발생";
-//        }
-//    }
+	
+	// 애견리스트
+	@GetMapping(path = "getDogList", produces = "application/json;charset=UTF-8")
+	public List<DogsInfo> getDogList() {
+		List<DogsInfo> dogList = adminDogService.getAllDogsWithUsers();
+		
+		return dogList;
+		
+	}
+	// 애견선택삭제
+		@PostMapping(path = "dogDeleteSelected")
+		public void dogDeleteSelected(@RequestParam("dogId") String dogId) {
 
+			adminDogService.dogDeleteSelected(dogId);
+
+		}
+		
+		// 애견삭제
+		@PostMapping(path = "dogDelete")
+		public void dogDelete(@RequestParam("dogId") String dogId) {
+
+			adminDogService.dogDelete(dogId);
+
+		}
+		
+		
+		//특정 애견불러오기
+		@PostMapping(path = "getDog")
+		public Optional<DogsInfo> getDog(@RequestBody Map<String, String> requestBody) {
+		    String dogId = requestBody.get("dogId");
+		    Optional<DogsInfo> dog = adminDogService.getDog(dogId);
+
+		    return dog;
+		}
+		
+		// 회원 정보 수정
+		@PostMapping(path = "dogEdit")
+		public void userEdit(@RequestBody DogsInfo dogDTO) throws JsonMappingException, JsonProcessingException {
+			
+			adminDogService.dogEdit(dogDTO);
+
+		}
+		
+		// 상품리스트
+		@GetMapping(path = "getMatchingList", produces = "application/json;charset=UTF-8")
+		public List<MatchingDTO> getMatchingList() {
+			List<MatchingDTO> matchingList = adminMatchingService.getMatchingList();
+
+			return matchingList;
+
+		}
+		
+		// 매칭삭제
+		@PostMapping(path = "matchingDelete")
+		public void matchingDelete(@RequestParam("matchingId") String matchingId) {
+
+			adminMatchingService.matchingDelete(matchingId);
+
+		}
+		
+		// 매칭선택삭제
+		@PostMapping(path = "matchingDeleteSelected")
+		public void matchingDeleteSelected(@RequestParam("matchingId") String matchingId) {
+
+			adminMatchingService.matchingDeleteSelected(matchingId);
+
+		}
+		
+		
+		
 }

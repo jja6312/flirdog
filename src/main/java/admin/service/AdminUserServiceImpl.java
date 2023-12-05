@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import admin.repository.AdminUserRepository;
+import user.bean.DogsInfo;
 import user.bean.User;
 
 @Service
@@ -53,5 +54,8 @@ public class AdminUserServiceImpl implements AdminUserService {
 		adminUserRepository.save(userDTO);
 		
 	}
+	
+
+	
 
 }

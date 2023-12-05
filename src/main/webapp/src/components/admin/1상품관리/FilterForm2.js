@@ -10,22 +10,22 @@ import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTree } from "@fortawesome/free-solid-svg-icons";
 
-const FilterForm = ({
+const FilterForm2 = ({
   iconName,
   titleText,
   searchValue,
-  selectedIcon,
-  setSelectedIcon,
+  selectedIcon2,
+  setSelectedIcon2,
 }) => {
   return (
     <>
       <div
         className={`${styles.allContainer} d-flex justify-content-start align-items-center`}
-        onClick={() => setSelectedIcon(iconName)}
+        onClick={() => setSelectedIcon2(iconName)}
       >
         <div
           className={`${styles.iconContainer} ${
-            selectedIcon === iconName
+            selectedIcon2 === iconName
               ? styles.iconContainerPink
               : styles.iconContainerGray
           }`}
@@ -75,4 +75,4 @@ const FilterForm = ({
   );
 };
 
-export default FilterForm;
+export default FilterForm2;

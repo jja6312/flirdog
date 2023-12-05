@@ -15,14 +15,22 @@ import SearchForm from "../1상품관리/SearchForm";
 
 import axios from "axios";
 import UserList from "./UserList";
+import SearchDropdown from "../1상품관리/SearchDropdown";
 
 const UserListForm = ({ openLeftside }) => {
   const [userList, setUserList] = useState([]);
-  const [useFilter, setUseFilter] = useState(false);
   const [useFilterCheckNumber, setUseFilterCheckNumber] = useState(0);
-  const [searchValueText, setSearchValueText] = useState("");
   const [checkUser, setCheckUser] = useState([]);
   const [totalFilter, setTotalFilter] = useState([]);
+
+  //----------------SearchDropdown.start------------------
+  const [whatProduct, setWhatProduct] = useState([]);
+  const [searchValueText, setSearchValueText] = useState("");
+  const [useFilter, setUseFilter] = useState(false);
+  const [selectedDropdown, setSelectedDropdown] = useState("선택");
+  const [placeHolderUseState, setPlaceHolderUseState] =
+    useState("회원 이름 검색");
+  //----------------SearchDropdown.end------------------
 
   const onDeleteSelected = () => {
     if (checkUser.length === 0) {
@@ -70,9 +78,46 @@ const UserListForm = ({ openLeftside }) => {
         console.log(res.data);
 
         setUserList(res.data);
+        let finalFilter = res.data;
+
+        if (useFilter && selectedDropdown) {
+          switch (selectedDropdown) {
+            case "유저 아이디":
+              finalFilter = finalFilter.filter((item) =>
+                item.id.toString().includes(searchValueText)
+              );
+              break;
+            case "유저 이메일":
+              finalFilter = finalFilter.filter((item) =>
+                item.email.includes(searchValueText)
+              );
+              break;
+            case "애견 아이디":
+              finalFilter = finalFilter.filter((item) =>
+                item.dogsInfos.some((dog) =>
+                  dog.id.toString().includes(searchValueText)
+                )
+              );
+              break;
+            case "애견 이름":
+              finalFilter = finalFilter.filter((item) =>
+                item.dogsInfos.some((dog) =>
+                  dog.dogName.includes(searchValueText)
+                )
+              );
+              break;
+            // '매칭 제목'과 '매칭 아이디'에 대한 필터링은 데이터 구조에 따라 구현해야 합니다.
+          }
+        }
+
+        setWhatProduct(finalFilter);
+        setTotalFilter(finalFilter.length);
+        console.log("whatProduct");
+        console.log(finalFilter);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [useFilter, selectedDropdown, searchValueText]);
+
   return (
     <>
       <AdminHeader></AdminHeader>
@@ -94,14 +139,26 @@ const UserListForm = ({ openLeftside }) => {
           className="d-flex justify-content-end mt-4"
           style={{ width: "100%" }}
         >
+          {/* SearchDropdown.code.start--------------------------------- */}
+          <SearchDropdown
+            type="user" //이 모듈을 쓰려면, type을 새로 추가해서 내부코드를 수정해야함.
+            selectedDropdown={selectedDropdown}
+            setSelectedDropdown={setSelectedDropdown}
+            setPlaceHolderUseState={setPlaceHolderUseState}
+          ></SearchDropdown>
+          {/* SearchDropdown.code.end--------------------------------- */}
           <SearchForm
-            placeHolder="회원 이름 검색"
+            whatLeftMenuInnerText="회원"
             allProduct={userList}
             setUseFilter={setUseFilter}
             searchValueText={searchValueText}
             setSearchValueText={setSearchValueText}
             useFilterCheckNumber={useFilterCheckNumber}
             setUseFilterCheckNumber={setUseFilterCheckNumber}
+            selectedDropdown={selectedDropdown}
+            setSelectedDropdown={setSelectedDropdown}
+            placeHolderUseState={placeHolderUseState}
+            setPlaceHolderUseState={setPlaceHolderUseState}
           ></SearchForm>
         </div>
 
