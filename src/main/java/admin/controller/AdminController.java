@@ -26,7 +26,7 @@ import admin.service.AdminUserService;
 import admin.service.ObjectStorageService;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
-import order.bean.Order;
+import order.bean.Orders;
 import product.bean.Product;
 import user.bean.DogsInfo;
 import user.bean.User;
@@ -189,8 +189,8 @@ public class AdminController {
 
 	// 주문리스트
 	@GetMapping(path = "getOrderList")
-	public List<Order> getOrderList() {
-		List<Order> orderList = adminOrderService.getOrderList();
+	public List<Orders> getOrderList() {
+		List<Orders> orderList = adminOrderService.getOrderList();
 
 		return orderList;
 

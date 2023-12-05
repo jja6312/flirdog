@@ -3,7 +3,7 @@ package product.bean;
 import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import order.bean.Order;
+import order.bean.Orders;
 
 import java.util.List;
 
