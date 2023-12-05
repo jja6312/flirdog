@@ -7,6 +7,9 @@ import axios from 'axios';
 
 const Mypoint = () => {
 
+    const [userObject, setUserObject] = useState({});
+    console.log(userObject); //아무의미없음.userObject빈객체 방지용
+
     const [userDTO, setUserDTO] = useState({
         name: '',
         passwd: '',
@@ -25,7 +28,18 @@ const Mypoint = () => {
       });
       
     useEffect(() => {
-        axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
+
+        // 로컬스토리지에서 유저 아이디 가져오기
+        const userJsonString = localStorage.getItem('user');
+      
+        const userObject = JSON.parse(userJsonString);
+        console.log(userObject);
+        setUserObject(userObject);
+        const userId = userObject.id;
+  
+        console.log("userId"+userId);
+
+        axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
         .then((res) => {
             console.log(res.data);
             setUserDTO(res.data);

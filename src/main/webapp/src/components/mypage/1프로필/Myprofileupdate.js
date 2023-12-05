@@ -35,8 +35,9 @@ const MyprofileUpdate = () => {
         imgageFileName: '',
         point: 0,
         communityScore: 0,
+        amount: 0,
         });
-    const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities,communityScore,dogsinfos,matching,point,point_chargings,popularity,userRole,imgageFileName} = userDTO;
+    const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities,communityScore,dogsinfos,matching,point,point_chargings,popularity,userRole,imgageFileName,amount} = userDTO;
 
     const [userObject, setUserObject] = useState({});
     const imgRef = useRef()
@@ -309,6 +310,7 @@ const MyprofileUpdate = () => {
                             <input type="hidden" name='popularity' value={popularity}  style={{width:'50px'}} />
                             <input type="hidden" name='userRole' value={userRole}  style={{width:'50px'}} />
                             <input type="hidden" name='imgageFileName' value={imgageFileName}  style={{width:'50px'}} />
+                            <input type="hidden" name='amount' value={amount}  style={{width:'50px'}} />
                         </div>
                     </div>
             </Container>        
