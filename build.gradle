@@ -30,6 +30,7 @@ dependencies {
    implementation 'org.springframework.boot:spring-boot-starter-web'
    //MyBatis
    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+   implementation 'org.testng:testng:7.1.0'
    //DB
    runtimeOnly 'com.mysql:mysql-connector-j'
    //Lombok
