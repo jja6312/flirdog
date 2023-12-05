@@ -47,6 +47,16 @@ const MypointRecharge = () => {
       // IMP 초기화
       const IMP = window.IMP;
       IMP.init("imp15772586");
+
+      axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
+      .then((res) => {
+          //alert('성공')
+          console.log('getUserProfileTest'+res.data);
+          setUserDTO(res.data);
+      })
+      .catch((error) => {
+          console.log(error);
+      });
   
       // useRef로 참조한 버튼 엘리먼트를 사용
       const button = buttonRef.current;
@@ -138,10 +148,21 @@ const MypointRecharge = () => {
                 <div className={`row ${Mypage.Margin1}`}>
                     <div className='col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center'></div>
                     <div className={`col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center ${Mypage.Margin1PointCHarge}`}>
-                        충전
+                        충전 
+                        <input type='hidden' name='point' value={point}/>
                     </div>
                     <div className='col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center'></div>
                 </div>
+                <Row className={`${Mypage.Margin2_2}`}>
+                    <Col xs={3} md={4}>
+                        <div className={Mypage.Myarticle2_2}>현재액수</div>
+                    </Col>
+                    <Col xs={3} md={4} className={Mypage.Imagecenter4}>
+                      <input type='text' id='point' value={point} className={Mypage.input10}/> <span className={Mypage.span10}>포인트</span> 
+                    </Col>
+                    <Col xs={3} md={4}>
+                    </Col>
+                </Row>
                 <Row className={`${Mypage.Margin2}`}>
                     <Col xs={3} md={4}>
                         <div className={Mypage.Myarticle2_1}>충전금액</div>
@@ -151,7 +172,6 @@ const MypointRecharge = () => {
                     <Col xs={3} md={4}>
                     </Col>
                 </Row>
-                
                 <Row className={`${Mypage.Margin2_1}`}>
                     <Col xs={3} md={4}>
                         <div className={Mypage.Myarticle5}>

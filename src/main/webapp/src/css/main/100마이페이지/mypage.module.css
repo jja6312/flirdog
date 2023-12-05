@@ -164,6 +164,13 @@
     margin-left: 10rem;
 }
 
+.Imagecenter4{
+    display: flex;
+    justify-content: start;
+    margin-top: 11px;
+    font-size: 18px;
+
+}
 .colorFixx{
     font-weight: bold;
     cursor: pointer;
@@ -427,6 +434,18 @@
     margin-top: 4%;
     margin-left: 17px;
 }
+.Myarticle2_2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    color:  #707070;
+    font-size: 15px;
+    margin-top: 4%;
+    margin-left: 17px;
+}
 .Myarticle3{
     position: relative;
     width: 180px;
@@ -620,11 +639,10 @@ input[type=radio]:checked + .labelClass2  {
     align-items: start;
     justify-content: left;
     width: 100%;
-    margin-top: 10px;
     color: #707070;
     font-size: 15px;
     margin-left: 14rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 .Margin2_1{
     display: flex;
@@ -632,10 +650,19 @@ input[type=radio]:checked + .labelClass2  {
     align-items: start;
     justify-content: left;
     width: 100%;
-    margin-top: 10px;
     color: #707070;
     font-size: 15px;
     margin-left: 14rem;
+}
+.Margin2_2{
+    display: flex;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 14rem;
+    margin-top: 2rem;
 }
 .Margin4{
     display: flex;
@@ -685,3 +712,14 @@ input[type=radio]:checked + .labelClass2  {
   -webkit-appearance: none;
   margin: 0;
 }
+.input10{
+    border:none;
+    border-right: 0px;
+    border-top: 0px;
+    border-left: 0px;
+    width: 11rem;
+    color: #f56084;
+    font-size: 18px;
+
+}
+.input10:focus {outline:none;}
