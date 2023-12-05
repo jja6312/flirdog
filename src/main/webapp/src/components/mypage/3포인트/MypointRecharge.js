@@ -14,7 +14,7 @@ const MypointRecharge = () => {
     
   const [userObject, setUserObject] = useState({});
   console.log(userObject); //아무의미없음.userObject빈객체 방지용
-
+  //유저테이블
   const [userDTO, setUserDTO] = useState({
     id: '',
     addresses: '',
@@ -37,8 +37,16 @@ const MypointRecharge = () => {
     communityScore: 0,
     amount: 0,
     });
-const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities,communityScore,dogsinfos,matching,point,pointChargings,popularity,userRole,imgageFileName,amount} = userDTO;
+  const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities,communityScore,dogsinfos,matching,point,pointChargings,popularity,userRole,imgageFileName,amount} = userDTO;
 
+  // 포인트 충전 테이블 [ 김찬영  2023-12-5 오후 04:52:45 ] 시간 되면 하시오. 안할거면 포인트 조회에 소멸 예정 포인트! 없애시오.
+//   const [pointChargingDTO, setPointChargingDTO] = useState({
+//     id: '',
+//     price: '',
+//     chargingPoint: '',
+//     createdDate: '',
+//     validDate: '',
+//   });
 
     // useRef를 사용하여 버튼 엘리먼트를 참조
     const buttonRef = useRef(null);

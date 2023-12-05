@@ -42,7 +42,7 @@ public class MypageController {
 	    return userProfile;
 	}
 	
-	@PostMapping(path="writeUser")
+	@PostMapping(path="writeUser") //포인트 충전할떄 썼던 기능. 아주 잘됨.. 이거랑 비슷하게 하시오.
 	public void writeUser(@RequestBody UserDTO userDTO) {
 		userDTO.setPoint(userDTO.getPoint()+ userDTO.getAmount());
 		userDTO.setPointChargings(userDTO.getPointChargings()+1);
@@ -73,6 +73,10 @@ public class MypageController {
 		return mypageService.getDogInfoList(pageable);
 	}
 
+	@PostMapping(path="wrtitePointCharging") //포인트 충전할떄 썼던 기능. 아주 잘됨.. 이거랑 비슷하게 하시오.
+	public void wrtitePointCharging(@RequestBody PointChargingDTO pointChargingDTO) {
+		mypageService.wrtitePointCharging(pointChargingDTO);
+	}
 	
 
 }

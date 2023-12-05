@@ -1,6 +1,10 @@
 package payment.bean;
 
-import api.BaseEntity;
+import java.util.Date;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "PointChargingTable")
-public class PointChargingDTO extends BaseEntity  {
+public class PointChargingDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +30,13 @@ public class PointChargingDTO extends BaseEntity  {
     private int price;
 
 	@Column(name="chargingPoint", length=50)
-    private int chargingPoint;   
+    private int chargingPoint;
+
+	@Column(name="createdDate", length=50)
+    private Date createdDate;
+
+	@Column(name="validDate", length=50)
+    private Date validDate;
     
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id")
