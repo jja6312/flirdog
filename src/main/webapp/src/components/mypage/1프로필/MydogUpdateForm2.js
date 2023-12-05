@@ -25,6 +25,7 @@ const MydogUpdateForm2 = () => {
         dogsWeight: '',
         age: '',
         isNeutralized: '',
+        score: '',
     })
     const [myUserId, setMyUserId] = useState('') //로그인한 유저의 아이디
     useEffect(() => {
@@ -54,7 +55,7 @@ const MydogUpdateForm2 = () => {
     },[dogsInfoDTO]) //dogsInfoDTO가 바뀔때마다 실행
 
     
-      const { id,name, dogsInfo,image,gender,dogsBreed,dogsWeight,age,isNeutralized } = dogsInfoDTO;
+      const { id,name, dogsInfo,image,gender,dogsBreed,dogsWeight,age,isNeutralized,score } = dogsInfoDTO;
     
 
     const imgRef = useRef()
@@ -109,7 +110,7 @@ const MydogUpdateForm2 = () => {
         
         try {
             // First, delete the existing data
-            await axios.delete(`/mypage/deleteDogInfo?id=${myUserId}`);
+            //await axios.delete(`/mypage/deleteDogInfo?id=${myUserId}`);
             
             // If deletion is successful, proceed with the upload
             var formData = new FormData();
@@ -375,9 +376,14 @@ const MydogUpdateForm2 = () => {
                         <div className='col-sm-6 d-flex justify-content-center'>
                             <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>수정하기</Button>{''} 
                             <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onDeleteSubmit }>삭제하기</Button>{''} 
-                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ back }>뒤로가기</Button>{''} 
+                            <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ back }>뒤로가기</Button>{''}              
                         </div>
                     </div>
+                    <div>
+                        <input type='text' name='id' value={id} />
+                        <input type='text' name='dogsInfo' value={dogsInfo} />
+                        <input type='text' name='score' value={score} />
+                    </div>   
             </Container>        
         </div>
     );

@@ -66,6 +66,7 @@ public class MypageUploadController {
 			}
 			
 			DogsInfoDTO dto = new DogsInfoDTO();
+			dto.setId(dogsInfoDTO.getId());
 			dto.setAge(dogsInfoDTO.getAge());
 			dto.setDogsBreed(dogsInfoDTO.getDogsBreed());
 			dto.setGender(dogsInfoDTO.getGender());
@@ -73,6 +74,7 @@ public class MypageUploadController {
 			dto.setIsNeutralized(dogsInfoDTO.getIsNeutralized());
 			dto.setName(dogsInfoDTO.getName());
 			dto.setScore(dogsInfoDTO.getScore());
+			dto.setDogsWeight(dogsInfoDTO.getDogsWeight());
 			dto.setImage(originalFileName);
 			dto.setImageFileName(fileName);
 			
@@ -86,8 +88,9 @@ public class MypageUploadController {
 	}
 
 	@GetMapping(path="uploadList")
-	public List<DogsInfoDTO>  uploadList(){
-		return mypageUploadService.uploadList();
+	public List<DogsInfoDTO>  uploadList(@RequestParam String id){
+	    Long userId = Long.parseLong(id);
+		return mypageUploadService.uploadList(userId);
 	}
 
 	@GetMapping(path="getDogInfo")

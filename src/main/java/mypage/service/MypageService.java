@@ -16,6 +16,8 @@ public interface MypageService {
 
 	public UserDTO getUserProfileTest(Long userId);
 	
+	public void writeUser(UserDTO userDTO); //이거 실제로 안씀.
+	
 	public PointChargingDTO getPointCharging(Long userId);
 
 	public void write(DogsInfoDTO dogsInfoDTO);
