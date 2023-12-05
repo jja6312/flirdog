@@ -27,7 +27,7 @@ public class MessageController {
 
 
 	@PostMapping(path = "createRoom")
-	public void createRoom(@RequestBody MessageRoom messageRoom, @RequestParam List<Integer> userIds) {
+	public void createRoom(@RequestBody MessageRoom messageRoom, @RequestParam List<Long> userIds) {
 		messageRoomService.createRoom(messageRoom, userIds);
 	}
 

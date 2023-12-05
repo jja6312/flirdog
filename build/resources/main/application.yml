@@ -121,7 +121,11 @@ spring:
 openai:
   key: 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
 # chatgpt: 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
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 575d792 (채팅 초기 완료)
+=======
+
+>>>>>>> 251ce39 (채팅 초기 완료)

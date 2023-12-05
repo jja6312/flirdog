@@ -25,7 +25,7 @@ public class MessageRoomService {
     private JoinUserRepository joinUserRepository;
 
 
-    public void createRoom(MessageRoom messageRoom, List<Integer> userIds) {
+    public void createRoom(MessageRoom messageRoom, List<Long> userIds) {
         messageRoomRepository.save(messageRoom);
         List<User> users = userRepository.findAllById(userIds);
         joinRoom(messageRoom, users);
