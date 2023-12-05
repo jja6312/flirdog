@@ -43,13 +43,23 @@ import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRo
 import ProductDetail from "./components/product/ProductDetail";
 import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
 import UserEditForm from "./components/admin/2회원관리/UserEditForm";
+import MydogProfile2 from "./components/mypage/6테스트페이지/MydogProfile2";
+import MydogUpdateForm from "./components/mypage/1프로필/MydogUpdateForm";
+import MydogUpdateForm2 from "./components/mypage/1프로필/MydogUpdateForm2";
+// import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileRegister";
+
+import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
+
 import Login from "./components/login/Login";
+import Kakaopay from "./components/mypage/6테스트페이지/Kakaopay";
+
 import JoinAuth from "./components/login/loginAPI/JoinAuth";
 import PwdFind from "./components/login/login/PwdFind";
 import FreeBoard from "./components/mypage/7자유게시판/FreeBoard";
 import FreeBoardOne from "./components/mypage/7자유게시판/FreeBoardOne";
 
-import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
+
+
 
 const App = () => {
   return (
@@ -58,49 +68,45 @@ const App = () => {
         <>
           {/* 화면에 보이는 영역 */}
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
 
-            {/* //김찬영마이페이지================================================================= */}
-            <Route path="/mypage/Mypoint" element={<Mypoint />} />
-            <Route path="/mypage/Mysetting" element={<Mysetting />} />
-            <Route path="/mypage/Myarticle" element={<Myarticle />} />
-            <Route
-              path="/mypage/MyprofileUpdate"
-              element={<MyprofileUpdate />}
-            />
-            <Route path="/mypage/MypageMain" element={<MypageMain />} />
-            <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
-            <Route
-              path="/mypage/MypageCategoryWrapper"
-              element={<MypageCategoryWrapper />}
-            />
-            <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-            <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-            <Route
-              path="/mypage/MydogProfileUpdate"
-              element={<MydogProfileUpdate />}
-            />
-            <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
-            <Route
-              path="/mypage/MydogProfileRegister2"
-              element={<MydogProfileRegister2 />}
-            />
-            <Route
-              path="/mypage/MypointRecharge"
-              element={<MypointRecharge />}
-            />
-            <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
-            <Route
-              path="/mypage/MyarticleRounge"
-              element={<MyarticleRounge />}
-            />
-            <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
-            <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
-            <Route
-              path="/mypage/WeatherAndStroll"
-              element={<WeatherAndStroll />}
-            />
-            {/* 김찬영마이페이지//================================================================= */}
+          {/* //김찬영마이페이지================================================================= */}
+          <Route path="/mypage/Mypoint" element={<Mypoint />} />
+          <Route path="/mypage/Mysetting" element={<Mysetting />} />
+          <Route path="/mypage/Myarticle" element={<Myarticle />} />
+          <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />} />
+          <Route path="/mypage/MypageMain" element={<MypageMain />} />
+          <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
+          <Route
+            path="/mypage/MypageCategoryWrapper"
+            element={<MypageCategoryWrapper />}
+          />
+          <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
+          <Route
+            path="/mypage/MydogProfileUpdate"
+            element={<MydogProfileUpdate />}
+          />
+          <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
+
+          <Route path="/mypage/MypointRecharge" element={<MypointRecharge />} />
+          <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
+          <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />} />
+          <Route path="/mypage/MydogProfileRegister2" element={<MydogProfileRegister2 />} />
+          <Route path="/mypage/MydogProfile2" element={<MydogProfile2 />} /> 
+          <Route path="/mypage/MydogUpdateForm">
+              <Route path=':userId' element={ <MydogUpdateForm /> } />
+          </Route>
+          <Route path="/mypage/MydogUpdateForm2">
+              <Route path=':userId' element={ <MydogUpdateForm2 /> } />
+          </Route>
+          <Route path="/mypage/MydogProfile2" element={<MydogProfile2 />} /> 
+          <Route path="/mypage/WeatherAndStroll" element={<WeatherAndStroll />} />
+          
+          <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
+          <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
+          <Route path="/mypage/Kakaopay" element={<Kakaopay />} />
+
+          {/* 김찬영마이페이지//================================================================= */}
 
             {/* 매칭페이지 */}
             <Route path="/" element={<Main></Main>} />

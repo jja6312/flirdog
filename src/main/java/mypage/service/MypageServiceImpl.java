@@ -37,6 +37,12 @@ public class MypageServiceImpl implements MypageService {
 	public UserDTO getUserProfileTest(Long userId) {
 		return mypageUserDTORepository.findById(userId).orElse(null);
 	}
+
+	@Override
+	public void writeUser(UserDTO userDTO) {
+		mypageUserDTORepository.save(userDTO);
+		
+	}
 	@Override
 	public PointChargingDTO getPointCharging(Long userId) {
 		return mypagePointDTORepository.findById(userId).orElse(null);

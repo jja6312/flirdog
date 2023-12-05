@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,16 @@ public class MypageController {
 	    Long userId = Long.parseLong(userIdStr);
 	    UserDTO userProfile = mypageService.getUserProfileTest(userId);
 	    return userProfile;
+	}
+	
+	@PostMapping(path="writeUser")
+	public void writeUser(@RequestBody UserDTO userDTO) {
+		userDTO.setPoint(userDTO.getPoint()+ userDTO.getAmount());
+		userDTO.setPointChargings(userDTO.getPointChargings()+1);
+		System.out.println("###point" + userDTO.getPoint());
+		System.out.println("###amount" + userDTO.getAmount());
+//		System.out.println("MypageController 부분에서 " + dogsInfoDTO.getName() );
+		mypageService.writeUser(userDTO);
 	}
 	
 

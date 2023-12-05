@@ -28,8 +28,8 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 	}
 
 	@Override
-	public List<DogsInfoDTO> uploadList() {
-		return mypageDogsInfoDTOUploadRepository.findAll();//쿼리 메소드
+	public List<DogsInfoDTO> uploadList(Long userId) {
+		return mypageDogsInfoDTOUploadRepository.findAllById(userId);//쿼리 메소드
 		
 	}
 
