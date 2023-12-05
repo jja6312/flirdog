@@ -1,6 +1,10 @@
 package mypage.controller;
 
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -75,8 +79,16 @@ public class MypageController {
 
 	@PostMapping(path="wrtitePointCharging") //포인트 충전할떄 썼던 기능. 아주 잘됨.. 이거랑 비슷하게 하시오.
 	public void wrtitePointCharging(@RequestBody PointChargingDTO pointChargingDTO) {
-		mypageService.wrtitePointCharging(pointChargingDTO);
+		System.out.println("생성일자~~~~~~~~~"+pointChargingDTO.getCreatedDate());
+		System.out.println("유효기간~~~~~~~~~"+pointChargingDTO.getValidDate());
+	    // 생성일로부터 7일을 더한 날짜를 구해서 설정 ( 로직 많이 복잡한데, 아무튼 이걸써서 완성시켰다.)
+	    LocalDateTime validDate = 
+	    		LocalDateTime.ofInstant(pointChargingDTO.getCreatedDate()
+	    					 .toInstant(), ZoneId.systemDefault())
+	            			 .plusDays(7);
+	    pointChargingDTO.setValidDate(Date.from(validDate.atZone(ZoneId.systemDefault()).toInstant()));
+
+	    mypageService.wrtitePointCharging(pointChargingDTO);
 	}
-	
 
 }
