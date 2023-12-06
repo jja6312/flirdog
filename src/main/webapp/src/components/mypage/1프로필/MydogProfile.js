@@ -26,9 +26,9 @@ const MydogProfile = () => {
             const userObject = JSON.parse(userJsonString);
             console.log(userObject);
             setUserObject(userObject);
-            const userId = userObject.id;
+            const email = userObject.email;
 
-        axios.get(`/mypage/uploadList?id=${userId}`)
+        axios.get(`/mypage/uploadListDog?email=${email}`)
             .then((res)=>{
                 setList(res.data)
                 console.log(res.data)

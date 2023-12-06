@@ -77,6 +77,7 @@ public class MypageUploadController {
 			dto.setDogsWeight(dogsInfoDTO.getDogsWeight());
 			dto.setImage(originalFileName);
 			dto.setImageFileName(fileName);
+			dto.setEmail(dogsInfoDTO.getEmail());
 			
 			dogsImageList.add(dto);
 			
@@ -88,9 +89,14 @@ public class MypageUploadController {
 	}
 
 	@GetMapping(path="uploadList")
-	public List<DogsInfoDTO>  uploadList(@RequestParam String id){
+	public List<DogsInfoDTO> uploadList(@RequestParam String id){
 	    Long userId = Long.parseLong(id);
 		return mypageUploadService.uploadList(userId);
+	}
+
+	@GetMapping(path="uploadListDog")
+	public List<DogsInfoDTO> uploadListDog(@RequestParam String email){
+		return mypageUploadService.uploadListDog(email);
 	}
 
 	@GetMapping(path="getDogInfo")

@@ -15,29 +15,57 @@ import Swal from 'sweetalert2';
 
 
 const MydogProfileRegister2 = () => {
-
-    useEffect(() => {
-        document.getElementById('imgDelBefore').style.display = 'none'
-        document.getElementById('imgDelBefore2').style.display = 'none'
-    },[]) // 빈배열로 한번만 실행
-
-    const imgRef = useRef()
-
+    const [email1, setEmail1] = useState('');
     const [dogsInfoDTO, setDogsInfoDTO] = useState({
-        name: '강아지',
-        dogsInfo: '강아지정보',
-        image: '이미지',
-        age: '00',
-        gender: '남아',
-        dogsBreed: '미상',
+        id: '',
+        name: '',
+        dogsInfo: '',
+        image: '',
+        age: '',
+        gender: '',
+        dogsBreed: '',
         isNeutralized: 'true',
         score: '100',
         imageFileName: '',
-        dogsWeight: '10',
+        dogsWeight: '',
+        email:'',
 
     })  
 
-    const {name ,age,gender,dogsBreed,isNeutralized,image,score,dogsInfo,imageFileName ,dogsWeight} = dogsInfoDTO
+    const {id,name ,age,gender,dogsBreed,isNeutralized,image,score,dogsInfo,imageFileName ,dogsWeight,email} = dogsInfoDTO
+    
+    const [userObject, setUserObject] = useState({});
+
+    useEffect(() => {
+        
+        // 로컬스토리지에서 유저 아이디 가져오기
+        const userJsonString = localStorage.getItem('user');
+        
+        const userObject = JSON.parse(userJsonString);
+        console.log(userObject);
+        setUserObject(userObject);
+        setEmail1(userObject.email);
+
+        console.log("email~~~~"+userObject.email);
+        console.log("email1~~~~"+email1);
+        console.log("email2~~~~"+dogsInfoDTO.email);
+
+        document.getElementById('imgDelBefore').style.display = 'none'
+        document.getElementById('imgDelBefore2').style.display = 'none'
+
+    },[]) // 빈배열로 한번만 실행
+
+    useEffect(() => {
+        setDogsInfoDTO({
+            ...dogsInfoDTO,
+            email: email1
+        })
+        console.log(dogsInfoDTO);
+    },[email1])
+
+    const imgRef = useRef()
+
+
 
     const [imgList, setImgList] = useState([])
     const [files, setFiles] = useState([])
@@ -51,11 +79,11 @@ const MydogProfileRegister2 = () => {
     const onInput = (e) =>{
         const { name, value } = e.target
         
-
         setDogsInfoDTO({
             ...dogsInfoDTO,
             [name]: value
         })
+        console.log(dogsInfoDTO);  
     }
 
     const onCamera = () => {
@@ -80,6 +108,71 @@ const MydogProfileRegister2 = () => {
         }
 
     const onUploadSubmit = (e) => {
+        
+        console.log('이메일     '+email1);
+        
+        setDogsInfoDTO({
+            ...dogsInfoDTO,
+            email: email1
+        })
+        console.log(dogsInfoDTO);
+
+        if(name === ''){
+            Swal.fire({
+                icon: 'error',
+                title: '이름을 입력해주세요.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#f56084'
+            })
+            return
+        }
+        if(age === ''){
+            Swal.fire({
+                icon: 'error',
+                title: '나이를 입력해주세요.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#f56084'
+            })
+            return
+        }
+        if(dogsWeight === ''){
+            Swal.fire({
+                icon: 'error',
+                title: '무게를 입력해주세요.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#f56084'
+            })
+            return
+        }
+        if(dogsBreed === ''){
+            Swal.fire({
+                icon: 'error',
+                title: '품종을 입력해주세요.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#f56084'
+            })
+            return
+        }
+        if(dogsInfo === ''){
+            Swal.fire({
+                icon: 'error',
+                title: '반려견 소개를 입력해주세요.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#f56084'
+            })
+            return
+        }
+        if(files.length === 0){
+            Swal.fire({
+                icon: 'error',
+                title: '이미지를 선택해주세요.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#f56084'
+            })
+            return
+        }
+        
+        
         e.preventDefault()
         console.log(dogsInfoDTO);
 
@@ -330,6 +423,12 @@ const MydogProfileRegister2 = () => {
                             <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onUploadSubmit }>등록하기</Button>{''} 
                             <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ onReset }>취소</Button>{''} 
                             <Button variant="outline-danger" className={Mypage.Btn4} style={{color:'white'}} onClick={ back }>뒤로가기</Button>{''} 
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-3 d-flex justify-content-center'></div>
+                        <div className='col-sm-6 d-flex justify-content-center'>
+                            <input type='hidden' name='email' value={userObject.email} /> <span>이메일</span>
                         </div>
                     </div>
             </Container>
