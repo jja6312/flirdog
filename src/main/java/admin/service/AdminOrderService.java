@@ -2,10 +2,10 @@ package admin.service;
 
 import java.util.List;
 
-import order.bean.Order;
+import order.bean.Orders;
 
 public interface AdminOrderService {
 
-	List<Order> getOrderList();
+	List<Orders> getOrderList();
 
 }

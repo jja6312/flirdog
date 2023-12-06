@@ -4,7 +4,7 @@ import Loading from '../css/Loading.module.css';
 const LoadingComponent = () => {
     return (
         <div className={Loading.loadingDiv}>
-            <img src="/image/main/main1.png" alt="로딩 중" />
+            <img src="/image/loadingDog.gif" alt="로딩 중" />
         </div>
     );
 };

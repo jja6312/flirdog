@@ -2,7 +2,9 @@ package user.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import api.BaseEntity;
 import jakarta.persistence.Column;
@@ -27,6 +29,9 @@ import matching.bean.Matching;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")//12/4 지안추가. 개정보 조회/수정시 유저가 안끌고와져서 추가.
 public class DogsInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,14 +49,13 @@ public class DogsInfo extends BaseEntity {
     private Boolean isNeutralized;
 
     private String image;
-    
-    @Column(length = 1000)// 지안 추가. AI 프로필 사진
+
+    @Column(length = 1000) // 지안 추가. AI 프로필 사진
     private String imageAiProfile; // 지안 추가. AI 프로필 사진
 
     @Embedded
     private Score score;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

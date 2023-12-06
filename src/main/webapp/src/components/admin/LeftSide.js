@@ -52,6 +52,14 @@ const LeftSide = ({ openLeftside, selected }) => {
                   회원 목록 조회/수정
                 </Accordion.Body>
               </Link>
+              <Link
+                to="/admin/dogListForm"
+                style={{ color: "black", textDecoration: "none" }}
+              >
+                <Accordion.Body className={`mx-4 ${styles.subMenu}`}>
+                  애견 목록 조회/수정
+                </Accordion.Body>
+              </Link>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header className={styles.titleMenu}>
@@ -94,6 +102,20 @@ const LeftSide = ({ openLeftside, selected }) => {
               >
                 <Accordion.Body className={`mx-4 ${styles.subMenu}`}>
                   문의 조회/답변
+                </Accordion.Body>
+              </Link>
+            </Accordion.Item>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header className={styles.titleMenu}>
+                매칭 관리
+              </Accordion.Header>
+
+              <Link
+                to="/admin/matchingListForm"
+                style={{ color: "black", textDecoration: "none" }}
+              >
+                <Accordion.Body className={`mx-4 ${styles.subMenu}`}>
+                  매칭글 조회
                 </Accordion.Body>
               </Link>
             </Accordion.Item>

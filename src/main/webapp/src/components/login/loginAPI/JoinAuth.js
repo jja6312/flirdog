@@ -224,6 +224,16 @@ const JoinAuth = () => {
     }
   };
   const handleSendAuthCode4 = () => {
+    if (imgFiles === undefined) {
+      Swal.fire({
+        icon: "error",
+        title: "이미지를 등록해주세요",
+        showConfirmButton: false,
+        timer: 700,
+        position: "top",
+      });
+      return;
+    }
     setIsClickNext4(true);
     console.log("###imgFiles들어오니?");
     console.log(imgFiles);
