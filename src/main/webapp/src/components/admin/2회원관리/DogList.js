@@ -28,23 +28,8 @@ const DogList = ({
   checkDog,
   setCheckDog,
   setTotalFilter,
+  whatProduct,
 }) => {
-  // 필터링된 애견 목록
-  const filteredDogList =
-    useFilter && dogList
-      ? dogList.filter((dog) => dog.name && dog.name.includes(searchValueText))
-      : dogList;
-
-  useEffect(() => {
-    setTotalFilter(filteredDogList.length);
-  }, [
-    dogList,
-    useFilter,
-    searchValueText,
-    filteredDogList.length,
-    setTotalFilter,
-  ]);
-
   const goDogEditForm = (e) => {
     const editBtnId = e.target.id;
     const popupWidth = 600;
@@ -113,7 +98,7 @@ const DogList = ({
         </tr>
       </thead>
       <tbody>
-        {filteredDogList.map((dog) => (
+        {whatProduct.map((dog) => (
           <tr key={dog.id}>
             <td>
               <CheckBtn

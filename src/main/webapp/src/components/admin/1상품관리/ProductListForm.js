@@ -16,6 +16,7 @@ import SearchForm from "./SearchForm";
 import axios from "axios";
 import ProductList from "./ProductList";
 import SearchDropdown from "./SearchDropdown";
+import LoadingComponent from "../../Loading";
 
 const ProductListForm = ({ openLeftside }) => {
   const [selectedIcon, setSelectedIcon] = useState("faBorderAll");
@@ -40,12 +41,15 @@ const ProductListForm = ({ openLeftside }) => {
     useState("상품 이름 검색");
   //----------------SearchDropdown.end------------------
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     console.log("searchValueText");
     console.log(searchValueText);
   }, [searchValueText]);
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get("http://localhost:8080/admin/getProductList")
       .then((res) => {
@@ -83,8 +87,13 @@ const ProductListForm = ({ openLeftside }) => {
 
         setSellingProduct(res.data.filter((item) => item.stock !== 0));
         setSoldOutProduct(res.data.filter((item) => item.stock === 0));
+        setIsLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setIsLoading(false);
+
+        console.log(error);
+      });
   }, [
     useFilter,
     selectedDropdown,
@@ -129,13 +138,16 @@ const ProductListForm = ({ openLeftside }) => {
               icon: "success",
             });
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            console.log(error);
+          });
       }
     });
   };
 
   return (
     <>
+      {isLoading && <LoadingComponent></LoadingComponent>}
       <AdminHeader></AdminHeader>
 
       <LeftSide
@@ -144,6 +156,7 @@ const ProductListForm = ({ openLeftside }) => {
       ></LeftSide>
       <div className={styles.rightContent}>
         <RightContentHeader title="전체 상품 조회/수정" />
+
         <Alert
           style={{ fontSize: "0.7rem", color: "#6d6d6d" }}
           variant="danger"

@@ -12,6 +12,8 @@ public interface AdminUploadService {
 	void productUpload(String productDTOJson, String mainCategory, String subCategory,
 			List<MultipartFile> imgFilesList, HttpSession session) throws IOException;
 
+	String productUpload(MultipartFile imgFile) throws IOException;
+
 //	void productUpload();
 
 	// Integer calculate(Integer a, Integer b);

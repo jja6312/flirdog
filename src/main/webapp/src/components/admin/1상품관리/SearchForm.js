@@ -22,6 +22,7 @@ const SearchForm = ({
     const searchInputValue = searchInput.current.value;
     setSearchValueText(searchInputValue);
 
+    console.log("searchInputValue");
     console.log(searchInputValue);
     if (searchInputValue === "") {
       setUseFilter(false);

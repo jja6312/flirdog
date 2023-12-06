@@ -9,13 +9,7 @@ const SearchDropdown = ({
 }) => {
   const dropdownList = {
     product: ["상품 이름", "상품 번호"],
-    user: [
-      "유저 이름",
-      "유저 아이디",
-      "유저 이메일",
-      "애견 아이디",
-      "애견 이름",
-    ],
+    user: ["유저 이름", "유저 아이디", "유저 이메일", "애견 아이디"],
     dog: ["애견 아이디", "애견 이름", "애견 견종"],
     matching: [
       "매칭 제목",
@@ -48,6 +42,8 @@ const SearchDropdown = ({
       setPlaceHolderUseState("상품 이름을 입력하세요");
     } else if (e.target.innerText === "상품 번호") {
       setPlaceHolderUseState("상품 아이디를 입력하세요");
+    } else if (e.target.innerText === "유저 이름") {
+      setPlaceHolderUseState("유저 이름을 입력하세요");
     }
 
     setShowDropdown(false);

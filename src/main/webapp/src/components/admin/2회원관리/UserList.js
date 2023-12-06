@@ -28,21 +28,8 @@ const UserList = ({
   checkUser,
   setCheckUser,
   setTotalFilter,
+  whatProduct,
 }) => {
-  const filteredUserList = useFilter
-    ? userList.filter((item) => item.name.includes(searchValueText))
-    : userList;
-
-  useEffect(() => {
-    setTotalFilter(filteredUserList.length);
-  }, [
-    userList,
-    useFilter,
-    searchValueText,
-    filteredUserList.length,
-    setTotalFilter,
-  ]);
-
   const goUserEditForm = (e) => {
     const editBtnId = e.target.id;
     const popupWidth = 600;
@@ -96,7 +83,7 @@ const UserList = ({
 
   return (
     <>
-      {filteredUserList.map((item, index) => (
+      {whatProduct.map((item, index) => (
         <tr key={index}>
           <td>
             <CheckBtn

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +23,7 @@ import admin.service.AdminDogService;
 import admin.service.AdminMatchingService;
 import admin.service.AdminOrderService;
 import admin.service.AdminProductService;
+import admin.service.AdminUploadService;
 import admin.service.AdminUserService;
 import admin.service.ObjectStorageService;
 import jakarta.servlet.http.HttpSession;
@@ -47,6 +49,8 @@ public class AdminController {
 	private AdminDogService adminDogService;
 	@Autowired
 	private AdminMatchingService adminMatchingService;
+	@Autowired
+	private AdminUploadService adminUploadService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -262,6 +266,14 @@ public class AdminController {
 		adminMatchingService.matchingDeleteSelected(matchingId);
 
 	}
+	
+	//종인님께5.start----------------------------------------- 
+	@PostMapping(path = "oneFileGo")
+	public String oneFileGo(@RequestPart MultipartFile file) throws IOException {
+		return adminUploadService.productUpload(file);
+	}
+	//종인님께6.end--------------------------------------------
+	
 
 
 
