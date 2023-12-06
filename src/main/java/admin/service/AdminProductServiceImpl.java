@@ -121,7 +121,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 	@Override
 	public void productDelete(String productId) {
-		adminProductRepository.deleteById(Integer.parseInt(productId));
+		adminProductRepository.deleteById(Long.parseLong(productId));
 
 	}
 
@@ -131,14 +131,14 @@ public class AdminProductServiceImpl implements AdminProductService {
 		String[] productIdArray = productId.split(",");
 
 		for (String id : productIdArray) {
-			adminProductRepository.deleteById(Integer.parseInt(id));
+			adminProductRepository.deleteById(Long.parseLong(id));
 		}
 
 	}
 
 	@Override
 	public Optional<Product> getProductList(String productIdString) {
-		Integer productId = Integer.parseInt(productIdString);
+		Long productId = Long.parseLong(productIdString);
 
 		return adminProductRepository.findById(productId);
 	}
@@ -154,7 +154,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 		MainCategory mainCategoryEnumClass = MainCategory.valueOf(mainCategory);
 		SubCategory subCategoryEnumClass = SubCategory.valueOf(subCategory);
 
-		Integer productId = Integer.parseInt(productIdStr);
+		Long productId = Long.parseLong(productIdStr);
 		System.out.println("제이슨변환: " + newProductData);
 		System.out.println("메인카테고리: " + mainCategoryEnumClass);
 		System.out.println("서브카테고리: " + subCategoryEnumClass);
@@ -194,7 +194,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 		MainCategory mainCategoryEnumClass = MainCategory.valueOf(mainCategory);
 		SubCategory subCategoryEnumClass = SubCategory.valueOf(subCategory);
 
-		Integer productId = Integer.parseInt(productIdStr);
+		Long productId = Long.parseLong(productIdStr);
 		System.out.println("제이슨변환: " + newProductData);
 		System.out.println("메인카테고리: " + mainCategoryEnumClass);
 		System.out.println("서브카테고리: " + subCategoryEnumClass);

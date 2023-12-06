@@ -24,6 +24,9 @@ import access.bean.JoinRequestDTO;
 import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
 import jakarta.servlet.http.HttpSession;
+import matching.bean.MatchingDTO;
+import product.bean.Product;
+import user.bean.Address;
 import user.bean.DogsBreed;
 import user.bean.DogsInfo;
 import user.bean.User;
@@ -78,6 +81,7 @@ public class AccessController {
         return dogsInfo;
 
     }
+    
 
     @PostMapping(path="join")
     public ResponseEntity<?> join(
@@ -92,6 +96,7 @@ public class AccessController {
 
         User user = objectMapper.readValue(userJson, User.class);
         DogsInfo dogsInfo = null;
+        Address address = objectMapper.readValue(userJson, Address.class);
         if (dogsInfoJson != null) {
             dogsInfo = objectMapper.readValue(dogsInfoJson, DogsInfo.class);
         }
@@ -103,6 +108,7 @@ public class AccessController {
 
         JoinRequestDTO joinRequest = new JoinRequestDTO();
         joinRequest.setUser(user);
+        joinRequest.setAddress(address);       
         joinRequest.setDogsInfo(dogsInfo);
         joinRequest.setImage(image);
         System.out.println("image: " + image);
@@ -133,6 +139,79 @@ public class AccessController {
     	accessService.saveDogScore(dogId,score);
     	
     }
+    @PostMapping(path = "updatePwd")
+    public void updatePwd(@RequestParam String email,
+    					@RequestParam String passwd) {
+
+    	accessService.updatePwd(email,passwd);
+    	
+    }
+    
+    @PostMapping(path = "getUserInfoAsDogId")
+    public Optional<User> getUserInfoAsDogId(@RequestParam String dogId) {
+    	System.out.println("###컨트롤러, 개 아이디");
+    	System.out.println(dogId);
+    	
+    	Optional<User> user = accessService.getUserInfoAsDogId(dogId);
+    	
+    	return user;
+    	
+    }
+    @PostMapping(path = "getMatchingTable")
+    public Optional<MatchingDTO> getMatchingTable(@RequestParam String dogName,
+    												@RequestParam String userId) {
+    	System.out.println("###컨트롤러 getMatchingTable, 개 이름");
+    	System.out.println(dogName);
+    	System.out.println("###컨트롤러 getMatchingTable, 유저 아이디");
+    	System.out.println(userId);
+    	
+    	
+    	Optional<MatchingDTO> matchingDTO = accessService.getMatchingTable(dogName,userId);
+    	
+    	return matchingDTO;
+    	
+    }
+    @PostMapping(path = "getUserInfoArray")
+    public List<User> getUserInfoArray() {
+    	
+    	
+    	List<User> topRankingThreeUserOfAllUser = accessService.getUserInfoArray();
+    	
+    	return topRankingThreeUserOfAllUser;
+    	
+    }
+    
+    @PostMapping(path = "getDogsInfoArray")
+    public Optional<DogsInfo> getDogsInfoArray(@RequestParam String userId) {
+    	
+    	
+    	Optional<DogsInfo> dogsInfo = accessService.getDogsInfoArray(userId);
+    	
+    	return dogsInfo;
+    	
+    }
+    
+    //메인화면, 지역 랭킹 유저3명 가져오기
+    @PostMapping(path = "getUserInfoArrayLocation")
+    public List<User> getUserInfoArrayLocation(@RequestParam String location) {
+    	
+    	
+    	List<User> topRankingThreeUserOfAllUserLocation = accessService.getUserInfoArrayLocation(location);
+    	
+    	return topRankingThreeUserOfAllUserLocation;
+    	
+    }
+    //메인화면, 인기상품 8개 가져오기
+    @PostMapping(path = "getProductInfoArray")
+    public List<Product> getProductInfoArray() {
+    	
+    	
+    	List<Product> productInfoArray = accessService.getProductInfoArray();
+    	
+    	return productInfoArray;
+    	
+    }
+    
 }
 // private DefaultMessageService messageService;
 //

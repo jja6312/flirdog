@@ -8,6 +8,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Footer from "../main/Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ModalGoMatching from "../login/ModalGoMatching";
+import Swal from "sweetalert2";
 
 const DateList = () => {
   //전체 목록 조회
@@ -89,6 +91,120 @@ const DateList = () => {
     window.scrollTo(0, 0);
   };
 
+  // ModalGoMatching.config.start----------------------------------------------
+  const [credentials, setCredentials] = useState({
+    email: "",
+    passwd: "",
+  });
+  const [modalShow, setModalShow] = useState(false);
+  const [modaldogsInfo, setModalDogsInfo] = useState([]);
+  const [modalMatchingTable, setModalMatchingTable] = useState([]);
+  const [modalUserInfo, setModalUserInfo] = useState([]);
+  const [currentDogIndex, setCurrentDogIndex] = useState(0); // 현재 표시되는 강아지의 인덱스
+  const [isSatisfyForNextBtnAuth, setIsSatisfyForNextBtnAuth] = useState(false);
+  const [score, setScore] = useState([false, false, false, false, false]);
+  const handleNextDog = () => {
+    if (isSatisfyForNextBtnAuth === false) {
+      Swal.fire({
+        icon: "error",
+        title: "별점을 입력해주세요",
+        showConfirmButton: false,
+        timer: 700,
+      });
+      return;
+    } else if (isSatisfyForNextBtnAuth === true) {
+      setCurrentDogIndex((prev) => {
+        if (prev < modaldogsInfo.length - 1) {
+          return prev + 1;
+        } else {
+          return prev;
+        }
+      });
+      setIsSatisfyForNextBtnAuth(false);
+
+      submitScore();
+    }
+  };
+
+  const handleComplete = async () => {
+    await submitScore();
+    setModalShow(false);
+    setCurrentDogIndex(0);
+  };
+  const submitScore = () => {
+    axios
+      .post("http://localhost:8080/access/saveDogScore", null, {
+        params: {
+          dogId: modaldogsInfo[currentDogIndex].id,
+          score: score.filter(Boolean).length,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("별점제출에서 오류발생! 콘솔확인");
+      });
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setCredentials(() => ({
+      ...credentials,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (modalShow) {
+        try {
+          const res1 = await axios.post(
+            "http://localhost:8080/access/getFiveDogsInfo"
+          );
+          const dogsInfoData = res1.data;
+          setModalDogsInfo(dogsInfoData);
+
+          const userInfoPromises = dogsInfoData.map((dog) =>
+            axios.post(
+              "http://localhost:8080/access/getUserInfoAsDogId",
+              null,
+              {
+                params: { dogId: dog.id },
+              }
+            )
+          );
+
+          const userInfos = await Promise.all(userInfoPromises);
+          setModalUserInfo(userInfos.map((res) => res.data));
+
+          const matchingInfoPromises = userInfos.map((res, i) =>
+            axios.post("http://localhost:8080/access/getMatchingTable", null, {
+              params: {
+                dogName: dogsInfoData[i].name,
+                userId: res.data.id,
+              },
+            })
+          );
+
+          const matchingInfos = await Promise.all(matchingInfoPromises);
+
+          setModalMatchingTable(matchingInfos.map((res) => res.data));
+        } catch (err) {
+          console.log("모달 중 매칭데이터 불러오다 에러: " + err);
+        }
+      }
+    };
+
+    fetchData();
+  }, [modalShow]);
+
+  useEffect(() => {
+    console.log("모달매칭테이블: ", modalMatchingTable);
+  }, [modalMatchingTable]);
+
+  // ModalGoMatching.config.end--------------------------------------------------------
   return (
     <div>
       <Header></Header>
@@ -722,7 +838,10 @@ const DateList = () => {
 
             <br />
             <div className={dateList.dogMBTI}>
-              <div className={dateList.MBTIDiv}>
+              <div
+                className={dateList.MBTIDiv}
+                onClick={() => setModalShow(true)}
+              >
                 <img
                   src="/image/date/dogMBTI.png"
                   style={{ width: "15vw", borderRadius: "10px" }}
@@ -965,6 +1084,23 @@ const DateList = () => {
         </div>
       </Container>
       <Footer></Footer>
+      {/* ModalGoMatching.code.start------------------------- */}
+      <ModalGoMatching
+        modalShow={modalShow}
+        setModalShow={setModalShow}
+        modaldogsInfo={modaldogsInfo}
+        currentDogIndex={currentDogIndex}
+        isSatisfyForNextBtnAuth={isSatisfyForNextBtnAuth}
+        setIsSatisfyForNextBtnAuth={setIsSatisfyForNextBtnAuth}
+        score={score}
+        setScore={setScore}
+        handleNextDog={handleNextDog}
+        handleComplete={handleComplete}
+        modalUserInfo={modalUserInfo}
+        modalMatchingTable={modalMatchingTable}
+      ></ModalGoMatching>
+
+      {/*ModalGoMatching.code.end ----------------------------------- */}
     </div>
   );
 };

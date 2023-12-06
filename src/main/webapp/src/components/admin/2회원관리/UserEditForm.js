@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
 
 import Container from "react-bootstrap/Container";
@@ -20,6 +20,7 @@ const UserEditForm = () => {
     point: "",
     createdAt: "",
     modifiedAt: "",
+    dogsInfos: [],
   });
 
   useEffect(() => {
@@ -27,6 +28,14 @@ const UserEditForm = () => {
       .post(`http://localhost:8080/admin/getUser`, { userId })
       .then((response) => setUserDTO(response.data));
   }, [userId]);
+
+  useEffect(() => {
+    console.log("userDTO");
+    console.log(userDTO);
+    if (userDTO.dogsInfos && userDTO.dogsInfos.length > 0) {
+      console.log(userDTO.dogsInfos[0].imageAiProfile);
+    }
+  }, [userDTO]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,6 +88,66 @@ const UserEditForm = () => {
         <h2>회원 정보 수정</h2>
       </div>
       <Container className="px-10 mt-4">
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ width: "100%" }}
+        >
+          <h1>회원 상세 정보</h1>
+        </div>
+
+        <div
+          className="d-flex justify-content-center align-items-center "
+          style={{ width: "100%", position: "relative" }}
+        >
+          <div style={{ position: "absolute", bottom: 0, right: 0 }}>
+            <Link
+              to={`/admin/dogEditForm/${
+                userDTO.dogsInfos[0] && userDTO.dogsInfos[0].id
+              }
+            `}
+            >
+              <div>
+                <h6>애견 정보</h6>
+              </div>
+
+              <div
+                className="d-flex justify-content-center align-items-center flex-column"
+                style={{ width: "15vw", height: "15vw" }}
+              >
+                <img
+                  className="rounded"
+                  src={
+                    userDTO.dogsInfos[0]
+                      ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${userDTO.dogsInfos[0].image}`
+                      : "/image/nullImage/nullImage2.png"
+                  }
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transform: "translateX(-10px)",
+                  }}
+                ></img>
+              </div>
+            </Link>
+          </div>
+          <div style={{ width: "30vw", height: "27vw" }}>
+            <img
+              src={
+                userDTO.dogsInfos[0]
+                  ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/flirdogStorage/aiDogProfile/${userDTO.dogsInfos[0].imageAiProfile}`
+                  : "/image/nullImage/nullImage2.png"
+              }
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transform: "translateX(-10px)",
+                boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
+              }}
+            ></img>
+          </div>
+        </div>
         <Form onSubmit={handleSubmit}>
           {/* 이메일 필드 */}
           <Form.Group className="mb-3">
@@ -166,10 +235,11 @@ const UserEditForm = () => {
           <Form.Group className="mb-3">
             <Form.Label>수정 날짜</Form.Label>
             <Form.Control
+              style={{ backgroundColor: "#EEEEEE" }}
               type="text"
               name="modifiedAt"
               value={userDTO.modifiedAt}
-              readOnly // 수정 날짜는 읽기 전용일 수 있습니다.
+              readOnly
             />
           </Form.Group>
 

@@ -15,14 +15,25 @@ import SearchForm from "../1상품관리/SearchForm";
 
 import axios from "axios";
 import UserList from "./UserList";
+import SearchDropdown from "../1상품관리/SearchDropdown";
+import LoadingComponent from "../../Loading";
 
 const UserListForm = ({ openLeftside }) => {
   const [userList, setUserList] = useState([]);
-  const [useFilter, setUseFilter] = useState(false);
   const [useFilterCheckNumber, setUseFilterCheckNumber] = useState(0);
-  const [searchValueText, setSearchValueText] = useState("");
   const [checkUser, setCheckUser] = useState([]);
   const [totalFilter, setTotalFilter] = useState([]);
+
+  //----------------SearchDropdown.start------------------
+  const [whatProduct, setWhatProduct] = useState([]);
+  const [searchValueText, setSearchValueText] = useState("");
+  const [useFilter, setUseFilter] = useState(false);
+  const [selectedDropdown, setSelectedDropdown] = useState("유저 이름");
+  const [placeHolderUseState, setPlaceHolderUseState] =
+    useState("회원 이름 검색");
+  //----------------SearchDropdown.end------------------
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const onDeleteSelected = () => {
     if (checkUser.length === 0) {
@@ -64,17 +75,82 @@ const UserListForm = ({ openLeftside }) => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
+
     axios
       .get("http://localhost:8080/admin/getUserList")
       .then((res) => {
         console.log(res.data);
 
         setUserList(res.data);
+        // SearchDropdown.selectedDropdown.start----------------------------------
+        let finalFilter = res.data;
+
+        if (useFilter && selectedDropdown) {
+          switch (selectedDropdown) {
+            case "유저 이름":
+              finalFilter = finalFilter.filter(
+                (
+                  item //여기가 87번
+                ) => item.name != null && item.name.includes(searchValueText)
+              );
+              break;
+
+            case "유저 아이디":
+              finalFilter = finalFilter.filter((item) =>
+                item.id.toString().includes(searchValueText)
+              );
+              break;
+            case "유저 이메일":
+              finalFilter = finalFilter.filter((item) =>
+                item.email.includes(searchValueText)
+              );
+              break;
+            case "애견 아이디":
+              finalFilter = finalFilter.filter((item) =>
+                item.dogsInfos.some((dog) =>
+                  dog.id.toString().includes(searchValueText)
+                )
+              );
+              break;
+            case "애견 이름":
+              finalFilter = finalFilter.filter(
+                (item) =>
+                  item.dogsInfos != null &&
+                  item.dogsInfos.some(
+                    (dog) =>
+                      dog.dogName != null &&
+                      typeof dog.dogName !== "undefined" &&
+                      dog.dogName.includes(searchValueText)
+                  )
+              );
+              break;
+            // '매칭 제목'과 '매칭 아이디'에 대한 필터링은 데이터 구조에 따라 구현해야 합니다.
+          }
+        }
+
+        setWhatProduct(finalFilter);
+        setTotalFilter(finalFilter.length);
+        console.log("whatProduct");
+        console.log(finalFilter);
+        // SearchDropdown.selectedDropdown.end----------------------------------
+        setIsLoading(false);
       })
-      .catch((error) => console.log(error));
-  }, []);
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  }, [
+    useFilter,
+    selectedDropdown,
+    searchValueText,
+    useFilterCheckNumber,
+    placeHolderUseState,
+  ]);
+
   return (
     <>
+      {isLoading && <LoadingComponent></LoadingComponent>}
       <AdminHeader></AdminHeader>
 
       <LeftSide
@@ -94,14 +170,26 @@ const UserListForm = ({ openLeftside }) => {
           className="d-flex justify-content-end mt-4"
           style={{ width: "100%" }}
         >
+          {/* SearchDropdown.code.start--------------------------------- */}
+          <SearchDropdown
+            type="user" //이 모듈을 쓰려면, type을 새로 추가해서 내부코드를 수정해야함.
+            selectedDropdown={selectedDropdown}
+            setSelectedDropdown={setSelectedDropdown}
+            setPlaceHolderUseState={setPlaceHolderUseState}
+          ></SearchDropdown>
+          {/* SearchDropdown.code.end--------------------------------- */}
           <SearchForm
-            placeHolder="회원 이름 검색"
+            whatLeftMenuInnerText="회원"
             allProduct={userList}
             setUseFilter={setUseFilter}
             searchValueText={searchValueText}
             setSearchValueText={setSearchValueText}
             useFilterCheckNumber={useFilterCheckNumber}
             setUseFilterCheckNumber={setUseFilterCheckNumber}
+            selectedDropdown={selectedDropdown}
+            setSelectedDropdown={setSelectedDropdown}
+            placeHolderUseState={placeHolderUseState}
+            setPlaceHolderUseState={setPlaceHolderUseState}
           ></SearchForm>
         </div>
 
@@ -154,6 +242,7 @@ const UserListForm = ({ openLeftside }) => {
                 checkUser={checkUser}
                 setCheckUser={setCheckUser}
                 setTotalFilter={setTotalFilter}
+                whatProduct={whatProduct}
               ></UserList>
             </tbody>
           </Table>

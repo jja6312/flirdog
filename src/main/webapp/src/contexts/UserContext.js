@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const UserContext = createContext();
 
@@ -59,7 +60,17 @@ const UserProvider = ({ children }) => {
         console.log("user");
         console.log(user);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        //swal로 로그인실패
+        Swal.fire({
+          icon: "error",
+          title: "이메일과 비밀번호를 확인해주세요.",
+          showConfirmButton: false,
+          timer: 700,
+        });
+
+        console.log(e);
+      });
   };
 
   const logout = () => {

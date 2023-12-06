@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import mypage.repository.MypageDogsInfoDTOUploadRepository;
+import mypage.repository.MypageDogsInfoEmailUploadRepository;
 import mypage.repository.MypageUserDTORepository;
 import user.bean.DogsInfoDTO;
 import user.bean.UserDTO;
@@ -18,6 +19,9 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 
 	@Autowired
 	private MypageDogsInfoDTOUploadRepository mypageDogsInfoDTOUploadRepository;
+
+	@Autowired
+	private MypageDogsInfoEmailUploadRepository mypageDogsInfoEmailUploadRepository;
 	
 	@Autowired
 	private MypageUserDTORepository mypageUserDTORepository;
@@ -28,8 +32,8 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 	}
 
 	@Override
-	public List<DogsInfoDTO> uploadList() {
-		return mypageDogsInfoDTOUploadRepository.findAll();//쿼리 메소드
+	public List<DogsInfoDTO> uploadList(Long userId) {
+		return mypageDogsInfoDTOUploadRepository.findAllById(userId);//쿼리 메소드
 		
 	}
 
@@ -52,5 +56,10 @@ public class MypageUploadServiceImpl implements MypageUploadService {
 	@Override
 	public void uploadProfile(List<UserDTO> userImageList) {
 		mypageUserDTORepository.saveAll(userImageList);
+	}
+
+	@Override
+	public List<DogsInfoDTO> uploadListDog(String email) {
+		return mypageDogsInfoEmailUploadRepository.findAllByEmail(email);//쿼리 메소드
 	}
 }

@@ -27,6 +27,8 @@ const Login = () => {
   });
   const [modalShow, setModalShow] = useState(false);
   const [modaldogsInfo, setModalDogsInfo] = useState([]);
+  const [modalMatchingTable, setModalMatchingTable] = useState([]);
+  const [modalUserInfo, setModalUserInfo] = useState([]);
   const [currentDogIndex, setCurrentDogIndex] = useState(0); // 현재 표시되는 강아지의 인덱스
   const [isSatisfyForNextBtnAuth, setIsSatisfyForNextBtnAuth] = useState(false);
   const [score, setScore] = useState([false, false, false, false, false]);
@@ -58,7 +60,6 @@ const Login = () => {
     setModalShow(false);
     setCurrentDogIndex(0);
   };
-
   const submitScore = () => {
     axios
       .post("http://localhost:8080/access/saveDogScore", null, {
@@ -83,25 +84,55 @@ const Login = () => {
       [name]: value,
     }));
   };
-  //modalShow가 true이면 useEffect로 getFiveDogsInfo 를 가져온다.
+
   useEffect(() => {
-    if (modalShow === false) {
-      setIsSatisfyForNextBtnAuth(false);
-    }
-    if (modalShow) {
-      //랜덤한 강아지 정보 불러오기
-      axios
-        .post("http://localhost:8080/access/getFiveDogsInfo")
-        .then((res) => {
-          setModalDogsInfo(res.data);
-          console.log("modalDogsInifo");
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    const fetchData = async () => {
+      if (modalShow) {
+        try {
+          const res1 = await axios.post(
+            "http://localhost:8080/access/getFiveDogsInfo"
+          );
+          const dogsInfoData = res1.data;
+          setModalDogsInfo(dogsInfoData);
+
+          const userInfoPromises = dogsInfoData.map((dog) =>
+            axios.post(
+              "http://localhost:8080/access/getUserInfoAsDogId",
+              null,
+              {
+                params: { dogId: dog.id },
+              }
+            )
+          );
+
+          const userInfos = await Promise.all(userInfoPromises);
+          setModalUserInfo(userInfos.map((res) => res.data));
+
+          const matchingInfoPromises = userInfos.map((res, i) =>
+            axios.post("http://localhost:8080/access/getMatchingTable", null, {
+              params: {
+                dogName: dogsInfoData[i].name,
+                userId: res.data.id,
+              },
+            })
+          );
+
+          const matchingInfos = await Promise.all(matchingInfoPromises);
+
+          setModalMatchingTable(matchingInfos.map((res) => res.data));
+        } catch (err) {
+          console.log("모달 중 매칭데이터 불러오다 에러: " + err);
+        }
+      }
+    };
+
+    fetchData();
   }, [modalShow]);
+
+  useEffect(() => {
+    console.log("모달매칭테이블: ", modalMatchingTable);
+  }, [modalMatchingTable]);
+
   // ModalGoMatching.config.end--------------------------------------------------------
 
   useEffect(() => {
@@ -194,6 +225,7 @@ const Login = () => {
             onChange={(e) => {
               handleChange(e);
             }}
+            type="password"
           />
         </InputGroup>
       </div>
@@ -229,6 +261,8 @@ const Login = () => {
         setScore={setScore}
         handleNextDog={handleNextDog}
         handleComplete={handleComplete}
+        modalUserInfo={modalUserInfo}
+        modalMatchingTable={modalMatchingTable}
       ></ModalGoMatching>
       <ModalBtn setModalShow={setModalShow}></ModalBtn>
       {/*ModalGoMatching.code.end ----------------------------------- */}

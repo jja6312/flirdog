@@ -12,8 +12,9 @@ import PetAiImage from "../join/PetAiImage";
 import Swal from "sweetalert2";
 import PetImage from "../join/PetImage";
 import translateText from "../translateText";
-import PetModal from "../join/PetModal";
 import { useNavigate } from "react-router-dom";
+import AuthKeyInput from "../join/AuthKeyInput";
+import Header from "../../main/Header";
 
 const JoinAuth = () => {
   const navigate = useNavigate();
@@ -47,16 +48,25 @@ const JoinAuth = () => {
   const [isClickNext5, setIsClickNext5] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isEmailCheck, setIsEmailCheck] = useState(false);
+  const [showAuthKeyInput, setShowAuthKeyInput] = useState(false);
+  const [authCode, setAuthCode] = useState("");
+
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [satisfyAllCondition, setSatisfyAllCondition] = useState(false);
+  const [satisfyAllCondition2, setSatisfyAllCondition2] = useState(false);
   const [satisfyAllConditionPetInfo, setSatisfyAllConditionPetInfo] =
     useState(false);
 
   const [selectedBreed, setSelectedBreed] = useState("선택");
 
   const [imgFiles, setImgFiles] = useState();
-  const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
+  const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState(
+    "/image/nullImage/nullImage1.png"
+  );
+  const [realImageAiProfile, setRealImageAiProfile] = useState(
+    "/image/nullImage/nullImage1.png"
+  );
 
   const [image, setImage] = useState([]);
   const [imageAiProfile, setImageAiProfile] = useState(
@@ -110,14 +120,7 @@ const JoinAuth = () => {
   }, [dogsInfo]);
 
   useEffect(() => {
-    if (
-      isValidEmail &&
-      isValidPassword &&
-      isPasswordMatch &&
-      address !== "" &&
-      addressDetail.length > 0 &&
-      isEmailCheck
-    ) {
+    if (isValidEmail && isValidPassword && isPasswordMatch && isEmailCheck) {
       setSatisfyAllCondition(true);
     } else {
       setSatisfyAllCondition(false);
@@ -132,11 +135,38 @@ const JoinAuth = () => {
     isValidEmail,
   ]);
 
+  useEffect(() => {
+    if (
+      address !== "" &&
+      addressDetail.length !== 0 &&
+      phone !== "" &&
+      user.name !== ""
+    ) {
+      setSatisfyAllCondition2(true);
+    } else {
+      setSatisfyAllCondition2(false);
+    }
+  }, [address, addressDetail, phone, user.name]);
+
   const handleInputChange = (field) => (e) => {
     setUser({ ...user, [field]: e.target.value });
   };
 
   const handleSendAuthCode = async () => {
+    if (!satisfyAllCondition) {
+      Swal.fire({
+        icon: "error",
+        title: "작성 양식을 확인해주세요.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
+    setIsClickNext(true);
+  };
+
+  const handleSendAuthCode2 = () => {
     if (!isValidPhoneNumber(phone)) {
       Swal.fire({
         icon: "error",
@@ -159,19 +189,17 @@ const JoinAuth = () => {
       return;
     }
 
-    setIsClickNext(true);
-  };
-
-  const handleSendAuthCode2 = () => {
-    if (!satisfyAllCondition) {
+    if (address === "" || addressDetail.length === 0) {
       Swal.fire({
         icon: "error",
-        title: "작성 양식을 확인해주세요.",
+        title: "주소를 입력해주세요",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1000,
+        position: "top",
       });
       return;
     }
+
     setIsClickNext2(true);
   };
   const handleSendAuthCode3 = () => {
@@ -196,6 +224,16 @@ const JoinAuth = () => {
     }
   };
   const handleSendAuthCode4 = () => {
+    if (imgFiles === undefined) {
+      Swal.fire({
+        icon: "error",
+        title: "이미지를 등록해주세요",
+        showConfirmButton: false,
+        timer: 700,
+        position: "top",
+      });
+      return;
+    }
     setIsClickNext4(true);
     console.log("###imgFiles들어오니?");
     console.log(imgFiles);
@@ -208,13 +246,6 @@ const JoinAuth = () => {
   };
   const onAcceptAiImage = () => {
     setImageAiProfile(aiDogProfileImgUrl);
-
-    // Swal.fire({
-    //   icon: "success",
-    //   title: "회원가입이 완료되었습니다!",
-    //   showConfirmButton: false,
-    //   timer: 1500,
-    // });
   };
 
   const onAcceptImage = () => {
@@ -230,7 +261,7 @@ const JoinAuth = () => {
         formData.append("dogsInfo", JSON.stringify(dogsInfo));
         formData.append("dogsBreed", dogsBreed);
         formData.append("image", image[0]);
-        formData.append("imageAiProfile", aiDogProfileImgUrl);
+        formData.append("imageAiProfile", realImageAiProfile);
       }
 
       const response = await axios.post(
@@ -250,7 +281,7 @@ const JoinAuth = () => {
         showConfirmButton: false,
         timer: 1000,
       });
-      navigate("/login/true");
+      navigate("/login");
     } catch (error) {
       console.log(error);
       Swal.fire("회원가입 중 에러가 발생했습니다.", error.message);
@@ -282,6 +313,7 @@ const JoinAuth = () => {
           },
         })
         .then((res) => {
+          setRealImageAiProfile(res.data);
           console.log("JoinAuth.js, 이미지 저장 성공!.");
 
           Swal.fire({
@@ -354,74 +386,42 @@ const JoinAuth = () => {
   // //------------------------------------------------------------
   return (
     <>
+      <Header></Header>
       <div
         className={`${login.loginForm} ${
           isClickNext ? login.slideOutLeft : ""
         }  justify-content-start align-items-center flex-column`}
       >
-        <div
-          className={`${login.joinAuthForm} d-flex justify-content-start align-items-center flex-column`}
-        >
-          {/* fontsize를 조절하는 부트스트랩 */}
-          <div
-            className={`${login.loginFormElementDiv} mt-4 d-flex justify-content-center align-items-center`}
-          ></div>
-          <span className={login.JoinAuthFont1}>기본 정보 입력</span>
-          <span className={`${login.JoinAuthFont2} mt-3`}>
-            원활한 서비스 제공을 위해, 정보를 입력해주세요.
-          </span>
-          <div
-            style={{ width: "100%" }}
-            className={`d-flex justhfi-content-start`}
-          >
-            <span className={`${login.JoinAuthFont3} mt-3`}>휴대폰번호</span>
-          </div>
-        </div>
-        <div
-          className={`${login.loginFormElementDiv} ${login.inputStyle} mt-2 d-flex justify-content-center align-items-center`}
-        >
-          <InputGroup size="lg" className={`mt-2`}>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-lg"
-              placeholder="휴대폰번호"
-              onChange={(e) => {
-                handleInputChange("phone");
-                setPhone(e.target.value);
-              }}
-            />
-          </InputGroup>
-        </div>
+        <EmailInput
+          email={email}
+          setEmail={setEmail}
+          isValidEmail={isValidEmail}
+          setIsValidEmail={setIsValidEmail}
+          setSatisfyAllCondition={setSatisfyAllCondition}
+          isEmailCheck={isEmailCheck}
+          setIsEmailCheck={setIsEmailCheck}
+          setShowAuthKeyInput={setShowAuthKeyInput}
+          setAuthCode={setAuthCode}
+        ></EmailInput>
+        {showAuthKeyInput && <AuthKeyInput authCode={authCode}></AuthKeyInput>}
+        <PwdInput
+          setPassword={setPassword}
+          isValidPassword={isValidPassword}
+          setIsValidPassword={setIsValidPassword}
+        ></PwdInput>
+        <PwdCheckInput
+          setPasswordCheck={setPasswordCheck}
+          passwordCheck={passwordCheck}
+          password={password}
+          isPasswordMatch={isPasswordMatch}
+          setIsPasswordMatch={setIsPasswordMatch}
+        ></PwdCheckInput>
 
-        <div
-          className={`${login.joinAuthForm} d-flex justify-content-start align-items-center flex-column`}
-        >
-          <div
-            style={{ width: "100%" }}
-            className={`d-flex justhfi-content-start`}
-          >
-            <span className={`${login.JoinAuthFont3} mt-3`}>이름</span>
-          </div>
-        </div>
-        <div
-          className={`${login.loginFormElementDiv} ${login.inputStyle} mt-2 d-flex justify-content-center align-items-center`}
-        >
-          <InputGroup size="lg" className={`mt-2`}>
-            <Form.Control
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-lg"
-              placeholder="이름을 입력하세요."
-              onChange={(e) => {
-                handleInputChange("name")(e);
-              }}
-            />
-          </InputGroup>
-        </div>
         <div
           className={`${
             login.loginFormElementDiv
           } mt-2 d-flex justify-content-center align-items-center rounded ${
-            isValidPhoneNumber(phone) ? login.loginBtn : login.disabledBtn
+            satisfyAllCondition ? login.loginBtn : login.disabledBtn
           }`}
           onClick={handleSendAuthCode}
         >
@@ -436,36 +436,76 @@ const JoinAuth = () => {
           ${isClickNext2 ? login.slideOutLeft : ""}
           d-flex justify-content-start align-items-center flex-column`}
         >
-          <EmailInput
-            setEmail={setEmail}
-            isValidEmail={isValidEmail}
-            setIsValidEmail={setIsValidEmail}
-            setSatisfyAllCondition={setSatisfyAllCondition}
-            setIsEmailCheck={setIsEmailCheck}
-          ></EmailInput>
-          <PwdInput
-            setPassword={setPassword}
-            isValidPassword={isValidPassword}
-            setIsValidPassword={setIsValidPassword}
-          ></PwdInput>
-          <PwdCheckInput
-            setPasswordCheck={setPasswordCheck}
-            passwordCheck={passwordCheck}
-            password={password}
-            isPasswordMatch={isPasswordMatch}
-            setIsPasswordMatch={setIsPasswordMatch}
-          ></PwdCheckInput>
-          <AddressSearch
-            address={address}
-            setAddress={setAddress}
-            setAddressDetail={setAddressDetail}
-          ></AddressSearch>
+          <div
+            className={`${login.joinAuthForm} d-flex justify-content-start align-items-center flex-column`}
+          >
+            {/* fontsize를 조절하는 부트스트랩 */}
 
+            <span className={`${login.JoinAuthFont1} mt-5`}>
+              기본 정보 입력
+            </span>
+            <span className={`${login.JoinAuthFont2} mt-3`}>
+              원활한 서비스 제공을 위해, 정보를 입력해주세요.
+            </span>
+            <div
+              style={{ width: "100%" }}
+              className={`d-flex justhfi-content-start`}
+            >
+              <span className={`${login.JoinAuthFont3} mt-3`}>휴대폰번호</span>
+            </div>
+          </div>
+          <div
+            className={`${login.loginFormElementDiv} ${login.inputStyle} mt-2 d-flex justify-content-center align-items-center`}
+          >
+            <InputGroup size="lg" className={`mt-2`}>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-lg"
+                placeholder="휴대폰번호"
+                onChange={(e) => {
+                  handleInputChange("phone");
+                  setPhone(e.target.value);
+                }}
+              />
+            </InputGroup>
+          </div>
+
+          <div
+            className={`${login.joinAuthForm} d-flex justify-content-start align-items-center flex-column`}
+          >
+            <div
+              style={{ width: "100%" }}
+              className={`d-flex justhfi-content-start`}
+            >
+              <span className={`${login.JoinAuthFont3} mt-3`}>이름</span>
+            </div>
+          </div>
+          <div
+            className={`${login.loginFormElementDiv} ${login.inputStyle} mt-2 d-flex justify-content-center align-items-center`}
+          >
+            <InputGroup size="lg" className={`mt-2`}>
+              <Form.Control
+                aria-label="Large"
+                aria-describedby="inputGroup-sizing-lg"
+                placeholder="이름을 입력하세요."
+                onChange={(e) => {
+                  handleInputChange("name")(e);
+                }}
+              />
+            </InputGroup>
+          </div>
+          <div className="mt-3">
+            <AddressSearch
+              address={address}
+              setAddress={setAddress}
+              setAddressDetail={setAddressDetail}
+            ></AddressSearch>
+          </div>
           <div
             className={`${
               login.loginFormElementDiv
             } mt-2 d-flex justify-content-center align-items-center rounded ${
-              satisfyAllCondition ? login.loginBtn : login.disabledBtn
+              satisfyAllCondition2 ? login.loginBtn : login.disabledBtn
             }`}
             onClick={handleSendAuthCode2}
           >

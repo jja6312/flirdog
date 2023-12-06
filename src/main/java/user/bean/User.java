@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import api.BaseEntity;
 import community.bean.Community;
@@ -30,9 +33,13 @@ import somoim.bean.Somoim;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @JsonSerialize(using = UserSerializer.class)
 @Entity
-public class User extends BaseEntity{
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // 12/2 지안추가. 모달띄울때 user정보를불러오는데, 이때 이게있으니까 잘됨.
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")//12/4 지안추가. 개정보 조회/수정시 유저가 안끌고와져서 추가.
+public class User extends BaseEntity {
     @Id
-    //@Column(name="user_Id")
+    // @Column(name="user_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -58,22 +65,21 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DogsInfo> dogsInfos;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Popularity popularity;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Matching> matching;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Community> communities;
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<PointCharging> pointChargings;
-    
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Somoim> somoim;
 }
-

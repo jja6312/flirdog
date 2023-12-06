@@ -31,8 +31,8 @@ public class ChatGPTController {
                 // 이미지 파일 이름을 생성합니다.
                 String fileName = UUID.randomUUID().toString();
                 fileName += ".jpg";
-                chatGPTService.downloadAndSaveImage(imageUrl, fileName);
-                return "Image saved successfully: " + fileName;
+                String s3FilePath = chatGPTService.downloadAndSaveImage(imageUrl, fileName);
+                return s3FilePath;
             } else {
                 System.out.println("@@@이미지가 널값인디?");
                 return "Image URL not found.";
@@ -43,7 +43,6 @@ public class ChatGPTController {
             System.out.println("@@@문제발생");
             return "Error occurred: " + e.getMessage();
         }
-        // return null;
     }
 
     @PostMapping("generateImage")

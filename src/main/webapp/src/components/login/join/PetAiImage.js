@@ -56,8 +56,8 @@ const PetAiImage = ({
       <div
         className="d-flex justify-content-center align-items-center mt-5"
         style={{
-          width: 300,
-          height: 300,
+          width: 250,
+          height: 250,
           backgroundColor: "black",
           //배경이미지 크기 딱맞추기
           backgroundSize: "cover",
@@ -69,8 +69,8 @@ const PetAiImage = ({
         <ScratchCard
           frontImageSrc="/image/login/sticky.png"
           backImageSrc={aiDogProfileImgUrl}
-          width="300px"
-          height="300px"
+          width="250px"
+          height="250px"
         />
       </div>
       <InputGroup style={{ width: "340px" }} size="lg" className={`mt-2`}>

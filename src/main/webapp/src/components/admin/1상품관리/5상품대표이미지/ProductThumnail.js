@@ -34,13 +34,14 @@ const ProductThumnail = ({
       <table className={styles.tableContainer}>
         <tr>
           <th className={styles.tableTh}>상품 등록</th>
-          <td className={styles.tableTd}>
+          <td className={styles.tableTd} style={{ textAlign: "left" }}>
             <input
               className={styles.fontStyleGray08}
               type="file"
               name="img[]"
               ref={imgRef}
               onChange={onImgInput}
+              multiple
             />
           </td>
         </tr>

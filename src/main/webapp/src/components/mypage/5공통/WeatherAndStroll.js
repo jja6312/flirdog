@@ -42,8 +42,8 @@ const WeatherAndStroll = () => {
       <>
         <Header/>
         <AppWrap>
-          <div className="appContentWrap">
-            <Container className='px-10 mt-5'>
+          <div className={`appContentWrap`}>
+            <Container className={`px-10`}>
               <div className='row '>
                   <div className='col-lg-4 d-flex justify-content-center'></div>
                   <div className='col-lg-4 d-flex justify-content-center'>
@@ -64,19 +64,19 @@ const WeatherAndStroll = () => {
                   {/* 눈오거나비오면 슬픈개 이미지 */}
                   {(result.data.weather[0].main ==='Rain' || result.data.weather[0].main ==='Snow') &&  (
                     <>
-                      <img className='img2' src={saddog}></img>
+                      <img className='img2' src={saddog} alt=''></img>
                     </>
                   )}
                   {/* 날이 맑으면 기쁜개 */}
                   {(result.data.weather[0].main ==='Clear' ) &&  (
                     <>
-                      <img className='img2' src={smmile}></img>
+                      <img className='img2' src={smmile} alt=''></img>
                     </>
                   )}
                   {/* 비오거나 눈오거나 아니면 평범한개 나머지는 평범한개*/}
                   {(result.data.weather[0].main !=='Rain' && result.data.weather[0].main !=='Snow'&& result.data.weather[0].main !=='Clear') &&  (
                     <>
-                      <img className='img2' src={normaldog}></img>
+                      <img className='img2' src={normaldog} alt=''></img>
                     </>
                   )}
                 </div>
@@ -108,7 +108,7 @@ const WeatherAndStroll = () => {
                   {result.data.weather[0].main ==='Mist' && (
                     <>
                       <div className='message'>산책난이도: 보통</div>
-                      <div className='message2'>산책하기 좋아요</div>
+                      <div className='message2'>☆☆☆산책하기 좋아요☆☆☆</div>
                       <div className='message2'>그래도, 안개가 있으니 조심해주세요~</div>
                     </>
                   )}
@@ -116,14 +116,14 @@ const WeatherAndStroll = () => {
                   {result.data.weather[0].main ==='Clouds' && (
                     <>
                       <div className='message'>산책난이도: 보통</div>
-                      <div className='message2'>산책하기 좋아요</div>
+                      <div className='message2'>☆☆☆산책하기 좋아요☆☆☆</div>
                       <div className='message2'>구름낀 날씨지만 조심하면 괜찮아요~</div>
                     </>
                   )}
                   {result.data.weather[0].main ==='Haze' && (
                     <>
                       <div className='message'>산책난이도: 보통</div>
-                      <div className='message2'>산책하기 좋아요</div>
+                      <div className='message2'>☆☆☆산책하기 좋아요☆☆☆</div>
                       <div className='message2'>안개낀 날씨지만 조심하면 괜찮아요~</div>
                     </>
                   )}
@@ -137,25 +137,34 @@ const WeatherAndStroll = () => {
                   {result.data.weather[0].main ==='Fog' && (
                     <>
                       <div className='message'>산책난이도: 보통</div>
-                      <div className='message2'>산책하기 좋아요</div>
+                      <div className='message2'>☆☆☆산책하기 좋아요☆☆☆</div>
                       <div className='message2'>안개낀 날씨지만 조심하면 괜찮아요~</div>
                     </>
                   )}
                   {result.data.weather[0].main ==='Sand' && (
                     <>
                       <div className='message'>산책난이도: 어려움</div>
-                      <div className='message2'>산책하기 나쁨</div>
+                      <div className='message2'>☆☆☆산책하기 나쁨☆☆☆</div>
                       <div className='message2'>황사가 있으니 마스크를 챙기세요~</div>
                     </>
                   )}
+                  
                   {Math.round((result.data.main.temp - 273.15) * 10) / 10 + 1 > 0.01 && (
                     <>
-                      <div className='message2'>날씨가 너무 춥지도 않아서 나가도 될거같아요.</div>
+                      <div className='message2'>기온은 너무 춥지 않네요</div>
                     </>
                   )}
                   {Math.round((result.data.main.temp - 273.15) * 10) / 10 + 1 < 0.01 && (
                     <>
                       <div className='message2'>(대신에, 날씨는 너무 춥습니다.ㅠㅠ) </div>
+                    </>
+                  )}
+                  
+                  {result.data.weather[0].main ==='Thunderstorm' && (
+                    <>
+                      <div className='message' >산책난이도: 어려움</div>
+                      <div className='message2'>☆☆☆산책하기 나쁨☆☆☆</div>
+                      <div className='message2'>비오니까 나가지 않으시길 추천드려요</div>
                     </>
                   )}
                 </div>
@@ -185,7 +194,6 @@ export default WeatherAndStroll;
 const AppWrap = styled.div`
     width: 100vw;
     height: 100vh;
-    border: 1px solid red;
 
     .appContentWrap {
         left: 50%;
@@ -193,6 +201,7 @@ const AppWrap = styled.div`
         transform: translate(-50%, -50%);
         position: absolute;
         padding: 20px;
+        margin-top: 8rem;
       }
       input {
         padding: 16px;
@@ -207,6 +216,7 @@ const AppWrap = styled.div`
       border: 1px black solid;
       padding: 100px;
       border-radius: 8px;
+
     
       .city {
         text-align: center;
@@ -223,6 +233,7 @@ const AppWrap = styled.div`
         font-size: 20px;
         text-align: center;
         margin-top: 8px;
+        color: red;
       }
       .message2 {
         font-size: 15px;
@@ -240,5 +251,8 @@ const AppWrap = styled.div`
         font-size: 20px;
         text-align: center;
         margin-top: 8px;
+      }
+      .AppWrap .appContentWrap .px-10.mt-10.MarginRem {
+        margin-top: 100rem;
       }
 `;

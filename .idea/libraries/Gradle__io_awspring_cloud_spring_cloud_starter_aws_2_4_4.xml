@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: io.awspring.cloud:spring-cloud-starter-aws:2.4.4" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="io.awspring.cloud" artifactId="spring-cloud-starter-aws" version="2.4.4" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.awspring.cloud/spring-cloud-starter-aws/2.4.4/b486194fc0373539a9c7c107a81ae12c060a4f8/spring-cloud-starter-aws-2.4.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

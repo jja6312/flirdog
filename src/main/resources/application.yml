@@ -64,7 +64,7 @@ spring:
       on-profile: test
 
   datasource:
-    url: jdbc:mysql://db-jgnlo-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#

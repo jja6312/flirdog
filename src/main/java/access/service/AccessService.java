@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import access.bean.JoinRequestDTO;
 import jakarta.servlet.http.HttpSession;
+import matching.bean.MatchingDTO;
+import product.bean.Product;
 import user.bean.DogsInfo;
 import user.bean.User;
 
@@ -21,5 +23,21 @@ public interface AccessService {
 	boolean checkEmailExist(String email);
 
 	void saveDogScore(String dogsId, String score);
+
+	void updatePwd(String email, String passwd);
+
+	Optional<User> getUserInfoAsDogId(String dogId);
+
+	Optional<MatchingDTO> getMatchingTable(String dogName, String userId);
+
+	List<User> getUserInfoArray();
+
+	Optional<DogsInfo> getDogsInfoArray(String userId);
+
+	List<User> getUserInfoArrayLocation(String location);
+
+	List<Product> getProductInfoArray();
+
+	
 
 }

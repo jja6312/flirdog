@@ -54,7 +54,7 @@ public class UserDTO {
     private String addresses;
 
     @Column(name = "pointChargings", length = 50)
-    private String pointChargings;
+    private Long pointChargings;
 
     @Column(name = "phone", length = 50)
     private String phone;
@@ -67,5 +67,9 @@ public class UserDTO {
 
 	@Column(name="imagefilename", nullable = false, length = 100)
 	private String imageFileName; //UUID에서 얻은 이름
+
+	@Column(name="amount", length=50)
+	private Long amount; 
+	
     
 }

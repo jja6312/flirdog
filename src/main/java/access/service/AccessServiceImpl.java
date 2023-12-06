@@ -12,9 +12,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import access.bean.JoinRequestDTO;
 import access.repository.AccessDogsInfoRepository;
+import access.repository.AccessMatchingRepository;
+import access.repository.AccessProductRepository;
 import access.repository.AccessRepository;
 import admin.service.ObjectStorageService;
 import jakarta.servlet.http.HttpSession;
+import matching.bean.MatchingDTO;
+import product.bean.Product;
+import user.bean.Address;
 import user.bean.DogsBreed;
 import user.bean.DogsInfo;
 import user.bean.Score;
@@ -28,9 +33,13 @@ public class AccessServiceImpl implements AccessService {
 	@Autowired
 	public AccessDogsInfoRepository accessDogsInfoRepository;
 	@Autowired
+	public AccessMatchingRepository accessMatchingRepository;
+	@Autowired
+	public AccessProductRepository accessProductRepository;
+
+	@Autowired
 	private ObjectStorageService objectStorageService;
 	private String bucketName = "bitcamp-edu-bucket-112";
-	
 
 	@Override
 	public Optional<User> login(String email, String passwd) {
@@ -75,7 +84,7 @@ public class AccessServiceImpl implements AccessService {
 			originalFileName = image.getOriginalFilename();
 			System.out.println("originalFileName: " + originalFileName);
 			// s3문제
-			fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/dogs",
+			fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/dogs/",
 					image);
 			// fileName = UUID.randomUUID().toString() + ".png";
 
@@ -84,7 +93,7 @@ public class AccessServiceImpl implements AccessService {
 			// file = new File(filePath, fileName);
 
 			// s3문제
-			imagePaths.add("flirdogStorage/dogs" + fileName);
+			imagePaths.add("flirdogStorage/dogs/" + fileName);
 			// imagePaths.add("/image/product/" + fileName);
 
 			try {
@@ -96,7 +105,13 @@ public class AccessServiceImpl implements AccessService {
 
 		User user = joinRequest.getUser();
 		DogsInfo dogsInfo = joinRequest.getDogsInfo();
-
+		Address address = joinRequest.getAddress();
+		address.setUser(user);
+		  if (user.getAddresses() == null) {
+		        user.setAddresses(new ArrayList<>());
+		    }
+		    user.getAddresses().add(address);
+		    
 		if (dogsInfo != null) {
 			String imageAiProfile = joinRequest.getImageAiProfile();
 			System.out.println("###dogsInfo에넣을게?: " + joinRequest.getDogsBreed());
@@ -108,6 +123,7 @@ public class AccessServiceImpl implements AccessService {
 			score.setAverageScore((double) 0);
 			user.setPoint((long) 0);
 			user.setUserRole(UserRole.USER);
+			
 			User savedUser = accessRepository.save(user);
 			dogsInfo.setUser(savedUser);
 			dogsInfo.setImageAiProfile(imageAiProfile);
@@ -146,6 +162,58 @@ public class AccessServiceImpl implements AccessService {
 		} else {
 			System.out.println("dogsInfo를 찾을수없음!");
 		}
+	}
+
+	@Override
+	public void updatePwd(String email, String passwd) {
+		Optional<User> userOptional = accessRepository.findByEmail(email);
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			user.setPasswd(passwd);
+			accessRepository.save(user);
+		} else {
+			System.out.println("###유저가 없어요!");
+		}
+
+	}
+
+	@Override
+	public Optional<User> getUserInfoAsDogId(String dogIdStr) {
+		Long dogId = Long.parseLong(dogIdStr);
+		return accessDogsInfoRepository.findById(dogId)
+				.map(DogsInfo::getUser);
+	}
+
+	@Override
+	public Optional<MatchingDTO> getMatchingTable(String dogName, String userIdStr) {
+		Long userId = Long.parseLong(userIdStr);
+		List<MatchingDTO> list = accessMatchingRepository.findTopByDogNameAndUserIdOrderByDesc(dogName, userId);
+		return list.isEmpty() ? Optional.empty() : Optional.ofNullable(list.get(0));
+	}
+
+	@Override
+	public List<User> getUserInfoArray() {
+
+		return accessRepository.findTop3ByOrderByCommunityScoreDesc();
+
+	}
+
+	@Override
+	public Optional<DogsInfo> getDogsInfoArray(String userIdStr) {
+		Long userId = Long.parseLong(userIdStr);
+		List<DogsInfo> list = accessDogsInfoRepository.findByUserId(userId);
+		return list.isEmpty() ? Optional.empty() : Optional.ofNullable(list.get(0));
+	}
+
+	@Override
+	public List<User> getUserInfoArrayLocation(String location) {
+	    return accessRepository.findTop3ByAddresses_AddressContainingOrderByCommunityScoreDesc(location);
+	}
+
+	@Override
+	public List<Product> getProductInfoArray() {
+		
+		return accessProductRepository.findTop8ByOrderByHitDesc();
 	}
 
 }

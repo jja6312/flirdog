@@ -87,7 +87,7 @@
 
 .disabledBtn {
   background-color: gray;
-  cursor: pointer;
+  cursor: not-allowed;
 }
 
 .loginBtnSpan {
