@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = { "application", "user.*", "product.*", "matching.*", "community.*", "order.*",
 		"payment.*", "admin.*", "s3.*", "ai.*", "somoim.*", "mypage.*", "access.*" })
 @EntityScan({ "user.bean", "product.bean", "matching.bean", "community.bean", "order.bean", "payment.bean", "ai.bean",
-		"somoim.bean", "access.bean" })
+		"somoim.bean", "access.bean" ,"mypage.bean"})
 
 @EnableJpaRepositories({ "user.repository", "product.repository", "matching.repository", "community.repository",
 		"order.repository", "payment.repository", "admin.repository", "mypage.repository", "somoim.repository", 
