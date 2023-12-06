@@ -22,29 +22,7 @@ spring:
       max-request-size: 10MB
 
   datasource:
-<<<<<<< HEAD
-    #url: jdbc:mysql://db-ioa7c-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: user
-    #password: qwe123!@#
-    # s3문제
-    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: root
-    #password: 1234
-
-    # url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    # driver-class-name: com.mysql.cj.jdbc.Driver
-    # username: user
-    # password: qwe123!@#
-    # s3문제 (아래는 지안님 계정)
-    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: root
-    #password: 1234
-=======
     url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
->>>>>>> 575d792 (채팅 초기 완료)
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
     username: study
@@ -60,9 +38,6 @@ spring:
         format_sql: true
     defer-datasource-initialization: true # (2.5~) Hibernate 초기화 이후 data.sql 실행
     database: mysql
-<<<<<<< HEAD
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-=======
     database-platform : org.hibernate.dialect.MySQL8Dialect
 
 ---
@@ -91,7 +66,6 @@ spring:
       username: user
       password: qwe123!@#
 
->>>>>>> 575d792 (채팅 초기 완료)
 ---
 spring:
   config:
@@ -117,15 +91,6 @@ spring:
   sql:
     init:
       mode: never
-<<<<<<< HEAD
 openai:
   key: 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
 # chatgpt: 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
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 575d792 (채팅 초기 완료)
-=======
-
->>>>>>> 251ce39 (채팅 초기 완료)
