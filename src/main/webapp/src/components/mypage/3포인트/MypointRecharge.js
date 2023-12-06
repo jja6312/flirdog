@@ -97,6 +97,16 @@ const MypointRecharge = () => {
         //클릭할때 마다 merchant_uid 뒤에 숫자가 1씩 증가
         // setMerchantUidSuffix((prevSuffix) => prevSuffix + 1);
         //userDTO의 amount 값을  불러오고싶다
+        if(amount2 === 0){
+          Swal.fire({
+            position: 'middle',
+            icon: 'error',
+            title: '충전금액을 입력해주세요.',
+            showConfirmButton: false,
+            timer: 1500
+            })
+          return;
+        }
         console.log("어마운트ㅡㅡㅡㅡㅡㅡ"+{amount});
         console.log(userDTO.amount)
         IMP.request_pay({
