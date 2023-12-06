@@ -41,6 +41,7 @@ const ProductThumnail = ({
               name="img[]"
               ref={imgRef}
               onChange={onImgInput}
+              multiple
             />
           </td>
         </tr>

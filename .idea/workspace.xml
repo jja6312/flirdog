@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/static/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/static/flirdog.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/flirdog.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flirdog.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/public/flirdog.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/public/flirdog.ico" afterDir="false" />
-    </list>
+    <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,11 +15,51 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+        <option value="TypeScript JSX File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-websocket/6.0.13/ae627be80eda66e33fa6a9fc1aed97c25d155db9/spring-websocket-6.0.13-sources.jar!/org/springframework/web/socket/config/annotation/WebSocketMessageBrokerConfigurer.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/jbr-17.0.8.1/Contents/Home/lib/src.zip!/java.base/java/io/Serializable.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -44,46 +70,94 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "featue/product",
-    "last_opened_file_path": "F:/gitworkspace/flirdog/bin/main/static",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
+<<<<<<< HEAD
+    &quot;git-widget-placeholder&quot;: &quot;featue/product&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/gitworkspace/flirdog/bin/main/static&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;feature/product&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+>>>>>>> 575d792 (채팅 초기 완료)
+    &quot;last_opened_file_path&quot;: &quot;/Users/jongin/gitworkspace/flirdog&quot;,
+>>>>>>> bd38d33 (기능:상품등록 이미지여러개 등록 가능 및 이미지없이 등록 로직 추가)
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+<<<<<<< HEAD
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+=======
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.50574714&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/jongin/gitworkspace/flirdog/src/main/webapp/node_modules/typescript/lib&quot;,
+>>>>>>> bd38d33 (기능:상품등록 이미지여러개 등록 가능 및 이미지없이 등록 로직 추가)
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="chatting.service" />
+      <recent name="chatting.ㅠㄷ무" />
+      <recent name="chatting.config" />
+      <recent name="chatting.bean" />
+      <recent name="chatting" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/chatting" />
       <recent name="F:\gitworkspace\flirdog\bin\main\static" />
       <recent name="F:\gitworkspace\flirdog\build\resources\main\static\static" />
       <recent name="F:\gitworkspace\flirdog\src\main\resources\static" />
       <recent name="F:\gitworkspace\flirdog\src\main\webapp\public" />
-      <recent name="F:\gitworkspace\flirdog\src\main\resources\static\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\gitworkspace\flirdog\build\resources\main\static" />
-      <recent name="F:\gitworkspace\flirdog\src\main\resources\static" />
-      <recent name="F:\gitworkspace\flirdog\src\main\webapp\public" />
-      <recent name="F:\gitworkspace\flirdog\bin\main\static" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/src" />
+      <recent name="$PROJECT_DIR$/src/main/java/message/repository" />
+      <recent name="$PROJECT_DIR$/src/main/java/message/service" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/src/components/message" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/src/components" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="message.bean" />
+      <recent name="message.repository" />
+      <recent name="chatting.config" />
+      <recent name="chatting.bean" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="FlirdogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="FlirdogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="flirdog.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="application.FlirdogApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.FlirdogApplication (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -95,6 +169,13 @@
       <updated>1700136410801</updated>
       <workItem from="1700136411754" duration="2766000" />
       <workItem from="1700324248015" duration="3199000" />
+      <workItem from="1700443673817" duration="33000" />
+      <workItem from="1700443723952" duration="4330000" />
+      <workItem from="1700619722969" duration="38023000" />
+      <workItem from="1700746138051" duration="11762000" />
+      <workItem from="1700762006944" duration="13000" />
+      <workItem from="1700762037159" duration="3827000" />
+      <workItem from="1700789660044" duration="47470000" />
     </task>
     <servers />
   </component>

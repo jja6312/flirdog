@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import admin.repository.AdminOrderRepository;
-import order.bean.Order;
+import order.bean.Orders;
 
 @Service
 public class AdminOrderServiceImpl implements AdminOrderService {
@@ -15,7 +15,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 	
 	
 	@Override
-	public List<Order> getOrderList() {
+	public List<Orders> getOrderList() {
 
 		return adminOrderRepository.findAll();
 	}
