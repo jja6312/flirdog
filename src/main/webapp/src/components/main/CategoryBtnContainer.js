@@ -38,10 +38,16 @@ const CategoryBtnContainer = ({
       </div>
       <div className="d-flex justify-content-center align-items-center">
         {selectedCategory === "지역 랭킹" && (
-          <LocationSelector
-            selectedLocation={selectedLocation}
-            setSelectedLocation={setSelectedLocation}
-          ></LocationSelector>
+          <div className="d-flex justify-content-center align-items-center flex-column">
+            <div style={{ height: 30, width: 550 }}></div>
+            <div style={{ width: 612 }}>
+              <LocationSelector
+                selectedLocation={selectedLocation}
+                setSelectedLocation={setSelectedLocation}
+                where="main"
+              ></LocationSelector>
+            </div>
+          </div>
         )}
       </div>
     </>

@@ -20,7 +20,7 @@ const DogListForm = ({ openLeftside }) => {
   const [whatProduct, setWhatProduct] = useState([]);
   const [searchValueText, setSearchValueText] = useState("");
   const [useFilter, setUseFilter] = useState(false);
-  const [selectedDropdown, setSelectedDropdown] = useState("선택");
+  const [selectedDropdown, setSelectedDropdown] = useState("애견 이름");
   const [placeHolderUseState, setPlaceHolderUseState] =
     useState("애견 이름 검색");
   //----------------SearchDropdown.end------------------
@@ -69,11 +69,46 @@ const DogListForm = ({ openLeftside }) => {
       .then((res) => {
         console.log("dogList");
         console.log(res.data);
-
         setDogList(res.data);
+        const initialFilter = res.data;
+
+        let finalFilter = initialFilter;
+        if (useFilter && selectedDropdown) {
+          switch (selectedDropdown) {
+            case "애견 아이디":
+              finalFilter = finalFilter.filter(
+                (item) =>
+                  item.id && item.id.toString().includes(searchValueText)
+              );
+              break;
+            case "애견 이름":
+              finalFilter = finalFilter.filter(
+                (item) => item.name && item.name.includes(searchValueText)
+              );
+              break;
+            case "애견 견종":
+              finalFilter = finalFilter.filter(
+                (item) =>
+                  item.dogsBreed &&
+                  item.dogsBreed.includes(searchValueText.toUpperCase())
+              );
+              break;
+          }
+        }
+
+        setWhatProduct(finalFilter);
+        setTotalFilter(finalFilter.length);
+        console.log("whatProduct");
+        console.log(finalFilter);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [
+    useFilter,
+    searchValueText,
+    useFilterCheckNumber,
+    selectedDropdown,
+    placeHolderUseState,
+  ]);
 
   return (
     <>
@@ -137,6 +172,7 @@ const DogListForm = ({ openLeftside }) => {
             checkDog={checkDog}
             setCheckDog={setCheckDog}
             setTotalFilter={setTotalFilter}
+            whatProduct={whatProduct}
           ></DogList>
         </div>
       </div>

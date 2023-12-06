@@ -180,7 +180,9 @@ const MatchingListAdmin = ({
               </div>
             </td>
             <td onClick={goMatchingWriteForm} id={matching.id}>
-              <span className={dogList.hrefStyle}>{matching.title}</span>
+              <span id={matching.id} className={dogList.hrefStyle}>
+                {matching.title}
+              </span>
             </td>
             <td>{matching.content}</td>
             <td>

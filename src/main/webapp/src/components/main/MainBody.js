@@ -78,7 +78,8 @@ const MainBody = () => {
     } else if (
       selectedCategory === "지역 랭킹" &&
       selectedLocation !== "지역 선택" &&
-      selectedLocation !== ""
+      selectedLocation !== "" &&
+      selectedLocation !== "전체"
     ) {
       fetchDataLocal(selectedLocation);
     }

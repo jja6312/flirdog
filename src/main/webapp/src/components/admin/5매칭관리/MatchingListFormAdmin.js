@@ -12,6 +12,7 @@ import SearchForm from "../1상품관리/SearchForm";
 import MatchingListAdmin from "./MatchingListAdmin";
 import FilterForm2 from "../1상품관리/FilterForm2";
 import SearchDropdown from "../1상품관리/SearchDropdown";
+import LocationSelector from "../../main/LocationSelector";
 
 const MatchingListFormAdmin = ({ openLeftside }) => {
   const [selectedIcon, setSelectedIcon] = useState("faBorderAll");
@@ -27,13 +28,17 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
   const [whatProduct, setWhatProduct] = useState([]);
   const [searchValueText, setSearchValueText] = useState("");
   const [useFilter, setUseFilter] = useState(false);
-  const [selectedDropdown, setSelectedDropdown] = useState("선택");
+  const [selectedDropdown, setSelectedDropdown] = useState("매칭 제목");
   const [placeHolderUseState, setPlaceHolderUseState] =
     useState("매칭 제목 검색"); //사용시 변경필요
   // ## 아래 useEffect도 같이 복사해야함.
   //----------------SearchDropdown.end------------------
   const [heartEA, setHeartEA] = useState(0);
   const [treeEA, setTreeEA] = useState(0);
+
+  //LocationSelector.start ---------------------------------------
+  const [selectedLocation, setSelectedLocation] = useState("지역 선택");
+  //LocationSelector.end ---------------------------------------
 
   useEffect(() => {
     axios
@@ -83,8 +88,12 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
       );
     }
 
+    const thirdFilter = secondFilter.filter((item) =>
+      item.matchingAddress.includes(selectedLocation)
+    );
+
     // SearchDropdown.selectedDropdown.start----------------------------------
-    let finalFilter = secondFilter; //secondFilter대신 원하는 데이터구조(배열)를 넣어야함.
+    let finalFilter = thirdFilter; //secondFilter대신 원하는 데이터구조(배열)를 넣어야함.
     if (useFilter && selectedDropdown) {
       switch (selectedDropdown) {
         case "유저 아이디":
@@ -184,64 +193,80 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
         <div
           className={`${filterForm.filterFormContainer} d-flex justify-content-start align-items-center px-4`}
         >
-          <FilterForm
-            iconName="faBorderAll"
-            titleText="전체"
-            searchValue={allProduct.length}
-            selectedIcon={selectedIcon}
-            setSelectedIcon={setSelectedIcon}
-          ></FilterForm>
-          <FilterForm
-            iconName="faHourglassHalf"
-            titleText="매칭 대기"
-            searchValue={sellingProduct.length}
-            selectedIcon={selectedIcon}
-            setSelectedIcon={setSelectedIcon}
-          ></FilterForm>
-          <FilterForm
-            iconName="faHourglassEnd"
-            titleText="매칭 완료"
-            searchValue={soldOutProduct.length}
-            selectedIcon={selectedIcon}
-            setSelectedIcon={setSelectedIcon}
-          ></FilterForm>
+          <div className="d-flex justify-content-start align-items-start flex-column">
+            <div>
+              <h6>매칭 상태</h6>
+            </div>
+            <div className="d-flex justify-content-start align-items-center">
+              <FilterForm
+                iconName="faBorderAll"
+                titleText="전체"
+                searchValue={allProduct.length}
+                selectedIcon={selectedIcon}
+                setSelectedIcon={setSelectedIcon}
+              ></FilterForm>
+              <FilterForm
+                iconName="faHourglassHalf"
+                titleText="매칭 대기"
+                searchValue={sellingProduct.length}
+                selectedIcon={selectedIcon}
+                setSelectedIcon={setSelectedIcon}
+              ></FilterForm>
+              <FilterForm
+                iconName="faHourglassEnd"
+                titleText="매칭 완료"
+                searchValue={soldOutProduct.length}
+                selectedIcon={selectedIcon}
+                setSelectedIcon={setSelectedIcon}
+              ></FilterForm>
+            </div>
+          </div>
         </div>
         <div
           className={`${filterForm.filterFormContainer} d-flex justify-content-start align-items-center px-4`}
         >
-          <FilterForm2
-            iconName="faBorderAll"
-            titleText="전체"
-            searchValue={heartEA + treeEA}
-            selectedIcon2={selectedIcon2}
-            setSelectedIcon2={setSelectedIcon2}
-          ></FilterForm2>
-          <FilterForm2
-            iconName="faHeart"
-            titleText="연애"
-            searchValue={heartEA}
-            selectedIcon2={selectedIcon2}
-            setSelectedIcon2={setSelectedIcon2}
-          ></FilterForm2>
-          <FilterForm2
-            iconName="faTree"
-            titleText="산책"
-            searchValue={treeEA}
-            selectedIcon2={selectedIcon2}
-            setSelectedIcon2={setSelectedIcon2}
-          ></FilterForm2>
+          <div className="d-flex justify-content-start align-items-start flex-column">
+            <div>
+              <h6>매칭 목적</h6>
+            </div>
+            <div className="d-flex justify-content-start align-items-center">
+              <FilterForm2
+                iconName="faBorderAll"
+                titleText="전체"
+                searchValue={heartEA + treeEA}
+                selectedIcon2={selectedIcon2}
+                setSelectedIcon2={setSelectedIcon2}
+              ></FilterForm2>
+              <FilterForm2
+                iconName="faHeart"
+                titleText="연애"
+                searchValue={heartEA}
+                selectedIcon2={selectedIcon2}
+                setSelectedIcon2={setSelectedIcon2}
+              ></FilterForm2>
+              <FilterForm2
+                iconName="faTree"
+                titleText="산책"
+                searchValue={treeEA}
+                selectedIcon2={selectedIcon2}
+                setSelectedIcon2={setSelectedIcon2}
+              ></FilterForm2>
+            </div>
+          </div>
         </div>
         <div
-          className="d-flex justify-content-end mt-4"
+          className="d-flex justify-content-center align-items-center mt-4"
           style={{ width: "100%" }}
         >
-          {/* SearchDropdown.code.start--------------------------------- */}
-          <SearchDropdown
-            type="matching"
-            selectedDropdown={selectedDropdown}
-            setSelectedDropdown={setSelectedDropdown}
-            setPlaceHolderUseState={setPlaceHolderUseState}
-          ></SearchDropdown>
+          <div>
+            {/* SearchDropdown.code.start--------------------------------- */}
+            <SearchDropdown
+              type="matching"
+              selectedDropdown={selectedDropdown}
+              setSelectedDropdown={setSelectedDropdown}
+              setPlaceHolderUseState={setPlaceHolderUseState}
+            ></SearchDropdown>
+          </div>
           {/* SearchDropdown.code.end--------------------------------- */}
           <SearchForm
             whatLeftMenuInnerText="매칭"
@@ -259,6 +284,12 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
             placeHolderUseState={placeHolderUseState}
             setPlaceHolderUseState={setPlaceHolderUseState}
           ></SearchForm>
+
+          <LocationSelector
+            selectedLocation={selectedLocation}
+            setSelectedLocation={setSelectedLocation}
+            where="admin"
+          ></LocationSelector>
         </div>
         <div className="d-flex align-items-center mt-4">
           <div>
