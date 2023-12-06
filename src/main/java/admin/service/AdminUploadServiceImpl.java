@@ -84,7 +84,7 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 
 	}
 
-	// for종인님 - 지안작성(12/6)
+	//종인님께7.start--------------------------------------------
 	@Override
 	public String productUpload(MultipartFile imgFile) throws IOException {
 
@@ -93,6 +93,7 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 		return fileName;
 
 	}
+	//종인님께8.end--------------------------------------------
 
 	// @Override
 	// public Integer calculate(Integer a, Integer b) {

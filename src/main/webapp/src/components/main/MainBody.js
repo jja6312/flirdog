@@ -15,6 +15,7 @@ const MainBody = () => {
   const [selectedCategory, setSelectedCategory] = useState("전국 랭킹");
   const [selectedLocation, setSelectedLocation] = useState("지역 선택");
 
+  //종인님께1.start--------------------------------------
   const [file, setFile] = useState();
   const oneFileGo = () => {
     const formData = new FormData();
@@ -22,14 +23,15 @@ const MainBody = () => {
     axios
       .post("http://localhost:8080/admin/oneFileGo", formData)
       .then((res) => {
-        console.log(res);
-        alert("성공");
+        console.log(res.data);
+        alert(res.data);
       })
       .catch((err) => {
         console.log(err);
         alert("실패");
       });
   };
+  //종인님께2.end-----------------------------------------
 
   //서버에서 userInfoArray를 가져온다.(communityScore가 높은 순으로 3개)
   //userInfoArray.map으로, 1등 2등 3등의 id를 통해 dogsInfoArray(첫번째값만)를 가져온다.
@@ -103,6 +105,7 @@ const MainBody = () => {
 
   return (
     <>
+      {/* 종인님께3.start----------------------------------------- */}
       <input
         type="file"
         id="file"
@@ -122,6 +125,7 @@ const MainBody = () => {
       >
         Go
       </div>
+      {/* 종인님께4.end----------------------------------------- */}
       <MainScreen></MainScreen>
 
       <Container className="px-10">

@@ -267,11 +267,13 @@ public class AdminController {
 
 	}
 	
-	//for종인 - 지안 12/6
+	//종인님께5.start----------------------------------------- 
 	@PostMapping(path = "oneFileGo")
 	public String oneFileGo(@RequestPart MultipartFile file) throws IOException {
 		return adminUploadService.productUpload(file);
 	}
+	//종인님께6.end--------------------------------------------
+	
 
 
 
