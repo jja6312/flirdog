@@ -7,6 +7,48 @@ import AiOutput from "./AiOutput";
 import { Alert } from "react-bootstrap";
 import ChatAi from "./ChatAi";
 import axios from "axios";
+import { Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const data = {
+  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  datasets: [
+    {
+      label: "# of Votes",
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
 
 const AdminMainContent = () => {
   const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
@@ -18,7 +60,23 @@ const AdminMainContent = () => {
       <div
         className={`${rightContent.rightContent} d-flex justify-content-start`}
       >
-        <div className="d-flex flex-column justify-content-start">
+        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            지역별 회원 통계
+          </div>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            <Pie data={data} />
+          </div>
+        </div>
+        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            지역별 강아지 통계
+          </div>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            <Pie data={data} />
+          </div>
+        </div>
+        {/* <div className="d-flex flex-column justify-content-start">
           <img
             alt=""
             className={styles.mainBanner}
@@ -49,7 +107,7 @@ const AdminMainContent = () => {
                     ></AiSupportList>
                   </div>
 
-                  {/* <div
+                  <div
                     className={`${styles.aiContentsContainer} d-flex justify-content-between align-items-center`}
                   >
                     <div className={`${styles.aiContents} ${styles.col4M1}`}>
@@ -71,7 +129,7 @@ const AdminMainContent = () => {
                         title="확장사업별 세부작업 추천"
                       ></AiSupportList>
                     </div>
-                  </div> */}
+                  </div>
                   <div
                     className={`${styles.aiOutput} ${styles.col12M1} d-flex justify-content-center align-items-center`}
                   >
@@ -127,12 +185,12 @@ const AdminMainContent = () => {
                   style={{ width: "100%" }}
                 ></img>
               </div>
-              {/* <div className={`${styles.rightContainerElement} mt-2`}>
+              <div className={`${styles.rightContainerElement} mt-2`}>
                 <Banner
                   imgSrc1="/image/admin/aiAdminAdBanner2.png"
                   imgSrc2="/image/admin/aiAdminAdBanner2.png"
                 ></Banner>
-              </div> */}
+              </div>
               <div className={`${styles.rightContainerElement} mt-2`}>
                 <Banner
                   imgSrc1="/image/admin/aiAdminAdBanner3.png"
@@ -147,7 +205,7 @@ const AdminMainContent = () => {
           ></ChatAi>
 
           <div style={{ height: "300px" }}></div>
-        </div>
+        </div> */}
       </div>
     </>
   );
