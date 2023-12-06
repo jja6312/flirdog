@@ -54,7 +54,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
               window.location.pathname !== "/"
                 ? `${window.location.origin}/mypage/MypageMain` // 현재 페이지가 메인페이지가 아닐 경우 절대 경로로 이동
                 : `${window.location.origin}/mypage/MypageMain`
-                // : "mypage/MypageCategoryWrapper" 테스트화면
+                //: "mypage/MypageCategoryWrapper" 테스트화면
             }
           >
             마이페이지
