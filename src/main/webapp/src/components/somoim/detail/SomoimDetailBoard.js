@@ -16,7 +16,7 @@ const SomoimDetailBoard = ({ somoimId, user, isAdmin }) => {
                 })
                 .catch(error => console.log(error))
         //}
-    },[somoimId])
+    },[somoimId, user])
 
     return (
         <div>

@@ -51,7 +51,6 @@ public class DogsInfo extends BaseEntity {
     @Embedded
     private Score score;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -59,5 +58,14 @@ public class DogsInfo extends BaseEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "dogsInfo")
     private List<Matching> matching;
+    
+    @Override
+    public String toString() {
+        return "DogsInfo{id=" + id + ", "
+        		+ "name='" + name + "', "
+        		+ "age='" + age + "', "
+        		+ "user='" + user.getId() + "', "
+        		+ "gender='" + gender + "'}";
+    }
 
 }

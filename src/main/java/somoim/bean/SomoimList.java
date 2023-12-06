@@ -57,11 +57,6 @@ public class SomoimList extends BaseEntity {
         		this.isAdmin = 0; // 소모임 참가자
         	}
 
-//            this.isAdmin = this.user.getId().equals(this.somoim.getUser().getId());
-//            // 만약 일치하지 않는 경우 isAdmin을 false로 설정
-//            if (!this.isAdmin) {
-//                this.isAdmin = false;
-//            }
         }
     }
 }

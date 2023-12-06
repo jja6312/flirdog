@@ -13,6 +13,7 @@ import SomoimDetailSchedule from './SomoimDetailSchedule';
 import SomoimDetailMember from './SomoimDetailMember';
 import SomoimDetailChat from './SomoimDetailChat';
 import styles from '../../../css/somoim/detail/somoimDetailHeader.module.css'
+import { UserContext } from '../../../contexts/UserContext';
 
 
 const SomoimDetail = () => {
@@ -28,21 +29,23 @@ const SomoimDetail = () => {
     const [somoimJoin, setSomoimJoin] = useState({});
     //const [, forceUpdate] = useState({}); // 컴포넌트 강제 리렌더링을 위한 state
     
-    const location = useLocation(); // 소모임 리스트로부터 아이디값 정보 받아옴
-    const { state = {} } = location;
-    const user = state ? state.user : null;
+    //const location = useLocation(); // 소모임 리스트로부터 아이디값 정보 받아옴
+    //const { state = {} } = location;
+    //const user = state ? state.user : null;
+    //const user = state && state.user; 
 
+    const { user } = useContext(UserContext); // 유저 컨텍스트
+    // const { id } = user
     // state에 전달된 user 정보 확인
     //console.log('state에 전달된 user 정보 확인' + state.user.id);
-    console.log('state에 전달된 user 정보 확인 : ' + (state && state.user ? state.user.id : 'User 정보 없음'));
+    //console.log('state에 전달된 user 정보 확인 : ' + (state && state.user ? state.user.id : 'User 정보 없음'));
     console.log('state에 전달된 user 정보만 찍어보기 : ' + (user ? user.id : 'User 정보 없음'));
 
     const navigate = useNavigate();
 
     const imageUrl = 'https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/flirdogStorage/somoim/';
 
-    // const { user } = useContext(UserContext); // 유저 컨텍스트
-    // const { id } = user
+     
     
     const { somoimName, introduceSub, address, address2, memberCount, target, accountName, accountEmail, accountPhone, introducePhoto, introducePhotoUUID } = formData
     //const { isAdmin } = somoimJoin || {};
@@ -61,53 +64,89 @@ const SomoimDetail = () => {
         isJoin();
     },[somoimId])
 
-    //가입 여부 확인 및 초기 데이터 로딩
+
+    // 가입 여부 확인 및 초기 데이터 로딩
+    const isJoin = async () => {
+        if (user && user.id) {
+            //await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
+            await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&userId=${user.id}`)
+                .then(res => {
+                    setIsAdmin(res.data)
+                    if(res.data) {
+                        console.log('해당 소모임에 대한 권한 : ' + res.data)
+                        console.log('해당 소모임에 접속한 user의 id : ', user.id);
+                    }
+                    // 강제 리렌더링
+                    //forceUpdate({});
+                })
+                .catch(e => console.error('가입 여부 확인 중 오류:' + e))
+        }//if
+    };
+
     useEffect(() => {
-        const user = state ? state.user : null;
         console.log('user객체 id정보 : ' + user)
-        //console.log('user객체 id정보 : ' + user.id)
         console.log('somoimId : ' + somoimId)
 
-        const isJoin = async () => {
-            if (user && user.id) {
-                await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
-                    .then(res => {
-                        setIsAdmin(res.data)
-                        if(res.data) {
-                            console.log('해당 소모임에 대한 권한 : ' + res.data)
-                            console.log('해당 소모임에 접속한 user의 id : ', user.id);
-                        }
-                        // 강제 리렌더링
-                        //forceUpdate({});
-                    })
-                    .catch(e => console.error('가입 여부 확인 중 오류:' + e))
-            }//if
-        };
-
+        // 최초 렌더링 시에도 isJoin 함수 호출
         isJoin();
-    }, [somoimId, state]);
+    }, [somoimId, user, somoimJoin]);
+
+
+    //가입 여부 확인 및 초기 데이터 로딩
+    // useEffect(() => {
+    //     console.log('user객체 id정보 : ' + user)
+    //     console.log('somoimId : ' + somoimId)
+
+    //     const isJoin = async () => {
+    //         if (user && user.id) {
+    //             //await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
+    //             await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${user.id}`)
+    //                 .then(res => {
+    //                     setIsAdmin(res.data)
+    //                     if(res.data) {
+    //                         console.log('해당 소모임에 대한 권한 : ' + res.data)
+    //                         console.log('해당 소모임에 접속한 user의 id : ', user.id);
+    //                     }
+    //                     // 강제 리렌더링
+    //                     //forceUpdate({});
+    //                 })
+    //                 .catch(e => console.error('가입 여부 확인 중 오류:' + e))
+    //         }//if
+    //     };
+
+    //     isJoin();
+    // }, [somoimId, user, somoimJoin]);
 
     // 소모임 회원가입
     const joinSomoim = async (e) => { 
         const confirmed = window.confirm('해당 소모임에 참여하시겠습니까?');
-        if(!state.user.id) {
+        if(!user.id) {
             alert('먼저 로그인해 주십시오.')
             navigate('/login')
         }
         if (confirmed) {
-            await axios.post(`/somoim/joinSomoim`, {
-              somoimId: somoimId,
-              id: state.user.id,
-            }).then(res => {
-                setSomoimJoin(res.data)
-                console.log(somoimJoin)
-                alert('소모임에 가입하셨습니다.');
-            }).catch(e => console.log(e));
+            try {
+                await axios.post(`/somoim/joinSomoim`, {
+                    somoimId: somoimId,
+                    userId:user.id,
+                  }).then(res => {
+                      setSomoimJoin(res.data)
+                      console.log(somoimJoin)
+                      alert('소모임에 가입하셨습니다.');
+      
+                      // 가입이 완료된 후에 isJoin 함수 호출
+                      isJoin();
+                  }).catch(e => console.log(e));
+            } catch(e) {
+                console.log(e)
+            }
+            
       
           } else {
             console.log("유저 id 또는 소모임 id가 없습니다.");
           }
     }
+    
 
     return (
         <>
@@ -129,7 +168,7 @@ const SomoimDetail = () => {
                         <div className="content d-flex">
                             <div className="flex-row col-lg-2 d-none d-md-block" style={{ position: 'relative', lineHeight: '0.8rem', textAlign:'right', paddingRight: '30px', color: '#F56084', marginTop:'2px' }}>
                                 <p className='info'>모임장소</p>
-                                <p className='info'>총 인원</p>
+                                <p className='info'>모집 인원</p>
                                 <p className='info'>대상자</p>
                                 <hr className="Line12" style={{ justifyContent: 'center', width: '90%', height: '0px', marginLeft: 10, position: 'relative', border: '1.5px black solid', opacity: 1 }} />
                                 <p className='info'>개설자 정보</p>
@@ -175,18 +214,19 @@ const SomoimDetail = () => {
             <div className='row'>
                 {/* <div className='col-sm-9 col-12 d-flex justify-content-left' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid green', wordWrap:'break-word', whiteSpace:'nowrap' }}> */}
                 <div className='col-sm-9 col-12 d-flex justify-content-left' style={{ textAlign: 'center', alignSelf: 'flex-end', wordWrap:'break-word', whiteSpace:'nowrap' }}>
-                    <SomoimDetailCategoryBarContainer somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin} />
+                    <SomoimDetailCategoryBarContainer somoimId={somoimId} user={user} isAdmin={isAdmin} />
                 </div>
                 {/* <div className='col-lg-3 d-none d-lg-block d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid green', wordWrap:'break-word', whiteSpace:'nowrap', padding: 0, height: '40px' }}></div> */}
                 <div className='col-lg-3 d-none d-lg-block d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', wordWrap:'break-word', whiteSpace:'nowrap', padding: 0, height: '40px' }}>
                     <div className='col-4 d-flex' style={{ height: '41px', justifyContent: 'center', alignItems : 'center', fontSize: '1.2rem', backgroundColor: '#FFF4F4', color: 'black' }}>채팅</div>
                 </div>
-                <div className='col-lg-9 col-12 d-flex justify-content-center' style={{ textAlign: 'center', alignItems: 'center', border: '1px solid purple', padding: '20px', minHeight:'600px', height:'fit-content' }}>
-                    {subMenu === 'detailMain' && <SomoimDetailMain somoimId={somoimId} user={state && state.user ? state.user : {}} isAdmin={isAdmin} />}
-                    {subMenu === 'detailBoard' && <SomoimDetailBoard somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin} />}
-                    {subMenu === 'detailPhoto' && <SomoimDetailPhoto somoimId={somoimId}  user={user && user.id ? user.id : null} isAdmin={isAdmin} />}
-                    {subMenu === 'detailSche' && <SomoimDetailSchedule somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin}  />}
-                    {subMenu === 'detailMem' && <SomoimDetailMember somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin} />}
+                <div className='col-lg-9 col-12 d-flex justify-content-center' style={{ textAlign: 'center', alignItems: 'flex-start', border: '1px solid purple', padding: '20px', minHeight:'600px', height:'fit-content' }}>
+                    {subMenu === 'detailMain' && <SomoimDetailMain somoimId={somoimId} user={user} isAdmin={isAdmin} />}
+                    {subMenu === 'detailBoard' && <SomoimDetailBoard somoimId={somoimId} user={user} isAdmin={isAdmin} />}
+                    {subMenu === 'detailPhoto' && <SomoimDetailPhoto somoimId={somoimId}  user={user} isAdmin={isAdmin} />}
+                    {subMenu === 'detailSche' && <SomoimDetailSchedule somoimId={somoimId} user={user} isAdmin={isAdmin}  />}
+                    {subMenu === 'detailMem' && <SomoimDetailMember somoimId={somoimId} user={user} isAdmin={isAdmin} />}
+                    {/* {subMenu === 'detailMem' && <SomoimDetailMember somoimId={somoimId} user={user && user.id ? user.id : null} isAdmin={isAdmin} />} */}
                 </div>
                 <SomoimDetailChat />
             </div>
