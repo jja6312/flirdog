@@ -191,14 +191,7 @@ public class AdminController {
 
 	}
 
-	// 주문리스트
-	@GetMapping(path = "getOrderList")
-	public List<Orders> getOrderList() {
-		List<Orders> orderList = adminOrderService.getOrderList();
-
-		return orderList;
-
-	}
+	
 
 	// 애견리스트
 	@GetMapping(path = "getDogList", produces = "application/json;charset=UTF-8")
@@ -242,7 +235,7 @@ public class AdminController {
 
 	}
 
-	// 상품리스트
+	// 매칭리스트
 	@GetMapping(path = "getMatchingList", produces = "application/json;charset=UTF-8")
 	public List<MatchingDTO> getMatchingList() {
 		List<MatchingDTO> matchingList = adminMatchingService.getMatchingList();
@@ -266,6 +259,15 @@ public class AdminController {
 		adminMatchingService.matchingDeleteSelected(matchingId);
 
 	}
+	
+	// 주문리스트
+		@GetMapping(path = "getOrderList")
+		public List<Orders> getOrderList() {
+			List<Orders> orderList = adminOrderService.getOrderList();
+
+			return orderList;
+
+		}
 	
 	//종인님께5.start----------------------------------------- 
 	@PostMapping(path = "oneFileGo")
