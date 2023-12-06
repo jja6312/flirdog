@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Form, Col, Dropdown, InputGroup, Button } from "react-bootstrap";
 
 const regions = [
+  "전체",
   "서울",
   "부산",
   "대구",
@@ -21,7 +22,7 @@ const regions = [
   "제주특별자치도",
 ];
 
-const LocationSelector = ({ selectedLocation, setSelectedLocation }) => {
+const LocationSelector = ({ selectedLocation, setSelectedLocation, where }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredRegions, setFilteredRegions] = useState(regions);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -71,11 +72,14 @@ const LocationSelector = ({ selectedLocation, setSelectedLocation }) => {
   return (
     <div
       className="d-flex justify-content-center align-items-center"
-      style={{ width: "50%" }}
+      style={{ width: "100%" }}
     >
-      <InputGroup size="lg" className="mt-2 mb-2">
+      <InputGroup size={where === "main" ? "lg" : "lg"}>
         <Form.Control
-          style={{ fontSize: 24 }}
+          style={{
+            fontSize: where === "main" ? "24px" : "1rem",
+            height: "50px",
+          }}
           onChange={handleChange}
           aria-label="Large"
           aria-describedby="inputGroup-sizing-lg"

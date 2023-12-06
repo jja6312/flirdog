@@ -23,7 +23,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
 	@Override
 	public void userDelete(String userId) {
-		adminUserRepository.deleteById(Integer.parseInt(userId));
+		adminUserRepository.deleteById(Long.parseLong(userId));
 		
 	}
 
@@ -33,14 +33,14 @@ public class AdminUserServiceImpl implements AdminUserService {
 		String[] userIdArray = userId.split(",");
 
 		for (String id : userIdArray) {
-			adminUserRepository.deleteById(Integer.parseInt(id));
+			adminUserRepository.deleteById(Long.parseLong(id));
 		}
 		
 	}
 
 	@Override
 	public Optional<User> getUser(String userIdStr) {
-		Integer userId = Integer.parseInt(userIdStr);
+		Long userId = Long.parseLong(userIdStr);
 		
 		System.out.println("여기는 서비스"+userId);
 		return adminUserRepository.findById(userId);

@@ -16,6 +16,7 @@ import SearchForm from "../1상품관리/SearchForm";
 import axios from "axios";
 import UserList from "./UserList";
 import SearchDropdown from "../1상품관리/SearchDropdown";
+import LoadingComponent from "../../Loading";
 
 const UserListForm = ({ openLeftside }) => {
   const [userList, setUserList] = useState([]);
@@ -27,10 +28,12 @@ const UserListForm = ({ openLeftside }) => {
   const [whatProduct, setWhatProduct] = useState([]);
   const [searchValueText, setSearchValueText] = useState("");
   const [useFilter, setUseFilter] = useState(false);
-  const [selectedDropdown, setSelectedDropdown] = useState("선택");
+  const [selectedDropdown, setSelectedDropdown] = useState("유저 이름");
   const [placeHolderUseState, setPlaceHolderUseState] =
     useState("회원 이름 검색");
   //----------------SearchDropdown.end------------------
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const onDeleteSelected = () => {
     if (checkUser.length === 0) {
@@ -72,16 +75,27 @@ const UserListForm = ({ openLeftside }) => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
+
     axios
       .get("http://localhost:8080/admin/getUserList")
       .then((res) => {
         console.log(res.data);
 
         setUserList(res.data);
+        // SearchDropdown.selectedDropdown.start----------------------------------
         let finalFilter = res.data;
 
         if (useFilter && selectedDropdown) {
           switch (selectedDropdown) {
+            case "유저 이름":
+              finalFilter = finalFilter.filter(
+                (
+                  item //여기가 87번
+                ) => item.name != null && item.name.includes(searchValueText)
+              );
+              break;
+
             case "유저 아이디":
               finalFilter = finalFilter.filter((item) =>
                 item.id.toString().includes(searchValueText)
@@ -100,10 +114,15 @@ const UserListForm = ({ openLeftside }) => {
               );
               break;
             case "애견 이름":
-              finalFilter = finalFilter.filter((item) =>
-                item.dogsInfos.some((dog) =>
-                  dog.dogName.includes(searchValueText)
-                )
+              finalFilter = finalFilter.filter(
+                (item) =>
+                  item.dogsInfos != null &&
+                  item.dogsInfos.some(
+                    (dog) =>
+                      dog.dogName != null &&
+                      typeof dog.dogName !== "undefined" &&
+                      dog.dogName.includes(searchValueText)
+                  )
               );
               break;
             // '매칭 제목'과 '매칭 아이디'에 대한 필터링은 데이터 구조에 따라 구현해야 합니다.
@@ -114,12 +133,24 @@ const UserListForm = ({ openLeftside }) => {
         setTotalFilter(finalFilter.length);
         console.log("whatProduct");
         console.log(finalFilter);
+        // SearchDropdown.selectedDropdown.end----------------------------------
+        setIsLoading(false);
       })
-      .catch((error) => console.log(error));
-  }, [useFilter, selectedDropdown, searchValueText]);
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  }, [
+    useFilter,
+    selectedDropdown,
+    searchValueText,
+    useFilterCheckNumber,
+    placeHolderUseState,
+  ]);
 
   return (
     <>
+      {isLoading && <LoadingComponent></LoadingComponent>}
       <AdminHeader></AdminHeader>
 
       <LeftSide
@@ -211,6 +242,7 @@ const UserListForm = ({ openLeftside }) => {
                 checkUser={checkUser}
                 setCheckUser={setCheckUser}
                 setTotalFilter={setTotalFilter}
+                whatProduct={whatProduct}
               ></UserList>
             </tbody>
           </Table>
