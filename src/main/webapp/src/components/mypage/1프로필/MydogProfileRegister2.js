@@ -428,7 +428,7 @@ const MydogProfileRegister2 = () => {
                     <div className='row'>
                         <div className='col-sm-3 d-flex justify-content-center'></div>
                         <div className='col-sm-6 d-flex justify-content-center'>
-                            <input type='hidden' name='email' value={userObject.email} /> <span>이메일1</span>
+                            <input type='hidden' name='email' value={userObject.email} /> <span>이메일</span>
                         </div>
                     </div>
             </Container>
