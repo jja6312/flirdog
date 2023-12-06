@@ -13,6 +13,7 @@ import MatchingListAdmin from "./MatchingListAdmin";
 import FilterForm2 from "../1상품관리/FilterForm2";
 import SearchDropdown from "../1상품관리/SearchDropdown";
 import LocationSelector from "../../main/LocationSelector";
+import LoadingComponent from "../../Loading";
 
 const MatchingListFormAdmin = ({ openLeftside }) => {
   const [selectedIcon, setSelectedIcon] = useState("faBorderAll");
@@ -40,7 +41,11 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
   const [selectedLocation, setSelectedLocation] = useState("지역 선택");
   //LocationSelector.end ---------------------------------------
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
+
     axios
       .get("http://localhost:8080/admin/getMatchingList")
       .then((res) => {
@@ -60,12 +65,17 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
         setTreeEA(
           res.data.filter((item) => item.matchingPurpose === "산책").length
         );
+        setIsLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
   }, []);
 
   useEffect(() => {
     let initialFilter = [];
+    setIsLoading(true);
 
     // selectedIcon에 따른 첫 번째 필터링
     if (selectedIcon === "faBorderAll") {
@@ -88,9 +98,12 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
       );
     }
 
-    const thirdFilter = secondFilter.filter((item) =>
-      item.matchingAddress.includes(selectedLocation)
-    );
+    let thirdFilter = secondFilter;
+    if (selectedLocation !== "지역 선택" && selectedLocation !== "전체") {
+      thirdFilter = secondFilter.filter((item) =>
+        item.matchingAddress.includes(selectedLocation)
+      );
+    }
 
     // SearchDropdown.selectedDropdown.start----------------------------------
     let finalFilter = thirdFilter; //secondFilter대신 원하는 데이터구조(배열)를 넣어야함.
@@ -129,9 +142,11 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
 
     setWhatProduct(finalFilter);
     setTotalFilter(finalFilter.length);
+
     console.log("whatProduct");
     console.log(finalFilter);
     // SearchDropdown.selectedDropdown.end----------------------------------
+    setIsLoading(false);
   }, [
     selectedIcon,
     selectedIcon2,
@@ -142,6 +157,7 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
     searchValueText,
     setTotalFilter,
     selectedDropdown,
+    selectedLocation,
   ]);
 
   const onDeleteCheckedMatchings = () => {
@@ -185,6 +201,7 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
 
   return (
     <>
+      {isLoading && <LoadingComponent></LoadingComponent>}
       <AdminHeader></AdminHeader>
       <LeftSide openLeftside={openLeftside} selected="매칭글 조회"></LeftSide>
       <div className={styles.rightContent}>

@@ -16,6 +16,7 @@ import SearchForm from "../1상품관리/SearchForm";
 import axios from "axios";
 import UserList from "./UserList";
 import SearchDropdown from "../1상품관리/SearchDropdown";
+import LoadingComponent from "../../Loading";
 
 const UserListForm = ({ openLeftside }) => {
   const [userList, setUserList] = useState([]);
@@ -31,6 +32,8 @@ const UserListForm = ({ openLeftside }) => {
   const [placeHolderUseState, setPlaceHolderUseState] =
     useState("회원 이름 검색");
   //----------------SearchDropdown.end------------------
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const onDeleteSelected = () => {
     if (checkUser.length === 0) {
@@ -72,6 +75,8 @@ const UserListForm = ({ openLeftside }) => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
+
     axios
       .get("http://localhost:8080/admin/getUserList")
       .then((res) => {
@@ -129,8 +134,12 @@ const UserListForm = ({ openLeftside }) => {
         console.log("whatProduct");
         console.log(finalFilter);
         // SearchDropdown.selectedDropdown.end----------------------------------
+        setIsLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
   }, [
     useFilter,
     selectedDropdown,
@@ -141,6 +150,7 @@ const UserListForm = ({ openLeftside }) => {
 
   return (
     <>
+      {isLoading && <LoadingComponent></LoadingComponent>}
       <AdminHeader></AdminHeader>
 
       <LeftSide
