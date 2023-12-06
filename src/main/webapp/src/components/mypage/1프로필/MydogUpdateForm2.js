@@ -380,9 +380,9 @@ const MydogUpdateForm2 = () => {
                         </div>
                     </div>
                     <div>
-                        <input type='text' name='id' value={id} />
-                        <input type='text' name='dogsInfo' value={dogsInfo} />
-                        <input type='text' name='score' value={score} />
+                        <input type='hidden' name='id' value={id} />
+                        <input type='hidden' name='dogsInfo' value={dogsInfo} />
+                        <input type='hidden' name='score' value={score} />
                     </div>   
             </Container>        
         </div>
