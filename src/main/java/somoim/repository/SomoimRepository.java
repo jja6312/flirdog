@@ -5,7 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import somoim.bean.Somoim;
 
+
 @Repository
 public interface SomoimRepository extends JpaRepository<Somoim, Long>{
-
+	
+	//@Query("SELECT s1 FROM SomoimList sl JOIN FETCH sl.user WHERE sl.somoim.id = :somoimId")
+    //List<SomoimList> findSomoimUsers(@Param("somoimId") Long somoimId);
+	
+	//List<SomoimList> findBySomoimId(Long somoimId);
 }

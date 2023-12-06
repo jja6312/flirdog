@@ -63,5 +63,14 @@ public class DogsInfo extends BaseEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "dogsInfo")
     private List<Matching> matching;
+    
+    @Override
+    public String toString() {
+        return "DogsInfo{id=" + id + ", "
+        		+ "name='" + name + "', "
+        		+ "age='" + age + "', "
+        		+ "user='" + user.getId() + "', "
+        		+ "gender='" + gender + "'}";
+    }
 
 }

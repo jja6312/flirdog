@@ -2,6 +2,8 @@ package user.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -29,6 +31,7 @@ import somoim.bean.Somoim;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
+@JsonSerialize(using = UserSerializer.class)
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // 12/2 지안추가. 모달띄울때 user정보를불러오는데, 이때 이게있으니까 잘됨.
 @JsonIdentityInfo(
@@ -57,8 +60,9 @@ public class User extends BaseEntity {
     private Long point;
 
     private int communityScore;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DogsInfo> dogsInfos;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -69,8 +73,8 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Community> communities;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
