@@ -7,8 +7,19 @@ import AiOutput from "./AiOutput";
 import { Alert } from "react-bootstrap";
 import ChatAi from "./ChatAi";
 import axios from "axios";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -49,6 +60,22 @@ const AdminMainContent = () => {
       <div
         className={`${rightContent.rightContent} d-flex justify-content-start`}
       >
+        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            지역별 회원 통계
+          </div>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            <Pie data={data} />
+          </div>
+        </div>
+        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            지역별 강아지 통계
+          </div>
+          <div className={`d-flex justify-content-center align-items-center`}>
+            <Pie data={data} />
+          </div>
+        </div>
         {/* <div className="d-flex flex-column justify-content-start">
           <img
             alt=""

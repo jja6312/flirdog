@@ -42,6 +42,11 @@
   vertical-align: middle;
 }
 
+.dataBoxContainer {
+  width: 25vw;
+  height: 300px;
+}
+
 .rightContent {
   width: calc(100% - 203px);
 
