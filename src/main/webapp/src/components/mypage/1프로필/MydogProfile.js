@@ -87,7 +87,7 @@ const MydogProfile = () => {
                     <div className='col-lg-6 d-flex justify-content-center'> 
                         <Link to='/mypage/MydogProfileRegister2'> 
                             <Button variant="outline-danger" className={`col-lg-4 ${Mypage.Btn3}`} >
-                                추가하기1
+                                추가하기
                             </Button>{''} 
                         </Link>
                     </div>
