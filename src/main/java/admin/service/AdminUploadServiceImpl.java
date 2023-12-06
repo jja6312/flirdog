@@ -23,7 +23,7 @@ import product.bean.SubCategory;
 public class AdminUploadServiceImpl implements AdminUploadService {
 	@Autowired
 	private ObjectStorageService objectStorageService;
-	private String bucketName = "bitcamp-edu-bucket-111";
+	private String bucketName = "bitcamp-edu-bucket-112";
 	@Autowired
 	private AdminProductRepository adminProductRepository;
 
@@ -87,8 +87,6 @@ public class AdminUploadServiceImpl implements AdminUploadService {
 	// for종인님 - 지안작성(12/6)
 	@Override
 	public String productUpload(MultipartFile imgFile) throws IOException {
-
-		String originalFileName;
 
 		String fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/message/", imgFile);
 
