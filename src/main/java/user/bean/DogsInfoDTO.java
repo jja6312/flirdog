@@ -53,4 +53,8 @@ public class DogsInfoDTO {
 
 		@Column(name="dogsWeight", length=50)
 	    private String dogsWeight;
+		
+
+		@Column(name="email", length=50)
+	    private String email;
 }

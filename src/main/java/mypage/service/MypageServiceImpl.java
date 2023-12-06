@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import mypage.repository.MypageDogsInfoDTORepository;
+import mypage.repository.MypagePointChargingDTORepository;
 import mypage.repository.MypagePointDTORepository;
 import mypage.repository.MypageRepository;
 import mypage.repository.MypageUserDTORepository;
@@ -28,6 +29,9 @@ public class MypageServiceImpl implements MypageService {
 	
 	@Autowired
 	private MypagePointDTORepository mypagePointDTORepository;
+
+	@Autowired
+	private MypagePointChargingDTORepository mypagePointChargingDTORepository;
 	
     @Override
     public User getUserProfile(Long userId) {
@@ -60,6 +64,10 @@ public class MypageServiceImpl implements MypageService {
 		System.out.println(list.getContent());
 		
 		return list;
+	}
+	@Override
+	public void wrtitePointCharging(PointChargingDTO pointChargingDTO) {
+		mypagePointChargingDTORepository.save(pointChargingDTO);
 	}
 
 }

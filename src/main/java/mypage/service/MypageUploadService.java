@@ -10,6 +10,8 @@ public interface MypageUploadService {
 	
 	public void upload(List<DogsInfoDTO> dogsImageList);
 
+	public List<DogsInfoDTO> uploadListDog(String email);
+	
 	public List<DogsInfoDTO> uploadList(Long userId);
 	
 	public Optional<DogsInfoDTO> getDogInfo(Long userId);

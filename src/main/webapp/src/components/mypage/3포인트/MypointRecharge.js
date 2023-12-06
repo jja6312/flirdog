@@ -14,7 +14,7 @@ const MypointRecharge = () => {
     
   const [userObject, setUserObject] = useState({});
   console.log(userObject); //아무의미없음.userObject빈객체 방지용
-
+  //유저테이블
   const [userDTO, setUserDTO] = useState({
     id: '',
     addresses: '',
@@ -37,8 +37,16 @@ const MypointRecharge = () => {
     communityScore: 0,
     amount: 0,
     });
-const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities,communityScore,dogsinfos,matching,point,pointChargings,popularity,userRole,imgageFileName,amount} = userDTO;
+  const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities,communityScore,dogsinfos,matching,point,pointChargings,popularity,userRole,imgageFileName,amount} = userDTO;
 
+  // 포인트 충전 테이블 [ 김찬영  2023-12-5 오후 04:52:45 ] 시간 되면 하시오. 안할거면 포인트 조회에 소멸 예정 포인트! 없애시오.
+//    const [pointChargingDTO, setPointChargingDTO] = useState({
+//      id: '',
+//      price: '',
+//      chargingPoint: '',
+//      createdDate: '',
+//      validDate: '',
+//    });
 
     // useRef를 사용하여 버튼 엘리먼트를 참조
     const buttonRef = useRef(null);
@@ -71,6 +79,16 @@ const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities
           console.log(error);
       });
   
+    //   axios.get(`http://localhost:8080/mypage/getPointCharging?userIdStr=${userId}`)
+    //   .then((res) => {
+    //       //alert('성공')
+    //       console.log('getPointCharging'+res.data);
+    //       setPointChargingDTO(res.data);
+    //   })
+    //   .catch((error) => {
+    //       console.log(error);
+    //   });
+
       // useRef로 참조한 버튼 엘리먼트를 사용
       const button = buttonRef.current;
   
@@ -86,7 +104,7 @@ const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities
           pay_method: "card",
           amount: `${amount2}`,
           name: `${amount2}원 포인트 충전`,
-          merchant_uid: `ORD20231203-000${pointChargings}`,
+          merchant_uid: `ORD20231204-000${pointChargings}`,
         //   buyer_email: "",
         //   buyer_name: "",
         //   buyer_tel: "",
@@ -111,6 +129,15 @@ const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities
                     console.log(error);
                 });
                 
+                // axios.post('/mypage/wrtitePointCharging' , pointChargingDTO)
+                // .then((res) => {
+                //     console.log(res.data);
+                //     setPointChargingDTO(res.data);
+                // })
+                // .catch((error) => {
+                //     console.log(error);
+                // });
+
                 const {imp_uid} = response;
                 Swal.fire({
                     position: 'middle',
@@ -131,7 +158,17 @@ const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities
       if (button) {
         button.addEventListener("click", onClickpay);
       }
-  
+
+          // pointChargingDTO의 createdDate를 현재 날짜로 초기화
+    //   setPointChargingDTO({
+    //         ...pointChargingDTO,
+    //         createdDate: new Date().toISOString(), // 현재 날짜를 ISO 형식의 문자열로 변환
+    //         validDate: new Date().toISOString()+7, 
+    //   });
+
+
+
+
       // cleanup 함수
       return () => {
         // 버튼이 정상적으로 찾아지면 이벤트 핸들러 제거
@@ -151,6 +188,7 @@ const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities
         ...userDTO,
           [name]: value
       });
+      
 
       setAmount2(value);
 
@@ -252,6 +290,12 @@ const {id,nickname,introduce,email,image,phone,name,passwd,addresses,communities
                         <input type='text' name='email' value={email} className={Mypage.input25}/> <span className={Mypage.span25}>이메일</span>
                       <input type='text' name='imgageFileName' value={imgageFileName} className={Mypage.input27}/> <span className={Mypage.span27}>이미지파일이름</span> */}
                         <input type='hidden' name='pointChargings' value={pointChargings} className={Mypage.input20}/>  {/* 카카오결제일련번호로 사용중. 백단의 UserDTO파일 이름과 동일해야함  */}
+                        {/* 포인트충전 유효기간 부분  잘안되서 포기함.*/}
+                        {/* <input type='text' name='pointChargingDTO[price]' value={pointChargingDTO.price} /> 
+                        <input type='text' name='pointChargingDTO[id]' value={pointChargingDTO.id} />
+                        <input type='text' name='pointChargingDTO[chargingPoint]' value={amount2} />
+                        <input type='text' name='pointChargingDTO[createdDate]' value={pointChargingDTO.createdDate} />
+                        <input type='text' name='pointChargingDTO[validDate]' value={pointChargingDTO.validDate} /> */}
                     </Col>
                     <Col xs={4} md={4}>
                     </Col>
