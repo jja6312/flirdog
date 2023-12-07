@@ -3,10 +3,10 @@ import Accordion from "react-bootstrap/Accordion";
 import styles from "../css/chatting.module.css";
 import ChattingGroupBox from "./ChattingGroupBox";
 
-const Chatting = () => {
+const Chatting = ({ isOpenChatting }) => {
   return (
     <div className={styles.chattingContainer}>
-      <Accordion>
+      <Accordion activeKey={isOpenChatting ? "0" : ""}>
         <Accordion.Item eventKey="0">
           <Accordion.Header>채팅</Accordion.Header>
           <Accordion.Body style={{ padding: 0 }}>

@@ -15,6 +15,11 @@ const MainBody = () => {
   const [dogsInfoArray, setDogsInfoArray] = React.useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전국 랭킹");
   const [selectedLocation, setSelectedLocation] = useState("지역 선택");
+  const [isOpenChatting, setIsOpenChatting] = useState(false);
+
+  const openChatting = () => {
+    setIsOpenChatting(!isOpenChatting);
+  };
 
   //서버에서 userInfoArray를 가져온다.(communityScore가 높은 순으로 3개)
   //userInfoArray.map으로, 1등 2등 3등의 id를 통해 dogsInfoArray(첫번째값만)를 가져온다.
@@ -88,7 +93,7 @@ const MainBody = () => {
 
   return (
     <>
-      <Chatting></Chatting>
+      <Chatting isOpenChatting={isOpenChatting}></Chatting>
 
       <MainScreen></MainScreen>
 
@@ -100,6 +105,7 @@ const MainBody = () => {
           setSelectedCategory={setSelectedCategory}
           selectedLocation={selectedLocation}
           setSelectedLocation={setSelectedLocation}
+          openChatting={openChatting}
         />
       </Container>
       <SmallGroupMain></SmallGroupMain>
