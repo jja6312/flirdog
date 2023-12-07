@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class SendMessageForm {
 
-    private int roomNo;
+    private Long messageRoomId;
 
-    private Integer userId;
+    private Long userId;
 
     private String nickName;
 
@@ -23,27 +23,17 @@ public class SendMessageForm {
 
     private String  sendDate;
 
+    private String profileImage;
+
     @Builder(toBuilder = true)
-    private SendMessageForm(int roomNo, Integer userId, String nickName, int messageType, String content, String sendDate) {
-        this.roomNo = roomNo;
+    private SendMessageForm(Long messageRoomId, Long userId, String nickName, int messageType, String content, String sendDate, String profileImage) {
+        this.messageRoomId = messageRoomId;
         this.userId = userId;
         this.nickName = nickName;
         this.messageType = messageType;
         this.content = content;
         this.sendDate = sendDate;
-    }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-                "roomNo='" + roomNo + '\'' +
-                ", userId='" + userId + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", messageType='" + messageType + '\'' +
-                ", content='" + content + '\'' +
-                ", sendDate='" + sendDate + '\'' +
-                '}';
+        this.profileImage = profileImage;
     }
 
     public SendMessageForm setSendDateToCurrentTime() {

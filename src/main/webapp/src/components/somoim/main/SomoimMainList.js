@@ -21,17 +21,36 @@ const SomoimMainList = ({ selectedLocation, searchList, item }) => {
     const { id, name } = user
 
     useEffect(() => {
+        setFilteredResults(somoimList);
+      }, [somoimList]);
+      
+    useEffect(() => {
         const filterList = async () => {
-            await axios.get('/somoim/getSomoimList')
-                .then(res => {
-                    console.log(res.data)
-                    setSomoimList(res.data)
-                })
-                .catch(error => console.log(error));
+            if (!user || !user.id) {
+                // user가 비어있거나 id가 없으면 데이터를 가져오지 않음
+                return;
+            }
+            
+            try {
+                const response = await axios.get('/somoim/getSomoimList');
+                console.log(response.data);
+                setSomoimList(response.data);
+                console.log('소모임 리스트에서의 유저 : ', user)
+              } catch (error) {
+                console.error('Somoim 목록을 가져오는 중 오류 발생:', error);
+              }
+            // await axios.get('/somoim/getSomoimList')
+            //     .then(res => {
+            //         console.log(res.data)
+            //         setSomoimList(res.data)
+                    
+            //     })
+            //     .catch(error => console.log(error));
         }
         
         filterList();
-    },[])
+        
+    },[user])
 
     useEffect(() => {
         // searchList가 변경되면 isSearching을 true로, 그렇지 않으면 false로 설정
@@ -66,7 +85,7 @@ const SomoimMainList = ({ selectedLocation, searchList, item }) => {
         //updateUser({ ...login, selectedSomoim: item });
     
         // 상세 페이지로 이동
-        navigate(`/somoim/detailMain/${item.id}`, { state: { user } });
+        navigate(`/somoim/detailMain/${item.id}`, { user });
       };
 
       //날짜 표현
@@ -75,41 +94,46 @@ const SomoimMainList = ({ selectedLocation, searchList, item }) => {
 
     return (
         <>
-            <Container className="px-8 mt-5 col-12">
-                이름 : {name} 아이디 : {id}
-                <div className='row row-cols-lg-3 row-cols-md-2 row-cols-sm-1'>
-            {
-                filteredResults.map((item, index) => {return (
-                // filteredResults.reverse().map((item, index) => {return ( // 순서 거꾸로 정렬 (현재는 서버단에서 수행중)
-                <div key={index}>
-                    <>
-                        <Card className='mb-5 h-80' border="danger" bg="white">
-                                <Card.Header>Featured</Card.Header>
-                                <Card.Img 
-                                    variant="top" 
-                                    src= { item.introducePhotoUUID ? imageUrl + item.introducePhotoUUID : "/image/main/main1.png" }
-                                    style={{ width: 'auto', height: '11rem', objectFit: 'cover' }} />
-                                <Card.Body>
-                                    <Card.Title>{ item.somoimName }</Card.Title>
-                                    <Card.Subtitle className="mb-3 text-muted">- { item.introduceSub }</Card.Subtitle>
-                                    <Card.Text as="div" className='mb-2' style={{ lineHeight: '1.7rem' }}>
-                                        <div>위치 : {item.address} | 멤버 {item.memberCount} 명</div>
-                                        <div>대상 : {item.target}</div>
-                                        <div>가입비용 : {item.cost} 원</div>
-                                        <div>⩢ {item.location}</div>
-                                    </Card.Text>
-                                    <Card.Link onClick={() => handleButtonClick(item)} >
-                                        <Button variant="primary">상세 보기
-                                        </Button>
-                                        </Card.Link>   
-                                </Card.Body>
-                                <Card.Footer className="text-muted">개설일 : { createdAtDate }</Card.Footer>
-                        </Card>
-                    </>
-                </div>)})
-            }
-                </div>
-            </Container>
+            {somoimList.length === 0 ? (
+                <p>로딩 중...</p>
+            ) : (
+                
+                    <Container className="px-8 mt-5 col-12">
+                        이름 : {name} 아이디 : {id}
+                        <div className='row row-cols-lg-3 row-cols-md-2 row-cols-sm-1'>
+                    {
+                        filteredResults.map((item, index) => {return (
+                        // filteredResults.reverse().map((item, index) => {return ( // 순서 거꾸로 정렬 (현재는 서버단에서 수행중)
+                        <div key={index}>
+                            <>
+                                <Card className='mb-5 h-80' border="danger" bg="white">
+                                        <Card.Header>Featured</Card.Header>
+                                        <Card.Img 
+                                            variant="top" 
+                                            src= { item.introducePhotoUUID ? imageUrl + item.introducePhotoUUID : "/image/main/main1.png" }
+                                            style={{ width: 'auto', height: '11rem', objectFit: 'cover' }} />
+                                        <Card.Body>
+                                            <Card.Title>{ item.somoimName }</Card.Title>
+                                            <Card.Subtitle className="mb-3 text-muted">- { item.introduceSub }</Card.Subtitle>
+                                            <Card.Text as="div" className='mb-2' style={{ lineHeight: '1.7rem' }}>
+                                                <div>위치 : {item.address} | 멤버 {item.memberCount} 명</div>
+                                                <div>대상 : {item.target}</div>
+                                                <div>가입비용 : {item.cost} 원</div>
+                                                <div>⩢ {item.location}</div>
+                                            </Card.Text>
+                                            <Card.Link onClick={() => handleButtonClick(item)} >
+                                                <Button variant="primary">상세 보기
+                                                </Button>
+                                                </Card.Link>   
+                                        </Card.Body>
+                                        <Card.Footer className="text-muted">개설일 : { createdAtDate }</Card.Footer>
+                                </Card>
+                            </>
+                        </div>)})
+                    }
+                        </div>
+                    </Container>
+            )}            
         </>
     );
 };

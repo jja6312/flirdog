@@ -15,7 +15,6 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.Map;
 
-@EnableKafka
 @Configuration
 public class ProducerConfiguration {
 

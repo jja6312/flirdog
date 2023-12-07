@@ -22,29 +22,10 @@ spring:
       max-request-size: 10MB
 
   datasource:
-    #url: jdbc:mysql://db-ioa7c-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: user
-    #password: qwe123!@#
-    # s3문제
-    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: root
-    #password: 1234
-
-    # url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    # driver-class-name: com.mysql.cj.jdbc.Driver
-    # username: user
-    # password: qwe123!@#
-    # s3문제 (아래는 지안님 계정)
-    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: root
-    #password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
-    username: study
-    password: bitcamp!@#123
+    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: qwe123!@#
 
   jpa:
     hibernate:
@@ -57,6 +38,26 @@ spring:
     defer-datasource-initialization: true # (2.5~) Hibernate 초기화 이후 data.sql 실행
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+---
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: 192.168.0.15:9092
+    producer:
+      bootstrap-servers: 192.168.0.15:9092
+
+---
+spring:
+  data:
+    mongodb:
+      host: k07fd.pub-vpc.mg.naverncp.com
+      port: 17017
+      database: test
+      username: user
+      password: qwe123!@#
+
+
 ---
 spring:
   config:
@@ -64,7 +65,7 @@ spring:
       on-profile: test
 
   datasource:
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#
@@ -86,3 +87,8 @@ openai:
   key: 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
 # chatgpt: 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
 
+# 디버깅을 위한 로그 레벨 설정
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG

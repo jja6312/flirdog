@@ -1,40 +1,27 @@
 package message.service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import message.bean.SendMessageForm;
+import message.bean.Message;
+import message.bean.MessageRoom;
+import message.mongorepository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import user.bean.User;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class MessageService {
-    @Autowired
-    private KafkaTemplate<String, SendMessageForm> kafkaTemplate;
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
 
-    public void send(String topic, SendMessageForm message) {
-        message = message.setSendDateToCurrentTime();
-        System.out.println(message);
-        try {
-            kafkaTemplate.send(topic, message).get(3, TimeUnit.SECONDS);
-        } catch (ExecutionException e) {
-            System.out.println(e);
-        } catch (TimeoutException | InterruptedException e) {
-            System.out.println(e);
-        }
+    private final MessageRepository messageRepository;
+
+    @Autowired
+    public MessageService(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
     }
 
-
-    public void broadcastMessage(String topic, SendMessageForm message) {
-        messagingTemplate.convertAndSend(topic, message);
+    public List<Message> getMessage(Long messageRoomId) {
+        return messageRepository.findByMessageRoomId(messageRoomId);
     }
+
 }
