@@ -23,9 +23,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    username: user
-    password: qwe123!@#
+    url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
+    username: study
+    password: bitcamp!@#123
 
   jpa:
     hibernate:
@@ -38,7 +38,6 @@ spring:
     defer-datasource-initialization: true # (2.5~) Hibernate 초기화 이후 data.sql 실행
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
-
 ---
 spring:
   kafka:
@@ -46,7 +45,6 @@ spring:
       bootstrap-servers: 192.168.0.15:9092
     producer:
       bootstrap-servers: 192.168.0.15:9092
-
 ---
 spring:
   data:
@@ -56,8 +54,6 @@ spring:
       database: test
       username: user
       password: qwe123!@#
-
-
 ---
 spring:
   config:

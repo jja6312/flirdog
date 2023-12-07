@@ -56,8 +56,12 @@ const ProductListForm = ({ openLeftside }) => {
         console.log("allProduct");
         console.log(res.data);
 
+        setAllProduct(res.data);
+        setSellingProduct(res.data.filter((item) => item.stock !== 0));
+        setSoldOutProduct(res.data.filter((item) => item.stock === 0));
+
         // setAllProduct(res.data);
-        const initialFilter = [];
+        let initialFilter = [];
         // selectedIcon에 따른 첫 번째 필터링
         if (selectedIcon === "faBorderAll") {
           initialFilter = allProduct;
@@ -66,6 +70,9 @@ const ProductListForm = ({ openLeftside }) => {
         } else if (selectedIcon === "faStoreSlash") {
           initialFilter = soldOutProduct;
         }
+
+        console.log("initialFilter");
+        console.log(initialFilter);
 
         // SearchDropdown.selectedDropdown.start----------------------------------
         let finalFilter = initialFilter; //secondFilter대신 원하는 데이터구조(배열)를 넣어야함.
@@ -93,8 +100,6 @@ const ProductListForm = ({ openLeftside }) => {
         console.log(finalFilter);
         // SearchDropdown.selectedDropdown.end----------------------------------
 
-        setSellingProduct(res.data.filter((item) => item.stock !== 0));
-        setSoldOutProduct(res.data.filter((item) => item.stock === 0));
         setIsLoading(false);
       })
       .catch((error) => {

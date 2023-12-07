@@ -22,12 +22,8 @@ spring:
       max-request-size: 10MB
 
   datasource:
-<<<<<<< HEAD
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-=======
->>>>>>> 4baccb7e (채팅v1.1)
+    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     username: user
     password: qwe123!@#
 
@@ -41,12 +37,7 @@ spring:
         format_sql: true
     defer-datasource-initialization: true # (2.5~) Hibernate 초기화 이후 data.sql 실행
     database: mysql
-<<<<<<< HEAD
-    database-platform : org.hibernate.dialect.MySQL8Dialect
-=======
     database-platform: org.hibernate.dialect.MySQL8Dialect
->>>>>>> 4baccb7e (채팅v1.1)
-
 ---
 spring:
   kafka:
@@ -54,15 +45,6 @@ spring:
       bootstrap-servers: 192.168.0.243:9092
     producer:
       bootstrap-servers: 192.168.0.243:9092
-<<<<<<< HEAD
-=======
-      bootstrap-servers: 192.168.0.15:9092
-    producer:
-      bootstrap-servers: 192.168.0.15:9092
->>>>>>> 2eb6ef67 (22)
-=======
->>>>>>> 728b530e (33)
-
 ---
 spring:
   data:
@@ -72,11 +54,6 @@ spring:
       database: test
       username: user
       password: qwe123!@#
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 4baccb7e (채팅v1.1)
 ---
 spring:
   config:
@@ -84,15 +61,8 @@ spring:
       on-profile: test
 
   datasource:
-<<<<<<< HEAD
-<<<<<<< HEAD
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-=======
     url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
->>>>>>> 251ce39f (채팅 초기 완료)
-=======
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
->>>>>>> 2eb6ef67 (22)
+
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#
