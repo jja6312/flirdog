@@ -62,6 +62,7 @@ import BoastBoardList from "./components/boastBoard/BoastBoardList";
 import DogListForm from "./components/admin/2회원관리/DogListForm";
 import DogEditForm from "./components/admin/2회원관리/DogEditForm";
 import MatchingListFormAdmin from "./components/admin/5매칭관리/MatchingListFormAdmin";
+import BoastBoardWrite from "./components/boastBoard/BoastBoardWrite";
 
 const App = () => {
   return (
