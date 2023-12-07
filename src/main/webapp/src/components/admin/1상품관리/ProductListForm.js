@@ -62,9 +62,10 @@ const ProductListForm = ({ openLeftside }) => {
 
         // setAllProduct(res.data);
         let initialFilter = [];
+
         // selectedIcon에 따른 첫 번째 필터링
         if (selectedIcon === "faBorderAll") {
-          initialFilter = allProduct;
+          initialFilter = res.data;
         } else if (selectedIcon === "faCartShopping") {
           initialFilter = sellingProduct;
         } else if (selectedIcon === "faStoreSlash") {
