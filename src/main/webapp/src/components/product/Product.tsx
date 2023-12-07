@@ -12,7 +12,9 @@ const Product = () => {
 
     return (
         <div>
-            <MessageRoom userId={2} topic={"messageRoom1"} nickName={"Hyuna"} roomNo={1}/>
+            <div style={{width:500,height:500}}>
+                <MessageRoom userId={2} topic={"messageRoom1"} nickName={"Hyuna"} roomNo={1} profileImage={"null"}/>
+            </div>
             <Header />
             <SearchBar />
             <EventBanner EventBannerImg={EventBannerImg}/>

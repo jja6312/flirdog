@@ -7,7 +7,7 @@ import AiOutput from "./AiOutput";
 import { Alert } from "react-bootstrap";
 import ChatAi from "./ChatAi";
 import axios from "axios";
-import { Pie } from "react-chartjs-2";
+import { Pie, Bar, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -18,12 +18,25 @@ import {
   Tooltip,
   Legend,
   ArcElement,
+  BarElement,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  BarElement,
+  LinearScale,
+  PointElement,
+  LineElement,
+  ArcElement,
 
-const data = {
+  CategoryScale
+);
+
+//------------신규 회원 지역 분포 ----------------
+const locationOfUserData = {
   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
   datasets: [
     {
@@ -50,6 +63,76 @@ const data = {
   ],
 };
 
+///--------------맻이 대기 및 성사 상태--------------------
+const labels = ["January", "February", "March", "April", "May", "June", "July"];
+const matchingState = {
+  labels,
+  datasets: [
+    {
+      label: "매칭 완료 비율",
+      data: [60, 60, 70, 60, 80, 87, 90],
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+    },
+  ],
+};
+
+//---------------------------------
+
+//-----------애견 성별에 따른 매칭 건수----------
+const MatchingOfdogSex = {
+  labels,
+  datasets: [
+    {
+      label: "여아",
+      data: [6, 10, 125, 23, 69, 679, 234],
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+    },
+    {
+      label: "남아",
+      data: [5, 12, 80, 120, 190, 490, 679],
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+    },
+    {
+      label: "중성견",
+      data: [50, 120, 250, 258, 897, 4920, 5500],
+      borderColor: "rgb(87, 255, 87)",
+      backgroundColor: "rgb(87, 255, 87)",
+    },
+  ],
+};
+//---------------------------------
+
+//-----지역별 강아지 종류 분포---------------
+const dogLocationData = {
+  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  datasets: [
+    {
+      label: "# of Votes",
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+//---------------------------------
+
 const AdminMainContent = () => {
   const [aiDogProfileImgUrl, setAiDogProfileImgUrl] = useState("");
   const [AiImageInputText, setAiImageInputText] = useState("");
@@ -57,26 +140,75 @@ const AdminMainContent = () => {
 
   return (
     <>
-      <div
-        className={`${rightContent.rightContent} d-flex justify-content-start`}
-      >
-        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
-          <div className={`d-flex justify-content-center align-items-center`}>
-            지역별 회원 통계
+      <div className={` d-flex justify-content-start flex-column`}>
+        <div
+          className={`${rightContent.rightContent} d-flex justify-content-start`}
+        >
+          <div
+            className={`${rightContent.dataBoxContainer} m-2 d-flex flex-column`}
+          >
+            <div className={`d-flex justify-content-center align-items-center`}>
+              신규 회원 지역 분포
+            </div>
+            <div
+              className={`${rightContent.dataBox} d-flex justify-content-center align-items-center`}
+            >
+              <Pie data={locationOfUserData} />
+            </div>
           </div>
-          <div className={`d-flex justify-content-center align-items-center`}>
-            <Pie data={data} />
+          <div
+            className={`${rightContent.dataBoxContainer} m-2 d-flex flex-column`}
+          >
+            <div className={`d-flex justify-content-center align-items-center`}>
+              지역별 강아지 종류 분포
+            </div>
+            <div
+              className={`${rightContent.dataBox} d-flex justify-content-center align-items-center`}
+            >
+              <Doughnut data={dogLocationData} />
+            </div>
           </div>
         </div>
-        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
-          <div className={`d-flex justify-content-center align-items-center`}>
-            지역별 강아지 통계
+      </div>
+      <div>
+        <div
+          className={`${rightContent.rightContent2} d-flex justify-content-start`}
+        >
+          <div
+            className={`${rightContent.dataBoxContainer} m-2 d-flex flex-column`}
+          >
+            <div className={`d-flex justify-content-center align-items-center`}>
+              애견 성별에 따른 매칭 등록 건수
+            </div>
+            <div
+              className={`${rightContent.dataBox} d-flex justify-content-center align-items-center`}
+            >
+              <Line data={MatchingOfdogSex} />
+            </div>
           </div>
-          <div className={`d-flex justify-content-center align-items-center`}>
-            <Pie data={data} />
+          <div
+            className={`${rightContent.dataBoxContainer} m-2 d-flex flex-column`}
+          >
+            <div className={`d-flex justify-content-center align-items-center`}>
+              매칭 완료 비율
+            </div>
+            <div
+              className={`${rightContent.dataBox} d-flex justify-content-center align-items-center`}
+            >
+              <Bar data={matchingState} />
+            </div>
           </div>
         </div>
-        {/* <div className="d-flex flex-column justify-content-start">
+      </div>
+    </>
+  );
+};
+
+export default AdminMainContent;
+
+//--아래는 ai관리자 페이지를 시도하려했으나 시간상 생략한부분.
+{
+  /* <div className="d-flex flex-column justify-content-start">
           <img
             alt=""
             className={styles.mainBanner}
@@ -205,10 +337,5 @@ const AdminMainContent = () => {
           ></ChatAi>
 
           <div style={{ height: "300px" }}></div>
-        </div> */}
-      </div>
-    </>
-  );
-};
-
-export default AdminMainContent;
+        </div> */
+}
