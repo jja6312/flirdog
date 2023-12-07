@@ -60,19 +60,39 @@ const AdminMainContent = () => {
       <div
         className={`${rightContent.rightContent} d-flex justify-content-start`}
       >
-        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
+        <div
+          className={`${rightContent.dataBoxContainer} m-2 d-flex flex-column`}
+        >
           <div className={`d-flex justify-content-center align-items-center`}>
-            지역별 회원 통계
+            지역별 회원 분포
           </div>
-          <div className={`d-flex justify-content-center align-items-center`}>
+          <div
+            className={`${rightContent.dataBox} d-flex justify-content-center align-items-center`}
+          >
             <Pie data={data} />
           </div>
         </div>
-        <div className={`${rightContent.dataBoxContainer} d-flex flex-column`}>
+        <div
+          className={`${rightContent.dataBoxContainer} m-2 d-flex flex-column`}
+        >
           <div className={`d-flex justify-content-center align-items-center`}>
-            지역별 강아지 통계
+            지역별 강아지 종류 분포
           </div>
+          <div
+            className={`${rightContent.dataBox} d-flex justify-content-center align-items-center`}
+          >
+            <Pie data={data} />
+          </div>
+        </div>
+        <div
+          className={`${rightContent.dataBoxContainer2} m-2 d-flex flex-column`}
+        >
           <div className={`d-flex justify-content-center align-items-center`}>
+            일자별 주문량
+          </div>
+          <div
+            className={`${rightContent.dataBox} d-flex justify-content-center align-items-center`}
+          >
             <Pie data={data} />
           </div>
         </div>

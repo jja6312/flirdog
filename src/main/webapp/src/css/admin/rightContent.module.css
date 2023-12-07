@@ -43,8 +43,18 @@
 }
 
 .dataBoxContainer {
-  width: 25vw;
-  height: 300px;
+  width: 40vw;
+  height: 250px;
+  background-color: white;
+}
+.dataBoxContainer2 {
+  width: 80vw;
+  height: 250px;
+  background-color: white;
+}
+
+.dataBox {
+  height: 220px;
 }
 
 .rightContent {
