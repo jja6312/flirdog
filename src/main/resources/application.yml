@@ -1,4 +1,3 @@
-# Server Port
 server:
   port: 8080
 
@@ -15,7 +14,6 @@ spring:
   config:
     activate:
       on-profile: local
-  # 아래 이미지크기제한 널널하게 잡음. - 정지안, 11/29
   servlet:
     multipart:
       max-file-size: 10MB
@@ -23,9 +21,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
-    username: study
-    password: bitcamp!@#123
+    url: jdbc:mysql://db-k2g2a.vpc-cdb.ntruss.com:3306/flirdog?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: qwe123!@#
 
   jpa:
     hibernate:
@@ -42,16 +40,17 @@ spring:
 spring:
   kafka:
     consumer:
-      bootstrap-servers: 192.168.0.15:9092
+      bootstrap-servers: 10.0.3.16:9092
     producer:
-      bootstrap-servers: 192.168.0.15:9092
+      bootstrap-servers: 10.0.3.16:9092
+
 ---
 spring:
   data:
     mongodb:
       host: k2hlg.pub-vpc.mg.naverncp.com
       port: 17017
-      database: test
+      database: flirdog
       username: user
       password: qwe123!@#
 ---
@@ -61,7 +60,7 @@ spring:
       on-profile: test
 
   datasource:
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-k2gu4-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#
@@ -88,3 +87,21 @@ logging:
   level:
     root: DEBUG
     org.springframework: DEBUG
+
+---
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: 10.0.3.16:9092
+    producer:
+      bootstrap-servers: 10.0.3.16:9092
+
+---
+spring:
+  data:
+    mongodb:
+      host: k2g36.vpc.mg.naverncp.com
+      port: 17017
+      database: flirdog
+      username: user
+      password: qwe123!@#

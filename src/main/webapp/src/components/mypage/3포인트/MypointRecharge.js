@@ -89,7 +89,7 @@ const MypointRecharge = () => {
 
       axios
         .get(
-          `https://java.flirdog.store/mypage/getUserProfileTest?userIdStr=${userId}`
+          `https://java.flirdog.store:8080/mypage/getUserProfileTest?userIdStr=${userId}`
         )
         .then((res) => {
           //alert('성공')

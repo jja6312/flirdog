@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
   </component>
+<<<<<<< HEAD
   <component name="FacetManager">
     <facet external-system-id="GRADLE" type="web" name="Web">
       <configuration>
@@ -138,4 +139,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.glassfish.jaxb:txw2:4.0.3" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.sun.istack:istack-commons-runtime:4.1.2" level="project" />
   </component>
+=======
+>>>>>>> 49990aff (도커이미지 생성)
 </module>

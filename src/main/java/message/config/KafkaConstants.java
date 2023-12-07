@@ -1,5 +1,5 @@
 package message.config;
 
 public class KafkaConstants {
-    public static final String KAFKA_BROKER = "192.168.0.243:9092";
+    public static final String KAFKA_BROKER = "10.0.3.16:9092";
 }

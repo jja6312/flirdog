@@ -320,7 +320,6 @@ public class AdminController {
 		
 	}
 	
-	
 	//종인님께5.start----------------------------------------- 
 	@PostMapping(path = "oneFileGo")
 	public String oneFileGo(@RequestPart MultipartFile file) throws IOException {

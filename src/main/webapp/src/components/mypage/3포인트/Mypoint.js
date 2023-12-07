@@ -89,6 +89,7 @@ const Mypoint = () => {
         </div>
         {/* 소멸 예정 포인트 여기는 안할거임. 시간부족 */}
         {/* <div className='row mt-2'>
+
                     <div className='col-lg-2'></div>
                     <div className='col-lg-8'><h3 className={Mypage.Point1}>소멸 예정 포인트! (7일 이내)</h3></div>
                     <div className='col-lg-2'></div>

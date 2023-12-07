@@ -169,25 +169,6 @@ public class DateMatchingServiceImpl implements DateMatchingService {
 		matching.setMatchingDate(matchingDTO.getMatchingDate());
 		matching.setDogsInfo(dogsDTO);
 		matching.setUser(userForUserId);
-
-		/*
-		 * Matching matchingBuilder = Matching.builder()
-		 * .title(matchingDTO.getTitle())
-		 * .id(matchingDTO.getId())
-		 * .content(matchingDTO.getContent())
-		 * .image(String.join(",", imagePaths))
-		 * .matchingPurpose(matchingPurposeEnum)
-		 * .matchingState(matchingStateEnum)
-		 * .hit(matchingDTO.getHit())
-		 * .user(matchingDTO.getUser())
-		 * .dogMBTI(matchingDTO.getDogMBTI())
-		 * .matchingAddress(matchingDTO.getMatchingAddress())
-		 * .matchingDate(matchingDTO.getMatchingDate())
-		 * .dogsInfo(dogsDTO)
-		 * .user(userDTO)
-		 * .build();
-		 */
-		
 		matchingRepository.save(matching);
 
 	}

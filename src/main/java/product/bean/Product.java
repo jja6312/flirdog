@@ -39,9 +39,6 @@ public class Product extends BaseEntity {
     @Embedded
     private Hit hit = new Hit(); // 정지안 : 이렇게해야 상품등록시 초기값이 0이되네요
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductComment> productComments;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Orders orders;
