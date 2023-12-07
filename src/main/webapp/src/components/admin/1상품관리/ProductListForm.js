@@ -56,8 +56,16 @@ const ProductListForm = ({ openLeftside }) => {
         console.log("allProduct");
         console.log(res.data);
 
-        setAllProduct(res.data);
-        const initialFilter = res.data;
+        // setAllProduct(res.data);
+        const initialFilter = [];
+        // selectedIcon에 따른 첫 번째 필터링
+        if (selectedIcon === "faBorderAll") {
+          initialFilter = allProduct;
+        } else if (selectedIcon === "faCartShopping") {
+          initialFilter = sellingProduct;
+        } else if (selectedIcon === "faStoreSlash") {
+          initialFilter = soldOutProduct;
+        }
 
         // SearchDropdown.selectedDropdown.start----------------------------------
         let finalFilter = initialFilter; //secondFilter대신 원하는 데이터구조(배열)를 넣어야함.
@@ -100,6 +108,7 @@ const ProductListForm = ({ openLeftside }) => {
     searchValueText,
     useFilterCheckNumber,
     checkedProducts,
+    selectedIcon,
   ]);
 
   const onDeleteCheckedProducts = () => {
