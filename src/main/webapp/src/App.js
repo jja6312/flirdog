@@ -57,10 +57,12 @@ import JoinAuth from "./components/login/loginAPI/JoinAuth";
 import PwdFind from "./components/login/login/PwdFind";
 import FreeBoard from "./components/mypage/7자유게시판/FreeBoard";
 import FreeBoardOne from "./components/mypage/7자유게시판/FreeBoardOne";
+import BoastBoardList from "./components/boastBoard/BoastBoardList";
 
 import DogListForm from "./components/admin/2회원관리/DogListForm";
 import DogEditForm from "./components/admin/2회원관리/DogEditForm";
 import MatchingListFormAdmin from "./components/admin/5매칭관리/MatchingListFormAdmin";
+import BoastBoardWrite from "./components/boastBoard/BoastBoardWrite";
 
 const App = () => {
   return (
@@ -135,6 +137,11 @@ const App = () => {
             <Route path="/date/dateReadMore">
               <Route path=":seq" element={<DateReadMore />} />
             </Route>
+
+            {/* 자랑게시판 */}
+            <Route path="/boastBoard/boastBoardList" element={<BoastBoardList />} />
+            <Route path="/boastBoard/boastBoardWrite" element={<BoastBoardWrite />} />
+
 
             <Route path="/admin" element={<Admin />} />
 

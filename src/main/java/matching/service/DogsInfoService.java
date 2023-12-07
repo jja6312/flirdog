@@ -7,5 +7,5 @@ import user.bean.User;
 
 public interface DogsInfoService {
 
-	public List<DogsInfo> getDogsInfoListByUserId(int userId);
+	public List<DogsInfo> getDogsInfoListByUserId(long id);
 }
