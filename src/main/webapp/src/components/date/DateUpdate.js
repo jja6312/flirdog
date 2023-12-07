@@ -14,6 +14,7 @@ import KakaoMap from './KakaoMap';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from "sweetalert2";
+import dogsBreedObject from "../login/join/dogsBreeds";
 
 const DateUpdate = () => {
   const { seq } = useParams();
@@ -76,6 +77,15 @@ const DateUpdate = () => {
   const [purposeSelect, setPurposeSelect] = useState(matchingPurposeDTO);
   // eslint-disable-next-line no-unused-vars
   const [dogBreedSelect, setdogBreedSelect] = useState(dogBreedDTO);
+  //애견종선택에서 영어로 글자 들어오는것 한글로변경 - 지안1201-----------------------
+  const [koreanBreedName, setKoreanBreedName] = useState(dogBreedDTO);
+
+  const updateKoreanBreedName = (englishBreedName) => {
+    const matchingBreed = dogsBreedObject.find((breed) => breed.value === englishBreedName);
+    const newKoreanBreedName = matchingBreed ? matchingBreed.text : englishBreedName;
+    setKoreanBreedName(newKoreanBreedName);
+  };
+
   // eslint-disable-next-line no-unused-vars
   const [daySelect, setDaySelect] = useState(dateDTO);
   const [nowDate, setNowDate] = useState("날짜 선택");
@@ -83,7 +93,7 @@ const DateUpdate = () => {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [value, onChange] = useState(new Date());
   // eslint-disable-next-line no-unused-vars
-  const [imagePrev, setImagePrev] = useState(`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-95/${imageDTO}`);
+  const [imagePrev, setImagePrev] = useState(`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${imageDTO}`);
   const moment = require('moment');
   //이미지가 여러개있는지 확인하고 저장하는 배열
   const [isMoreThanOneImage, setIsMoreThanOneImage] = useState([]);
@@ -112,18 +122,20 @@ const DateUpdate = () => {
     console.log('SwNum:', swNum);
   }, [swNum]);
 
+  
 
   //유저와 개정보를 받아옴---------------------------
   useEffect(() => {
     const fetchData = async () => {
       try{
         const res = await axios.get(`http://localhost:8080/date/dateReadMore?seq=${seq}`)
-        const userRes = await axios.get(`http://localhost:8080/date/getUser?userId=1`)
-        const dogRes = await axios.get(`http://localhost:8080/date/getDogsInfoWithUserId?userId=1`);
-
-        console.log(dogRes.data);
+        
         console.log(res.data);
+        
+        const userRes = await axios.get(`http://localhost:8080/date/getUserInfo?userId=${res.data.userId}`)
+        const dogRes = await axios.get(`http://localhost:8080/date/getDogsInfoUserId?userId=${res.data.userId}`);
         console.log(userRes.data);
+        console.log(dogRes.data);
         console.log(res.data.dogName);
 
         setDogsInfo(dogRes.data);
@@ -168,6 +180,9 @@ const DateUpdate = () => {
           score: dogRes.data.score,
           owner: dogRes.data.owner,
         }));
+
+        updateKoreanBreedName(res.data.dogBreed);
+
       } catch(error) {
         console.log(error);
       }
@@ -259,6 +274,12 @@ const DateUpdate = () => {
     setSeqNum(index);
     
     const selectedDog = dogsInfo.find(dog => dog.name === dogNameDTO);
+    // 해당 개의 이름 가져오기
+    const selectedDogName = dogsInfo[index]?.name || "";
+    const selectedDogBreed = dogsInfo[index]?.dogsBreed || "";
+    const selectedDogBreedKorean = setKoreanBreedName(selectedDogBreed);
+    setSelectDogName(selectedDogName);
+    setdogBreedSelect(koreanBreedName);
 
     if (selectedDog) {
       // dogNameDTO 값을 사용하여 input 값을 설정
@@ -278,7 +299,6 @@ const DateUpdate = () => {
       }));
 
       setSelectDogName(selectedDog.name);
-      setdogBreedSelect(selectedDog.dogBreed);
     }
   };
 
@@ -296,6 +316,9 @@ const DateUpdate = () => {
       ...matchingDTO2,
       dogBreed: selectedBreed,
     })
+
+    setKoreanBreedName(selectedBreed);
+    updateKoreanBreedName(selectedBreed);
   };
 
 
@@ -607,19 +630,6 @@ return (
                       </div>
                     </div>
                   </Form.Group>
-
-                  <Form.Group as={Col} controlId="formDogMBTI">
-                    <div className={DateUpdateCss.FormTitleDiv} >
-                      <div className={DateUpdateCss.FormTitleNameDiv} >
-                        멍BTI
-                      </div>&nbsp;&nbsp;&nbsp;
-                      <Form.Control className={DateUpdateCss.FormTitleInput} size="lg" type="text" name='dogMBTI' value={dtoDogMBTI || ''} onChange={onInput} placeholder="애견 MBTI 입력" />
-                      &nbsp;&nbsp;&nbsp;
-                    </div>
-                  </Form.Group>
-                </Row>
-                
-                <Row className="mb-3">
                   <Form.Group as={Col} controlId="formGridCheckPurpose">
                     <div className={DateUpdateCss.FormTitleDiv} >
                       <div className={DateUpdateCss.FormTitleNameDiv} 
@@ -627,40 +637,143 @@ return (
                         애견종 선택
                       </div>&nbsp;&nbsp;&nbsp;
                       <Dropdown>
-                          <Dropdown.Toggle className={DateUpdateCss.filterDropdownBtn} variant="success" id="dropdown-basic"
-                              style={{
-                                  border:'5px solid #F56084',
-                                  backgroundColor: 'white',
-                                  color:'#F56084',
-                                  fontWeight:'bold',
-                                  borderRadius:'10px'
-                              }}
-                          >
-                          {dogBreedDTO}
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu className='dropdown-menu scrollContainer' 
-                          style={{ maxHeight: '200px', overflowY: 'auto' }}    
-                              >
-                              <Dropdown.Item href="#/action-1" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>요크셔테리어</Dropdown.Item>
-                              <Dropdown.Item href="#/action-2" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>리트리버</Dropdown.Item>
-                              <Dropdown.Item href="#/action-3" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>비숑</Dropdown.Item>
-                              <Dropdown.Item href="#/action-4" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>푸들</Dropdown.Item>
-                              <Dropdown.Item href="#/action-5" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>포메리안</Dropdown.Item>
-                              <Dropdown.Item href="#/action-6" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>허스키</Dropdown.Item>
-                              <Dropdown.Item href="#/action-7" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>치와와</Dropdown.Item>
-                              <Dropdown.Item href="#/action-8" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>닥스훈트</Dropdown.Item>
-                              <Dropdown.Item href="#/action-5" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>말티즈</Dropdown.Item>
-                              <Dropdown.Item href="#/action-6" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>비글</Dropdown.Item>
-                              <Dropdown.Item href="#/action-7" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>시츄</Dropdown.Item>
-                              <Dropdown.Item href="#/action-8" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>웰시코기</Dropdown.Item>
-                              <Dropdown.Item href="#/action-5" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>진돗개</Dropdown.Item>
-                              <Dropdown.Item href="#/action-6" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>보더콜리</Dropdown.Item>
-                              <Dropdown.Item href="#/action-7" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>섀퍼드</Dropdown.Item>
-                              <Dropdown.Item href="#/action-8" onClick={() => handleDogBreedSelect(dogBreedDTO|| '')} onChange={onInput}>코커스패니얼</Dropdown.Item>
-                          </Dropdown.Menu>
-                      </Dropdown>
+                      <Dropdown.Toggle
+                        className={DateUpdateCss.filterDropdownBtn}
+                        variant="success"
+                        id="dropdown-basic"
+                        style={{
+                          border: "5px solid #F56084",
+                          backgroundColor: "white",
+                          color: "#F56084",
+                          fontWeight: "bold",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        {koreanBreedName}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu
+                        className="dropdown-menu scrollContainer"
+                        style={{ maxHeight: "200px", overflowY: "auto" }}
+                      >
+                        <Dropdown.Item
+                          href="#/action-1"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          요크셔테리어
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-2"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          리트리버
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-3"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          비숑
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-4"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          푸들
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-5"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          포메리안
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-6"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          허스키
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-7"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          치와와
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-8"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          닥스훈트
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-5"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          말티즈
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-6"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          비글
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-7"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          시츄
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-8"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          웰시코기
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-5"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          진돗개
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-6"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          보더콜리
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-7"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          섀퍼드
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-8"
+                          onClick={() => handleDogBreedSelect(dogBreedDTO || "")}
+                          onChange={onInput}
+                        >
+                          코커스패니얼
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                     </div>  
                   </Form.Group>
+                </Row>
+                
+                <Row className="mb-3">
                   <Form.Group as={Col} controlId="formMatchingDate">
                     <div className={DateUpdateCss.FormTitleDiv} >
                       <div className={DateUpdateCss.FormTitleNameDiv} >
@@ -776,7 +889,7 @@ return (
                         imgList.map((item, index) => 
                         <img
                           key={index}
-                          src={item === '' ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-95/${imageDTO}` : item}
+                          src={item === '' ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${imageDTO}` : item}
                           alt=""
                           style={{ width: '100px', height: '100px', borderRadius: '5px', margin: '5px' }}
                         />)
@@ -784,7 +897,7 @@ return (
                         isMoreThanOneImage.map((item, index) => (
                           <img
                             key={index}
-                            src={`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-95/${item}`}
+                            src={`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${item}`}
                             alt=""
                             style={{ width: '100px', height: '100px', borderRadius: '5px', margin: '5px' }}
                           />

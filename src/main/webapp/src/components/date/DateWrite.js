@@ -597,8 +597,6 @@ const DateWrite = () => {
                     </div>
                   </div>
                 </Form.Group>
-              </Row>
-              <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCheckPurpose">
                   <div className={TableCss.FormTitleDiv}>
                     <div
@@ -743,6 +741,8 @@ const DateWrite = () => {
                     </Dropdown>
                   </div>
                 </Form.Group>
+              </Row>
+              <Row className="mb-3">
                 <Form.Group as={Col} controlId="formMatchingDate">
                   <div className={TableCss.FormTitleDiv}>
                     <div className={TableCss.FormTitleNameDiv}>매칭 날짜</div>
