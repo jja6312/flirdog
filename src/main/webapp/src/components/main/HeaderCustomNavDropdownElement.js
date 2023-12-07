@@ -42,7 +42,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
           <a className={styleDesktop.customDropdownItem} href={`${window.location.origin}/mypage/FreeBoard`}>
             자유 게시판
           </a>
-          <a className={styleDesktop.customDropdownItem} href="#action/3.2">
+          <a className={styleDesktop.customDropdownItem} href="/boastBoard/BoastBoardList">
             자랑 게시판
           </a>
           <a className={styleDesktop.customDropdownItem} href="#action/3.3">

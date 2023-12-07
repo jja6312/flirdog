@@ -14,7 +14,7 @@ import user.bean.User;
 @Repository
 public interface MatchingRepository extends JpaRepository<DogsInfo, Integer> {
 	
-	public List<DogsInfo> findByUserId(int userId);
+	public List<DogsInfo> findByUserId(long userId);
 
 	public void save(Matching matchingBuilder);
 
