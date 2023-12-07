@@ -75,36 +75,17 @@ const App = () => {
             <Route path="/mypage/Mypoint" element={<Mypoint />} />
             <Route path="/mypage/Mysetting" element={<Mysetting />} />
             <Route path="/mypage/Myarticle" element={<Myarticle />} />
-            <Route
-              path="/mypage/MyprofileUpdate"
-              element={<MyprofileUpdate />}
-            />
+            <Route path="/mypage/MyprofileUpdate" element={<MyprofileUpdate />}/>
             <Route path="/mypage/MypageMain" element={<MypageMain />} />
             <Route path="/mypage/MypageCategory" element={<MypageCategory />} />
-            <Route
-              path="/mypage/MypageCategoryWrapper"
-              element={<MypageCategoryWrapper />}
-            />
+            <Route path="/mypage/MypageCategoryWrapper" element={<MypageCategoryWrapper />}/> {/* 테스트 화면임.  */}
             <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-            <Route
-              path="/mypage/MydogProfileUpdate"
-              element={<MydogProfileUpdate />}
-            />
+            <Route path="/mypage/MydogProfileUpdate" element={<MydogProfileUpdate />}/>
             <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
-
-            <Route
-              path="/mypage/MypointRecharge"
-              element={<MypointRecharge />}
-            />
+            <Route path="/mypage/MypointRecharge" element={<MypointRecharge />}/>
             <Route path="/mypage/MyarticleRepl" element={<MyarticleRepl />} />
-            <Route
-              path="/mypage/MyarticleRounge"
-              element={<MyarticleRounge />}
-            />
-            <Route
-              path="/mypage/MydogProfileRegister2"
-              element={<MydogProfileRegister2 />}
-            />
+            <Route path="/mypage/MyarticleRounge" element={<MyarticleRounge />}/>
+            <Route path="/mypage/MydogProfileRegister2" element={<MydogProfileRegister2 />}/>
             <Route path="/mypage/MydogProfile2" element={<MydogProfile2 />} />
             <Route path="/mypage/MydogUpdateForm">
               <Route path=":userId" element={<MydogUpdateForm />} />
@@ -113,10 +94,7 @@ const App = () => {
               <Route path=":userId" element={<MydogUpdateForm2 />} />
             </Route>
             <Route path="/mypage/MydogProfile2" element={<MydogProfile2 />} />
-            <Route
-              path="/mypage/WeatherAndStroll"
-              element={<WeatherAndStroll />}
-            />
+            <Route path="/mypage/WeatherAndStroll" element={<WeatherAndStroll />}/>
 
             <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
             <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
