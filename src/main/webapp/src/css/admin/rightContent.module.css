@@ -43,16 +43,28 @@
 }
 
 .dataBoxContainer {
-  width: 25vw;
-  height: 300px;
+  width: 40vw;
+  height: 250px;
+  background-color: white;
+}
+
+.dataBox {
+  height: 220px;
 }
 
 .rightContent {
   width: calc(100% - 203px);
+  margin-left: 203px;
 
-  position: absolute;
-  left: 203px;
-  padding: 37px;
+  padding: 37px 37px 0 37px;
+
+  /* top: 155.8px; */
+  background-color: rgb(255, 246, 248);
+}
+.rightContent2 {
+  width: calc(100% - 203px);
+  margin-left: 203px;
+  padding-left: 37px;
 
   /* top: 155.8px; */
   background-color: rgb(255, 246, 248);

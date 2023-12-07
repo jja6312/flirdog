@@ -192,13 +192,13 @@ public class AdminController {
 	}
 
 	// 주문리스트
-	@GetMapping(path = "getOrderList")
-	public List<Orders> getOrderList() {
-		List<Orders> orderList = adminOrderService.getOrderList();
-
-		return orderList;
-
-	}
+//	@GetMapping(path = "getOrderList")
+//	public List<Orders> getOrderList() {
+//		List<Orders> orderList = adminOrderService.getOrderList();
+//
+//		return orderList;
+//
+//	}
 
 	// 애견리스트
 	@GetMapping(path = "getDogList", produces = "application/json;charset=UTF-8")
