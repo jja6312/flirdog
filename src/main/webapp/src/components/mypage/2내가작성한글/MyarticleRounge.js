@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
 import Mypage from '../../../css/main/100마이페이지/mypage.module.css';
@@ -7,9 +7,54 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import MypageSubHeader22 from '../5공통/MypageSubHeader2_2';
+import axios from 'axios';
 
 
 const MyarticleRounge = () => {
+
+    const [userObject, setUserObject] = useState({});
+    console.log(userObject); // 빈객체 방지용
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+            
+        // 로컬스토리지에서 유저 아이디 가져오기
+        const userJsonString = localStorage.getItem('user');
+        const userObject = JSON.parse(userJsonString);
+        console.log(userObject);
+        setUserObject(userObject);
+        const userId = userObject.id;
+        //단건조회
+        // axios.get(`http://localhost:8080/mypage/getBoard?userIdStr=${userId}`)
+        // .then((res) => {
+        //     console.log("단건조회 성공"+res.data);
+        //     //setUserDTO(res.data);
+        //     //실제 값들을 찍을수 있게 해주는 것.
+        //     Object.keys(res.data).forEach((key) => {
+        //         console.log("단건조회 키값데이터값"+`${key}:`, res.data[key]);
+        //     });
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
+
+        // 리스트 전체조회
+        axios.get(`/mypage/uploadListBoard?id=${userId}`)
+            .then((res)=>{
+                console.log("전체조회 성공"+res.data)
+                setList(res.data)
+                
+                //실제 값들을 찍을수 있게 해주는 것.
+                Object.keys(res.data).forEach((key) => {
+                    console.log("전체조회키값데이터값"+`${key}:`, res.data[key]);
+                });
+                })
+            .catch(error=>
+            	console.log(error)
+            );
+
+    }, []);
+
     return (
         <div>
             <MypageSubHeader22/>
@@ -30,7 +75,36 @@ const MyarticleRounge = () => {
                     <Col xs={3} md={4}>
                     </Col>
                 </Row>
-
+                {/* 내용 출력 */}
+                <Row className={`${Mypage.Myarticle2}`}>
+                    <Col xs={3} md={4}>
+                    </Col>
+                    <Col xs={6} md={4} className={Mypage.Imagecenter}>
+                    {list.map(item => (
+                            
+                            // <Link className={Mypage.subjectA} to={`/mypage/FreeBoardOne/${item.id}`}>
+                            <Link className={Mypage.subjectA} to={`/mypage/FreeBoardOne`}>
+                                <div key={item.id} className={Mypage.MydogProfileMarging} style={{ marginBottom: '10px', border: '1px solid #f56084', padding: '10px', borderRadius: '100px' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                                        <div style={{ textAlign: 'start' }}>
+                                            {/* <Image alt={item.content} src={`../storage/${encodeURIComponent(item.image)}`} roundedCircle className={Mypage.RoundedCircle} style={{ width: 100, height: 100, border: '1px solid #ddd' }} /> */}
+                                        </div>
+                                        <div style={{width:'220px'}}> 
+                                            <div style={{ textAlign: 'end', marginTop: '10px',fontSize:'20px',fontWeight:'900' }}>
+                                                    {item.content}
+                                            </div>
+                                            <div style={{ textAlign: 'end', marginTop: '10px',color:'#9F8FA5' }}>
+                                                {item.title} 
+                                            </div>
+                                        </div> 
+                                    </div>    
+                                </div>
+                            </Link>
+                        ))}
+                    </Col>
+                    <Col xs={3} md={4}>
+                    </Col>
+                </Row>
                 <Row className={`${Mypage.Myarticle4}`}>
                     <Col xs={3} md={4}>
                     </Col>

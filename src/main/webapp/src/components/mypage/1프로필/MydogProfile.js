@@ -15,10 +15,20 @@ const MydogProfile = () => {
     // const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
     // 원하는 형식으로 날짜를 설정합니다.
 
-    const [list, setList] = useState([])
+    const [list, setList] = useState([]);
+    const [userObject, setUserObject] = useState({});
     
     useEffect(()=>{
-        axios.get('/mypage/uploadList')
+        
+            // 로컬스토리지에서 유저 아이디 가져오기
+            const userJsonString = localStorage.getItem('user');
+         
+            const userObject = JSON.parse(userJsonString);
+            console.log(userObject);
+            setUserObject(userObject);
+            const email = userObject.email;
+
+        axios.get(`/mypage/uploadListDog?email=${email}`)
             .then((res)=>{
                 setList(res.data)
                 console.log(res.data)

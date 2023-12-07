@@ -3,6 +3,7 @@ package admin.service;
 import java.util.List;
 import java.util.Optional;
 
+import user.bean.DogsInfo;
 import user.bean.User;
 
 public interface AdminUserService {
@@ -16,5 +17,7 @@ public interface AdminUserService {
 	Optional<User> getUser(String userId);
 
 	void userEdit(User userDTO);
+
+	
 
 }

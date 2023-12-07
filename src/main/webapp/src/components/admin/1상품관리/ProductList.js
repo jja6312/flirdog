@@ -22,33 +22,9 @@ const ProductList = ({
   checkedProducts,
   setCheckedProducts,
   setTotalFilter,
+  whatProduct,
 }) => {
   const navigate = useNavigate();
-  const [whatProduct, setWhatProduct] = useState([]);
-
-  useEffect(() => {
-    if (selectedIcon === "faBorderAll") {
-      setWhatProduct(allProduct);
-    } else if (selectedIcon === "faCartShopping") {
-      setWhatProduct(sellingProduct);
-    } else if (selectedIcon === "faStoreSlash") {
-      setWhatProduct(soldOutProduct);
-    }
-    const filteredUserList = useFilter
-      ? whatProduct.filter((item) => item.name.includes(searchValueText))
-      : whatProduct;
-    setTotalFilter(filteredUserList.length);
-  }, [
-    selectedIcon,
-    allProduct,
-    sellingProduct,
-    soldOutProduct,
-    useFilterCheckNumber,
-    searchValueText,
-    setTotalFilter,
-    useFilter,
-    whatProduct,
-  ]);
 
   const onDeleteOneProduct = (e) => {
     //id파악
@@ -91,10 +67,7 @@ const ProductList = ({
 
   return (
     <>
-      {(useFilter
-        ? whatProduct.filter((item) => item.name.includes(searchValueText))
-        : whatProduct
-      ).map((item, index) => {
+      {whatProduct.map((item, index) => {
         return (
           <tr key={index}>
             <td>

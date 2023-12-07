@@ -12,7 +12,7 @@ import user.bean.DogsInfo;
 import user.bean.User;
 
 @Repository
-public interface MatchingRepository extends JpaRepository<DogsInfo, Integer> {
+public interface MatchingRepository extends JpaRepository<DogsInfo, Long> {
 	
 	public List<DogsInfo> findByUserId(long userId);
 

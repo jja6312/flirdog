@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import Reactquill from "../../somoim/Reactquill";
 import TextEditor from "../../TextEditor";
 
+
 const ProductUploadForm = ({ openLeftside }) => {
   const [productDTO, setProductDTO] = useState({
     name: "",

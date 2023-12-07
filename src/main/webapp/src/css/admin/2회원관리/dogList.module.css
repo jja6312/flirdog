@@ -1,0 +1,28 @@
+th {
+  text-align: center;
+  min-width: 80px; /* 적절한 너비로 조정 */
+}
+.longTh {
+  min-width: 120px;
+  text-align: center;
+}
+
+.longThMore {
+  min-width: 200px;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+.hrefStyle {
+  text-decoration: underline;
+  color: rgb(101, 101, 199);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.hrefStyle:hover {
+  text-decoration: underline;
+  color: rgb(26, 26, 110);
+}

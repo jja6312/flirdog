@@ -7,11 +7,7 @@ const BestFlirdogImg = ({ srcImg, text }) => {
     <div className="col-4">
       <div className="d-flex flex-column justify-content-center align-items-center">
         <div className={styles.bestFlirdogImgContainer}>
-          <img
-            alt=""
-            className={styles.bestFlirdogImgRound}
-            src={`${srcImg}`}
-          />
+          <img alt="" className={styles.bestFlirdogImgRound} src={srcImg} />
           <div className={styles.bestFlirdogImgRoundHoverBlack}></div>
           <span className={styles.bestFlirdogImgRoundHoverText}>1:1 채팅</span>
         </div>

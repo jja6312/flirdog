@@ -25,6 +25,8 @@ import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
+import product.bean.Product;
+import user.bean.Address;
 import user.bean.DogsBreed;
 import user.bean.DogsInfo;
 import user.bean.User;
@@ -94,6 +96,7 @@ public class AccessController {
 
         User user = objectMapper.readValue(userJson, User.class);
         DogsInfo dogsInfo = null;
+        Address address = objectMapper.readValue(userJson, Address.class);
         if (dogsInfoJson != null) {
             dogsInfo = objectMapper.readValue(dogsInfoJson, DogsInfo.class);
         }
@@ -105,6 +108,7 @@ public class AccessController {
 
         JoinRequestDTO joinRequest = new JoinRequestDTO();
         joinRequest.setUser(user);
+        joinRequest.setAddress(address);       
         joinRequest.setDogsInfo(dogsInfo);
         joinRequest.setImage(image);
         System.out.println("image: " + image);
@@ -167,6 +171,47 @@ public class AccessController {
     	return matchingDTO;
     	
     }
+    @PostMapping(path = "getUserInfoArray")
+    public List<User> getUserInfoArray() {
+    	
+    	
+    	List<User> topRankingThreeUserOfAllUser = accessService.getUserInfoArray();
+    	
+    	return topRankingThreeUserOfAllUser;
+    	
+    }
+    
+    @PostMapping(path = "getDogsInfoArray")
+    public Optional<DogsInfo> getDogsInfoArray(@RequestParam String userId) {
+    	
+    	
+    	Optional<DogsInfo> dogsInfo = accessService.getDogsInfoArray(userId);
+    	
+    	return dogsInfo;
+    	
+    }
+    
+    //메인화면, 지역 랭킹 유저3명 가져오기
+    @PostMapping(path = "getUserInfoArrayLocation")
+    public List<User> getUserInfoArrayLocation(@RequestParam String location) {
+    	
+    	
+    	List<User> topRankingThreeUserOfAllUserLocation = accessService.getUserInfoArrayLocation(location);
+    	
+    	return topRankingThreeUserOfAllUserLocation;
+    	
+    }
+    //메인화면, 인기상품 8개 가져오기
+    @PostMapping(path = "getProductInfoArray")
+    public List<Product> getProductInfoArray() {
+    	
+    	
+    	List<Product> productInfoArray = accessService.getProductInfoArray();
+    	
+    	return productInfoArray;
+    	
+    }
+    
 }
 // private DefaultMessageService messageService;
 //

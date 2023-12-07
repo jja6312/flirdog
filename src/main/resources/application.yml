@@ -64,7 +64,7 @@ spring:
       on-profile: test
 
   datasource:
-    url: jdbc:mysql://db-jgnlo-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#
@@ -86,3 +86,8 @@ openai:
   key: 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
 # chatgpt: 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
 
+# 디버깅을 위한 로그 레벨 설정
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG

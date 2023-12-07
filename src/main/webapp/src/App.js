@@ -43,15 +43,25 @@ import MyarticleRounge from "./components/mypage/2내가작성한글/MyarticleRo
 import ProductDetail from "./components/product/ProductDetail";
 import ProductEditForm from "./components/admin/1상품관리/ProductEditForm";
 import UserEditForm from "./components/admin/2회원관리/UserEditForm";
+import MydogProfile2 from "./components/mypage/6테스트페이지/MydogProfile2";
+import MydogUpdateForm from "./components/mypage/1프로필/MydogUpdateForm";
+import MydogUpdateForm2 from "./components/mypage/1프로필/MydogUpdateForm2";
+// import MydogProfileRegister from "./components/mypage/1프로필/MydogProfileRegister";
+
+import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
+
 import Login from "./components/login/Login";
+import Kakaopay from "./components/mypage/6테스트페이지/Kakaopay";
+
 import JoinAuth from "./components/login/loginAPI/JoinAuth";
 import PwdFind from "./components/login/login/PwdFind";
 import FreeBoard from "./components/mypage/7자유게시판/FreeBoard";
 import FreeBoardOne from "./components/mypage/7자유게시판/FreeBoardOne";
 import BoastBoardList from "./components/boastBoard/BoastBoardList";
 
-import WeatherAndStroll from "./components/mypage/5공통/WeatherAndStroll";
-import BoastBoardWrite from "./components/boastBoard/BoastBoardWrite";
+import DogListForm from "./components/admin/2회원관리/DogListForm";
+import DogEditForm from "./components/admin/2회원관리/DogEditForm";
+import MatchingListFormAdmin from "./components/admin/5매칭관리/MatchingListFormAdmin";
 
 const App = () => {
   return (
@@ -60,7 +70,7 @@ const App = () => {
         <>
           {/* 화면에 보이는 영역 */}
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
 
             {/* //김찬영마이페이지================================================================= */}
             <Route path="/mypage/Mypoint" element={<Mypoint />} />
@@ -77,16 +87,12 @@ const App = () => {
               element={<MypageCategoryWrapper />}
             />
             <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
-            <Route path="/mypage/MydogProfile" element={<MydogProfile />} />
             <Route
               path="/mypage/MydogProfileUpdate"
               element={<MydogProfileUpdate />}
             />
             <Route path="/mypage/MypageHeader" element={<MypageHeader />} />
-            <Route
-              path="/mypage/MydogProfileRegister2"
-              element={<MydogProfileRegister2 />}
-            />
+
             <Route
               path="/mypage/MypointRecharge"
               element={<MypointRecharge />}
@@ -96,12 +102,27 @@ const App = () => {
               path="/mypage/MyarticleRounge"
               element={<MyarticleRounge />}
             />
-            <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
-            <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
+            <Route
+              path="/mypage/MydogProfileRegister2"
+              element={<MydogProfileRegister2 />}
+            />
+            <Route path="/mypage/MydogProfile2" element={<MydogProfile2 />} />
+            <Route path="/mypage/MydogUpdateForm">
+              <Route path=":userId" element={<MydogUpdateForm />} />
+            </Route>
+            <Route path="/mypage/MydogUpdateForm2">
+              <Route path=":userId" element={<MydogUpdateForm2 />} />
+            </Route>
+            <Route path="/mypage/MydogProfile2" element={<MydogProfile2 />} />
             <Route
               path="/mypage/WeatherAndStroll"
               element={<WeatherAndStroll />}
             />
+
+            <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
+            <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
+            <Route path="/mypage/Kakaopay" element={<Kakaopay />} />
+
             {/* 김찬영마이페이지//================================================================= */}
 
             {/* 매칭페이지 */}
@@ -159,6 +180,10 @@ const App = () => {
               path="/admin/userListForm"
               element={<UserListForm openLeftside="1" />}
             />
+            <Route
+              path="/admin/dogListForm"
+              element={<DogListForm openLeftside="1" />}
+            />
             {/* 주문관리 */}
             <Route
               path="/admin/orderListForm"
@@ -177,9 +202,15 @@ const App = () => {
               path="/admin/reviewListForm"
               element={<ReviewListForm openLeftside="3" />}
             />
+
             <Route
               path="/admin/userEditForm/:userId"
               element={<UserEditForm />}
+            />
+            <Route path="/admin/dogEditForm/:dogId" element={<DogEditForm />} />
+            <Route
+              path="/admin/matchingListForm"
+              element={<MatchingListFormAdmin openLeftside="4" />}
             />
 
             <Route path="product">

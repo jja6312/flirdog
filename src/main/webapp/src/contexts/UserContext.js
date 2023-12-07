@@ -6,26 +6,41 @@ import Swal from "sweetalert2";
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    id: "",
-    email: "",
-    passwd: "",
-    name: "",
-    nickname: "",
-    communityScore: "",
-    point: "",
-    createdAt: "",
-    modifiedAt: "",
-    userRole: "",
-  });
+  // const [user, setUser] = useState({
+  //   id: "",
+  //   email: "",
+  //   passwd: "",
+  //   name: "",
+  //   nickname: "",
+  //   communityScore: "",
+  //   point: "",
+  //   createdAt: "",
+  //   modifiedAt: "",
+  //   userRole: "",
+  // });
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   // 임시방편으로 로컬 스토리지에 로그인 정보를 저장하고, 그 정보를 가져옴
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+
+        // JSON.parse가 정상적으로 되었을 때만 setUser 호출
+        if (parsedUser && parsedUser.id) {
+          setUser(parsedUser);
+        }
+      } catch (error) {
+        console.error("Error parsing stored user data:", error);
+      }
     }
+
+    // if (storedUser) {
+    //   setUser(JSON.parse(storedUser));
+    // }
   }, []);
 
   const login = (userData) => {

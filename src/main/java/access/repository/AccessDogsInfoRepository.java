@@ -16,4 +16,6 @@ public interface AccessDogsInfoRepository extends JpaRepository<DogsInfo, Long>{
 	//현성
 	DogsInfo findByUserIdAndName(Long userId, String dogName);
 
+	List<DogsInfo> findByUserId(Long userId);
+
 }

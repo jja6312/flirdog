@@ -3,7 +3,7 @@ package product.bean;
 import api.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import order.bean.Order;
+import order.bean.Orders;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class Product extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Orders orders;
 
     @Builder(toBuilder = true)
     private Product(String name, String content, int stock, int price, String image, MainCategory mainCategory,
