@@ -610,7 +610,7 @@ input[type=radio]:checked + .labelClass2  {
 
 .subjectA:link { color: black; text-decoration: none;}
 .subjectA:visited { color: black; text-decoration: none;}
-.subjectA:hover { color: #F56084;; text-decoration: underline;}
+.subjectA:hover { color: #F56084; text-decoration: underline;}
 .subjectA:active { color: black; text-decoration: none;}
 
 

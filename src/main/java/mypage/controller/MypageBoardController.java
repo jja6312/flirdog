@@ -33,9 +33,9 @@ public class MypageBoardController {
 	}
 
 	@GetMapping(path="uploadListBoard")
-	public List<MypageBoardDTO> uploadListBoard(@RequestParam String id){
-	    Long userId = Long.parseLong(id);
-		return mypageBoardService.uploadListBoard(userId);
+	public List<MypageBoardDTO> uploadListBoard(@RequestParam String email){
+		System.out.println("이메일은 뭔가" + email);
+		return mypageBoardService.uploadListBoard(email);
 	}
 
 }

@@ -2,22 +2,18 @@
 .boardDiv1{
     width: 100%;
     min-height: calc(100vh - 52px);
-    background-color: #1a0dab;
 }
 .boardDiv2{
     width: 100%;
     margin: 0 auto;
     padding: 0 100px;
     max-width: 1024px;
-    background-color: #868688;
 }
 .boardDiv3{
     margin-top: 50px;
-    background-color: #c0dfb0;
 }
 .boardDiv4{
     padding: 9px 0;
-    background-color: #ffeb99;
 }
 .boardDiv5{
     padding-right: 27px;
@@ -25,17 +21,15 @@
     justify-content: space-between;
     grid-gap: 10px;
     gap: 10px;
-    background-color: aliceblue;
 }
 .boardDiv6{
     display: block;
-    background-color: antiquewhite;
+    width: 40rem;
 }
 .boardDiv7{
     display: flex;
     grid-gap: 10px;
     gap: 10px;
-    background-color: aqua;
 }
 .boardDiv8{
     padding: 0 9px;
@@ -57,7 +51,6 @@
     align-items: center;
     grid-gap: 5px;
     gap: 5px;
-    background-color: chocolate;
 }
 .boardDiv9_1{
     position: relative;
@@ -66,10 +59,19 @@
     background-color: #c0dfb0;
     border-radius: 50%;
 }
+.boardDiv9_12{
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
 .boardDiv9_2{
     font-size: 11px;
     font-weight: 700;
-    background-color: #ffeb99;
 }
 .boardDiv10{
     font-style: normal;
@@ -77,7 +79,9 @@
     margin-top: 18px;
     font-size: 16px;
     line-height: 19px;
-    background-color: darkslategrey;
+}
+.boardDiv10:hover{
+    color: #F56084;
 }
 .boardDiv11{font-style: normal;
     margin-top: 7px;
@@ -89,7 +93,6 @@
     color: #868688;
     font-size: 13px;
     line-height: 160%;
-    background-color: darkblue;
 }
 .boardDiv12{
     position: relative;
@@ -99,7 +102,6 @@
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0,0,0,.15);
-    background-color: purple;
 }
 .boardDiv13{
     display: flex;
@@ -110,14 +112,12 @@
     font-size: 13px;
     line-height: 16px;
     color: #868688;
-    background-color: plum;
 }
 .boardDiv14{
     color: #000;
     cursor: pointer;    
     font-size: 13px;
     line-height: 16px;
-    background-color: maroon;
 }
 .boardDiv15{
     color: #000;
@@ -126,12 +126,10 @@
     font-size: 13px;
     line-height: 16px;
     color: #868688;
-    background-color: dodgerblue;
 }
 .boardDiv17{
     padding-right: 16px;
     display: block;
-    background-color: hotpink;
 }
 .boardDiv18{
     padding-right: 18px;
@@ -140,7 +138,6 @@
     gap: 5px;
     overflow-x: auto;
     white-space: nowrap;
-    background-color: slateblue;
 }
 .boardA1{
     display: flex;
@@ -209,5 +206,8 @@
     border-radius: 50%;    
     overflow-clip-margin: content-box;
     overflow: clip;
-    background-color: darkgoldenrod;
+}
+.subjectA{
+    text-decoration: none;
+    color: black;
 }

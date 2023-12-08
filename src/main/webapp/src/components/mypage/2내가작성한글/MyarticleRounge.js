@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import MypageSubHeader22 from '../5공통/MypageSubHeader2_2';
 import axios from 'axios';
+import Mypage5 from  '../../../css/main/100마이페이지/mypage5.module.css';
 
 
 const MyarticleRounge = () => {
@@ -23,7 +24,7 @@ const MyarticleRounge = () => {
         const userObject = JSON.parse(userJsonString);
         console.log(userObject);
         setUserObject(userObject);
-        const userId = userObject.id;
+        const email = userObject.email;
         //단건조회
         // axios.get(`http://localhost:8080/mypage/getBoard?userIdStr=${userId}`)
         // .then((res) => {
@@ -39,14 +40,10 @@ const MyarticleRounge = () => {
         // });
 
         // 리스트 전체조회
-        axios.get(`/mypage/uploadListBoard?id=${userId}`)
+        axios.get(`/mypage/uploadListBoard?email=${email}`)
             .then((res)=>{
                 console.log("전체조회 성공"+res.data)
                 setList(res.data)
-                if(list=== null){
-                    
-                }
-                
                 //실제 값들을 찍을수 있게 해주는 것.
                 Object.keys(res.data).forEach((key) => {
                     console.log("전체조회키값데이터값"+`${key}:`, res.data[key]);
@@ -82,36 +79,77 @@ const MyarticleRounge = () => {
                     </Col>
                 </Row>)
                 :(null)}
-                {/* 내용 출력 */}
-                <Row className={`${Mypage.Myarticle2}`}>
-                    <Col xs={3} md={4}>
-                    </Col>
-                    <Col xs={6} md={4} className={Mypage.Imagecenter}>
-                    {list.map(item => (
-                            
-                            // <Link className={Mypage.subjectA} to={`/mypage/FreeBoardOne/${item.id}`}>
-                            <Link className={Mypage.subjectA} to={`/mypage/FreeBoardOne`}>
-                                <div key={item.id} className={Mypage.MydogProfileMarging} style={{ marginBottom: '10px', border: '1px solid #f56084', padding: '10px', borderRadius: '100px' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-                                        <div style={{ textAlign: 'start' }}>
-                                            <Image alt={item.content} src={`../storage/${encodeURIComponent(item.image)}`} roundedCircle className={Mypage.RoundedCircle} style={{ width: 100, height: 100, border: '1px solid #ddd' }} />
+                {/* 전체 컨텐츠 */}
+                <div className={Mypage5.boardDiv1}>
+                    {/* 가운데정렬 */}
+                    <div className={Mypage5.boardDiv2}>
+                        {/* MarginTop */}
+                        <div className={Mypage5.boardDiv3}>
+                            {/* 컨텐츠 하나임 */}
+                            <div className={Mypage5.boardDiv4}>
+                            {list.map(item => (
+                                // <Link className={Mypage.subjectA} to={`/mypage/FreeBoardOne/${item.id}`}>
+                                <Link className={Mypage5.subjectA} to={`/mypage/FreeBoardOne`}>
+                                    <div key={item.email}> 
+                                        {/* 컨텐츠 하나 상단부분 내용이랑 사진부분 */}
+                                        <div className={Mypage5.boardDiv5}>
+                                            {/* 내용이랑 제목이랑 같이 나오는 곳 왼쪽 부분 */}
+                                            <div className={Mypage5.boardDiv6}>
+                                                {/* 그림나오는 부분 두군데 */}
+                                                <div className={Mypage5.boardDiv7}>
+                                                    {/* 강아지 부분 */}
+                                                    <div className={Mypage5.boardDiv8}>
+                                                        <img className={Mypage5.boardImg} src= 'https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg'></img>
+                                                        <div>강아지</div>
+                                                    </div>
+                                                    {/* 강아지종류부분 */}
+                                                    <div className={Mypage5.boardDiv9}>
+                                                        <div className={Mypage5.boardDiv9_1}>
+                                                            <img className={Mypage5.boardDiv9_12} src='https://bff-images.bemypet.kr/media/medias/breed/835faccf-5bc7-4f9a-b5d0-f6fb3418db67.png'/>
+                                                        </div>
+                                                        <div className={Mypage5.boardDiv9_2}>{item.dogBreed}</div>
+                                                    </div>
+                                                </div>
+                                                <div className={Mypage5.boardDiv10}>{item.title}</div>
+                                                <div className={Mypage5.boardDiv11}>{item.content}</div>
+                                            </div>
+                                            {/* 오른쪽 부분 이미지 */}
+                                            <div className={Mypage5.boardDiv12}>
+                                                <span className={Mypage5.boardSpan1}>
+                                                    <img className={Mypage5.boardImg1}  src={`../storage/${encodeURIComponent(item.image)}`} alt={item.content} />
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div style={{width:'220px'}}> 
-                                            <div style={{ textAlign: 'end', marginTop: '10px',fontSize:'20px',fontWeight:'900' }}>
-                                                    {item.content}
+                                        {/* 내용 하단에 닉네임 댓글 시간 표시하는 곳 */}
+                                        <div className={Mypage5.boardDiv13}>
+                                            {/* 이미지랑 닉네임부분 */}
+                                            <a className={Mypage5.boardA1}>
+                                                <img className={Mypage5.boardImg2} src='https://bff-images.bemypet.kr/media/medias/profile_image/514-bin.jpg'></img>
+                                                <div className={Mypage5.boardDiv14}>{item.userNickName}</div>
+                                            </a>
+                                            {/* 댓글 */}
+                                            <div className={Mypage5.boardDiv15}>
+                                                댓글 : {item.commentCount}
                                             </div>
-                                            <div style={{ textAlign: 'end', marginTop: '10px',color:'#9F8FA5' }}>
-                                                {item.title} 
+                                            {/* N분전 */}
+                                            <div className={Mypage5.boardDiv16}>
+                                                {item.ref1}
                                             </div>
-                                        </div> 
-                                    </div>    
-                                </div>
-                            </Link>
-                        ))}
-                    </Col>
-                    <Col xs={3} md={4}>
-                    </Col>
-                </Row>
+                                        </div>
+                                        {/* 밑에 의미없는 부분 */}
+                                        <div className={Mypage5.boardDiv17}>
+                                            <div className={Mypage5.boardDiv18}></div>
+                                        </div>
+                                        {/* 밑줄 */}
+                                        <hr className={Mypage5.boardHr1}></hr>
+                                    </div> {/* //div item.id  */}
+                                </Link>
+                            ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* 밑에 페이징처리 있는데 그냥 하지마. */}
                 <Row className={`${Mypage.Myarticle4}`}>
                     <Col xs={3} md={4}>
                     </Col>
