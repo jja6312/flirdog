@@ -226,4 +226,33 @@ public class AccessServiceImpl implements AccessService {
 		return accessBragBoardRepository.findTop10ByOrderByHitDesc();
 	}
 
+	@Override
+	public List<BragBoardDTO> getBragBoardClosestDate10() {
+		
+		return accessBragBoardRepository.findTop10ByOrderByCreatedAtDesc();
+	}
+
+	@Override
+	public List<BragBoardDTO> getBoardList() {
+		
+		return accessBragBoardRepository.findAll();
+	}
+
+	@Override
+	public void boardDelete(String boardId) {
+		accessBragBoardRepository.deleteById(Long.parseLong(boardId));
+		
+	}
+
+	@Override
+	public void boardDeleteSelected(String boardId) {
+		
+		String[] boardIdArray = boardId.split(",");
+
+		for (String id : boardIdArray) {
+			accessBragBoardRepository.deleteById(Long.parseLong(id));
+		}
+		
+	}
+
 }

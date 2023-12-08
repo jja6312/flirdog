@@ -41,6 +41,14 @@ public interface AccessService {
 
 	List<BragBoardDTO> getBragBoard();
 
+	List<BragBoardDTO> getBragBoardClosestDate10();
+
+	List<BragBoardDTO> getBoardList();
+
+	void boardDelete(String boardId);
+
+	void boardDeleteSelected(String boardId);
+
 	
 
 }

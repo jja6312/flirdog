@@ -276,7 +276,7 @@ public class AdminController {
 		return orderList;
 
 	}
-	// 주문리스트
+	// 주소가져오기
 	@GetMapping(path = "getAddress")
 	public List<Address> getAddress() {
 		List<Address> addressList = adminMainService.getAddress();
@@ -284,6 +284,7 @@ public class AdminController {
 		return addressList;
 		
 	}
+	
 	
 	//종인님께5.start----------------------------------------- 
 	@PostMapping(path = "oneFileGo")

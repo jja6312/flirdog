@@ -92,9 +92,9 @@ const LeftSide = ({ openLeftside, selected }) => {
               </Link>
             </Accordion.Item>
             <Accordion.Item eventKey="3">
-              <Accordion.Header className={styles.titleMenu}>
+              {/* <Accordion.Header className={styles.titleMenu}>
                 리뷰 관리
-              </Accordion.Header>
+              </Accordion.Header> */}
 
               <Link
                 to="/admin/reviewListForm"
@@ -116,6 +116,20 @@ const LeftSide = ({ openLeftside, selected }) => {
               >
                 <Accordion.Body className={`mx-4 ${styles.subMenu}`}>
                   매칭글 조회
+                </Accordion.Body>
+              </Link>
+            </Accordion.Item>
+            <Accordion.Item eventKey="5">
+              <Accordion.Header className={styles.titleMenu}>
+                커뮤니티 관리
+              </Accordion.Header>
+
+              <Link
+                to="/admin/boardListForm"
+                style={{ color: "black", textDecoration: "none" }}
+              >
+                <Accordion.Body className={`mx-4 ${styles.subMenu}`}>
+                  게시판 조회/삭제
                 </Accordion.Body>
               </Link>
             </Accordion.Item>

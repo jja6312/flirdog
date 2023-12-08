@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CommunityBtnContainer from "./CommunityBtnContainer";
 import CommunityWrite from "./CommunityWrite";
 import Container from "react-bootstrap/esm/Container";
@@ -8,21 +8,43 @@ import axios from "axios";
 import timeAgo from "../timeAgo";
 
 const CommunityMain = () => {
-  const [communityBoard, setCommunityBoard] = React.useState([]);
+  const [communityBoard, setCommunityBoard] = useState([]);
+  const [communityBoardBest, setCommunityBoardBest] = useState([]);
+  const [bragBoardData, setBragBoardData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("실시간 인기글");
 
   useEffect(() => {
     axios.post("http://localhost:8080/access/getBragBoard").then((res) => {
-      setCommunityBoard(res.data);
-      console.log("communityBoard");
+      setCommunityBoardBest(res.data);
+      console.log("communityBoardBest");
       console.log(res.data);
     });
+
+    axios
+      .post("http://localhost:8080/access/getBragBoardClosestDate10")
+      .then((res) => {
+        setBragBoardData(res.data);
+        console.log("bragBoardData");
+        console.log(res.data);
+      });
   }, []);
+
+  useEffect(() => {
+    if (selectedCategory === "실시간 인기글") {
+      setCommunityBoard(communityBoardBest);
+    } else if (selectedCategory === "자랑 게시판") {
+      setCommunityBoard(bragBoardData);
+    }
+  }, [selectedCategory]);
 
   return (
     <>
       <Container className="px-10">
         <div className="row mt-8">
-          <CommunityBtnContainer></CommunityBtnContainer>
+          <CommunityBtnContainer
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          ></CommunityBtnContainer>
         </div>
 
         <div className="row mt-1">

@@ -9,5 +9,6 @@ import community.bean.BragBoardDTO;
 public interface AccessBragBoardRepository extends JpaRepository<BragBoardDTO,Long>{
 
 	List<BragBoardDTO> findTop10ByOrderByHitDesc();
+    List<BragBoardDTO> findTop10ByOrderByCreatedAtDesc();
 
 }
