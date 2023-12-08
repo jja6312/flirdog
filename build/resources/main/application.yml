@@ -9,6 +9,28 @@ spring:
     hibernate:
       ddl-auto: none
 
+management:
+  endpoint:
+    health:
+      enabled: true
+    beans:
+      enabled: true
+    info:
+      enabled: true
+    conditions:
+      enabled: true
+    metrics:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude:
+          - loggers
+          - quartz
+          - caches
+
 ---
 spring:
   config:
@@ -20,31 +42,8 @@ spring:
       max-request-size: 10MB
 
   datasource:
-<<<<<<< HEAD
-    #url: jdbc:mysql://db-ioa7c-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: user
-    #password: qwe123!@#
-    # s3문제
-    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: root
-    #password: 1234
-
-    # url: jdbc:mysql://db-jgnl0-kr.vpc-pub-cdb.ntruss.com:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    # driver-class-name: com.mysql.cj.jdbc.Driver
-    # username: user
-    # password: qwe123!@#
-    # s3문제 (아래는 지안님 계정)
-    #url: jdbc:mysql://localhost:3306/maindb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: root
-    #password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
-=======
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://db-k2g2a.vpc-cdb.ntruss.com:3306/flirdog?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
->>>>>>> f53f0b86 (도커이미지 생성)
     username: user
     password: qwe123!@#
 
@@ -58,33 +57,14 @@ spring:
         format_sql: true
     defer-datasource-initialization: true # (2.5~) Hibernate 초기화 이후 data.sql 실행
     database: mysql
-<<<<<<< HEAD
-    database-platform : org.hibernate.dialect.MySQL8Dialect
-=======
     database-platform: org.hibernate.dialect.MySQL8Dialect
->>>>>>> f53f0b86 (도커이미지 생성)
-
 ---
 spring:
   kafka:
     consumer:
-<<<<<<< HEAD
-      bootstrap-servers: 192.168.0.11:9092
-    producer:
-      bootstrap-servers: 192.168.0.11:9092
-
-#  kafka:
-#    consumer:
-#      bootstrap-servers: 10.0.3.16:9092,10.0.3.17:9092,10.0.3.18:9092
-#      group-id: message
-#    producer:
-#      bootstrap-servers: 10.0.3.16:9092,10.0.3.17:9092,10.0.3.18:9092
-
-=======
       bootstrap-servers: 10.0.3.16:9092
     producer:
       bootstrap-servers: 10.0.3.16:9092
->>>>>>> f53f0b86 (도커이미지 생성)
 
 ---
 spring:
@@ -96,10 +76,6 @@ spring:
       username: user
       password: qwe123!@#
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f53f0b86 (도커이미지 생성)
 ---
 spring:
   config:
@@ -107,12 +83,7 @@ spring:
       on-profile: test
 
   datasource:
-<<<<<<< HEAD
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/testdb?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-
-=======
     url: jdbc:mysql://db-k2gu4-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
->>>>>>> f53f0b86 (도커이미지 생성)
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     password: qwe123!@#
@@ -139,3 +110,21 @@ logging:
   level:
     root: DEBUG
     org.springframework: DEBUG
+
+---
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: 10.0.3.16:9092
+    producer:
+      bootstrap-servers: 10.0.3.16:9092
+
+---
+spring:
+  data:
+    mongodb:
+      host: k2g36.vpc.mg.naverncp.com
+      port: 17017
+      database: flirdog
+      username: user
+      password: qwe123!@#
