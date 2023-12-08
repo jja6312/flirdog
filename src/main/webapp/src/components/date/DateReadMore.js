@@ -64,16 +64,16 @@ const DateReadMore = () => {
                 const res = await axios.get(`http://localhost:8080/date/dateReadMore?seq=${seq}`);
                 console.log(res.data);
 
-                if (id) {  // id 값이 유효한 경우에만 getUser 요청 보냄
-                    const userRes = await axios.get(`http://localhost:8080/date/getUser?id=${id}`);
-                    console.log(userRes.data);
+              
+                const userRes = await axios.get(`http://localhost:8080/date/getUser?id=${res.data.userId}`);
+                console.log(userRes.data);
 
-                    setUserDTO(prevUserDTO => ({
-                        ...prevUserDTO,
-                        id: userRes.data.id,
-                        nickname: userRes.data.nickname
-                    }));
-                }
+                setUserDTO(prevUserDTO => ({
+                    ...prevUserDTO,
+                    id: userRes.data.id,
+                    nickname: userRes.data.nickname
+                }));
+
 
                 setMatchingDTO(prevMatchingDTO2 => ({
                     ...prevMatchingDTO2,
@@ -394,7 +394,7 @@ const DateReadMore = () => {
                             }}
                       >
                         {shouldHideLink ? null : (
-                          <Link to={`/date/dateUpdate/${matchingDTO.id}`} variant="primary"
+                          <Link to={`/date/dateUpdate/${seq}`} variant="primary"
                             style={{
                               display: 'flex',
                               justifyContent: 'center',

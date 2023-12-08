@@ -288,10 +288,10 @@ const DateList = () => {
           id="carouselExample"
           className="carousel slide"
           style={{
-            backgroundColor: "pink",
             borderRadius: "20px",
             border: "20px solid white",
             boxShadow: "0 0 20px rgba(0, 0, 0, 0.6)",
+            backgroundColor: 'white'
           }}
         >
           <div
@@ -317,7 +317,16 @@ const DateList = () => {
                         key={index}
                       >
                   {/* 내용을 동적으로 생성 */}
-                  <div className="d-flex justify-content-center align-items-center">
+                  <div className="d-flex justify-content-center align-items-center"
+                    style={{
+                      backgroundColor:
+                        matchingItem.matchingPurpose === "연애"
+                          ? "#F9D6DC"
+                          : matchingItem.matchingPurpose === "산책"
+                          ? "#ADD8E6"
+                          : "white", // 기본 값은 'white'로 설정
+                    }}
+                  >
                     <div
                       className="justify-content-center align-items-center"
                       style={{
@@ -433,7 +442,7 @@ const DateList = () => {
                       >
                         <div
                           className={dateList.filterDateContentDogname}
-                          style={{ fontSize: "2vw" }}
+                          style={{ fontSize: "1.3vw" }}
                         >
                           {matchingItem.title}
                         </div>
@@ -755,42 +764,42 @@ const DateList = () => {
                             href="#/action-3"
                             onClick={() => handleRegionSelect("대구")}
                           >
-                            대구광역시
+                            대구
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-4"
                             onClick={() => handleRegionSelect("인천")}
                           >
-                            인천광역시
+                            인천
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-5"
                             onClick={() => handleRegionSelect("광주")}
                           >
-                            광주광역시
+                            광주
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-6"
                             onClick={() => handleRegionSelect("대전")}
                           >
-                            대전광역시
+                            대전
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-7"
                             onClick={() => handleRegionSelect("울산")}
                           >
-                            울산광역시
+                            울산
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-8"
                             onClick={() => handleRegionSelect("세종")}
                           >
-                            세종특별시
+                            세종
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}

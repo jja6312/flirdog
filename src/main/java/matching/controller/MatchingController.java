@@ -55,6 +55,23 @@ public class MatchingController {
 		return getUser;
 	}
 	
+	@GetMapping(path = "getDogsInfoUserId", produces = "application/json;charset=UTF-8")
+    public List<DogsInfo> getDogsInfoUserId(
+    		@RequestParam("userId") Long id) {
+    
+        List<DogsInfo> dogsInfoWithUserId = dogsInfoService.getDogsInfoListByUserId(id);
+        return dogsInfoWithUserId;
+	}
+	
+	
+	@GetMapping(path = "getUserInfo", produces = "application/json;charset=UTF-8")
+	public Optional<User> getUserInfo(@RequestParam("userId") Long id){
+		System.out.println("들어왔나?");
+		Optional<User> getUser = userInfoService.getUser(id);
+		
+		return getUser;
+	}
+	
 	//매칭글 작성
 	@PostMapping(path="dateWriteTest", produces ="application/json")
 	public void dateWriteTest(@RequestPart("matchingDTO2") MatchingDTO matchingDTO,
