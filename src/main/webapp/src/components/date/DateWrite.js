@@ -115,10 +115,10 @@ const DateWrite = () => {
         if (id) {
           // id 값이 존재하는 경우에만 요청 보냄
           const res = await axios.get(
-            `https://java.flirdog.store/date/getDogsInfoWithUserId?id=${id}`
+            `https://java.flirdog.store:8080/date/getDogsInfoWithUserId?id=${id}`
           );
           const userRes = await axios.get(
-            `https://java.flirdog.store/date/getUser?id=${id}`
+            `https://java.flirdog.store:8080/date/getUser?id=${id}`
           );
 
           console.log(res.data);

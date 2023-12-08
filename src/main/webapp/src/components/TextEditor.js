@@ -43,7 +43,7 @@ const TextEditor = ({ setContentUseState, name }) => {
   //       try {
   //         // 서버에 이미지 업로드
   //         const response = await axios.post(
-  //           "https://java.flirdog.store/admin/uploadImage",
+  //           "https://java.flirdog.store:8080/admin/uploadImage",
   //           formData,
   //           {
   //             headers: {

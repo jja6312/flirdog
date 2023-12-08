@@ -9,6 +9,28 @@ spring:
     hibernate:
       ddl-auto: none
 
+management:
+  endpoint:
+    health:
+      enabled: true
+    beans:
+      enabled: true
+    info:
+      enabled: true
+    conditions:
+      enabled: true
+    metrics:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude:
+          - loggers
+          - quartz
+          - caches
+
 ---
 spring:
   config:
@@ -53,6 +75,7 @@ spring:
       database: flirdog
       username: user
       password: qwe123!@#
+
 ---
 spring:
   config:

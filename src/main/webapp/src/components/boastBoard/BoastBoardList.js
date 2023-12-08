@@ -26,7 +26,7 @@ const BoastBoardList = () => {
   // 전체 목록 조회
   useEffect(() => {
     axios
-      .get("https://java.flirdog.store/boastBoard/getBoastBoardList")
+      .get("https://java.flirdog.store:8080/boastBoard/getBoastBoardList")
       .then((res) => {
         console.log(res.data);
         setBoardDTOList(res.data);

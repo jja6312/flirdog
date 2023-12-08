@@ -143,16 +143,16 @@ const DateUpdate = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `https://java.flirdog.store/date/dateReadMore?seq=${seq}`
+          `https://java.flirdog.store:8080/date/dateReadMore?seq=${seq}`
         );
 
         console.log(res.data);
 
         const userRes = await axios.get(
-          `https://java.flirdog.store/date/getUserInfo?userId=${res.data.userId}`
+          `https://java.flirdog.store:8080/date/getUserInfo?userId=${res.data.userId}`
         );
         const dogRes = await axios.get(
-          `https://java.flirdog.store/date/getDogsInfoUserId?userId=${res.data.userId}`
+          `https://java.flirdog.store:8080/date/getDogsInfoUserId?userId=${res.data.userId}`
         );
         console.log(userRes.data);
         console.log(dogRes.data);

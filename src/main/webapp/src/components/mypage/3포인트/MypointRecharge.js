@@ -100,7 +100,7 @@ const MypointRecharge = () => {
           console.log(error);
         });
 
-      //   axios.get(`https://java.flirdog.store/mypage/getPointCharging?userIdStr=${userId}`)
+      //   axios.get(`https://java.flirdog.store:8080/mypage/getPointCharging?userIdStr=${userId}`)
       //   .then((res) => {
       //       //alert('성공')
       //       console.log('getPointCharging'+res.data);

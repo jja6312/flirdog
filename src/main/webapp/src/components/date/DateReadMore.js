@@ -61,12 +61,12 @@ const DateReadMore = () => {
       try {
         if (seq) {
           const res = await axios.get(
-            `https://java.flirdog.store/date/dateReadMore?seq=${seq}`
+            `https://java.flirdog.store:8080/date/dateReadMore?seq=${seq}`
           );
           console.log(res.data);
 
           const userRes = await axios.get(
-            `https://java.flirdog.store/date/getUser?id=${res.data.userId}`
+            `https://java.flirdog.store:8080/date/getUser?id=${res.data.userId}`
           );
           console.log(userRes.data);
 

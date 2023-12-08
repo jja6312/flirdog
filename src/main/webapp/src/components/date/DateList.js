@@ -53,7 +53,7 @@ const DateList = () => {
   // 전체 목록 조회
   useEffect(() => {
     axios
-      .get("https://java.flirdog.store/date/getAllMatchingList")
+      .get("https://java.flirdog.store:8080/date/getAllMatchingList")
       .then((res) => {
         console.log("주소");
         console.log(res.data);
@@ -67,7 +67,7 @@ const DateList = () => {
   // 상위 3개 조회
   useEffect(() => {
     axios
-      .get("https://java.flirdog.store/date/getTopMatchingThree")
+      .get("https://java.flirdog.store:8080/date/getTopMatchingThree")
       .then((res) => {
         console.log("주소");
         console.log(res.data);
@@ -147,7 +147,7 @@ const DateList = () => {
   };
   const submitScore = () => {
     axios
-      .post("https://java.flirdog.store/access/saveDogScore", null, {
+      .post("https://java.flirdog.store:8080/access/saveDogScore", null, {
         params: {
           dogId: modaldogsInfo[currentDogIndex].id,
           score: score.filter(Boolean).length,
@@ -177,14 +177,14 @@ const DateList = () => {
       if (modalShow) {
         try {
           const res1 = await axios.post(
-            "https://java.flirdog.store/access/getFiveDogsInfo"
+            "https://java.flirdog.store:8080/access/getFiveDogsInfo"
           );
           const dogsInfoData = res1.data;
           setModalDogsInfo(dogsInfoData);
 
           const userInfoPromises = dogsInfoData.map((dog) =>
             axios.post(
-              "https://java.flirdog.store/access/getUserInfoAsDogId",
+              "https://java.flirdog.store:8080/access/getUserInfoAsDogId",
               null,
               {
                 params: { dogId: dog.id },
@@ -197,7 +197,7 @@ const DateList = () => {
 
           const matchingInfoPromises = userInfos.map((res, i) =>
             axios.post(
-              "https://java.flirdog.store/access/getMatchingTable",
+              "https://java.flirdog.store:8080/access/getMatchingTable",
               null,
               {
                 params: {

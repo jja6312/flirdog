@@ -51,7 +51,7 @@ const DogListForm = ({ openLeftside }) => {
       if (result.isConfirmed) {
         axios
           .post(
-            `https://java.flirdog.store/admin/dogDeleteSelected?dogId=${checkDog}`
+            `https://java.flirdog.store:8080/admin/dogDeleteSelected?dogId=${checkDog}`
           )
           .then(() => {
             window.location.reload();
@@ -72,7 +72,7 @@ const DogListForm = ({ openLeftside }) => {
     setIsLoading(true);
 
     axios
-      .get("https://java.flirdog.store/admin/getDogList")
+      .get("https://java.flirdog.store:8080/admin/getDogList")
       .then((res) => {
         console.log("dogList");
         console.log(res.data);

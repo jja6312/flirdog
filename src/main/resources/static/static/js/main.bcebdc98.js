@@ -25692,7 +25692,7 @@
                   (0, _e.jsx)("p", {
                     className: "".concat(Ol.title),
                     onClick: () => {
-                      Ap.get("https://java.flirdog.store/admin/testGo")
+                      Ap.get("https://java.flirdog.store:8080/admin/testGo")
                         .then((e) => {
                           alert(e.data);
                         })

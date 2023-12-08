@@ -26,7 +26,7 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
     if (boardDTO && boardDTO.id) {
       axios
         .get(
-          `https://java.flirdog.store/boastBoard/getBoastBoard?boardId=${boardDTO.id}`
+          `https://java.flirdog.store:8080/boastBoard/getBoastBoard?boardId=${boardDTO.id}`
         )
         .then((res) => {
           console.log(res.data);
@@ -115,7 +115,7 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
       if (result.value) {
         axios
           .delete(
-            `https://java.flirdog.store/boastBoard/getBoastBoardDelete?boardId=${boardDTO.id}`
+            `https://java.flirdog.store:8080/boastBoard/getBoastBoardDelete?boardId=${boardDTO.id}`
           )
           .then((res) => {
             console.log(res);

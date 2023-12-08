@@ -81,10 +81,10 @@ const SomoimDetail = () => {
   // 가입 여부 확인 및 초기 데이터 로딩
   const isJoin = async () => {
     if (user && user.id) {
-      //await axios.get(`https://java.flirdog.store/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
+      //await axios.get(`https://java.flirdog.store:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
       await axios
         .get(
-          `https://java.flirdog.store/somoim/isSomoimMember?somoimId=${somoimId}&userId=${user.id}`
+          `https://java.flirdog.store:8080/somoim/isSomoimMember?somoimId=${somoimId}&userId=${user.id}`
         )
         .then((res) => {
           setIsAdmin(res.data);
@@ -107,30 +107,6 @@ const SomoimDetail = () => {
     isJoin();
   }, [somoimId, user, somoimJoin]);
 
-  //가입 여부 확인 및 초기 데이터 로딩
-  // useEffect(() => {
-  //     console.log('user객체 id정보 : ' + user)
-  //     console.log('somoimId : ' + somoimId)
-
-  //     const isJoin = async () => {
-  //         if (user && user.id) {
-  //             //await axios.get(`https://java.flirdog.store/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
-  //             await axios.get(`https://java.flirdog.store/somoim/isSomoimMember?somoimId=${somoimId}&id=${user.id}`)
-  //                 .then(res => {
-  //                     setIsAdmin(res.data)
-  //                     if(res.data) {
-  //                         console.log('해당 소모임에 대한 권한 : ' + res.data)
-  //                         console.log('해당 소모임에 접속한 user의 id : ', user.id);
-  //                     }
-  //                     // 강제 리렌더링
-  //                     //forceUpdate({});
-  //                 })
-  //                 .catch(e => console.error('가입 여부 확인 중 오류:' + e))
-  //         }//if
-  //     };
-
-  //     isJoin();
-  // }, [somoimId, user, somoimJoin]);
 
   // 소모임 회원가입
   const joinSomoim = async (e) => {

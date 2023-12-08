@@ -28,7 +28,7 @@ const Comments = ({ getBoardDTO }) => {
     if (commmetList) {
       axios
         .get(
-          `https://java.flirdog.store/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`
+          `https://java.flirdog.store:8080/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`
         )
         .then((res) => {
           console.log(res.data);
@@ -50,7 +50,7 @@ const Comments = ({ getBoardDTO }) => {
     }
 
     axios
-      .get(`https://java.flirdog.store/boastBoard/getUser?id=${id}`)
+      .get(`https://java.flirdog.store:8080/boastBoard/getUser?id=${id}`)
       .then((res) => {
         console.log(res.data);
         setLoginUser(res.data);

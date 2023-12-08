@@ -36,7 +36,7 @@ const BoardListForm = ({ openLeftside }) => {
       if (result.isConfirmed) {
         axios
           .post(
-            `https://java.flirdog.store/access/boardDeleteSelected?boardId=${checkedBoards}`
+            `https://java.flirdog.store:8080/access/boardDeleteSelected?boardId=${checkedBoards}`
           )
           .then(() => {
             window.location.reload();
@@ -53,7 +53,7 @@ const BoardListForm = ({ openLeftside }) => {
 
   useEffect(() => {
     axios
-      .post("https://java.flirdog.store/access/getBoardList")
+      .post("https://java.flirdog.store:8080/access/getBoardList")
       .then((res) => {
         console.log("보드리스트");
         console.log(res.data);

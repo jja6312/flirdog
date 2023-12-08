@@ -62,7 +62,7 @@ const UserList = ({
       if (result.isConfirmed) {
         axios
           .post(
-            `https://java.flirdog.store/admin/userDelete?userId=${deleteBtnId}`
+            `https://java.flirdog.store:8080/admin/userDelete?userId=${deleteBtnId}`
           )
           .then(() => {
             //삭제 후 새로고침

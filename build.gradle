@@ -75,6 +75,9 @@ dependencies {
    //guava
    implementation 'com.google.guava:guava:32.1.2-jre'
 
+   //healthcheck
+   implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
    // //Twilio SDK 휴대전화 본인 인증-지안
    // implementation 'com.twilio.sdk:twilio:8.8.0'
 

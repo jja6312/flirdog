@@ -33,7 +33,7 @@ const CommentsMerge = ({ getBoardDTO }) => {
     if (getBoardDTO && getBoardDTO.id) {
       axios
         .get(
-          `https://java.flirdog.store/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`
+          `https://java.flirdog.store:8080/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`
         )
         .then((res) => {
           console.log(res.data);
@@ -64,7 +64,7 @@ const CommentsMerge = ({ getBoardDTO }) => {
             console.log(id); // ----3
         }
 
-        axios.get(`https://java.flirdog.store/boastBoard/getUser?id=${id}`)
+        axios.get(`https://java.flirdog.store:8080/boastBoard/getUser?id=${id}`)
         .then((res) => {
             console.log(res.data);
             setLoginUser(res.data);
@@ -158,7 +158,7 @@ const CommentsMerge = ({ getBoardDTO }) => {
           setCommentDTO(updatedCommentDTO);
   
           const response = await axios.post(
-            'https://java.flirdog.store/boastBoard/boastCommentWrite',
+            'https://java.flirdog.store:8080/boastBoard/boastCommentWrite',
             updatedCommentDTO
           );
           console.log(response.data);
@@ -197,7 +197,7 @@ const CommentsMerge = ({ getBoardDTO }) => {
     //실시간으로 댓글의 갯수를 가져오기
     useEffect(() => {
         axios
-            .get(`https://java.flirdog.store/boastBoard/getBoardCommentCount?boardId=${getBoardDTO.id}`)
+            .get(`https://java.flirdog.store:8080/boastBoard/getBoardCommentCount?boardId=${getBoardDTO.id}`)
             .then((res) => {
                 console.log(res.data);
                 setCommentCount(res.data);
