@@ -14,7 +14,7 @@ const CommunityMain = () => {
   const [selectedCategory, setSelectedCategory] = useState("실시간 인기글");
 
   useEffect(() => {
-    axios.post("http://localhost:8080/access/getBragBoard").then((res) => {
+    axios.post("https://java.flirdog.store/access/getBragBoard").then((res) => {
       setCommunityBoardBest(res.data);
       console.log("communityBoardBest");
       setCommunityBoard(res.data);
@@ -22,7 +22,7 @@ const CommunityMain = () => {
     });
 
     axios
-      .post("http://localhost:8080/access/getBragBoardClosestDate10")
+      .post("https://java.flirdog.store/access/getBragBoardClosestDate10")
       .then((res) => {
         setBragBoardData(res.data);
         console.log("bragBoardData");

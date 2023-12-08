@@ -54,7 +54,7 @@ const MatchingListAdmin = ({
       if (result.isConfirmed) {
         axios
           .post(
-            `http://localhost:8080/admin/matchingDelete?matchingId=${deleteBtnId}`
+            `https://java.flirdog.store/admin/matchingDelete?matchingId=${deleteBtnId}`
           )
           .then(() => {
             //삭제 후 새로고침

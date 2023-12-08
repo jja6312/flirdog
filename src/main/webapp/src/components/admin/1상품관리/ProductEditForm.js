@@ -113,7 +113,7 @@ const ProductEditForm = ({ openLeftside }) => {
     if (imgFiles === "" && imgList.length > 0) {
       axios
         .post(
-          "http://localhost:8080/admin/productUpdateWithoutImage",
+          "https://java.flirdog.store/admin/productUpdateWithoutImage",
           formData,
           {
             headers: {
@@ -149,7 +149,7 @@ const ProductEditForm = ({ openLeftside }) => {
 
       axios
         .post(
-          "http://localhost:8080/admin/productUpdateAllWithImage",
+          "https://java.flirdog.store/admin/productUpdateAllWithImage",
           formData,
           {
             headers: {
@@ -179,7 +179,7 @@ const ProductEditForm = ({ openLeftside }) => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8080/admin/getProductUpdateForm?productId=${productId}`
+        `https://java.flirdog.store/admin/getProductUpdateForm?productId=${productId}`
       )
       .then((res) => {
         console.log(res.data);

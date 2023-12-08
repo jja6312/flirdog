@@ -265,7 +265,7 @@ const JoinAuth = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:8080/access/join",
+        "https://java.flirdog.store/access/join",
         formData,
         {
           headers: {
@@ -298,7 +298,7 @@ const JoinAuth = () => {
     console.log("JoinAuth.js, 이미지 생성 시작");
     try {
       const response = await axios.post(
-        "http://localhost:8080/chatGPT/generateImage",
+        "https://java.flirdog.store/chatGPT/generateImage",
         { prompt }
       );
 
@@ -307,7 +307,7 @@ const JoinAuth = () => {
       alert("imageUrl: " + imageUrl);
 
       await axios
-        .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
+        .post("https://java.flirdog.store/chatGPT/downloadAndSaveImage", null, {
           params: {
             imageUrl: imageUrl,
           },
@@ -356,7 +356,7 @@ const JoinAuth = () => {
   //     // alert("Saving image...");
 
   //     await axios
-  //       .post("http://localhost:8080/chatGPT/downloadAndSaveImage", null, {
+  //       .post("https://java.flirdog.store/chatGPT/downloadAndSaveImage", null, {
   //         params: {
   //           imageUrl: imageUrl,
   //         },

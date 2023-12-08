@@ -50,7 +50,7 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
     setIsLoading(true);
 
     axios
-      .get("http://localhost:8080/admin/getMatchingList")
+      .get("https://java.flirdog.store/admin/getMatchingList")
       .then((res) => {
         console.log("matchingList, allProduct");
         console.log(res.data);
@@ -225,7 +225,7 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
       if (result.isConfirmed) {
         axios
           .post(
-            `http://localhost:8080/admin/matchingDeleteSelected?matchingId=${checkedMatchings}`
+            `https://java.flirdog.store/admin/matchingDeleteSelected?matchingId=${checkedMatchings}`
           )
           .then(() => {
             window.location.reload();

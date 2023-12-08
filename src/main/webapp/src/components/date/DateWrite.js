@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import dogsBreedObject from "../login/join/dogsBreeds";
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext } from "../../contexts/UserContext";
 
 const DateWrite = () => {
   const { user } = useContext(UserContext); // 유저 컨텍스트
@@ -112,16 +112,21 @@ const DateWrite = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (id) { // id 값이 존재하는 경우에만 요청 보냄
-          const res = await axios.get(`http://localhost:8080/date/getDogsInfoWithUserId?id=${id}`);
-          const userRes = await axios.get(`http://localhost:8080/date/getUser?id=${id}`);
-  
+        if (id) {
+          // id 값이 존재하는 경우에만 요청 보냄
+          const res = await axios.get(
+            `https://java.flirdog.store/date/getDogsInfoWithUserId?id=${id}`
+          );
+          const userRes = await axios.get(
+            `https://java.flirdog.store/date/getUser?id=${id}`
+          );
+
           console.log(res.data);
           console.log(userRes.data);
           console.log(id);
-  
+
           setDogsInfo(res.data);
-  
+
           setMatchingDTO2((prevMatchingDTO2) => ({
             ...prevMatchingDTO2,
             userId: userRes.data.id,
@@ -132,7 +137,7 @@ const DateWrite = () => {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, [id]);
 
@@ -217,17 +222,23 @@ const DateWrite = () => {
   // 드롭다운 아이템 생성
   const dropdownItems = hasDogsInfo ? (
     dogsInfo.map((dog, index) => (
-      <Dropdown.Item key={index} onClick={() => handlePetSelect(index)} onChange={onInput}>
+      <Dropdown.Item
+        key={index}
+        onClick={() => handlePetSelect(index)}
+        onChange={onInput}
+      >
         {dog.name}
       </Dropdown.Item>
     ))
   ) : (
     // 등록된 애견이 없을 때의 처리
-    <Dropdown.Item onClick={() => {
-      alert("등록된 애견이 없습니다. 애견을 등록해주세요");
-      // 페이지 이동 등의 처리
-      navigate('/mypage/MydogProfile');
-    }}>
+    <Dropdown.Item
+      onClick={() => {
+        alert("등록된 애견이 없습니다. 애견을 등록해주세요");
+        // 페이지 이동 등의 처리
+        navigate("/mypage/MydogProfile");
+      }}
+    >
       등록된 애견이 없습니다.
     </Dropdown.Item>
   );
@@ -407,8 +418,9 @@ const DateWrite = () => {
             <Form>
               <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridTitle">
-                  <div className={TableCss.FormTitleDiv}
-                  style={{marginBottom:"10px"}}
+                  <div
+                    className={TableCss.FormTitleDiv}
+                    style={{ marginBottom: "10px" }}
                   >
                     <div className={TableCss.FormTitleNameDiv}>제 목</div>
                     &nbsp;&nbsp;&nbsp;
@@ -528,8 +540,7 @@ const DateWrite = () => {
                         name="dogGender"
                         value={dogGender || ""}
                         onChange={onInput}
-                        checked={dogGender === "Male" || "male" 
-                      }
+                        checked={dogGender === "Male" || "male"}
                       />
                       <label
                         className={TableCss.labelClass1}

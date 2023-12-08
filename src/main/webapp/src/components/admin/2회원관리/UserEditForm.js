@@ -25,7 +25,7 @@ const UserEditForm = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8080/admin/getUser`, { userId })
+      .post(`https://java.flirdog.store/admin/getUser`, { userId })
       .then((response) => setUserDTO(response.data));
   }, [userId]);
 
@@ -52,7 +52,7 @@ const UserEditForm = () => {
 
   const onSave = () => {
     axios
-      .post(`http://localhost:8080/admin/userEdit`, userDTO)
+      .post(`https://java.flirdog.store/admin/userEdit`, userDTO)
       .then((response) => {
         console.log(response.data);
 

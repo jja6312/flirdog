@@ -3,7 +3,7 @@ import axios from "axios";
 const translateText = async (text) => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/access/translate",
+      "https://java.flirdog.store/access/translate",
       { text }
     );
 

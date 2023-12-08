@@ -89,7 +89,7 @@ const MypointRecharge = () => {
 
       axios
         .get(
-          `http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`
+          `https://java.flirdog.store/mypage/getUserProfileTest?userIdStr=${userId}`
         )
         .then((res) => {
           //alert('성공')
@@ -100,7 +100,7 @@ const MypointRecharge = () => {
           console.log(error);
         });
 
-      //   axios.get(`http://localhost:8080/mypage/getPointCharging?userIdStr=${userId}`)
+      //   axios.get(`https://java.flirdog.store/mypage/getPointCharging?userIdStr=${userId}`)
       //   .then((res) => {
       //       //alert('성공')
       //       console.log('getPointCharging'+res.data);
@@ -118,33 +118,35 @@ const MypointRecharge = () => {
         //클릭할때 마다 merchant_uid 뒤에 숫자가 1씩 증가
         // setMerchantUidSuffix((prevSuffix) => prevSuffix + 1);
         //userDTO의 amount 값을  불러오고싶다
-        if(amount2 === 0){
+        if (amount2 === 0) {
           Swal.fire({
-            position: 'middle',
-            icon: 'error',
-            title: '충전금액을 입력해주세요.',
+            position: "middle",
+            icon: "error",
+            title: "충전금액을 입력해주세요.",
             showConfirmButton: false,
-            timer: 1500
-            })
+            timer: 1500,
+          });
           return;
         }
-        console.log("어마운트ㅡㅡㅡㅡㅡㅡ"+{amount});
-        console.log(userDTO.amount)
-        IMP.request_pay({
-          pg: "kakaopay",
-          pay_method: "card",
-          amount: `${amount2}`,
-          name: `${amount2}원 포인트 충전`,
-          merchant_uid: `ORD21231219-000${pointChargings}`,
-        //   buyer_email: "",
-        //   buyer_name: "",
-        //   buyer_tel: "",
-        //   buyer_addr: "",
-        //   buyer_postcode: "", <== 이런 정보들도 넣을수있음.
-        },function (response) {
-            const {status, err_msg} = response;
-            if(err_msg){
-                alert(err_msg);
+        console.log("어마운트ㅡㅡㅡㅡㅡㅡ" + { amount });
+        console.log(userDTO.amount);
+        IMP.request_pay(
+          {
+            pg: "kakaopay",
+            pay_method: "card",
+            amount: `${amount2}`,
+            name: `${amount2}원 포인트 충전`,
+            merchant_uid: `ORD21231219-000${pointChargings}`,
+            //   buyer_email: "",
+            //   buyer_name: "",
+            //   buyer_tel: "",
+            //   buyer_addr: "",
+            //   buyer_postcode: "", <== 이런 정보들도 넣을수있음.
+          },
+          function (response) {
+            const { status, err_msg } = response;
+            if (err_msg) {
+              alert(err_msg);
             }
             if (status === "paid") {
               //결제 성공시 user_table에 포인트 데이터 입력되게

@@ -10,19 +10,20 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalGoMatching from "../login/ModalGoMatching";
 import Swal from "sweetalert2";
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext } from "../../contexts/UserContext";
 
 const DateList = () => {
-
   const { user } = useContext(UserContext); // 유저 컨텍스트
   const { id } = user;
   const navigate = useNavigate();
 
   const preLogin = () => {
-    id ? navigate('/date/dateWrite') : (() => {
-      navigate('/login');
-    })();
-  }
+    id
+      ? navigate("/date/dateWrite")
+      : (() => {
+          navigate("/login");
+        })();
+  };
 
   console.log("id", id);
   //전체 목록 조회
@@ -52,7 +53,7 @@ const DateList = () => {
   // 전체 목록 조회
   useEffect(() => {
     axios
-      .get("http://localhost:8080/date/getAllMatchingList")
+      .get("https://java.flirdog.store/date/getAllMatchingList")
       .then((res) => {
         console.log("주소");
         console.log(res.data);
@@ -66,7 +67,7 @@ const DateList = () => {
   // 상위 3개 조회
   useEffect(() => {
     axios
-      .get("http://localhost:8080/date/getTopMatchingThree")
+      .get("https://java.flirdog.store/date/getTopMatchingThree")
       .then((res) => {
         console.log("주소");
         console.log(res.data);
@@ -146,7 +147,7 @@ const DateList = () => {
   };
   const submitScore = () => {
     axios
-      .post("http://localhost:8080/access/saveDogScore", null, {
+      .post("https://java.flirdog.store/access/saveDogScore", null, {
         params: {
           dogId: modaldogsInfo[currentDogIndex].id,
           score: score.filter(Boolean).length,
@@ -176,14 +177,14 @@ const DateList = () => {
       if (modalShow) {
         try {
           const res1 = await axios.post(
-            "http://localhost:8080/access/getFiveDogsInfo"
+            "https://java.flirdog.store/access/getFiveDogsInfo"
           );
           const dogsInfoData = res1.data;
           setModalDogsInfo(dogsInfoData);
 
           const userInfoPromises = dogsInfoData.map((dog) =>
             axios.post(
-              "http://localhost:8080/access/getUserInfoAsDogId",
+              "https://java.flirdog.store/access/getUserInfoAsDogId",
               null,
               {
                 params: { dogId: dog.id },
@@ -195,12 +196,16 @@ const DateList = () => {
           setModalUserInfo(userInfos.map((res) => res.data));
 
           const matchingInfoPromises = userInfos.map((res, i) =>
-            axios.post("http://localhost:8080/access/getMatchingTable", null, {
-              params: {
-                dogName: dogsInfoData[i].name,
-                userId: res.data.id,
-              },
-            })
+            axios.post(
+              "https://java.flirdog.store/access/getMatchingTable",
+              null,
+              {
+                params: {
+                  dogName: dogsInfoData[i].name,
+                  userId: res.data.id,
+                },
+              }
+            )
           );
 
           const matchingInfos = await Promise.all(matchingInfoPromises);
@@ -291,7 +296,7 @@ const DateList = () => {
             borderRadius: "20px",
             border: "20px solid white",
             boxShadow: "0 0 20px rgba(0, 0, 0, 0.6)",
-            backgroundColor: 'white'
+            backgroundColor: "white",
           }}
         >
           <div
@@ -302,212 +307,213 @@ const DateList = () => {
           >
             <div>
               {topMatchingList.map((matchingItem, index) => (
-                
                 <div
                   key={index}
                   className={`carousel-item ${index === 0 ? "active" : ""}`}
                 >
                   <Link
-                        to={`/date/dateReadMore/${matchingItem.id}`}
-                        style={{
-                          textDecoration: "none",
-                          color: "black",
-                        }}
-                        onClick={scrollToTop}
-                        key={index}
-                      >
-                  {/* 내용을 동적으로 생성 */}
-                  <div className="d-flex justify-content-center align-items-center"
+                    to={`/date/dateReadMore/${matchingItem.id}`}
                     style={{
-                      backgroundColor:
-                        matchingItem.matchingPurpose === "연애"
-                          ? "#F9D6DC"
-                          : matchingItem.matchingPurpose === "산책"
-                          ? "#ADD8E6"
-                          : "white", // 기본 값은 'white'로 설정
+                      textDecoration: "none",
+                      color: "black",
                     }}
+                    onClick={scrollToTop}
+                    key={index}
                   >
+                    {/* 내용을 동적으로 생성 */}
                     <div
-                      className="justify-content-center align-items-center"
+                      className="d-flex justify-content-center align-items-center"
                       style={{
-                        width: "700px",
-                        height: "470px",
-                        margin: "3%",
-                        marginLeft: "5%",
-                        marginBottom: "8%",
+                        backgroundColor:
+                          matchingItem.matchingPurpose === "연애"
+                            ? "#F9D6DC"
+                            : matchingItem.matchingPurpose === "산책"
+                            ? "#ADD8E6"
+                            : "white", // 기본 값은 'white'로 설정
                       }}
                     >
-                      <img
-                        src={`${
-                          matchingItem.image ===
-                          "/image/nullImage/nullImage1.png"
-                            ? matchingItem.image
-                            : `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${
-                                matchingItem.image.split(",")[0]
-                              }`
-                        }`}
-                        alt=""
-                        style={{
-                          borderRadius: "20px",
-                          height: "100%",
-                          objectFit: "cover",
-                          border: "20px solid white",
-                          width: "100%",
-                          overflow: "hidden",
-                        }}
-                      />
                       <div
+                        className="justify-content-center align-items-center"
                         style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
+                          width: "700px",
+                          height: "470px",
+                          margin: "3%",
+                          marginLeft: "5%",
+                          marginBottom: "8%",
                         }}
                       >
-                        <div
-                          className={dateList.listStarScore}
+                        <img
+                          src={`${
+                            matchingItem.image ===
+                            "/image/nullImage/nullImage1.png"
+                              ? matchingItem.image
+                              : `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${
+                                  matchingItem.image.split(",")[0]
+                                }`
+                          }`}
+                          alt=""
                           style={{
-                            height: "90px",
-                            border: "15px solid white",
-                            backgroundColor: "#D3D3D3",
+                            borderRadius: "20px",
+                            height: "100%",
+                            objectFit: "cover",
+                            border: "20px solid white",
+                            width: "100%",
+                            overflow: "hidden",
+                          }}
+                        />
+                        <div
+                          style={{
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            borderRadius: "20px",
                           }}
                         >
                           <div
+                            className={dateList.listStarScore}
                             style={{
-                              fontWeight: "bold",
-                              height: "40px",
+                              height: "90px",
+                              border: "15px solid white",
+                              backgroundColor: "#D3D3D3",
                               display: "flex",
                               justifyContent: "center",
                               alignItems: "center",
+                              borderRadius: "20px",
                             }}
                           >
-                            {[1, 2, 3, 4, 5].map((starIndex) => {
-                              let starImage;
-                              const score = matchingItem.averageScore;
+                            <div
+                              style={{
+                                fontWeight: "bold",
+                                height: "40px",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              {[1, 2, 3, 4, 5].map((starIndex) => {
+                                let starImage;
+                                const score = matchingItem.averageScore;
 
-                              if (starIndex <= Math.floor(score)) {
-                                starImage = "star1";
-                              } else if (
-                                score % 1 > 0 &&
-                                score % 1 <= 0.5 &&
-                                starIndex === Math.round(score)
-                              ) {
-                                starImage = "halfstar";
-                              } else if (
-                                score % 1 > 0 &&
-                                score % 1 < 0.5 &&
-                                starIndex === Math.round(score)
-                              ) {
-                                starImage = "star0";
-                              } else {
-                                starImage = "star0";
-                              }
+                                if (starIndex <= Math.floor(score)) {
+                                  starImage = "star1";
+                                } else if (
+                                  score % 1 > 0 &&
+                                  score % 1 <= 0.5 &&
+                                  starIndex === Math.round(score)
+                                ) {
+                                  starImage = "halfstar";
+                                } else if (
+                                  score % 1 > 0 &&
+                                  score % 1 < 0.5 &&
+                                  starIndex === Math.round(score)
+                                ) {
+                                  starImage = "star0";
+                                } else {
+                                  starImage = "star0";
+                                }
 
-                              return (
-                                <img
-                                  key={starIndex}
-                                  src={`/image/date/${starImage}.png`}
-                                  width={40}
-                                  alt="별"
-                                  style={{
-                                    marginRight: starIndex === 5 ? "0" : "40px",
-                                  }}
-                                />
-                              );
-                            })}
+                                return (
+                                  <img
+                                    key={starIndex}
+                                    src={`/image/date/${starImage}.png`}
+                                    width={40}
+                                    alt="별"
+                                    style={{
+                                      marginRight:
+                                        starIndex === 5 ? "0" : "40px",
+                                    }}
+                                  />
+                                );
+                              })}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div
-                      className={dateList.filterDateContent}
-                      style={{
-                        backgroundColor: "white",
-                        padding: "2%",
-                        margin: "3%",
-                        height: "100%",
-                        marginRight: "5%",
-                      }}
-                    >
                       <div
+                        className={dateList.filterDateContent}
                         style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          height: "600px",
-                        }}
-                      >
-                        <div
-                          className={dateList.filterDateContentDogname}
-                          style={{ fontSize: "1.3vw" }}
-                        >
-                          {matchingItem.title}
-                        </div>
-                        <div
-                          className={dateList.filterDateContentDogTitle}
-                          style={{ fontSize: "2vw" }}
-                        >
-                          {matchingItem.content}
-                        </div>
-                        <div className={dateList.filterDateContentSiteScore}>
-                          <img
-                            alt=""
-                            src="/image/main/likeBone.png"
-                            width={50}
-                          />
-                          &nbsp;&nbsp;&nbsp;
-                          <span style={{ fontSize: "3vw" }}>
-                            {matchingItem.communityScore}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: 5,
-                          left: 65,
-                          width: "30%",
+                          backgroundColor: "white",
+                          padding: "2%",
+                          margin: "3%",
+                          height: "100%",
+                          marginRight: "5%",
                         }}
                       >
                         <div
                           style={{
                             display: "flex",
                             flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "center", // 수평 가운데 정렬을 위한 속성
-                            borderRadius: "5px",
-                            color: "white",
-                            fontWeight: "bold",
-                            padding: "3%",
-                            border: "10px solid white",
-                            boxShadow:
-                              "0 0 5px rgba(0, 0, 0, 0.6)" /* 그림자 효과 설정 */,
-                            fontSize: "2vw",
-                            backgroundColor:
-                              matchingItem.matchingState === "매칭중"
-                                ? "#ffc107"
-                                : matchingItem.matchingState === "매칭완료"
-                                ? "darkgray"
-                                : matchingItem.matchingState === "매칭대기" &&
-                                  matchingItem.matchingPurpose === "연애"
-                                ? "#FFB6C1"
-                                : matchingItem.matchingState === "매칭대기" &&
-                                  matchingItem.matchingPurpose === "산책"
-                                ? "#ADD8E6"
-                                : "initial", // 기본값은 initial로 설정
+                            height: "600px",
                           }}
                         >
-                          {matchingItem.matchingState}
+                          <div
+                            className={dateList.filterDateContentDogname}
+                            style={{ fontSize: "1.3vw" }}
+                          >
+                            {matchingItem.title}
+                          </div>
+                          <div
+                            className={dateList.filterDateContentDogTitle}
+                            style={{ fontSize: "2vw" }}
+                          >
+                            {matchingItem.content}
+                          </div>
+                          <div className={dateList.filterDateContentSiteScore}>
+                            <img
+                              alt=""
+                              src="/image/main/likeBone.png"
+                              width={50}
+                            />
+                            &nbsp;&nbsp;&nbsp;
+                            <span style={{ fontSize: "3vw" }}>
+                              {matchingItem.communityScore}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: 5,
+                            left: 65,
+                            width: "30%",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "center",
+                              alignItems: "center", // 수평 가운데 정렬을 위한 속성
+                              borderRadius: "5px",
+                              color: "white",
+                              fontWeight: "bold",
+                              padding: "3%",
+                              border: "10px solid white",
+                              boxShadow:
+                                "0 0 5px rgba(0, 0, 0, 0.6)" /* 그림자 효과 설정 */,
+                              fontSize: "2vw",
+                              backgroundColor:
+                                matchingItem.matchingState === "매칭중"
+                                  ? "#ffc107"
+                                  : matchingItem.matchingState === "매칭완료"
+                                  ? "darkgray"
+                                  : matchingItem.matchingState === "매칭대기" &&
+                                    matchingItem.matchingPurpose === "연애"
+                                  ? "#FFB6C1"
+                                  : matchingItem.matchingState === "매칭대기" &&
+                                    matchingItem.matchingPurpose === "산책"
+                                  ? "#ADD8E6"
+                                  : "initial", // 기본값은 initial로 설정
+                            }}
+                          >
+                            {matchingItem.matchingState}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
                   </Link>
                 </div>
               ))}
@@ -874,7 +880,8 @@ const DateList = () => {
 
             <br />
 
-            <div className={dateList.matchingWriteBtn}
+            <div
+              className={dateList.matchingWriteBtn}
               style={{
                 backgroundColor: "#F9D6DC",
                 textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // 그림자 효과
@@ -891,48 +898,48 @@ const DateList = () => {
                     showConfirmButton: false,
                     timer: 1500,
                   });
-                  navigate('/login');
+                  navigate("/login");
                 }
               }}
             >
-                <div className={dateList.matchingNullDiv}
-                ></div>
-                주변 애견 매칭
-                <img
-                  src="/image/date/heart.png"
-                  style={{
-                    width: "4vw",
-                  }}
-                  alt="Heart"
-                />
-              </div>
+              <div className={dateList.matchingNullDiv}></div>
+              주변 애견 매칭
+              <img
+                src="/image/date/heart.png"
+                style={{
+                  width: "4vw",
+                }}
+                alt="Heart"
+              />
+            </div>
 
             <br />
-            <Link to={id ? "/date/dateWrite" : "/login"}  // 로그인 상태에 따라 동적으로 설정 
-                          style={{ textDecoration: 'none', color: 'inherit' }} 
-                          onClick={() => {
-                            if (id){
-                              scrollToTop();
-                            } else {
-                              Swal.fire({
-                                icon: "error",
-                                title: "매칭 실패!",
-                                text: "로그인이 필요합니다.",
-                                showConfirmButton: false,
-                                timer: 1500,
-                              });
-                              scrollToTop();
-                              preLogin();
-                            }
-                          }}
-                        >
-              <div className={dateList.matchingWriteBtn}
-              style={{
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // 그림자 효과
+            <Link
+              to={id ? "/date/dateWrite" : "/login"} // 로그인 상태에 따라 동적으로 설정
+              style={{ textDecoration: "none", color: "inherit" }}
+              onClick={() => {
+                if (id) {
+                  scrollToTop();
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "매칭 실패!",
+                    text: "로그인이 필요합니다.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  scrollToTop();
+                  preLogin();
+                }
               }}
+            >
+              <div
+                className={dateList.matchingWriteBtn}
+                style={{
+                  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // 그림자 효과
+                }}
               >
-                <div className={dateList.matchingNullDiv}
-                ></div>
+                <div className={dateList.matchingNullDiv}></div>
                 매칭 글 작성
                 <img
                   src="/image/date/heart.png"
