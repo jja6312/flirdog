@@ -528,7 +528,8 @@ const DateWrite = () => {
                         name="dogGender"
                         value={dogGender || ""}
                         onChange={onInput}
-                        checked={dogGender === "Male"}
+                        checked={dogGender === "Male" || "male" 
+                      }
                       />
                       <label
                         className={TableCss.labelClass1}
@@ -543,7 +544,7 @@ const DateWrite = () => {
                         name="dogGender"
                         value={dogGender || ""}
                         onChange={onInput}
-                        checked={dogGender === "Female"}
+                        checked={dogGender === "Female" || "Female"}
                       />
                       <label
                         className={TableCss.labelClass2}

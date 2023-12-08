@@ -7,14 +7,23 @@ import Comments from './Comments';
 import { UserContext } from '../../contexts/UserContext';
 import axios from 'axios';
 import Swal from "sweetalert2";
+import CommentsMerge from './CommentMerge';
 
 
 const BoastBoardRead = ({ boardDTO, closeModal }) => {
+
+    const { user } = useContext(UserContext); // 유저 컨텍스트
+    const { id } = user;
+        // 사용 전에 id가 정의되었는지 확인
+        if (id) {
+        // id를 이용한 컴포넌트 로직 처리
+        console.log(id); // ----3
+    }
+
     
     const [boardNumber, setBoardNumber] = useState(boardDTO.id); // 게시글 번호
     const [getBoardDTO, setGetBoardDTO] = useState([]); // 게시글 DTO
-    // 댓글이 추가될 때 호출되는 함수
-    const [commentCount, setCommentCount] = useState(0);
+
 
     useEffect(() => {
         // boardDTO의 상세 내용 가져오기
@@ -24,24 +33,18 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
                 console.log(res.data);
                 setBoardNumber(res.data.id);
                 setGetBoardDTO(res.data);
-                setCommentCount(res.data.commentCount); // 댓글 수 업데이트
             })
             .catch((err) => {
                 console.log(err);
             });
         }
-    }, [boardDTO]);
+    }, []);
 
-    console.log(boardNumber);
-    console.log(getBoardDTO);
-
-    const { user } = useContext(UserContext); // 유저 컨텍스트
-    const { id } = user;
-        // 사용 전에 id가 정의되었는지 확인
-        if (id) {
-        // id를 이용한 컴포넌트 로직 처리
-        console.log(id); // ----3
-    }
+    useEffect(() => {
+        if(getBoardDTO.length > 0){
+            console.log("getBoardDTO updated:", getBoardDTO);
+        }
+    }, [getBoardDTO]);
 
     const [show, setShow] = useState(true);
     const [showComments, setShowComments] = useState(false);
@@ -92,14 +95,6 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
     const customModalStyle = {
         maxHeight: '830px',
         overflowY: 'scroll', // 세로 스크롤 적용
-    };
-
-    
-
-    console.log(commentCount);
-
-    const handleInsertComment = () => {
-        setCommentCount((prevCount) => prevCount + 1);
     };
 
     const boastBoardDelete = () => {
@@ -177,7 +172,7 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
                         </div>
                         <div className="carousel-inner">
                         <div>
-                            {isMoreThanOneImage.length === 0 ? (
+                            {isMoreThanOneImage.length === 0 && getBoardDTO.image && !getBoardDTO.image.includes(',') ? (
                             <div key={0} className={`carousel-item active`}>
                                 <div className='d-flex justify-content-center align-items-center'
                                     style={{
@@ -227,12 +222,11 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
                 </div>
             </Modal.Body>
             <Modal.Body style={{borderTop: '2px solid #EEEEEE',borderBottom:'2px solid #EEEEEE'}}>
-                <div style={{fontWeight:'bold', color:'#505050'}}>{getBoardDTO.content}</div>
+                <div style={{fontWeight:'bold', color:'#505050', fontSize:'1.3em'}}>{getBoardDTO.content}</div>
             </Modal.Body>
-            <Modal.Body style={{borderBottom:'2px solid #EEEEEE', paddingTop:'10px', paddingBottom:'10px'}}>
-                <div style={{fontWeight:'bold', color:'#505050', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>댓글 ({commentCount})
+                {/* <div style={{fontWeight:'bold', color:'#505050', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>댓글 ({commentCount})*/}
                     {/* 댓글 버튼 */}
-                    <Button
+                   {/*  <Button
                         variant="primary"
                         style={{
                         backgroundColor: '#F56084',
@@ -242,18 +236,16 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
                         onClick={handleButtonClick}>
                         {buttonText}
                     </Button>
-                </div>
-            </Modal.Body>
+                </div> */}
             {/* 댓글 영역 */}
-            {showComments && (
                     <Modal.Body style={{marginLeft:'10px'}}>
                         <div>
                         {/* 댓글 영역 */}
-                            <Comments getBoardDTO={getBoardDTO} onInsert={handleInsertComment}
-                            />
+                            {/* <Comments getBoardDTO={getBoardDTO} onInsert={handleInsertComment}/> */}
+
+                            <CommentsMerge getBoardDTO={getBoardDTO}/>
                         </div>
                     </Modal.Body>
-                )}
             <Modal.Footer>
             {/* 글 수정 버튼 렌더링 */}
             {getBoardDTO.userId === id && (

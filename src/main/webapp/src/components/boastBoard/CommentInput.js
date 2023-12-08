@@ -69,7 +69,6 @@ const CommentInput = ({ getBoardDTO, onInsert, loginUser  }) => {
             updatedCommentDTO
           );
           console.log(response.data);
-          window.location.reload(); // 새로고침
         } catch (error) {
           console.error(error);
         }
