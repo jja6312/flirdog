@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import access.bean.JoinRequestDTO;
 import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
+import community.bean.BragBoardDTO;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
 import product.bean.Product;
@@ -209,6 +210,16 @@ public class AccessController {
     	List<Product> productInfoArray = accessService.getProductInfoArray();
     	
     	return productInfoArray;
+    	
+    }
+    //메인화면, 자랑게시판 10개 가져오기
+    @PostMapping(path = "getBragBoard")
+    public List<BragBoardDTO> getBragBoard() {
+    	
+    	
+    	List<BragBoardDTO> bragBoardInfoArray = accessService.getBragBoard();
+    	
+    	return bragBoardInfoArray;
     	
     }
     

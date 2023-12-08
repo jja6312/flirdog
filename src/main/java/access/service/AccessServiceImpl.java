@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import access.bean.JoinRequestDTO;
+import access.repository.AccessBragBoardRepository;
 import access.repository.AccessDogsInfoRepository;
 import access.repository.AccessMatchingRepository;
 import access.repository.AccessProductRepository;
 import access.repository.AccessRepository;
 import admin.service.ObjectStorageService;
+import community.bean.BragBoardDTO;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
 import product.bean.Product;
@@ -36,6 +38,8 @@ public class AccessServiceImpl implements AccessService {
 	public AccessMatchingRepository accessMatchingRepository;
 	@Autowired
 	public AccessProductRepository accessProductRepository;
+	@Autowired
+	public AccessBragBoardRepository accessBragBoardRepository;
 
 	@Autowired
 	private ObjectStorageService objectStorageService;
@@ -214,6 +218,12 @@ public class AccessServiceImpl implements AccessService {
 	public List<Product> getProductInfoArray() {
 		
 		return accessProductRepository.findTop8ByOrderByHitDesc();
+	}
+
+	@Override
+	public List<BragBoardDTO> getBragBoard() {
+		// 
+		return accessBragBoardRepository.findTop10ByOrderByHitDesc();
 	}
 
 }

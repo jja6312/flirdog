@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import admin.service.AdminDogService;
+import admin.service.AdminMainService;
 import admin.service.AdminMatchingService;
 import admin.service.AdminOrderService;
 import admin.service.AdminProductService;
@@ -30,6 +31,7 @@ import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
 import order.bean.Orders;
 import product.bean.Product;
+import user.bean.Address;
 import user.bean.DogsInfo;
 import user.bean.User;
 
@@ -51,6 +53,8 @@ public class AdminController {
 	private AdminMatchingService adminMatchingService;
 	@Autowired
 	private AdminUploadService adminUploadService;
+	@Autowired
+	private AdminMainService adminMainService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -271,6 +275,14 @@ public class AdminController {
 
 		return orderList;
 
+	}
+	// 주문리스트
+	@GetMapping(path = "getAddress")
+	public List<Address> getAddress() {
+		List<Address> addressList = adminMainService.getAddress();
+		
+		return addressList;
+		
 	}
 	
 	//종인님께5.start----------------------------------------- 

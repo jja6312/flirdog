@@ -100,10 +100,10 @@ const UserEditForm = () => {
           style={{ width: "100%", position: "relative" }}
         >
           <div style={{ position: "absolute", bottom: 0, right: 0 }}>
-            <Link
-              to={`/admin/dogEditForm/${
-                userDTO.dogsInfos[0] && userDTO.dogsInfos[0].id
-              }
+            {/* 아쉽다 이걸못쓰네1207 */}
+            {/* ${userDTO.dogsInfos && userDTO.dogsInfos[0].id} */}
+            {/* <Link
+              to={`/admin/dogEditForm/
             `}
             >
               <div>
@@ -117,7 +117,7 @@ const UserEditForm = () => {
                 <img
                   className="rounded"
                   src={
-                    userDTO.dogsInfos[0]
+                    userDTO.dogsInfos && userDTO.dogsInfos[0]
                       ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${userDTO.dogsInfos[0].image}`
                       : "/image/nullImage/nullImage2.png"
                   }
@@ -129,12 +129,12 @@ const UserEditForm = () => {
                   }}
                 ></img>
               </div>
-            </Link>
+            </Link> */}
           </div>
           <div style={{ width: "30vw", height: "27vw" }}>
             <img
               src={
-                userDTO.dogsInfos[0]
+                userDTO.dogsInfos && userDTO.dogsInfos[0]
                   ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/flirdogStorage/aiDogProfile/${userDTO.dogsInfos[0].imageAiProfile}`
                   : "/image/nullImage/nullImage2.png"
               }
