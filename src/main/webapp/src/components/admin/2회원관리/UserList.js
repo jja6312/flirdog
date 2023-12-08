@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/esm/Button";
 import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
 import CheckBtn from "../1상품관리/CheckBtn";

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import CategoryBtn from "../CategoryBtn";
 
-const CommunityBtnContainer = () => {
-  const [selectedCategory, setSelectedCategory] = useState("실시간 인기글");
-
+const CommunityBtnContainer = ({ selectedCategory, setSelectedCategory }) => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
