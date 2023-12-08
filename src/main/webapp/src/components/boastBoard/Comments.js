@@ -9,7 +9,6 @@ const Comments = ({getBoardDTO}) => {
     const { id } = user;
 
     const [commmetList, setCommmetList] = useState([]);
-    const [commentCount, setCommentCount] = useState(getBoardDTO.commentCount); //댓글 갯수
     //현재 로그인한 유저의 닉네임 가져오기
     const [loginUser, setLoginUser] = useState({ 
         id: "",
@@ -33,21 +32,7 @@ const Comments = ({getBoardDTO}) => {
                     console.log(error);
                 });
         }
-    }, []);
-
-    //실시간으로 댓글의 갯수를 가져오기
-    useEffect(() => {
-        axios
-            .get(`http://localhost:8080/boastBoard/getBoardCommentCount?boardId=${getBoardDTO.id}`)
-            .then((res) => {
-                console.log(res.data);
-                setCommentCount(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [getBoardDTO.id]); // getBoardDTO.id를 의존성 배열에 추가
-
+    }, [commmetList]);
 
         
     useEffect(() => {

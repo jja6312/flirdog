@@ -66,6 +66,7 @@ const DateUpdate = () => {
           date : dateDTO, matchingAddress : matchingAddressDTO,
           matchingPurpose : matchingPurposeDTO, dogName : dogNameDTO,
           dogAge : dogAgeDTO, dogGender : dogGenderDTO, dogBreed : dogBreedDTO,
+          matchingState : matchingStateDTO,
           isNeutralized : isNeutralizedDTO, image : imageDTO,
         } = matchingDTO2
 
@@ -75,6 +76,8 @@ const DateUpdate = () => {
   const [selectDogName, setSelectDogName] = useState(dogNameDTO);
   // eslint-disable-next-line no-unused-vars
   const [purposeSelect, setPurposeSelect] = useState(matchingPurposeDTO);
+  // eslint-disable-next-line no-unused-vars
+  const [stateSelect, setStateSelect] = useState(matchingStateDTO);
   // eslint-disable-next-line no-unused-vars
   const [dogBreedSelect, setdogBreedSelect] = useState(dogBreedDTO);
   //애견종선택에서 영어로 글자 들어오는것 한글로변경 - 지안1201-----------------------
@@ -267,6 +270,16 @@ const DateUpdate = () => {
       matchingPurpose: purpose,
     });
   };
+
+  const handleStateSelect = (state) => {
+    setStateSelect(state);
+
+    setMatchingDTO2({
+      ...matchingDTO2,
+      matchingState: state,
+    });
+  };
+
 
   const handlePetSelect = (index) => {
     console.log('Selected Dog Index:', index);
@@ -807,7 +820,34 @@ return (
                     </div>
                     <div>{daySelectDiv}</div>
                   </Form.Group>
-                  <Form.Group as={Col} controlId="formMatchingNull">
+                  <Form.Group as={Col} controlId="formGridCheckPurpose">
+                    <div className={DateUpdateCss.FormTitleDiv} >
+                      <div className={DateUpdateCss.FormTitleNameDiv} >
+                        매칭 목적
+                      </div>&nbsp;&nbsp;&nbsp;
+                      <Dropdown>
+                          <Dropdown.Toggle className={DateUpdateCss.filterDropdownBtn} variant="success" id="dropdown-basic"
+                              style={{
+                                  border:'5px solid #F56084',
+                                  backgroundColor: 'white',
+                                  color:'#F56084',
+                                  fontWeight:'bold',
+                                  fontSize:'1.3em',
+                                  borderRadius:'10px'
+                              }}
+                          >
+                          {matchingStateDTO}
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className='dropdown-menu scrollContainer' 
+                          style={{ maxHeight: '200px', overflowY: 'auto' }}    
+                              >
+                              <Dropdown.Item href="#/action-1" onClick={() => handleStateSelect('매칭대기')}>매칭대기</Dropdown.Item>
+                              <Dropdown.Item href="#/action-2" onClick={() => handleStateSelect('매칭완료')}>매칭완료</Dropdown.Item>
+                          </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </Form.Group>
+                  <Form.Group as={Col} controlId="formGridCheckPurpose">
                   </Form.Group>
                 </Row>
 

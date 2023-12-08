@@ -157,7 +157,7 @@ const BoastBoardWrite = () => {
                 title: "글 등록 성공!",
                 text: "매칭 글이 등록되었습니다.",
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 2000,
                 });
                 handleClose();
                 window.location.reload(); // 새로고침
