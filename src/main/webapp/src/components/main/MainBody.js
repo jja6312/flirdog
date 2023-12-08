@@ -28,14 +28,14 @@ const MainBody = () => {
   const fetchData = async () => {
     try {
       const res1 = await axios.post(
-        "http://localhost:8080/access/getUserInfoArray"
+        "https://java.flirdog.store/access/getUserInfoArray"
       );
       setUserInfoArray(res1.data);
       console.log("전체 유저데이터");
       console.log(res1.data);
 
       const dogsInfoPromises = res1.data.map((item) =>
-        axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
+        axios.post("https://java.flirdog.store/access/getDogsInfoArray", null, {
           params: {
             userId: item.id,
           },
@@ -55,7 +55,7 @@ const MainBody = () => {
   const fetchDataLocal = async (location) => {
     try {
       const res1 = await axios.post(
-        "http://localhost:8080/access/getUserInfoArrayLocation",
+        "https://java.flirdog.store/access/getUserInfoArrayLocation",
         null,
         { params: { location: location } }
       );
@@ -63,7 +63,7 @@ const MainBody = () => {
       console.log("로컬 유저데이터" + res1.data);
 
       const dogsInfoPromises = res1.data.map((item) =>
-        axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
+        axios.post("https://java.flirdog.store/access/getDogsInfoArray", null, {
           params: {
             userId: item.id,
           },

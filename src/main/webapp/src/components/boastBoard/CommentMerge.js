@@ -1,51 +1,57 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { UserContext } from '../../contexts/UserContext';
-import axios from 'axios';
-import moment from 'moment';
-import { Button, Form } from 'react-bootstrap';
-import Swal from 'sweetalert2';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { UserContext } from "../../contexts/UserContext";
+import axios from "axios";
+import moment from "moment";
+import { Button, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 
-const CommentsMerge = ({getBoardDTO}) => {
-    
-    const { user } = useContext(UserContext); // 유저 컨텍스트
-    const { id } = user;
+const CommentsMerge = ({ getBoardDTO }) => {
+  const { user } = useContext(UserContext); // 유저 컨텍스트
+  const { id } = user;
 
-    const [CommentList, setCommentList] = useState([]);
-    //현재 로그인한 유저의 닉네임 가져오기
-    const [loginUser, setLoginUser] = useState({ 
-        id: "",
-        nickname: "",
-        content: "",
-    }); 
+  const [CommentList, setCommentList] = useState([]);
+  //현재 로그인한 유저의 닉네임 가져오기
+  const [loginUser, setLoginUser] = useState({
+    id: "",
+    nickname: "",
+    content: "",
+  });
 
-    useEffect(() => {
-      if(getBoardDTO && getBoardDTO.id) {
-        console.log("getBoardDTO updated:", getBoardDTO);
-      }
-    }, [getBoardDTO]);
+  useEffect(() => {
+    if (getBoardDTO && getBoardDTO.id) {
+      console.log("getBoardDTO updated:", getBoardDTO);
+    }
+  }, [getBoardDTO]);
 
-    useEffect(() => {
-      if (getBoardDTO && getBoardDTO.id) {
+  useEffect(() => {
+    if (getBoardDTO && getBoardDTO.id) {
       axios
-          .get(`http://localhost:8080/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`)
-          .then((res) => {
-              console.log(res.data);
-              setCommentList(res.data); // 여기서 변수명을 올바르게 수정
-          })
-          .catch((error) => {
-              console.log(error);
-          });
-      }
-    }, [getBoardDTO]);
+        .get(
+          `https://java.flirdog.store/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`
+        )
+        .then((res) => {
+          console.log(res.data);
+          setCommentList(res.data); // 여기서 변수명을 올바르게 수정
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [getBoardDTO]);
 
-    useEffect(() => {
-      if (CommentList.length > 0) {
-          console.log("CommentList updated:", CommentList);
-      }
-    }, [CommentList]);
+  useEffect(() => {
+    if (CommentList.length > 0) {
+      console.log("CommentList updated:", CommentList);
+    }
+  }, [CommentList]);
 
-
-    /*
+  /*
 
     // 작성한 댓글 목록 가져오기
     
@@ -58,7 +64,7 @@ const CommentsMerge = ({getBoardDTO}) => {
             console.log(id); // ----3
         }
 
-        axios.get(`http://localhost:8080/boastBoard/getUser?id=${id}`)
+        axios.get(`https://java.flirdog.store/boastBoard/getUser?id=${id}`)
         .then((res) => {
             console.log(res.data);
             setLoginUser(res.data);
@@ -152,7 +158,7 @@ const CommentsMerge = ({getBoardDTO}) => {
           setCommentDTO(updatedCommentDTO);
   
           const response = await axios.post(
-            'http://localhost:8080/boastBoard/boastCommentWrite',
+            'https://java.flirdog.store/boastBoard/boastCommentWrite',
             updatedCommentDTO
           );
           console.log(response.data);
@@ -191,7 +197,7 @@ const CommentsMerge = ({getBoardDTO}) => {
     //실시간으로 댓글의 갯수를 가져오기
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/boastBoard/getBoardCommentCount?boardId=${getBoardDTO.id}`)
+            .get(`https://java.flirdog.store/boastBoard/getBoardCommentCount?boardId=${getBoardDTO.id}`)
             .then((res) => {
                 console.log(res.data);
                 setCommentCount(res.data);
@@ -212,10 +218,10 @@ const CommentsMerge = ({getBoardDTO}) => {
         setButtonText(showModal ? '보기' : '닫기');
     };
     */
-    
-    return (
-        <>
-        {/*  
+
+  return (
+    <>
+      {/*  
         <div style={{fontWeight:'bold', color:'#505050', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>댓글 ({commentCount})
                     <Button
                         variant="primary"
@@ -290,8 +296,8 @@ const CommentsMerge = ({getBoardDTO}) => {
       </div>
       )}
         */}
-      </>
-    );
+    </>
+  );
 };
 
 export default CommentsMerge;

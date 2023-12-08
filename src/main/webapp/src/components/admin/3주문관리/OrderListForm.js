@@ -16,7 +16,7 @@ const OrderListForm = ({ openLeftside }) => {
   const [checkOrder, setCheckOrder] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/admin/getOrderList").then((res) => {
+    axios.get("https://java.flirdog.store/admin/getOrderList").then((res) => {
       setOrderList(res.data);
     });
   }, []);
@@ -34,7 +34,7 @@ const OrderListForm = ({ openLeftside }) => {
       if (result.isConfirmed) {
         axios
           .post(
-            `http://localhost:8080/admin/cancleOrderSelected?orderId=${checkOrder}`
+            `https://java.flirdog.store/admin/cancleOrderSelected?orderId=${checkOrder}`
           )
           .then(() => {
             window.location.reload();

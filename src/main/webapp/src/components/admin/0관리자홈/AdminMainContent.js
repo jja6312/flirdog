@@ -182,7 +182,7 @@ const AdminMainContent = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/admin/getAddress")
+      .get("https://java.flirdog.store/admin/getAddress")
       .then((res) => {
         setAddress(res.data);
 
@@ -213,7 +213,7 @@ const AdminMainContent = () => {
       });
 
     axios
-      .get("http://localhost:8080/admin/getDogList")
+      .get("https://java.flirdog.store/admin/getDogList")
       .then((res) => {
         console.log("개품종");
         console.log(res.data);
@@ -243,7 +243,7 @@ const AdminMainContent = () => {
         console.log(err);
       });
 
-    axios.get("http://localhost:8080/admin/getDogList").then((res) => {
+    axios.get("https://java.flirdog.store/admin/getDogList").then((res) => {
       const dogsData = res.data;
       const recentDates = [];
 
@@ -293,7 +293,7 @@ const AdminMainContent = () => {
       }));
 
       axios
-        .get("http://localhost:8080/admin/getMatchingList")
+        .get("https://java.flirdog.store/admin/getMatchingList")
         .then((res) => {
           console.log("매칭리스트");
           console.log(res.data);

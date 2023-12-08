@@ -25,7 +25,7 @@ const DogEditForm = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8080/admin/getDog`, { dogId })
+      .post(`https://java.flirdog.store/admin/getDog`, { dogId })
       .then((response) => setDogDTO(response.data));
   }, [dogId]);
 
@@ -55,7 +55,7 @@ const DogEditForm = () => {
 
   const onSave = () => {
     axios
-      .post(`http://localhost:8080/admin/dogEdit`, dogDTO)
+      .post(`https://java.flirdog.store/admin/dogEdit`, dogDTO)
       .then((response) => {
         Swal.fire({
           position: "top",
