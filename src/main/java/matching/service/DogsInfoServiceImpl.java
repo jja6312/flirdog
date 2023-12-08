@@ -16,8 +16,8 @@ public class DogsInfoServiceImpl implements DogsInfoService {
 	private MatchingRepository matchingRepository;
 
 	@Override
-	public List<DogsInfo> getDogsInfoListByUserId(int userId) {
-		List<DogsInfo> dogsInfoList = matchingRepository.findByUserId(userId);
+	public List<DogsInfo> getDogsInfoListByUserId(long userId) {
+List<DogsInfo> dogsInfoList = matchingRepository.findByUserId(userId);
 	    
 	    if (dogsInfoList.isEmpty()) {
 	        // 해당 ID에 해당하는 DogsInfo가 없는 경우 처리

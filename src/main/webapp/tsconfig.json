@@ -23,7 +23,8 @@
   "include": [
     "src/components/product/**/*",
     "src/components/message/**/*",
-    "src/css/product/**/*"
+    "src/css/product/**/*",
+    "src/css/message/**/*"
   ],
   "exclude": [
     "src/components/**/*.js",

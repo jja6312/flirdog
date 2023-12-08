@@ -29,9 +29,8 @@ import matching.bean.Matching;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")//12/4 지안추가. 개정보 조회/수정시 유저가 안끌고와져서 추가.
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id") // 12/4 지안추가. 개정보 조회/수정시 유저가
+                                                                                           // 안끌고와져서 추가.
 public class DogsInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,12 +55,21 @@ public class DogsInfo extends BaseEntity {
     @Embedded
     private Score score;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
     @JsonIgnore
     @OneToMany(mappedBy = "dogsInfo")
     private List<Matching> matching;
+
+    @Override
+    public String toString() {
+        return "DogsInfo{id=" + id + ", "
+                + "name='" + name + "', "
+                + "age='" + age + "', "
+                + "user='" + user.getId() + "', "
+                + "gender='" + gender + "'}";
+    }
 
 }

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import access.bean.JoinRequestDTO;
 import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
+import community.bean.BragBoardDTO;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
 import product.bean.Product;
@@ -211,6 +212,53 @@ public class AccessController {
     	return productInfoArray;
     	
     }
+    //메인화면, 자랑게시판 10개 가져오기
+    @PostMapping(path = "getBragBoard")
+    public List<BragBoardDTO> getBragBoard() {
+    	
+    	
+    	List<BragBoardDTO> bragBoardInfoArray = accessService.getBragBoard();
+    	
+    	return bragBoardInfoArray;
+    	
+    }
+    //메인화면, 자랑게시판 최신 10개 가져오기
+    @PostMapping(path = "getBragBoardClosestDate10")
+    public List<BragBoardDTO> getBragBoardClosestDate10() {
+    	
+    	
+    	List<BragBoardDTO> bragBoardInfoArray = accessService.getBragBoardClosestDate10();
+    	
+    	return bragBoardInfoArray;
+    	
+    }
+    
+    //관리자페이지, 자랑게시판 다가져오기
+    @PostMapping(path = "getBoardList")
+    public List<BragBoardDTO> getBoardList() {
+    	
+    	
+    	List<BragBoardDTO> boardList = accessService.getBoardList();
+    	
+    	return boardList;
+    	
+    }
+    
+ // 관리자페이지, 게시글삭제 1개
+ 	@PostMapping(path = "boardDelete")
+ 	public void boardDelete(@RequestParam("boardId") String boardId) {
+
+ 		accessService.boardDelete(boardId);
+
+ 	}
+
+ 	 // 관리자페이지, 게시글삭제 여러개
+ 	@PostMapping(path = "boardDeleteSelected")
+ 	public void userDeleteSelected(@RequestParam("boardId") String boardId) {
+
+ 		accessService.boardDeleteSelected(boardId);
+
+ 	}
     
 }
 // private DefaultMessageService messageService;

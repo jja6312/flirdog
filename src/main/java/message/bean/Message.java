@@ -20,11 +20,11 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
-    private int roomNo;
+    private Long messageRoomId;
 
-    private Integer userId;
+    private Long userId;
 
     private String nickName;
 
@@ -32,34 +32,18 @@ public class Message {
 
     private String content;
 
-    private String  sendDate;
+    private String sendDate;
+
+    private String profileImage;
 
     @Builder(toBuilder = true)
-    private Message(int roomNo, Integer userId, String nickName, int messageType, String content, String sendDate) {
-        this.roomNo = roomNo;
+    private Message(Long messageRoomId, Long userId, String nickName, int messageType, String content, String sendDate, String profileImage) {
+        this.messageRoomId = messageRoomId;
         this.userId = userId;
         this.nickName = nickName;
         this.messageType = messageType;
         this.content = content;
         this.sendDate = sendDate;
-    }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-                "roomNo='" + roomNo + '\'' +
-                ", userId='" + userId + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", messageType='" + messageType + '\'' +
-                ", content='" + content + '\'' +
-                ", sendDate='" + sendDate + '\'' +
-                '}';
-    }
-
-    public Message setSendDateToCurrentTime() {
-        return this.toBuilder()
-                .sendDate(LocalDateTime.now().toString())
-                .build();
+        this.profileImage = profileImage;
     }
 }

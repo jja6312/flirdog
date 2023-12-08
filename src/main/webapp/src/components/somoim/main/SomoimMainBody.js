@@ -44,7 +44,7 @@ const SomoimMainBody = () => {
         arrows: true,               //이전 다음 버튼 표시 여부(true or false) ▶기본값 true
         pauseOnFocus: true,         //마우스 클릭 시 슬라이드 멈춤 ▶기본값 true
         pauseOnHover: true,         //마우스 호버 시 슬라이드 멈춤 ▶기본값 true
-        //pauseOnDotsHover: true,     //네이게이션버튼 호버 시 슬라이드 멈춤 ▶기본값 false
+        //pauseOnDotsHover: true,     //네비게이션버튼 호버 시 슬라이드 멈춤 ▶기본값 false
         //vertical: true,             //세로 방향 여부(true or false) ▶기본값 false
         //verticalSwiping: true,      //세로 방향 스와이프 여부(true or false) ▶기본값 false
         //accessibility: true,        //접근성 여부(true or false) 기본값 false

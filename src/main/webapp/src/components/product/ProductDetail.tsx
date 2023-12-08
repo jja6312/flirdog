@@ -8,7 +8,7 @@ const ProductDetail = () => {
         <div>
             <Header/>
             <div style={{width:1000, height:500}}>
-                <MessageRoom userId={1} topic={"messageRoom1"} nickName={"Jongin"} roomNo={1}/>
+                <MessageRoom userId={1} topic={"messageRoom1"} nickName={"Jongin"} roomNo={1}  profileImage={"null"}/>
             </div>
             <Footer></Footer>
         </div>

@@ -13,52 +13,60 @@ const BestFlirdog = ({
   setSelectedCategory,
   selectedLocation,
   setSelectedLocation,
-}) => (
-  <>
-    <div className="row mt-10 mx-2">
-      <div className="col-12">
-        <img
-          alt=""
-          className={bestFlirdog.bestFlirdogTitle}
-          src="/image/main/bestFlirdog1.png"
+  openChatting,
+}) => {
+  return (
+    <>
+      <div className="row mt-10 mx-2">
+        <div className="col-12">
+          <img
+            alt=""
+            className={bestFlirdog.bestFlirdogTitle}
+            src="/image/main/bestFlirdog1.png"
+          />
+        </div>
+      </div>
+      <div className="row mt-8">
+        <CategoryBtnContainer
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          selectedLocation={selectedLocation}
+          setSelectedLocation={setSelectedLocation}
+        ></CategoryBtnContainer>
+      </div>
+      <div className="row mt-8 d-flex justify-content-between">
+        <BestFlirdogImg
+          userInfoArray={userInfoArray}
+          dogsInfoArray={dogsInfoArray}
+          currentIndex="0"
+          openChatting={openChatting}
+        />
+
+        <BestFlirdogImg
+          userInfoArray={userInfoArray}
+          dogsInfoArray={dogsInfoArray}
+          currentIndex="1"
+          openChatting={openChatting}
+        />
+
+        <BestFlirdogImg
+          userInfoArray={userInfoArray}
+          dogsInfoArray={dogsInfoArray}
+          currentIndex="2"
+          openChatting={openChatting}
         />
       </div>
-    </div>
-    <div className="row mt-8">
-      <CategoryBtnContainer
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        selectedLocation={selectedLocation}
-        setSelectedLocation={setSelectedLocation}
-      ></CategoryBtnContainer>
-    </div>
-    <div className="row mt-8 d-flex justify-content-between">
-      <BestFlirdogImg
-        userInfoArray={userInfoArray}
-        dogsInfoArray={dogsInfoArray}
-        currentIndex="0"
-      />
-      <BestFlirdogImg
-        userInfoArray={userInfoArray}
-        dogsInfoArray={dogsInfoArray}
-        currentIndex="1"
-      />
-      <BestFlirdogImg
-        userInfoArray={userInfoArray}
-        dogsInfoArray={dogsInfoArray}
-        currentIndex="2"
-      />
-    </div>
-    <div className={`${styles.navigateBtnContainer} mt-8`}>
-      <NavigateBtn
-        text="등록하러 가기"
-        url="/date/dateWrite"
-        fontSize="2.5vw"
-        btnWidth="40vw"
-        btnHeight="80px "
-      ></NavigateBtn>
-    </div>
-  </>
-);
+      <div className={`${styles.navigateBtnContainer} mt-8`}>
+        <NavigateBtn
+          text="등록하러 가기"
+          url="/date/dateWrite"
+          fontSize="2.5vw"
+          btnWidth="40vw"
+          btnHeight="80px "
+        ></NavigateBtn>
+      </div>
+    </>
+  );
+};
 
 export default BestFlirdog;

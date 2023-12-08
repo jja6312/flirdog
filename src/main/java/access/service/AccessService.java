@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import access.bean.JoinRequestDTO;
+import community.bean.BragBoardDTO;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
 import product.bean.Product;
@@ -37,6 +38,16 @@ public interface AccessService {
 	List<User> getUserInfoArrayLocation(String location);
 
 	List<Product> getProductInfoArray();
+
+	List<BragBoardDTO> getBragBoard();
+
+	List<BragBoardDTO> getBragBoardClosestDate10();
+
+	List<BragBoardDTO> getBoardList();
+
+	void boardDelete(String boardId);
+
+	void boardDeleteSelected(String boardId);
 
 	
 

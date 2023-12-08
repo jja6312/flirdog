@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Header from '../main/Header';
 import Footer from '../main/Footer';
 import { Container } from 'react-bootstrap';
@@ -9,8 +9,16 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/ko';
+import { UserContext } from '../../contexts/UserContext';
+import dogsBreedObject from "../login/join/dogsBreeds";
 
 const DateReadMore = () => {
+  const { user } = useContext(UserContext); // 유저 컨텍스트
+  const { id } = user;
+  console.log(id);
+
+  const [getUserId, setGetUserId] = useState('');
+
   const { seq } = useParams();
     // id 값 사용 가능
   console.log(seq);
@@ -24,7 +32,6 @@ const DateReadMore = () => {
     dogGender:'',
     dogBreed:'',
     isNeutralized:'',
-    dogMBTI:'',
     dogName:'',
     matchingState:'',
     matchingAddress:'',
@@ -34,6 +41,7 @@ const DateReadMore = () => {
     communityScore:'',
     hit:'',
     id:'',
+    userId:''
   });
 
   const[userDTO, setUserDTO] = useState({
@@ -41,54 +49,62 @@ const DateReadMore = () => {
     nickname : ''
   });
 
-   //이미지가 여러개있는지 확인하고 저장하는 배열
-   const [isMoreThanOneImage, setIsMoreThanOneImage] = useState([]);
+  //이미지가 여러개있는지 확인하고 저장하는 배열
+  const [isMoreThanOneImage, setIsMoreThanOneImage] = useState([]);
 
   const textareaStyle = {
     resize: 'none', // 사용자가 크기를 조절하지 못하도록 설정
   };
+  
 
   useEffect(() => {
     const fetchData = async () => {
-      try{
-        const res = await axios.get(`http://localhost:8080/date/dateReadMore?seq=${seq}`)
-        const userRes = await axios.get(`http://localhost:8080/date/getUser?userId=1`)
-        console.log(res.data);
-        console.log(userRes.data);
+        try {
+            if (seq) {
+                const res = await axios.get(`http://localhost:8080/date/dateReadMore?seq=${seq}`);
+                console.log(res.data);
 
-        setUserDTO(prevUserDTO => ({
-          ...prevUserDTO,
-          id: userRes.data.id,
-          nickname: userRes.data.nickname
-        }));
+              
+                const userRes = await axios.get(`http://localhost:8080/date/getUser?id=${res.data.userId}`);
+                console.log(userRes.data);
 
-        setMatchingDTO(prevMatchingDTO2 => ({
-              ...prevMatchingDTO2,
-              title: res.data.title,
-              createdAt: res.data.createdAt,
-              date: res.data.date,
-              image: res.data.image,
-              dogAge: res.data.dogAge,
-              dogGender: res.data.dogGender,
-              dogBreed: res.data.dogBreed,
-              isNeutralized: res.data.isNeutralized,
-              dogMBTI: res.data.dogMBTI,
-              dogName: res.data.dogName,
-              matchingState: res.data.matchingState,
-              matchingAddress: res.data.matchingAddress,
-              matchingPurpose: res.data.matchingPurpose,
-              content: res.data.content,
-              averageScore: res.data.averageScore,
-              communityScore: res.data.communityScore,
-              hit: res.data.hit,
-              id: res.data.id
-        }));
-      } catch(error) {
-        console.log(error);
-      }
+                setUserDTO(prevUserDTO => ({
+                    ...prevUserDTO,
+                    id: userRes.data.id,
+                    nickname: userRes.data.nickname
+                }));
+
+
+                setMatchingDTO(prevMatchingDTO2 => ({
+                    ...prevMatchingDTO2,
+                    title: res.data.title,
+                    createdAt: res.data.createdAt,
+                    date: res.data.date,
+                    image: res.data.image,
+                    dogAge: res.data.dogAge,
+                    dogGender: res.data.dogGender,
+                    dogBreed: res.data.dogBreed,
+                    isNeutralized: res.data.isNeutralized,
+                    dogName: res.data.dogName,
+                    matchingState: res.data.matchingState,
+                    matchingAddress: res.data.matchingAddress,
+                    matchingPurpose: res.data.matchingPurpose,
+                    content: res.data.content,
+                    averageScore: res.data.averageScore,
+                    communityScore: res.data.communityScore,
+                    hit: res.data.hit,
+                    id: res.data.id
+                }));
+
+                setGetUserId(res.data.userId);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
+
     fetchData();
-  }, [seq]);
+}, [seq, id]);
 
  
   useEffect(() => {
@@ -103,6 +119,12 @@ const DateReadMore = () => {
     }));
 
   }, [userDTO.id, userDTO.nickname]);
+
+   // seq와 matchingDTO.id가 같지 않은지 확인
+   const shouldHideLink = id !== getUserId;
+   console.log("id:", id);
+   console.log("matchingDTO.userId:", getUserId);
+   console.log("shouldHideLink:", shouldHideLink);
 
   //날짜 표현
   const createdAtDate =moment(matchingDTO.createdAt).format('YYYY-MM-DD');
@@ -122,6 +144,17 @@ const DateReadMore = () => {
     window.scrollTo(0, 0);
     navigate(`/date/dateList`)
   }
+
+  //애견 종이름 한글로 변경
+  const selectedDogBreed = matchingDTO.dogBreed || "";
+
+  //애견종선택에서 영어로 글자 들어오는것 한글로변경 - 지안1201-----------------------
+  const getKoreanBreedName = (selectedDogBreed) => {
+    const breed = dogsBreedObject.find((b) => b.value === selectedDogBreed);
+    return breed ? breed.text : selectedDogBreed; // 만약 매핑되는 한글 이름이 없다면 영어 이름을 반환
+  };
+
+  const selectedDogBreedKorean = getKoreanBreedName(selectedDogBreed);
 
   //사진이 여러개인 경우
   useEffect(() => {
@@ -231,7 +264,7 @@ const DateReadMore = () => {
                                     }}
                                   > 
                                     <img
-                                      src={`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-95/${matchingDTO.image}`}
+                                      src={`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${matchingDTO.image}`}
                                       alt=""
                                       style={{ borderRadius: '20px', height: '100%', objectFit: 'cover' }}
                                     />
@@ -253,7 +286,7 @@ const DateReadMore = () => {
                                         }}
                                       > 
                                         <img
-                                          src={`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-95/${item}`}
+                                          src={`https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${item}`}
                                           alt=""
                                           style={{ borderRadius: '20px', height: '100%', objectFit: 'cover' }}
                                         />
@@ -289,7 +322,7 @@ const DateReadMore = () => {
                               {matchingDTO.dogName}
                             </div>
                             <div className={ReadMoreCSS.filterDateContentDogBreed}>
-                              {matchingDTO.dogBreed}
+                              {selectedDogBreedKorean}
                             </div>
                             <div className={ReadMoreCSS.filterDateContentSiteScore}>
                                 <img src='/image/main/likeBone2.png' width={20} alt="별"/>
@@ -346,7 +379,7 @@ const DateReadMore = () => {
                                                 style={{ marginRight: starIndex === 5 ? '0' : '10px' }}
                                                 />
                                             );
-                                            })}
+                                          })}
                               </div>
                             </div>
                         </div>
@@ -360,34 +393,36 @@ const DateReadMore = () => {
                               flexDirection: 'row',
                             }}
                       >
-                      <Link to={`/date/dateUpdate/${matchingDTO.id}`} variant="primary"
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          borderColor:'#F56084',
-                          fontWeight:'bold',
-                          fontSize:'1.5em',
-                          backgroundColor:'#F56084',
-                          borderRadius:'10px',
-                          width:'300px',
-                          marginTop:'20px',
-                          height:'50px',
-                          textDecoration:'none',
-                          color:'white',
-                          boxShadow: '0 0 5px rgba(0, 0, 0, 0.6)', /* 그림자 효과 설정 */
-                          }}>
-                            <div
+                        {shouldHideLink ? null : (
+                          <Link to={`/date/dateUpdate/${seq}`} variant="primary"
                             style={{
-                              fontSize: '1em',
-                              fontWeight: 'bold',
-                            }}>
-                              글 수정
-                            </div>
-                        </Link>
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              borderColor:'#F56084',
+                              fontWeight:'bold',
+                              fontSize:'1.5em',
+                              backgroundColor:'#F56084',
+                              borderRadius:'10px',
+                              width:'300px',
+                              marginTop:'20px',
+                              height:'50px',
+                              textDecoration:'none',
+                              color:'white',
+                              boxShadow: '0 0 5px rgba(0, 0, 0, 0.6)', /* 그림자 효과 설정 */
+                              }}>
+                                <div
+                                style={{
+                                  fontSize: '1em',
+                                  fontWeight: 'bold',
+                                }}>
+                                  글 수정
+                                </div>
+                            </Link>
+                         )}
+                          </div>
+                        </div>   
                       </div>
-                    </div>   
-                    </div>
                   <div style={{color:'black',
                         backgroundColor:'pink',
                         padding:'1%',
@@ -407,93 +442,104 @@ const DateReadMore = () => {
                         fontSize:'1.3em',
                         padding:'2%',
                         fontWeight:'bold',
-                        borderRadius:'10px'
+                        borderRadius:'10px',
                      }}>
-                      나 이&nbsp;&nbsp;&nbsp;
-                      <div style={{
-                        backgroundColor:'lightgray',
-                        borderRadius:'10px',
-                        width:'25%',
-                        height:'50px',
-                        display:'flex',
-                        justifyContent:'center',
-                        alignItems:'center',
-                        textAlign:'center'
-                      }}>
-                        <div>{matchingDTO.dogAge}</div>
-                      </div>&nbsp;&nbsp;&nbsp;
-                      성 별&nbsp;&nbsp;&nbsp;
-                      <div style={{
-                        backgroundColor:'lightgray',
-                        borderRadius:'10px',
-                        width:'25%',
-                        height:'50px',
-                        display:'flex',
-                        justifyContent:'center',
-                        alignItems:'center',
-                        textAlign:'center'
-                      }}>
-                        <div>{matchingDTO.dogGender}</div>
-                      </div>&nbsp;&nbsp;&nbsp;
-                      멍BTI&nbsp;&nbsp;&nbsp;
-                      <div style={{
-                        backgroundColor:'lightgray',
-                        borderRadius:'10px',
-                        width:'25%',
-                        height:'50px',
-                        display:'flex',
-                        justifyContent:'center',
-                        alignItems:'center',
-                        textAlign:'center'
-                      }}>
-                        <div>{matchingDTO.dogMBTI}</div>
+                      <div>
+                        <div style={{fontWeight:"bold",
+                        width:'100px'
+                        }}>나 이</div>
+                          <div style={{fontWeight:"bold",
+                               borderRadius:'10px',
+                               padding:'1%',
+                               backgroundColor:'white',
+                               border:'10px solid pink',
+                               textAlign: 'center',  // 텍스트를 가운데 정렬하는 스타일
+                               fontSize:'1.2em',
+                               color:'#404040'
+                               }}>{matchingDTO.dogAge}살</div>
+                        </div>
+                      <div style={{width:'50px'}}></div>
+                      <div>
+                        <div style={{fontWeight:"bold",
+                        width:'100px'}}>성 별</div>
+                          <div style={{fontWeight:"bold",
+                                borderRadius:'10px',
+                                padding:'1%',
+                                backgroundColor:'white',
+                                border:'10px solid pink',
+                                textAlign: 'center',  // 텍스트를 가운데 정렬하는 스타일
+                                fontSize:'1.2em',
+                                color:'#404040'
+                                }}>{matchingDTO.dogGender === 'Male' ? '남 아' : '여 아'}</div>
                       </div>
-                     </div>
+                      <div style={{width:'50px'}}></div>
+                      <div>
+                        <div style={{fontWeight:"bold",
+                        width:'100px',
+                        textAlign:'center'
+                        }}>
+                          중성화
+                        </div>
+                        <div className={`${ReadMoreCSS.neutralizationCheckBox} d-flex justify-content-left`}
+                            style={{
+                              display:'flex',
+                              justifyContent:'center',
+                              alignItems:'center',
+                              height:'56px',
+                            }}>
+                            <input id='checkbox5' type='checkbox' value='중성화' 
+                            checked={matchingDTO.isNeutralized === 1}
+                            readOnly={matchingDTO.isNeutralized !== 1}
+                            />
+                            <label className={`${ReadMoreCSS.neutralizationLabel} ${ReadMoreCSS.labelClass}`} htmlFor='checkbox5'></label>
+                        </div>
+                      </div>
+                      <div style={{width:'50px'}}></div>
+                      <div>
+                        <div style={{
+                          fontWeight:"bold",
+                          width:'250px',
+                        }}>
+                        날 짜
+                        </div>
+                        <div style={{
+                          fontWeight:"bold",
+                          borderRadius:'10px',
+                          padding:'1%',
+                          backgroundColor:'white',
+                          border:'10px solid pink',
+                          textAlign: 'center',  // 텍스트를 가운데 정렬하는 스타일
+                          fontSize:'1em',
+                          color:'#404040'
+                        }}>
+                          <div>{matchingDTO.date}</div>
+                        </div>
+                      </div>
 
-                     <div style={{
-                        display: 'flex',
-                        justifyContent:'center',
-                        alignItems: 'center',
-                        backgroundColor:'white',
-                        fontSize:'1.3em',
-                        padding:'2%',
-                        fontWeight:'bold'
-                     }}>
-                      중성화&nbsp;&nbsp;&nbsp;
-                      <div className={`${ReadMoreCSS.neutralizationCheckBox} d-flex justify-content-left`}>
-                          <input id='checkbox5' type='checkbox' value='중성화' 
-                          checked={matchingDTO.isNeutralized === 1}
-                          readOnly={matchingDTO.isNeutralized !== 1}
-                          />
-                          <label className={`${ReadMoreCSS.neutralizationLabel} ${ReadMoreCSS.labelClass}`} htmlFor='checkbox5'></label>
-                      </div>&nbsp;&nbsp;&nbsp;
-                      만남장소&nbsp;&nbsp;&nbsp;
-                      <div style={{
-                        backgroundColor:'lightgray',
-                        borderRadius:'10px',
-                        width:'50%',
-                        height:'50px',
-                        display:'flex',
-                        justifyContent:'center',
-                        alignItems:'center',
-                        textAlign:'center'
-                      }}>
-                        <div>{matchingDTO.matchingAddress}</div>
-                      </div>&nbsp;&nbsp;&nbsp;
-                      날 짜&nbsp;&nbsp;&nbsp;
-                      <div style={{
-                        backgroundColor:'lightgray',
-                        borderRadius:'10px',
-                        width:'20%',
-                        height:'50px',
-                        display:'flex',
-                        justifyContent:'center',
-                        alignItems:'center',
-                        textAlign:'center'
-                      }}>
-                        <div>{matchingDTO.date}</div>
+                      <div style={{width:'50px'}}></div>
+                      <div>
+                        <div style={{
+                          fontWeight:"bold",
+                          width:'100%',
+                        }}>
+                          만남장소
+                        </div>
+                        <div style={{
+                          fontWeight:"bold",
+                          borderRadius:'10px',
+                          padding:'1%',
+                          backgroundColor:'white',
+                          border:'10px solid pink',
+                          textAlign: 'center',  // 텍스트를 가운데 정렬하는 스타일
+                          fontSize:'1em',
+                          color:'#404040',
+                          width:'300px'
+                        }}>
+                          <div>{matchingDTO.matchingAddress}</div>
+                        </div>
                       </div>
                      </div>
+                     
                      <div style={{
                         display:'flex',
                         justifyContent:'center',

@@ -4,7 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="" />
+
+    <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/InitKafkaService.class.uniqueId1" afterDir="false" />
+
+    <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
+
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/ConsumerConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/config/ConsumerConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/InitKafkaService.class.uniqueId6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JoinUser$JoinUserBuilder.class.uniqueId5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JoinUser.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JoinUserRepository.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/KafkaController.class.uniqueId7" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/KafkaController.class.uniqueId2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageController.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoom.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoomRepository.class.uniqueId8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoomService.class.uniqueId9" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoomService.class.uniqueId3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/message/config/ConsumerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/config/ConsumerConfiguration.java" afterDir="false" />
+    </list>
+
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/controller/MessageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/controller/MessageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/repository/JoinUserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/repository/JoinUserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageRoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageRoomService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/message/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/message/repository/JoinUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/repository/JoinUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/message/repository/MessageRoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/repository/MessageRoomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/message/service/MessageRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageRoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/message/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageService.java" afterDir="false" />
+    </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,9 +108,9 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
-}</component>
+        &quot;customColor&quot;: &quot;&quot;,
+        &quot;associatedIndex&quot;: 5
+        }</component>
   <component name="ProjectId" id="2YG033oAzok8OLhhNY2SaZHwWMn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -130,6 +176,7 @@
       <recent name="$PROJECT_DIR$/src/main/webapp/src/components" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="message.controller" />
       <recent name="message.bean" />
       <recent name="message.repository" />
       <recent name="chatting.config" />
@@ -137,9 +184,15 @@
     </key>
   </component>
   <component name="RunManager">
+
+    <configuration name="FlirdogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+
     <configuration name="FlirdogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+
+    <configuration name="FlirdogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="flirdog.main" />
+      <module name="com.example.flirdog.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="application.FlirdogApplication" />
       <extension name="coverage">
         <pattern>
@@ -147,13 +200,26 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+
+        <item itemvalue="Spring Boot.FlirdogApplication" />
+
         <item itemvalue="Spring Boot.FlirdogApplication (1)" />
+
+        <item itemvalue="Spring Boot.FlirdogApplication" />
+
       </list>
     </recent_temporary>
   </component>
@@ -174,10 +240,19 @@
       <workItem from="1700762006944" duration="13000" />
       <workItem from="1700762037159" duration="3827000" />
       <workItem from="1700789660044" duration="47470000" />
+
+      <workItem from="1701848984506" duration="3967000" />
+
+      <workItem from="1701911055832" duration="640000" />
+
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

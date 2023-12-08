@@ -2,12 +2,18 @@ import React from "react";
 import BestFlirdogPinkLikeBtn from "./BestFlirdogPinkLikeBtn";
 import styles from "../../../css/main/2베스트플러독/bestFlirdog.module.css";
 
-const BestFlirdogImg = ({ userInfoArray, dogsInfoArray, currentIndex }) => {
+const BestFlirdogImg = ({
+  userInfoArray,
+  dogsInfoArray,
+  currentIndex,
+  openChatting,
+}) => {
   return (
     <div className="col-4">
       <div className="d-flex justify-content-center align-items-center flex-column">
         <div
           className={`${styles.bestFlirdogImgContainer} d-flex justify-content-center align-items-center`}
+          onClick={openChatting}
         >
           <img
             alt=""

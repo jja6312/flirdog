@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Header from "../main/Header";
 import Footer from "../main/Footer";
 import Container from "react-bootstrap/esm/Container";
@@ -15,8 +15,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import dogsBreedObject from "../login/join/dogsBreeds";
+import { UserContext } from '../../contexts/UserContext';
 
 const DateWrite = () => {
+  const { user } = useContext(UserContext); // 유저 컨텍스트
+  const { id } = user;
+
   //애견종선택에서 영어로 글자 들어오는것 한글로변경 - 지안1201-----------------------
   const getKoreanBreedName = (englishBreedName) => {
     const breed = dogsBreedObject.find((b) => b.value === englishBreedName);
@@ -34,7 +38,6 @@ const DateWrite = () => {
     dogAge: "",
     dogGender: "",
     isNeutralized: "",
-    dogMBTI: "",
     dogBreed: "",
     date: "", // 날짜 형식에 맞게 수정
     matchingState: "매칭대기",
@@ -58,8 +61,7 @@ const DateWrite = () => {
     owner: "",
   });
 
-  //const { title, content, dogMBTI} = matchingDTO
-  const { title: dtoTitle, content, dogMBTI: dtoDogMBTI } = matchingDTO2;
+  const { title: dtoTitle, content } = matchingDTO2;
   const { dogName, dogAge, dogGender, dogsBreed, isNeutralized } = dogsDTO;
 
   const [dogsInfo, setDogsInfo] = useState([]);
@@ -110,30 +112,29 @@ const DateWrite = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8080/date/getDogsInfoWithUserId?userId=1`
-        );
-        const userRes = await axios.get(
-          `http://localhost:8080/date/getUser?userId=1`
-        );
-        console.log(res.data);
-        console.log(userRes.data);
-        console.log(userRes.data.id);
-
-        setDogsInfo(res.data);
-
-        setMatchingDTO2((prevMatchingDTO2) => ({
-          ...prevMatchingDTO2,
-          userId: userRes.data.id,
-          communityScore: userRes.data.communityScore,
-        }));
+        if (id) { // id 값이 존재하는 경우에만 요청 보냄
+          const res = await axios.get(`http://localhost:8080/date/getDogsInfoWithUserId?id=${id}`);
+          const userRes = await axios.get(`http://localhost:8080/date/getUser?id=${id}`);
+  
+          console.log(res.data);
+          console.log(userRes.data);
+          console.log(id);
+  
+          setDogsInfo(res.data);
+  
+          setMatchingDTO2((prevMatchingDTO2) => ({
+            ...prevMatchingDTO2,
+            userId: userRes.data.id,
+            communityScore: userRes.data.communityScore,
+          }));
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+  
     fetchData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (dogsInfo.length > 0 && swNum === 1) {
@@ -210,16 +211,26 @@ const DateWrite = () => {
     setdogBreedSelect(selectedDogBreedKorean);
   };
 
+  // 등록된 애견이 있는지 여부를 확인
+  const hasDogsInfo = dogsInfo.length > 0;
+
   // 드롭다운 아이템 생성
-  const dropdownItems = dogsInfo.map((dog, index) => (
-    <Dropdown.Item
-      key={index}
-      onClick={() => handlePetSelect(index)}
-      onChange={onInput}
-    >
-      {dog.name}
+  const dropdownItems = hasDogsInfo ? (
+    dogsInfo.map((dog, index) => (
+      <Dropdown.Item key={index} onClick={() => handlePetSelect(index)} onChange={onInput}>
+        {dog.name}
+      </Dropdown.Item>
+    ))
+  ) : (
+    // 등록된 애견이 없을 때의 처리
+    <Dropdown.Item onClick={() => {
+      alert("등록된 애견이 없습니다. 애견을 등록해주세요");
+      // 페이지 이동 등의 처리
+      navigate('/mypage/MydogProfile');
+    }}>
+      등록된 애견이 없습니다.
     </Dropdown.Item>
-  ));
+  );
 
   const handleDogBreedSelect = (selectedBreed) => {
     setdogBreedSelect(selectedBreed);
@@ -396,7 +407,9 @@ const DateWrite = () => {
             <Form>
               <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridTitle">
-                  <div className={TableCss.FormTitleDiv}>
+                  <div className={TableCss.FormTitleDiv}
+                  style={{marginBottom:"10px"}}
+                  >
                     <div className={TableCss.FormTitleNameDiv}>제 목</div>
                     &nbsp;&nbsp;&nbsp;
                     <Form.Control
@@ -515,7 +528,8 @@ const DateWrite = () => {
                         name="dogGender"
                         value={dogGender || ""}
                         onChange={onInput}
-                        checked={dogGender === "Male"}
+                        checked={dogGender === "Male" || "male" 
+                      }
                       />
                       <label
                         className={TableCss.labelClass1}
@@ -530,7 +544,7 @@ const DateWrite = () => {
                         name="dogGender"
                         value={dogGender || ""}
                         onChange={onInput}
-                        checked={dogGender === "Female"}
+                        checked={dogGender === "Female" || "Female"}
                       />
                       <label
                         className={TableCss.labelClass2}
@@ -584,25 +598,6 @@ const DateWrite = () => {
                     </div>
                   </div>
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formDogMBTI">
-                  <div className={TableCss.FormTitleDiv}>
-                    <div className={TableCss.FormTitleNameDiv}>멍BTI</div>
-                    &nbsp;&nbsp;&nbsp;
-                    <Form.Control
-                      className={TableCss.FormTitleInput}
-                      size="lg"
-                      type="text"
-                      name="dogMBTI"
-                      value={dtoDogMBTI || ""}
-                      onChange={onInput}
-                      placeholder="애견 MBTI 입력"
-                    />
-                    &nbsp;&nbsp;&nbsp;
-                  </div>
-                </Form.Group>
-              </Row>
-              <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCheckPurpose">
                   <div className={TableCss.FormTitleDiv}>
                     <div
@@ -747,6 +742,8 @@ const DateWrite = () => {
                     </Dropdown>
                   </div>
                 </Form.Group>
+              </Row>
+              <Row className="mb-3">
                 <Form.Group as={Col} controlId="formMatchingDate">
                   <div className={TableCss.FormTitleDiv}>
                     <div className={TableCss.FormTitleNameDiv}>매칭 날짜</div>
