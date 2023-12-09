@@ -29,7 +29,7 @@ const ProductThumnail = () => {
   //     console.log(formData);
 
   //     axios
-  //       .post("http://localhost:8080/user/upload", formData, {
+  //       .post("https://java.flirdog.store/user/upload", formData, {
   //         headers: {
   //           "Content-Type": "multipart/form-data",
   //         },

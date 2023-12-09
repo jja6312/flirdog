@@ -1,6 +1,7 @@
 package admin.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,6 +12,8 @@ public interface AdminUserRepository extends JpaRepository<User, Long> {
 	
 	@Query("SELECT u FROM User u LEFT JOIN FETCH u.dogsInfos")
     List<User> findAllWithDogsInfos();
+	
+    Optional<User> findByEmail(String email);
 
 
 }

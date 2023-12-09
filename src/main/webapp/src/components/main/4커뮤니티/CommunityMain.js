@@ -17,6 +17,7 @@ const CommunityMain = () => {
     axios.post("http://localhost:8080/access/getBragBoard").then((res) => {
       setCommunityBoardBest(res.data);
       console.log("communityBoardBest");
+      setCommunityBoard(res.data);
       console.log(res.data);
     });
 
@@ -40,14 +41,14 @@ const CommunityMain = () => {
   return (
     <>
       <Container className="px-10">
-        <div className="row mt-8">
+        <div className={`row mt-8 d-flex justify-content-center`}>
           <CommunityBtnContainer
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           ></CommunityBtnContainer>
         </div>
 
-        <div className="row mt-1">
+        <div className="row mt-3">
           <div
             className={` col-12 col-xl-6 ${styles.communityWriteElementContainer}`}
           >

@@ -1,6 +1,7 @@
 package access.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import access.bean.JoinRequestDTO;
+import access.bean.KakaoUserInfo;
 import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
+import admin.service.AdminUserService;
 import community.bean.BragBoardDTO;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
@@ -38,6 +41,8 @@ import user.bean.User;
 public class AccessController {
     @Autowired
     AccessService accessService;
+    @Autowired
+    AdminUserService adminUserService;
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -259,8 +264,70 @@ public class AccessController {
  		accessService.boardDeleteSelected(boardId);
 
  	}
+
+
+
+ 	 @PostMapping("kakaoAuth")
+     public ResponseEntity<?> handleKakaoToken(@RequestBody Map<String, String> tokenMap, HttpSession session) {
+         String accessToken = tokenMap.get("token");
+         KakaoUserInfo kakaoUserInfo = adminUserService.getKakaoUserInfo(accessToken);
+         User user = adminUserService.processKakaoLogin(kakaoUserInfo);
+
+         // 세션에 사용자 정보 저장
+         session.setAttribute("user", user);
+         
+         return ResponseEntity.ok(user);
+     }
+// 	 	@PostMapping("/access/kakaoLogin")
+//    public String kakaoLogin(@RequestBody String code) {
+// 		
+//        String tokenRequestUrl = "https://kauth.kakao.com/oauth/token";
+//
+//
+// 	// 토큰 요청을 위한 파라미터 설정
+//        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+//        params.add("grant_type", "authorization_code");
+//        params.add("client_id", "YOUR_REST_API_KEY"); // 여기에 REST API 키 입력
+//        params.add("redirect_uri", "YOUR_REDIRECT_URI"); // 여기에 리디렉션 URI 입력
+//        params.add("code", code);
+//
+//        // RestTemplate을 사용하여 토큰 요청
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String> response = restTemplate.postForEntity(tokenRequestUrl, params, String.class);
+//
+//        // 액세스 토큰 추출
+//        String accessToken = extractAccessToken(response.getBody());
+//
+//        // 사용자 정보 요청
+//        String userInfo = getUserInfo(accessToken);
+//
+//        return userInfo;
+// 	}
+ 	
+// 	private String extractAccessToken(String responseBody) {
+// 	    JSONObject jsonObject = new JSONObject(responseBody);
+// 	    return jsonObject.getString("access_token");
+// 	}
+// 	private String getUserInfo(String accessToken) {
+// 	    String requestUrl = "https://kapi.kakao.com/v2/user/me";
+//
+// 	    HttpHeaders headers = new HttpHeaders();
+// 	    headers.setBearerAuth(accessToken);
+// 	    HttpEntity<?> entity = new HttpEntity<>(headers);
+//
+// 	    RestTemplate restTemplate = new RestTemplate();
+// 	    ResponseEntity<String> response = restTemplate.exchange(requestUrl, HttpMethod.GET, entity, String.class);
+//
+// 	    return response.getBody();
+// 	}
+// 	@PostMapping("/access/kakaoLogin")
+//    public String login(@RequestBody KakaoUserInfo kakaoUserInfo, HttpSession session) {
+//
+//        session.setAttribute("USER", kakaoUserInfo);
+//        return "로그인성공";
+//    }
     
-}
+
 // private DefaultMessageService messageService;
 //
 // public AccessController() {
@@ -285,3 +352,8 @@ public class AccessController {
 //
 // return response;
 // }
+ 	  
+ 	  
+ 	  
+ 	  
+}

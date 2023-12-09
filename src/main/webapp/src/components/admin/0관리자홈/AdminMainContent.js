@@ -328,6 +328,7 @@ const AdminMainContent = () => {
             const { total, completed } = dateCounts[date];
             return total > 0 ? (completed / total) * 100 : 0;
           });
+          console.log(completionRates);
 
           setMatchingState((prevData) => ({
             ...prevData,
