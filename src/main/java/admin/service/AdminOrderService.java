@@ -9,6 +9,16 @@ public interface AdminOrderService {
 
 	List<Orders> getOrderList();
 
+	void orderCheck(String id);
+
+	void orderCancle(String id);
+
+	void orderCompleted(String id);
+
+	List<Orders> getOrderCheckList();
+
+	List<Orders> getOrderCompleted();
+
 	
 
 }

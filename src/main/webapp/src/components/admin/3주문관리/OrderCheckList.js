@@ -7,12 +7,12 @@ import styles from "../../../css/admin/rightContent.module.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-const OrderList = ({ orderList }) => {
-  const onOrderCheck = (e) => {
+const OrderCheckList = ({ orderCheckList }) => {
+  const onOrderCompleted = (e) => {
     const checkBtnId = e.target.id;
 
     Swal.fire({
-      title: "상품을 발주처리 하시겠습니까?",
+      title: "상품을 배송처리 하시겠습니까?",
       //물음표아이콘
       icon: "question",
       showCancelButton: true,
@@ -23,7 +23,7 @@ const OrderList = ({ orderList }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .get("http://localhost:8080/admin/orderCheck", {
+          .get("http://localhost:8080/admin/orderCompleted", {
             params: {
               id: checkBtnId,
             },
@@ -32,8 +32,8 @@ const OrderList = ({ orderList }) => {
             console.log(res.data);
             Swal.fire({
               icon: "success",
-              title: "발주 확인 완료",
-              text: "발주가 확인되었습니다.",
+              title: "배송 시작",
+              text: "배송이 시작되었습니다.",
               showConfirmButton: false,
               timer: 700,
             });
@@ -51,7 +51,7 @@ const OrderList = ({ orderList }) => {
     const checkBtnId = e.target.id;
 
     Swal.fire({
-      title: "상품을 발주를 취소 하시겠습니까?",
+      title: "상품 배송을 취소 하시겠습니까?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -70,8 +70,8 @@ const OrderList = ({ orderList }) => {
             console.log(res.data);
             Swal.fire({
               icon: "success",
-              title: "발주 취소 완료",
-              text: "발주가 취소되었습니다.",
+              title: "접수 취소 완료",
+              text: "배송이 취소되었습니다.",
               showConfirmButton: false,
               timer: 700,
             });
@@ -96,8 +96,8 @@ const OrderList = ({ orderList }) => {
       >
         <thead>
           <tr>
-            <th>발주 확인</th>
-            <th>발주 취소</th>
+            <th>배송 시작</th>
+            <th>접수 취소</th>
             <th>주문 번호</th>
             <th>총 가격</th>
             <th>주소</th>
@@ -109,15 +109,15 @@ const OrderList = ({ orderList }) => {
           </tr>
         </thead>
         <tbody>
-          {orderList.map((order, index) => (
+          {orderCheckList.map((order, index) => (
             <tr key={order.id}>
               <td>
                 <Button
                   id={order.id}
                   className={checkBtnStyle.editBtn}
-                  onClick={onOrderCheck}
+                  onClick={onOrderCompleted}
                 >
-                  발주 확인
+                  배송 시작
                 </Button>
               </td>
               <td>
@@ -126,7 +126,7 @@ const OrderList = ({ orderList }) => {
                   variant="outline-danger"
                   onClick={onOrderCancle}
                 >
-                  발주 취소
+                  접수 취소
                 </Button>
               </td>
               <td>{order.id}</td>
@@ -145,4 +145,4 @@ const OrderList = ({ orderList }) => {
   );
 };
 
-export default OrderList;
+export default OrderCheckList;

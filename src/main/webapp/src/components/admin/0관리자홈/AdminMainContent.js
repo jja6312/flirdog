@@ -117,7 +117,7 @@ const AdminMainContent = () => {
     datasets: [
       {
         label: "Dog Breed Count",
-        data: Array(dogsBreed.length).fill(0), // 데이터 초기화 (각 품종의 개수를 저장할 배열)
+        data: Array(dogsBreed.length).fill(0), // 데이터 초기화
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -125,14 +125,34 @@ const AdminMainContent = () => {
           "rgba(75, 192, 192, 0.2)",
           "rgba(153, 102, 255, 0.2)",
           "rgba(255, 159, 64, 0.2)",
+          "rgba(199, 99, 132, 0.2)",
+          "rgba(54, 100, 235, 0.2)",
+          "rgba(255, 150, 86, 0.2)",
+          "rgba(75, 100, 192, 0.2)",
+          "rgba(153, 50, 255, 0.2)",
+          "rgba(255, 99, 64, 0.2)",
+          "rgba(195, 162, 132, 0.2)",
+          "rgba(54, 162, 200, 0.2)",
+          "rgba(255, 206, 150, 0.2)",
+          "rgba(100, 192, 192, 0.2)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
+          "rgba(255, 99, 132, 0.8)",
+          "rgba(54, 162, 235, 0.8)",
+          "rgba(255, 206, 86, 0.8)",
+          "rgba(75, 192, 192, 0.8)",
+          "rgba(153, 102, 255, 0.8)",
+          "rgba(255, 159, 64, 0.8)",
+          "rgba(199, 99, 132, 0.8)",
+          "rgba(54, 100, 235, 0.8)",
+          "rgba(255, 150, 86, 0.8)",
+          "rgba(75, 100, 192, 0.8)",
+          "rgba(153, 50, 255, 0.8)",
+          "rgba(255, 99, 64, 0.8)",
+          "rgba(195, 162, 132, 0.8)",
+          "rgba(54, 162, 200, 0.8)",
+          "rgba(255, 206, 150, 0.8)",
+          "rgba(100, 192, 192, 0.8)",
         ],
         borderWidth: 1,
       },
@@ -218,15 +238,17 @@ const AdminMainContent = () => {
         console.log("개품종");
         console.log(res.data);
         const countByBreed = res.data.reduce((acc, item) => {
-          const breed = item.dogsBreed; // 강아지 품종 추출
+          const breed = item.dogsBreed; // 강아지 품종의 영어 이름 추출
+
           acc[breed] = (acc[breed] || 0) + 1; // 품종별 카운트
           return acc;
         }, {});
 
         // 레이블 순서에 맞게 데이터 배열 생성
-        const dataForChart = dogsData.labels.map((label) => {
-          return countByBreed[label] || 0;
-        });
+        // 영어 이름을 기준으로 데이터 배열 생성하되 라벨은 한글로 표시
+        const dataForChart = dogsBreed.map(
+          (breed) => countByBreed[breed.value] || 0
+        );
 
         // 차트 데이터 업데이트
         setDogsData((prevData) => ({

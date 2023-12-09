@@ -17,7 +17,7 @@ import ProductPopup from "./components/admin/1상품관리/1상품분류정보/P
 import UserListForm from "./components/admin/2회원관리/UserListForm";
 import OrderListForm from "./components/admin/3주문관리/OrderListForm";
 import OrderCheckForm from "./components/admin/3주문관리/OrderCheckForm";
-import OrderShippingForm from "./components/admin/3주문관리/OrderShippingForm";
+import OrderCompletedForm from "./components/admin/3주문관리/OrderCompletedForm";
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 
 import SomoimMain from "./components/somoim/SomoimMain";
@@ -203,8 +203,8 @@ const App = () => {
               element={<OrderCheckForm openLeftside="2" />}
             />
             <Route
-              path="/admin/orderShippingForm"
-              element={<OrderShippingForm openLeftside="2" />}
+              path="/admin/orderCompletedForm"
+              element={<OrderCompletedForm openLeftside="2" />}
             />
             {/* 문의 조회/답변*/}
             <Route

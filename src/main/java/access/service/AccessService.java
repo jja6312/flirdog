@@ -49,6 +49,13 @@ public interface AccessService {
 
 	void boardDeleteSelected(String boardId);
 
+	List<DogsInfo> getDogsInfoArrayByBeautyScore();
+
+	Optional<User> getUserInfoArrayOfThreeDogsInfo(String dogId);
+
+
+	List<DogsInfo> getDogsInfoByLocationAndBeautyScore(String location);
+
 	
 
 }

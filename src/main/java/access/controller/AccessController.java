@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -186,6 +187,8 @@ public class AccessController {
     	return topRankingThreeUserOfAllUser;
     	
     }
+
+   
     
     @PostMapping(path = "getDogsInfoArray")
     public Optional<DogsInfo> getDogsInfoArray(@RequestParam String userId) {
@@ -196,6 +199,7 @@ public class AccessController {
     	return dogsInfo;
     	
     }
+    
     
     //메인화면, 지역 랭킹 유저3명 가져오기
     @PostMapping(path = "getUserInfoArrayLocation")
@@ -278,6 +282,38 @@ public class AccessController {
          
          return ResponseEntity.ok(user);
      }
+ 	 
+ 	 
+ 	 //미모 점수 높은 순(베스트플러독) 개 리스트
+     @PostMapping(path = "getDogsInfoArrayByBeautyScore")
+     public List<DogsInfo> getDogsInfoArrayByBeautyScore() {
+     	
+     	
+     	List<DogsInfo> topRankingThreeDogOfAllDogsInfo = accessService.getDogsInfoArrayByBeautyScore();
+     	
+     	return topRankingThreeDogOfAllDogsInfo;
+     	
+     }
+ 	 //미모 점수 높은 순(베스트플러독) 개리스트에따른 유저
+     @PostMapping(path = "getUserInfoArrayOfThreeDogsInfo")
+     public Optional<User> getUserInfoArrayOfThreeDogsInfo(@RequestParam String userId) {
+     	
+     	
+     	Optional<User> userInfo = accessService.getUserInfoArrayOfThreeDogsInfo(userId);
+     	
+     	return userInfo;
+     	
+     }
+     
+     //---
+     
+     @GetMapping("getDogsInfoByLocationAndBeautyScore")
+     public ResponseEntity<List<DogsInfo>> getDogsInfoByLocation(@RequestParam String location) {
+         List<DogsInfo> dogsInfoList = accessService.getDogsInfoByLocationAndBeautyScore(location);
+         return ResponseEntity.ok().body(dogsInfoList);
+     }
+
+    
 // 	 	@PostMapping("/access/kakaoLogin")
 //    public String kakaoLogin(@RequestBody String code) {
 // 		
