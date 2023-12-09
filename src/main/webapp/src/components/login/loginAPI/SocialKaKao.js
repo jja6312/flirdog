@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import KakaoLogin from "react-kakao-login";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SocialKakao = () => {
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
 
   // setUser 함수의 타입을 로그로 확인
   console.log("setUser type:", typeof setUser);
@@ -26,6 +28,9 @@ const SocialKakao = () => {
         console.error("setUser is not a function");
       }
       localStorage.setItem("user", JSON.stringify(response.data)); // 로컬 스토리지에 사용자 정보 저장
+
+      //저장되고나면 순서에 따라 홈으로 이동
+      navigate("/");
     } catch (error) {
       console.error("Error during token transmission:", error);
     }
