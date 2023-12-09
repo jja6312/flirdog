@@ -18,16 +18,7 @@ const CommunityBtnContainer = ({ selectedCategory, setSelectedCategory }) => {
         height="45px"
         fontSize="1.3rem"
       />
-      <CategoryBtn
-        isSelect={
-          selectedCategory === "자유 게시판" ? "selected" : "notSelected"
-        }
-        text="자유 게시판"
-        onClick={() => handleCategoryClick("자유 게시판")}
-        size="col-4"
-        height="45px"
-        fontSize="1.3rem"
-      />
+
       <CategoryBtn
         isSelect={
           selectedCategory === "자랑 게시판" ? "selected" : "notSelected"

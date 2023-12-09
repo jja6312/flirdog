@@ -64,6 +64,7 @@ import DogEditForm from "./components/admin/2회원관리/DogEditForm";
 import MatchingListFormAdmin from "./components/admin/5매칭관리/MatchingListFormAdmin";
 import BoastBoardWrite from "./components/boastBoard/BoastBoardWrite";
 import BoardListForm from "./components/admin/6커뮤니티관리/BoardListForm";
+import SocialKakao from "./components/login/loginAPI/SocialKaKao";
 
 const App = () => {
   return (
@@ -162,6 +163,7 @@ const App = () => {
 
             <Route path="/login" element={<Login></Login>} />
             <Route path="/login/:showModal" element={<Login></Login>} />
+            <Route path="/login/kakao" element={<SocialKakao />} />
             <Route path="/join/auth" element={<JoinAuth></JoinAuth>} />
             <Route path="/pwdFind" element={<PwdFind></PwdFind>} />
 

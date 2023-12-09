@@ -49,7 +49,7 @@ spring:
 spring:
   data:
     mongodb:
-      host: k07fd.pub-vpc.mg.naverncp.com
+      host: k2hlg.pub-vpc.mg.naverncp.com
       port: 17017
       database: test
       username: user

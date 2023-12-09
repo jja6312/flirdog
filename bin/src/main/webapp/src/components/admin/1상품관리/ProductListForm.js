@@ -51,7 +51,7 @@ const ProductListForm = ({ openLeftside }) => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("http://localhost:8080/admin/getProductList")
+      .get("https://java.flirdog.store/admin/getProductList")
       .then((res) => {
         console.log("allProduct");
         console.log(res.data);
@@ -141,7 +141,7 @@ const ProductListForm = ({ openLeftside }) => {
       if (result.isConfirmed) {
         axios
           .post(
-            `http://localhost:8080/admin/productDeleteSelected?productId=${checkedProducts}`
+            `https://java.flirdog.store/admin/productDeleteSelected?productId=${checkedProducts}`
           )
           .then(() => {
             //삭제 후 새로고침
