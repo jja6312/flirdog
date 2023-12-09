@@ -77,10 +77,9 @@ const Header = () => {
                 쇼핑
               </Nav.Link>
               <HeaderCustomNavDropdownElement theme="커뮤니티" />
-              {storedUser ? (
+              {storedUser && storedUser.id ? (
                 <LogoutDropdown
                   myDogsInfo={myDogsInfo}
-                  storedUser={storedUser}
                   storedUser={storedUser}
                 ></LogoutDropdown>
               ) : (
