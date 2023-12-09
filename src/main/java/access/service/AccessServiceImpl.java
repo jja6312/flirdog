@@ -255,4 +255,23 @@ public class AccessServiceImpl implements AccessService {
 		
 	}
 
+	@Override
+	public List<DogsInfo> getDogsInfoArrayByBeautyScore() {
+
+		return accessDogsInfoRepository.findTop3ByOrderByAverageScoreDesc();
+	}
+
+	@Override
+	public Optional<User> getUserInfoArrayOfThreeDogsInfo(String userIdStr) {
+	    Long userId = Long.parseLong(userIdStr);
+	    return accessRepository.findById(userId); 
+	}
+
+	public List<DogsInfo> getDogsInfoByLocationAndBeautyScore(String location) {
+        return accessDogsInfoRepository.findByAddressOrderedByAverageScore(location);
+    }
+
+	
+	   
+
 }

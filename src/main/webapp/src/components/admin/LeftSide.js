@@ -83,7 +83,7 @@ const LeftSide = ({ openLeftside, selected }) => {
                 </Accordion.Body>
               </Link>
               <Link
-                to="/admin/orderShippingForm"
+                to="/admin/orderCompletedForm"
                 style={{ color: "black", textDecoration: "none" }}
               >
                 <Accordion.Body className={`mx-4 ${styles.subMenu}`}>

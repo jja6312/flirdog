@@ -284,6 +284,41 @@ public class AdminController {
 		return addressList;
 		
 	}
+	// 발주확인
+	@GetMapping(path = "orderCheck")
+	public void orderCheck(@RequestParam String id) {
+		System.out.println("컨트롤러 id: "+id);
+		adminOrderService.orderCheck(id);
+	}
+	// 발주취소
+	@GetMapping(path = "orderCancle")
+	public void orderCancle(@RequestParam String id) {
+		System.out.println("컨트롤러 id: "+id);
+		adminOrderService.orderCancle(id);
+	}
+	// 배송시작
+	@GetMapping(path = "orderCompleted")
+	public void orderCompleted(@RequestParam String id) {
+
+		adminOrderService.orderCompleted(id);
+	}
+	
+	// 발주리스트
+	@GetMapping(path = "getOrderCheckList")
+	public List<Orders> getOrderCheckList() {
+		List<Orders> orderCheckList = adminOrderService.getOrderCheckList();
+
+		return orderCheckList;
+
+	}
+	// 발주리스트
+	@GetMapping(path = "getOrderCompleted")
+	public List<Orders> getOrderCompleted() {
+		List<Orders> orderCompletedList = adminOrderService.getOrderCompleted();
+		
+		return orderCompletedList;
+		
+	}
 	
 	
 	//종인님께5.start----------------------------------------- 

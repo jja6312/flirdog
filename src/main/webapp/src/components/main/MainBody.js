@@ -17,6 +17,8 @@ const MainBody = () => {
   const [selectedLocation, setSelectedLocation] = useState("지역 선택");
   const [isOpenChatting, setIsOpenChatting] = useState(false);
 
+  const [selectedRadio, setSelectedRadio] = useState("미모 점수 높은 순");
+
   const openChatting = () => {
     setIsOpenChatting(!isOpenChatting);
   };
@@ -27,55 +29,91 @@ const MainBody = () => {
   //BestFlirdogImg에는 text로 communityScore를 넣어준다.
   const fetchData = async () => {
     try {
-      const res1 = await axios.post(
-        "http://localhost:8080/access/getUserInfoArray"
-      );
-      setUserInfoArray(res1.data);
-      console.log("전체 유저데이터");
-      console.log(res1.data);
+      if (selectedRadio === "커뮤니티 점수 높은 순") {
+        let url = "http://localhost:8080/access/getUserInfoArray";
+        const res1 = await axios.post(url);
+        setUserInfoArray(res1.data);
+        console.log("전체 유저데이터");
+        console.log(res1.data);
 
-      const dogsInfoPromises = res1.data.map((item) =>
-        axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
-          params: {
-            userId: item.id,
-          },
-        })
-      );
+        const dogsInfoPromises = res1.data.map((item) =>
+          axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
+            params: {
+              userId: item.id,
+            },
+          })
+        );
+        const dogsInfoResults = await Promise.all(dogsInfoPromises);
+        const combinedDogsInfo = dogsInfoResults.map((res) => res.data);
+        setDogsInfoArray(combinedDogsInfo.flat());
+        console.log("전체 개데이터");
+        console.log(combinedDogsInfo.flat());
+      } else {
+        const res1 = await axios.post(
+          "http://localhost:8080/access/getDogsInfoArrayByBeautyScore"
+        );
 
-      const dogsInfoResults = await Promise.all(dogsInfoPromises);
-      const combinedDogsInfo = dogsInfoResults.map((res) => res.data);
-      setDogsInfoArray(combinedDogsInfo.flat());
-      console.log("전체 개데이터");
-      console.log(combinedDogsInfo.flat());
+        console.log("미모점수 높은 순 강아지데이터");
+        console.log(res1.data);
+        const topThreeDogsData = res1.data.slice(0, 3);
+        setDogsInfoArray(topThreeDogsData);
+
+        const topThreeUsersData = topThreeDogsData.map((dog) => dog.user);
+        setUserInfoArray(topThreeUsersData);
+
+        console.log("Top 3 Users Info:");
+        console.log(topThreeUsersData);
+      }
     } catch (error) {
       console.log("error: " + error);
     }
   };
 
   const fetchDataLocal = async (location) => {
-    try {
-      const res1 = await axios.post(
-        "http://localhost:8080/access/getUserInfoArrayLocation",
-        null,
-        { params: { location: location } }
-      );
-      setUserInfoArray(res1.data);
-      console.log("로컬 유저데이터" + res1.data);
+    if (selectedRadio === "커뮤니티 점수 높은 순") {
+      try {
+        let url = "http://localhost:8080/access/getUserInfoArrayLocation";
 
-      const dogsInfoPromises = res1.data.map((item) =>
-        axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
-          params: {
-            userId: item.id,
-          },
-        })
-      );
+        const res1 = await axios.post(url, null, {
+          params: { location: location },
+        });
+        setUserInfoArray(res1.data);
+        console.log("로컬 유저데이터" + res1.data);
 
-      const dogsInfoResults = await Promise.all(dogsInfoPromises);
-      const combinedDogsInfo = dogsInfoResults.map((res) => res.data);
-      setDogsInfoArray(combinedDogsInfo.flat());
-      console.log("로컬 개데이터" + combinedDogsInfo.flat());
-    } catch (error) {
-      console.log("error: " + error);
+        const dogsInfoPromises = res1.data.map((item) =>
+          axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
+            params: {
+              userId: item.id,
+            },
+          })
+        );
+
+        const dogsInfoResults = await Promise.all(dogsInfoPromises);
+        const combinedDogsInfo = dogsInfoResults.map((res) => res.data);
+        setDogsInfoArray(combinedDogsInfo.flat());
+        console.log("로컬 개데이터" + combinedDogsInfo.flat());
+      } catch (error) {
+        console.log("error: " + error);
+      }
+    } else {
+      const url = `http://localhost:8080/access/getDogsInfoByLocationAndBeautyScore?location=${encodeURIComponent(
+        location
+      )}`;
+      const res1 = await axios.get(url);
+      console.log("미모 점수 높은 순 강아지데이터");
+      console.log(res1.data);
+
+      // 강아지 정보 저장
+      const dogsInfo = res1.data.slice(0, 3); // 0, 1, 2번째 강아지 정보만 저장
+      setDogsInfoArray(dogsInfo);
+      console.log("강아지데이터 저장");
+      console.log(dogsInfo);
+
+      // 유저 정보 추출 및 저장
+      const userInfo = dogsInfo.map((dog) => dog.user); // 각 강아지 정보에서 유저 정보 추출
+      setUserInfoArray(userInfo);
+      console.log("유저데이터 저장");
+      console.log(userInfo);
     }
   };
   useEffect(() => {
@@ -89,7 +127,7 @@ const MainBody = () => {
     ) {
       fetchDataLocal(selectedLocation);
     }
-  }, [selectedCategory, selectedLocation]);
+  }, [selectedCategory, selectedLocation, selectedRadio]);
 
   return (
     <>
@@ -106,6 +144,8 @@ const MainBody = () => {
           selectedLocation={selectedLocation}
           setSelectedLocation={setSelectedLocation}
           openChatting={openChatting}
+          selectedRadio={selectedRadio}
+          setSelectedRadio={setSelectedRadio}
         />
       </Container>
       <SmallGroupMain></SmallGroupMain>

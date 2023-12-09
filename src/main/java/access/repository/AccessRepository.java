@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import user.bean.DogsInfo;
 import user.bean.User;
 
 public interface AccessRepository extends JpaRepository<User, Long> {
@@ -12,6 +13,7 @@ public interface AccessRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
     List<User> findTop3ByOrderByCommunityScoreDesc();
     List<User> findTop3ByAddresses_AddressContainingOrderByCommunityScoreDesc(String city);
+	
 
 
 }
