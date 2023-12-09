@@ -24,7 +24,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
     <>
       <div
         id={styleMobile.categoryDropdown}
-        className={`${styleDesktop.customDropdown} navText mx-2`}
+        className={`${styleDesktop.customDropdown} navText mx-3`}
         ref={dropdownRef}
       >
         <div
