@@ -34,6 +34,19 @@ const Header = () => {
               setMyDogsInfo(res.data);
               console.log("myDogsInfo:", res.data);
             });
+        } else if (parsedUser && parsedUser.user.id) {
+          setStoredUser(parsedUser);
+          console.log("parsedUser:", parsedUser);
+          axios
+            .post("http://localhost:8080/access/getDogsInfoArray", null, {
+              params: {
+                userId: parsedUser.user.id,
+              },
+            })
+            .then((res) => {
+              setMyDogsInfo(res.data);
+              console.log("myDogsInfo:", res.data);
+            });
         }
       } catch (error) {
         console.error("Error parsing stored user data:", error);
@@ -77,7 +90,8 @@ const Header = () => {
                 쇼핑
               </Nav.Link>
               <HeaderCustomNavDropdownElement theme="커뮤니티" />
-              {storedUser && storedUser.id ? (
+              {(storedUser && storedUser.id) ||
+              (storedUser && storedUser.user && storedUser.user.id) ? (
                 <LogoutDropdown
                   myDogsInfo={myDogsInfo}
                   storedUser={storedUser}

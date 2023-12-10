@@ -20,11 +20,14 @@ const BestFlirdogImg = ({
     <div className="col-4">
       <div className="d-flex justify-content-center align-items-center flex-column">
         <div
+          id={userInfoArray[currentIndex] ? userInfoArray[currentIndex].id : ""}
           className={`${styles.bestFlirdogImgContainer} d-flex justify-content-center align-items-center`}
           style={{
             position: "relative",
           }}
-          onClick={openChatting}
+          onClick={(e) => {
+            openChatting(e);
+          }}
         >
           <svg
             className={moveUpDown.moveUpDown}

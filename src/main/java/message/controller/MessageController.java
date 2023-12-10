@@ -21,8 +21,12 @@ public class MessageController {
 	private MessageRoomService messageRoomService;
 
 	@PostMapping(path = "createRoom")
-	public void createRoom(@RequestBody MessageRoom messageRoom, @RequestParam List<Long> userIds) {
-		messageRoomService.createRoom(messageRoom, userIds);
+	public void createRoom(@RequestParam Long[] userIds, @RequestParam String name) {
+		System.out.println("###값들어왔니?");
+		System.out.println(userIds[0]);
+		System.out.println(userIds[1]);
+		System.out.println(name);
+		// messageRoomService.createRoom(messageRoom, userIds);
 	}
 
 	@PostMapping(path = "exitRoom")
@@ -32,8 +36,8 @@ public class MessageController {
 
 	@PostMapping(path = "joinRoom")
 	public void joinRoom(@RequestParam Long messageRoomId, @RequestParam Long userId) {
-        messageRoomService.joinRoom(messageRoomId, userId);
-    }
+		messageRoomService.joinRoom(messageRoomId, userId);
+	}
 
 	@GetMapping(path = "getMessages")
 	public void getMessages(@RequestParam Long messageRoomId) {
