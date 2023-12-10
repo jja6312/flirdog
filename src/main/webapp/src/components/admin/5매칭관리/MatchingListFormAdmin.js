@@ -24,6 +24,9 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
   const [useFilterCheckNumber, setUseFilterCheckNumber] = useState(0);
   const [checkedMatchings, setCheckedMatchings] = useState([]);
   const [totalFilter, setTotalFilter] = useState([]);
+  const [totalMatchingCount, setTotalMatchingCount] = useState(0);
+  const [totalMatchingHeart, setTotalMatchingHeart] = useState(0);
+  const [totalMatchingTree, setTotalMatchingTree] = useState(0);
 
   //----------------SearchDropdown.start------------------
   const [whatProduct, setWhatProduct] = useState([]);
@@ -160,6 +163,44 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
     selectedLocation,
   ]);
 
+  useEffect(() => {
+    // selectedIcon에 따라 totalMatchingCount 및 기타 상태 업데이트
+    if (selectedIcon === "faBorderAll") {
+      setTotalMatchingCount(allProduct.length);
+      setTotalMatchingHeart(heartEA);
+      setTotalMatchingTree(treeEA);
+    } else if (selectedIcon === "faHourglassHalf") {
+      const filteredSelling = sellingProduct.filter(
+        (item) => item.matchingState === "매칭대기"
+      );
+      setTotalMatchingCount(filteredSelling.length);
+      setTotalMatchingHeart(
+        filteredSelling.filter((item) => item.matchingPurpose === "연애").length
+      );
+      setTotalMatchingTree(
+        filteredSelling.filter((item) => item.matchingPurpose === "산책").length
+      );
+    } else if (selectedIcon === "faHourglassEnd") {
+      const filteredSoldOut = soldOutProduct.filter(
+        (item) => item.matchingState !== "매칭대기"
+      );
+      setTotalMatchingCount(filteredSoldOut.length);
+      setTotalMatchingHeart(
+        filteredSoldOut.filter((item) => item.matchingPurpose === "연애").length
+      );
+      setTotalMatchingTree(
+        filteredSoldOut.filter((item) => item.matchingPurpose === "산책").length
+      );
+    }
+  }, [
+    selectedIcon,
+    allProduct,
+    sellingProduct,
+    soldOutProduct,
+    heartEA,
+    treeEA,
+  ]);
+
   const onDeleteCheckedMatchings = () => {
     if (checkedMatchings.length === 0) {
       Swal.fire({
@@ -250,21 +291,21 @@ const MatchingListFormAdmin = ({ openLeftside }) => {
               <FilterForm2
                 iconName="faBorderAll"
                 titleText="전체"
-                searchValue={heartEA + treeEA}
+                searchValue={totalMatchingCount}
                 selectedIcon2={selectedIcon2}
                 setSelectedIcon2={setSelectedIcon2}
               ></FilterForm2>
               <FilterForm2
                 iconName="faHeart"
                 titleText="연애"
-                searchValue={heartEA}
+                searchValue={totalMatchingHeart}
                 selectedIcon2={selectedIcon2}
                 setSelectedIcon2={setSelectedIcon2}
               ></FilterForm2>
               <FilterForm2
                 iconName="faTree"
                 titleText="산책"
-                searchValue={treeEA}
+                searchValue={totalMatchingTree}
                 selectedIcon2={selectedIcon2}
                 setSelectedIcon2={setSelectedIcon2}
               ></FilterForm2>
