@@ -28,8 +28,8 @@ public class ProductSearchService {
         return productSearchRepository.findAll();
     }
 
-    public List<Product> getProductsBySubCategories(List<SubCategory> subCategories) {
-        return productSearchRepository.findBySubCategories(subCategories);
+    public List<Product> getProductsBySubCategory(List<SubCategory> subCategories) {
+        return productSearchRepository.findBySubCategory(subCategories);
     }
 
     public Optional<Product> getProductById(String id) {

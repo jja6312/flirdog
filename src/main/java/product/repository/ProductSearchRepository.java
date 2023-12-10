@@ -18,5 +18,5 @@ public interface ProductSearchRepository extends ElasticsearchRepository<Product
     List<Product> findAll();
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"subCategory\": ?0}}]}}")
-    List<Product> findBySubCategories(List<SubCategory> subCategories);
+    List<Product> findBySubCategory(List<SubCategory> subCategories);
 }
