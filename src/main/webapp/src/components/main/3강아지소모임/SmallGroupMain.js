@@ -13,7 +13,7 @@ const SmallGroup = () => {
       <div style={{ position: "absolute", top: "70%", left: "10%" }}>
         <NavigateBtn
           text="등록하러 가기"
-          url="/somoim"
+          url="/somoim/somoimNew"
           fontSize="2.5vw"
           btnWidth="25vw"
           btnHeight="80px"

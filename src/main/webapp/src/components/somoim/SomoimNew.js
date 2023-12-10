@@ -10,7 +10,7 @@ import {
   Modal,
   Row,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "../../css/somoim/main/somoimNew.module.css";
@@ -33,6 +33,13 @@ const SomoimNew = () => {
     accountEmail: "",
     accountPhone: "",
   });
+
+  // 스크롤 강제로 위로 올리기
+  const location = useLocation();
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   //const [introducePhotoName, setIntroducePhotoName] = useState('');
   const [file, setFile] = useState(""); // 파일 업로드
   const [showImgSrc, setShowImgSrc] = useState(""); // 이미지 미리보기

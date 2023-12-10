@@ -244,3 +244,10 @@
 
     background-color: transparent;
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  /* 스타일 정의 */
+  background-color: black;
+}
+

@@ -53,7 +53,8 @@ const SomoimMainFilter = ({ onSelectLocation, onSearch }) => {
             {/* <Container className="px-8" style={{border: '1px solid blue'}}> */}
             <Container className="px-8">
                 <div className="row mt-4 d-flex justify-content-center align-items-center">
-                    <SomoimMainCategoryVarContainer></SomoimMainCategoryVarContainer>
+                    {/* <SomoimMainCategoryVarContainer></SomoimMainCategoryVarContainer> */}
+                    <div style={{ width: '78%' ,height: '60px', borderBottom: '3px solid #F0AAAA' }}></div>
                 </div>
                 {/* <hr className='col-12' style={{ border:'4px solid pink', width:'70%', margin: '33px 202px 0px' }}/> */}
                 <div className="row mt-4 d-flex justify-content-center align-items-center" >

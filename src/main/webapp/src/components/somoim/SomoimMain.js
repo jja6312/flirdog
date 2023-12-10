@@ -14,7 +14,7 @@ const SomoimMain = () => {
     return (
         <div>
             <Header></Header>
-            <Link to={'/somoimTest'} >소모임 코드 테스트 구간</Link>
+            {/* <Link to={'/somoimTest'} >소모임 코드 테스트 구간</Link> */}
             <div style={{ width: "100%", textAlign: "center", height: '1rem' }}>
             </div>
 
