@@ -34,7 +34,7 @@ public class KafkaController {
 		kafkaService.send(topic, message);
 	}
 
-	@KafkaListener(id = "newRoomEventListener", topics = "newRoom", containerFactory = "kafkaListenerContainerFactory")
+	@KafkaListener(id = "newRoomEventListener", topics = "flirdog.new_room.newRoom", containerFactory = "kafkaListenerContainerFactory")
 	public void listen(@Payload MessageRoom messageRoom) throws Exception{
 		consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
 	}

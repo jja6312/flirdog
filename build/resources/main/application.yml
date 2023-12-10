@@ -70,11 +70,19 @@ spring:
 spring:
   data:
     mongodb:
-      host: k2g36.vpc.mg.naverncp.com
+      host: k2hlg.pub-vpc.mg.naverncp.com
       port: 17017
       database: flirdog
       username: user
       password: qwe123!@#
+
+
+---
+
+spring:
+  elasticsearch:
+    rest:
+      uris: http://10.0.3.17:9200
 
 ---
 spring:
