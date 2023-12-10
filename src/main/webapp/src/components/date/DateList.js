@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../main/Header";
 import Container from "react-bootstrap/esm/Container";
 import "../../css/reset.css";
@@ -6,12 +6,25 @@ import dateList from "../../css/date/dateList.module.css";
 import dateCheck from "../../css/date/dateCheck.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import Footer from "../main/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalGoMatching from "../login/ModalGoMatching";
 import Swal from "sweetalert2";
+import { UserContext } from '../../contexts/UserContext';
 
 const DateList = () => {
+
+  const { user } = useContext(UserContext); // 유저 컨텍스트
+  const { id } = user;
+  const navigate = useNavigate();
+
+  const preLogin = () => {
+    id ? navigate('/date/dateWrite') : (() => {
+      navigate('/login');
+    })();
+  }
+
+  console.log("id", id);
   //전체 목록 조회
   const [allMatchingList, setAllMatchingList] = useState([]);
 
@@ -147,6 +160,8 @@ const DateList = () => {
         alert("별점제출에서 오류발생! 콘솔확인");
       });
   };
+
+  // eslint-disable-next-line no-unused-vars
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -273,10 +288,10 @@ const DateList = () => {
           id="carouselExample"
           className="carousel slide"
           style={{
-            backgroundColor: "pink",
             borderRadius: "20px",
             border: "20px solid white",
             boxShadow: "0 0 20px rgba(0, 0, 0, 0.6)",
+            backgroundColor: 'white'
           }}
         >
           <div
@@ -287,12 +302,31 @@ const DateList = () => {
           >
             <div>
               {topMatchingList.map((matchingItem, index) => (
+                
                 <div
                   key={index}
                   className={`carousel-item ${index === 0 ? "active" : ""}`}
                 >
+                  <Link
+                        to={`/date/dateReadMore/${matchingItem.id}`}
+                        style={{
+                          textDecoration: "none",
+                          color: "black",
+                        }}
+                        onClick={scrollToTop}
+                        key={index}
+                      >
                   {/* 내용을 동적으로 생성 */}
-                  <div className="d-flex justify-content-center align-items-center">
+                  <div className="d-flex justify-content-center align-items-center"
+                    style={{
+                      backgroundColor:
+                        matchingItem.matchingPurpose === "연애"
+                          ? "#F9D6DC"
+                          : matchingItem.matchingPurpose === "산책"
+                          ? "#ADD8E6"
+                          : "white", // 기본 값은 'white'로 설정
+                    }}
+                  >
                     <div
                       className="justify-content-center align-items-center"
                       style={{
@@ -318,6 +352,8 @@ const DateList = () => {
                           height: "100%",
                           objectFit: "cover",
                           border: "20px solid white",
+                          width: "100%",
+                          overflow: "hidden",
                         }}
                       />
                       <div
@@ -325,7 +361,6 @@ const DateList = () => {
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
-                          paddingRight: "15px",
                         }}
                       >
                         <div
@@ -407,7 +442,7 @@ const DateList = () => {
                       >
                         <div
                           className={dateList.filterDateContentDogname}
-                          style={{ fontSize: "2vw" }}
+                          style={{ fontSize: "1.3vw" }}
                         >
                           {matchingItem.title}
                         </div>
@@ -423,8 +458,8 @@ const DateList = () => {
                             src="/image/main/likeBone.png"
                             width={50}
                           />
-                          &nbsp;&nbsp;
-                          <span style={{ fontSize: "2vw" }}>
+                          &nbsp;&nbsp;&nbsp;
+                          <span style={{ fontSize: "3vw" }}>
                             {matchingItem.communityScore}
                           </span>
                         </div>
@@ -473,6 +508,7 @@ const DateList = () => {
                       </div>
                     </div>
                   </div>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -728,42 +764,42 @@ const DateList = () => {
                             href="#/action-3"
                             onClick={() => handleRegionSelect("대구")}
                           >
-                            대구광역시
+                            대구
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-4"
                             onClick={() => handleRegionSelect("인천")}
                           >
-                            인천광역시
+                            인천
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-5"
                             onClick={() => handleRegionSelect("광주")}
                           >
-                            광주광역시
+                            광주
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-6"
                             onClick={() => handleRegionSelect("대전")}
                           >
-                            대전광역시
+                            대전
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-7"
                             onClick={() => handleRegionSelect("울산")}
                           >
-                            울산광역시
+                            울산
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
                             href="#/action-8"
                             onClick={() => handleRegionSelect("세종")}
                           >
-                            세종특별시
+                            세종
                           </Dropdown.Item>
                           <Dropdown.Item
                             style={{ opacity: 1 }}
@@ -837,27 +873,66 @@ const DateList = () => {
             </div>
 
             <br />
-            <div className={dateList.dogMBTI}>
-              <div
-                className={dateList.MBTIDiv}
-                onClick={() => setModalShow(true)}
-              >
+
+            <div className={dateList.matchingWriteBtn}
+              style={{
+                backgroundColor: "#F9D6DC",
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // 그림자 효과
+              }}
+              onClick={() => {
+                // id 값이 있으면 setModalShow 실행, 없으면 /login으로 이동
+                if (id) {
+                  setModalShow(true);
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "매칭 실패!",
+                    text: "로그인이 필요합니다.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate('/login');
+                }
+              }}
+            >
+                <div className={dateList.matchingNullDiv}
+                ></div>
+                주변 애견 매칭
                 <img
-                  src="/image/date/dogMBTI.png"
-                  style={{ width: "15vw", borderRadius: "10px" }}
-                  alt="DogMBTI"
+                  src="/image/date/heart.png"
+                  style={{
+                    width: "4vw",
+                  }}
+                  alt="Heart"
                 />
               </div>
-            </div>
 
             <br />
-            <Link
-              to="/date/dateWrite"
-              style={{ textDecoration: "none", color: "inherit" }}
-              onClick={scrollToTop}
-            >
-              <div className={dateList.matchingWriteBtn}>
-                <div className={dateList.matchingNullDiv}></div>
+            <Link to={id ? "/date/dateWrite" : "/login"}  // 로그인 상태에 따라 동적으로 설정 
+                          style={{ textDecoration: 'none', color: 'inherit' }} 
+                          onClick={() => {
+                            if (id){
+                              scrollToTop();
+                            } else {
+                              Swal.fire({
+                                icon: "error",
+                                title: "매칭 실패!",
+                                text: "로그인이 필요합니다.",
+                                showConfirmButton: false,
+                                timer: 1500,
+                              });
+                              scrollToTop();
+                              preLogin();
+                            }
+                          }}
+                        >
+              <div className={dateList.matchingWriteBtn}
+              style={{
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // 그림자 효과
+              }}
+              >
+                <div className={dateList.matchingNullDiv}
+                ></div>
                 매칭 글 작성
                 <img
                   src="/image/date/heart.png"
@@ -1071,7 +1146,7 @@ const DateList = () => {
                                   src="/image/main/likeBone.png"
                                   width={20}
                                 />
-                                {matchingItem.communityScore}
+                                &nbsp;&nbsp;{matchingItem.communityScore}
                               </div>
                             </div>
                           </div>

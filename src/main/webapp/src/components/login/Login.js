@@ -177,16 +177,7 @@ const Login = () => {
       >
         <SocialKakao></SocialKakao>
       </div>
-      <div
-        className={`${styles.loginFormElementDiv} ${styles.googleDiv} mt-2 d-flex justify-content-center align-items-center`}
-      >
-        구글 로그인
-      </div>
-      <div
-        className={`${styles.loginFormElementDiv} ${styles.naverDiv} mt-2 d-flex justify-content-center align-items-center`}
-      >
-        네이버 로그인
-      </div>
+
       <div
         className={`${styles.loginFormElementDiv}  mt-2 d-flex justify-content-center align-items-center`}
       >

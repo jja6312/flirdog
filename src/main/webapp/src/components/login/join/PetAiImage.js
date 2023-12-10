@@ -43,7 +43,8 @@ const PetAiImage = ({
       content: {
         title: "Ai 강아지 프로필 생성",
         description: "우리집 강아지 연애/산책 매칭 플랫폼, 플러독",
-        imageUrl: "https://i.ibb.co/0jZQY5q/ai-dog-profile.png",
+        imageUrl: aiDogProfileImgUrl,
+        // imageUrl: "https://i.ibb.co/0jZQY5q/ai-dog-profile.png",
         link: {
           mobileWebUrl: "http://localhost:3000/join/auth",
           webUrl: "http://localhost:3000/join/auth",
@@ -61,7 +62,7 @@ const PetAiImage = ({
           backgroundColor: "black",
           //배경이미지 크기 딱맞추기
           backgroundSize: "cover",
-          // backgroundImage: `url(${aiDogProfileImgUrl})`,
+          backgroundImage: `url(${aiDogProfileImgUrl})`,
           borderRadius: "50%",
           overflow: "hidden",
         }}

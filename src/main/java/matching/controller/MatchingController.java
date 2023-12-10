@@ -39,17 +39,35 @@ public class MatchingController {
 	private DateMatchingService dateMatchingService;
 	
 	@GetMapping(path = "getDogsInfoWithUserId", produces = "application/json;charset=UTF-8")
-    public List<DogsInfo> getDogsInfoWithUserId() {
+    public List<DogsInfo> getDogsInfoWithUserId(
+    		@RequestParam("id") Long id) {
     
-        List<DogsInfo> dogsInfoWithUserId = dogsInfoService.getDogsInfoListByUserId(1);
+        List<DogsInfo> dogsInfoWithUserId = dogsInfoService.getDogsInfoListByUserId(id);
         return dogsInfoWithUserId;
 	}
 	
 	
 	@GetMapping(path = "getUser", produces = "application/json;charset=UTF-8")
-	public Optional<User> getUser(){
+	public Optional<User> getUser(@RequestParam("id") Long id){
 		System.out.println("들어왔나?");
-		Optional<User> getUser = userInfoService.getUser((long) 1);
+		Optional<User> getUser = userInfoService.getUser(id);
+		
+		return getUser;
+	}
+	
+	@GetMapping(path = "getDogsInfoUserId", produces = "application/json;charset=UTF-8")
+    public List<DogsInfo> getDogsInfoUserId(
+    		@RequestParam("userId") Long id) {
+    
+        List<DogsInfo> dogsInfoWithUserId = dogsInfoService.getDogsInfoListByUserId(id);
+        return dogsInfoWithUserId;
+	}
+	
+	
+	@GetMapping(path = "getUserInfo", produces = "application/json;charset=UTF-8")
+	public Optional<User> getUserInfo(@RequestParam("userId") Long id){
+		System.out.println("들어왔나?");
+		Optional<User> getUser = userInfoService.getUser(id);
 		
 		return getUser;
 	}

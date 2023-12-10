@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import access.bean.JoinRequestDTO;
+import access.repository.AccessBragBoardRepository;
 import access.repository.AccessDogsInfoRepository;
 import access.repository.AccessMatchingRepository;
 import access.repository.AccessProductRepository;
 import access.repository.AccessRepository;
 import admin.service.ObjectStorageService;
+import community.bean.BragBoardDTO;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
 import product.bean.Product;
@@ -36,6 +38,8 @@ public class AccessServiceImpl implements AccessService {
 	public AccessMatchingRepository accessMatchingRepository;
 	@Autowired
 	public AccessProductRepository accessProductRepository;
+	@Autowired
+	public AccessBragBoardRepository accessBragBoardRepository;
 
 	@Autowired
 	private ObjectStorageService objectStorageService;
@@ -215,5 +219,59 @@ public class AccessServiceImpl implements AccessService {
 		
 		return accessProductRepository.findTop8ByOrderByHitDesc();
 	}
+
+	@Override
+	public List<BragBoardDTO> getBragBoard() {
+		// 
+		return accessBragBoardRepository.findTop10ByOrderByHitDesc();
+	}
+
+	@Override
+	public List<BragBoardDTO> getBragBoardClosestDate10() {
+		
+		return accessBragBoardRepository.findTop10ByOrderByCreatedAtDesc();
+	}
+
+	@Override
+	public List<BragBoardDTO> getBoardList() {
+		
+		return accessBragBoardRepository.findAll();
+	}
+
+	@Override
+	public void boardDelete(String boardId) {
+		accessBragBoardRepository.deleteById(Long.parseLong(boardId));
+		
+	}
+
+	@Override
+	public void boardDeleteSelected(String boardId) {
+		
+		String[] boardIdArray = boardId.split(",");
+
+		for (String id : boardIdArray) {
+			accessBragBoardRepository.deleteById(Long.parseLong(id));
+		}
+		
+	}
+
+	@Override
+	public List<DogsInfo> getDogsInfoArrayByBeautyScore() {
+
+		return accessDogsInfoRepository.findTop3ByOrderByAverageScoreDesc();
+	}
+
+	@Override
+	public Optional<User> getUserInfoArrayOfThreeDogsInfo(String userIdStr) {
+	    Long userId = Long.parseLong(userIdStr);
+	    return accessRepository.findById(userId); 
+	}
+
+	public List<DogsInfo> getDogsInfoByLocationAndBeautyScore(String location) {
+        return accessDogsInfoRepository.findByAddressOrderedByAverageScore(location);
+    }
+
+	
+	   
 
 }

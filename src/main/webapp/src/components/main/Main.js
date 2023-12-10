@@ -9,7 +9,7 @@ const Main = () => {
     <div>
       <Header></Header>
       <div style={{ width: "100%", textAlign: "center" }}>
-        <Link to="/admin">관리자페이지 </Link>
+        <br></br>
       </div>
 
       <MainBody></MainBody>

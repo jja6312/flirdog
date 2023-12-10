@@ -59,6 +59,9 @@ const DogListForm = ({ openLeftside }) => {
               title: "삭제 성공!",
               text: "파일이 삭제되었습니다.",
               icon: "success",
+              position: "top",
+              showConfirmButton: false,
+              timer: 700,
             });
           });
       }

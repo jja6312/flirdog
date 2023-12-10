@@ -53,8 +53,10 @@ const UserProvider = ({ children }) => {
       })
       .then((res) => {
         setUser(res.data);
+        console.log("localStorage");
         console.log(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("address", JSON.stringify(res.data));
 
         navigate("/");
         console.log("user");
@@ -77,8 +79,8 @@ const UserProvider = ({ children }) => {
     if (window.confirm("정말 로그아웃하시겠습니까?")) {
       localStorage.removeItem("user");
       setUser({});
-
-      navigate("/");
+      alert("로그아웃 되었습니다.");
+      window.location.reload();
     }
   };
 

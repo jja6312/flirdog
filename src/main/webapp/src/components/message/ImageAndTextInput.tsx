@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { Button, FormControl, Modal } from 'react-bootstrap';
 
 type ImageAndTextInputProps = {
@@ -19,6 +19,7 @@ const ImageAndTextInput: React.FC<ImageAndTextInputProps> = ({ messageInput, onI
             setSelectedImage(file);
             setShowModal(true);
         }
+        event.target.value = '';
     };
 
     const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -33,30 +34,47 @@ const ImageAndTextInput: React.FC<ImageAndTextInputProps> = ({ messageInput, onI
     const handleImageUpload = () => {
         if (selectedImage) {
             onImageUpload(selectedImage); // props로 받은 onImageUpload 함수를 호출
-            setSelectedImage(null); // 이미지 선택 상태를 초기화
             setShowModal(false); // 모달을 닫음
         }
     };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        if (fileInputRef.current) fileInputRef.current.value = '';
+    };
+
+    useEffect(() => {
+        if(showModal === false) {
+            setSelectedImage(null);
+        }
+    }, [showModal]);
 
     return (
         <div
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleDrop}
-            style={{ width: '100%', border: '1px solid #ccc', padding: '10px' }}
+            style={{ width: '100%', border: '1px solid #ccc', padding: '10px', backgroundColor: "white" }}
         >
             <FormControl
+                as="textarea" // FormControl을 textarea로 사용합니다.
                 style={{ flexGrow: 1, marginBottom: '10px' }}
                 value={messageInput}
                 placeholder="메시지를 입력하세요"
                 onChange={(e) => onTextChange(e.target.value)}
+                onKeyPress={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        onSendMessage();
+                    }
+                }}
             />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Button
-                    variant="outline-secondary"
+                <img
+                    src="/image/message/clip.png"
+                    alt="Attach file"
+                    style={{ cursor: 'pointer', width: '24px', height: '24px' }}
                     onClick={() => fileInputRef.current?.click()}
-                >
-                    파일 선택
-                </Button>
+                />
                 <Button
                     variant="primary"
                     onClick={onSendMessage}
@@ -72,9 +90,9 @@ const ImageAndTextInput: React.FC<ImageAndTextInputProps> = ({ messageInput, onI
                     style={{ display: 'none' }}
                 />
             </div>
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>이미지 업로드 확인</Modal.Title>
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton style={{backgroundColor:"#F56084"}}>
+                    <Modal.Title style={{fontWeight:"bold"}}>이미지 업로드 확인</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {selectedImage && (
@@ -86,7 +104,7 @@ const ImageAndTextInput: React.FC<ImageAndTextInputProps> = ({ messageInput, onI
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                    <Button variant="secondary" onClick={handleCloseModal}>
                         취소
                     </Button>
                     <Button variant="primary" onClick={handleImageUpload}>
