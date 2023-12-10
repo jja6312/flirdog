@@ -4,6 +4,7 @@ import StarPoint from "./join/StarPoint";
 import NextBtn from "./NextBtn";
 import ModalDogsInfo from "./ModalDogsInfo";
 import ModalMatchingInfo from "./ModalMatchingInfo";
+import { calculateCoordsDistance, convertAddressToCoords } from "./utils";
 
 const ModalGoMatching = ({
   modalShow,
@@ -19,6 +20,45 @@ const ModalGoMatching = ({
   modalUserInfo,
   modalMatchingTable,
 }) => {
+  const [myAddress, setMyAddress] = useState("");
+  const [yourAddress, setYourAddress] = useState("");
+  const [distance, setDistance] = useState("?");
+
+  useEffect(() => {
+    if (modalMatchingTable[currentDogIndex]) {
+      setYourAddress(modalMatchingTable[currentDogIndex].matchingAddress);
+      console.log("상대방 address");
+      console.log(modalMatchingTable[currentDogIndex].matchingAddress);
+    }
+    // localStorage에서 myAddress 가져오기
+    const LocalStorageAddress = localStorage.getItem("address");
+
+    // myAddress를 JSON 형식으로 파싱하여 address 변수에 저장
+    const addressParsing = JSON.parse(LocalStorageAddress);
+
+    console.log("로컬스토리지 address");
+    console.log(addressParsing.address);
+    setMyAddress(
+      typeof addressParsing.address === "object"
+        ? addressParsing.address.address
+        : addressParsing.address
+    );
+  }, [currentDogIndex, modalMatchingTable]);
+
+  useEffect(() => {
+    if (myAddress && yourAddress) {
+      convertAddressToCoords(myAddress, (coords1) => {
+        convertAddressToCoords(yourAddress, (coords2) => {
+          const distance = calculateCoordsDistance(coords1, coords2);
+          console.log(`두 주소 사이의 거리: ${distance.toFixed(2)} km`);
+          setDistance(distance.toFixed(2));
+        });
+      });
+    } else {
+      setDistance("?");
+    }
+  }, [myAddress, yourAddress, currentDogIndex, modalMatchingTable]);
+
   return (
     <div>
       <Modal
@@ -145,6 +185,12 @@ const ModalGoMatching = ({
                 {modaldogsInfo.length > 0 && (
                   <ModalDogsInfo
                     dog={modaldogsInfo[currentDogIndex]}
+                    distance={distance}
+                    modalMatchingTableAsCurrentIndex={
+                      modalMatchingTable.length > 0 &&
+                      modalMatchingTable[currentDogIndex] &&
+                      modalMatchingTable[currentDogIndex]
+                    }
                   ></ModalDogsInfo>
                 )}
               </div>

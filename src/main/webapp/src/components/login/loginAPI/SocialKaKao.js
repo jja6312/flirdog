@@ -27,7 +27,10 @@ const SocialKakao = () => {
       } else {
         console.error("setUser is not a function");
       }
-      localStorage.setItem("user", JSON.stringify(response.data)); // 로컬 스토리지에 사용자 정보 저장
+      console.log("localStorage");
+      console.log(response.data);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("address", JSON.stringify(response.data.address));
 
       //저장되고나면 순서에 따라 홈으로 이동
       navigate("/");

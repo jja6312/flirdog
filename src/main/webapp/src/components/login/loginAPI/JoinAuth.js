@@ -315,16 +315,9 @@ const JoinAuth = () => {
         .then((res) => {
           setRealImageAiProfile(res.data);
           console.log("JoinAuth.js, 이미지 저장 성공!.");
-
-          Swal.fire({
-            icon: "success",
-            title: "ai 이미지 저장 성공!",
-            showConfirmButton: false,
-            timer: 600,
-          });
         })
         .catch((error) => {
-          Swal.fire("ai 이미지 저장중 중 에러가 발생했습니다.", error.message);
+          Swal.fire("dalle api키를 재발급받으세요.", error.message);
           console.log(error);
         });
     } catch (error) {

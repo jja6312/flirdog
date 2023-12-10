@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import dogsBreed from "./join/dogsBreeds";
 
-const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
+const ModalDogsInfo = ({
+  dog,
+  isSatisfyCondition,
+  distance,
+  modalMatchingTableAsCurrentIndex,
+}) => {
   const [breedText, setBreedText] = useState("");
   const averageScore = Math.ceil(dog.score.averageScore * 100) / 100;
 
@@ -91,7 +96,9 @@ const ModalDogsInfo = ({ dog, isSatisfyCondition }) => {
         style={{ width: "100%" }}
       >
         <span style={{ color: "gray" }}>나와의 거리</span>
-        <span style={{ fontSize: 20 }}>? km</span>
+        <span style={{ fontSize: 20 }}>
+          {modalMatchingTableAsCurrentIndex ? distance : "?"} km
+        </span>
       </div>
     </div>
   );
