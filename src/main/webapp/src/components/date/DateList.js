@@ -50,6 +50,7 @@ const DateList = () => {
   }, [selectedRegion]);
 
   // 전체 목록 조회
+  /*
   useEffect(() => {
     axios
       .get("http://localhost:8080/date/getAllMatchingList")
@@ -61,7 +62,7 @@ const DateList = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, []);*/
 
   // 상위 3개 조회
   useEffect(() => {
@@ -144,6 +145,7 @@ const DateList = () => {
     setModalShow(false);
     setCurrentDogIndex(0);
   };
+
   const submitScore = () => {
     axios
       .post("http://localhost:8080/access/saveDogScore", null, {
@@ -207,7 +209,7 @@ const DateList = () => {
 
           setModalMatchingTable(matchingInfos.map((res) => res.data));
         } catch (err) {
-          console.log("모달 중 매칭데이터 불러오다 에러: " + err);
+          console.log("모달 중 매칭데이터 불러오기 에러: " + err);
         }
       }
     };
@@ -220,6 +222,64 @@ const DateList = () => {
   }, [modalMatchingTable]);
 
   // ModalGoMatching.config.end--------------------------------------------------------
+
+
+  //무한스크롤 관련
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1); // 페이지 번호를 추적하는 state
+  const itemsPerPage = 5; // 한 페이지당 아이템 수
+
+  const handleScroll = () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+  
+    // 로딩 중이 아니면서 스크롤이 하단에 도달하면 데이터 추가로 가져오기
+    if (!loading && scrollTop + clientHeight >= scrollHeight - 10) {
+      loadMoreData();
+    }
+  };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/date/getAllMatchingList?page=1&size=${itemsPerPage}`);
+        setAllMatchingList(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, []); // 최초 렌더링 시에만 실행
+  
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [allMatchingList, loading, page]); // allMatchingList, loading, page가 변경될 때마다 실행
+  
+  const loadMoreData = async () => {
+    if (loading) return;
+  
+    setLoading(true);
+  
+    try {
+      const response = await axios.get(`http://localhost:8080/date/getAllMatchingList?page=${page + 1}&size=${itemsPerPage}`);
+      const newData = response.data;
+  
+      if (newData.length > 0) {
+        setAllMatchingList((prevData) => [...prevData, ...newData]);
+        setPage((prevPage) => prevPage + 1);
+      }
+    } catch (error) {
+      console.error('Error loading more data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return (
     <div>
       <Header></Header>
@@ -401,7 +461,7 @@ const DateList = () => {
                                 score % 1 < 0.5 &&
                                 starIndex === Math.round(score)
                               ) {
-                                starImage = "star0";
+                                starImage = "halfstar";
                               } else {
                                 starImage = "star0";
                               }
@@ -677,21 +737,7 @@ const DateList = () => {
                         className={dateCheck.labelStateClass}
                         htmlFor="checkbox6"
                       >
-                        기다림
-                      </label>
-                      &nbsp;&nbsp;
-                      <input
-                        id="checkbox7"
-                        type="checkbox"
-                        onChange={() =>
-                          handleMatchingStateCheckboxChange("매칭중")
-                        }
-                      />
-                      <label
-                        className={dateCheck.labelStateClass}
-                        htmlFor="checkbox7"
-                      >
-                        매칭중
+                        매칭대기
                       </label>
                       &nbsp;&nbsp;
                       <input
@@ -705,7 +751,7 @@ const DateList = () => {
                         className={dateCheck.labelStateClass}
                         htmlFor="checkbox8"
                       >
-                        완료
+                        매칭완료
                       </label>
                     </div>
                   </div>

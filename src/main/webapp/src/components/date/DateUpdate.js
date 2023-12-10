@@ -362,31 +362,36 @@ const DateUpdate = () => {
   const imgRef = useRef()
 
   const [imgList, setImgList] = useState([imageDTO]) //배열은 []
-  const [imgFiles, setImgFiles] = useState("");
+  const [imgFiles, setImgFiles] = useState([]);
 
   const onCamera = () => {
       imgRef.current.click()
   }
+  console.log('imgFiles:', imgFiles);
 
   const onImgInput = (e) => {
     const imgfiles = Array.from(e.target.files);
     const imgArray = imgfiles.map((item) => URL.createObjectURL(item));
   
     setImgList(imgArray);
+    // 이미지가 교체될 때 ','로 구분된 이미지 배열 초기화
     setImgFiles(imgfiles);
-  
+    setIsMoreThanOneImage([]);
     setImagePrev(imgArray[0]);
   }
 
   useEffect(() => {
-    // setMatchingDTO2 가 되면 image 스트링값에 ','가 있으면 isMoreThanOneImage useState 배열에 저장하기.
-    if (matchingDTO2.image.includes(',')) {
-      setIsMoreThanOneImage(matchingDTO2.image.split(','));
-    } else {
-      // 이미지가 하나인 경우 배열을 초기화
-      setIsMoreThanOneImage([]);
-    }
-  }, [matchingDTO2.image]);
+      // matchingDTO2가 정의되어 있고 image 속성이 있는지 확인
+      if (matchingDTO2 && matchingDTO2.image) {
+          // image 값이 ','로 구분되어 있는지 확인
+          if (matchingDTO2.image.includes(',')) {
+              setIsMoreThanOneImage(matchingDTO2.image.split(','));
+          } else {
+              // 이미지가 하나인 경우 배열을 초기화
+              setIsMoreThanOneImage([]);
+          }
+      }
+  }, [matchingDTO2]);
 
   useEffect(() => {
     //setIsMoreThanOneImage 의 변동사항을 추적
@@ -402,10 +407,6 @@ const DateUpdate = () => {
     setImagePrev(imgList[0]);
   }, [imgList]);
 
-
-
-
-  
   const onUpDateSubmit = (e) => {
     e.preventDefault()
 
@@ -455,22 +456,16 @@ const DateUpdate = () => {
         const formData = new FormData();
         formData.append("matchingDTO2", new Blob([JSON.stringify(matchingDTO2)], {type: 'application/json'}))
 
-        for (var i = 0; i < imgFiles.length; i++) {
-          formData.append("imgFiles", imgFiles[i]);
-        }
+
         if (imgFiles.length === 0) {
-          formData.append("imgFiles", new File([], ""));
-        }
-
-        // Content-Type을 명시적으로 설정
-          const config = {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          };
-
-          // 서버로 POST 요청 보내기
-          axios.post(`/date/dateUpdate`, formData, config)
+            // Content-Type을 명시적으로 설정
+            const config = {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            };
+            
+            axios.post(`/date/dateUpdate2`, formData, config)
             .then((response) => {
               console.log('서버 응답:', response.data);
               Swal.fire({
@@ -491,6 +486,44 @@ const DateUpdate = () => {
                 timer: 1500
               })
             });
+        } else {
+            for (var i = 0; i < imgFiles.length; i++) {
+              formData.append("imgFiles", imgFiles[i]);
+            }
+            if (imgFiles.length === 0) {
+              formData.append("imgFiles", new File([], ""));
+            }
+
+            // Content-Type을 명시적으로 설정
+              const config = {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              };
+
+              // 서버로 POST 요청 보내기
+              axios.post(`/date/dateUpdate`, formData, config)
+                .then((response) => {
+                  console.log('서버 응답:', response.data);
+                  Swal.fire({
+                    icon: 'success',
+                    title: '글 수정 성공!',
+                    text: '매칭 글이 수정되었습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  navigate('/date/dateList')
+                })
+                .catch((error) => {
+                  Swal.fire({
+                    icon: 'error',
+                    title: '글 수정 실패!',
+                    text: '매칭 글 수정에 실패했습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                });
+              }
           }
       }   
 

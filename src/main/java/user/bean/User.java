@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import api.BaseEntity;
 import community.bean.Community;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,7 +39,7 @@ import somoim.bean.Somoim;
                                                                                            // 안끌고와져서 추가.
 public class User extends BaseEntity {
     @Id
-    // @Column(name="user_Id")
+    //@Column(name="user_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
