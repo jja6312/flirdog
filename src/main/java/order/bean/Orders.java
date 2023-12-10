@@ -1,17 +1,28 @@
 package order.bean;
 
-import api.BaseEntity;
-import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import product.bean.Product;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
+import api.BaseEntity;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import product.bean.Product;
+
 
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Orders extends BaseEntity {
@@ -36,6 +47,7 @@ public class Orders extends BaseEntity {
     private OrderType orderType;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 50)  // 12/9 지안수정. 이것때문에 발주확인 등이 먹히지않음.
     private OrderStatus orderStatus;
 
 

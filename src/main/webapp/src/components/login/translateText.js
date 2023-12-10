@@ -9,7 +9,6 @@ const translateText = async (text) => {
 
     const result = response.data.message.result.translatedText;
 
-    alert("result: " + result);
     console.log("translatedText");
     console.log(result);
     return result;

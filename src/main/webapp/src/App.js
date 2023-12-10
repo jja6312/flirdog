@@ -17,7 +17,7 @@ import ProductPopup from "./components/admin/1상품관리/1상품분류정보/P
 import UserListForm from "./components/admin/2회원관리/UserListForm";
 import OrderListForm from "./components/admin/3주문관리/OrderListForm";
 import OrderCheckForm from "./components/admin/3주문관리/OrderCheckForm";
-import OrderShippingForm from "./components/admin/3주문관리/OrderShippingForm";
+import OrderCompletedForm from "./components/admin/3주문관리/OrderCompletedForm";
 import ReviewListForm from "./components/admin/4리뷰관리/ReviewListForm";
 
 import SomoimMain from "./components/somoim/SomoimMain";
@@ -63,6 +63,8 @@ import DogListForm from "./components/admin/2회원관리/DogListForm";
 import DogEditForm from "./components/admin/2회원관리/DogEditForm";
 import MatchingListFormAdmin from "./components/admin/5매칭관리/MatchingListFormAdmin";
 import BoastBoardWrite from "./components/boastBoard/BoastBoardWrite";
+import BoardListForm from "./components/admin/6커뮤니티관리/BoardListForm";
+import SocialKakao from "./components/login/loginAPI/SocialKaKao";
 
 const App = () => {
   return (
@@ -139,9 +141,14 @@ const App = () => {
             </Route>
 
             {/* 자랑게시판 */}
-            <Route path="/boastBoard/boastBoardList" element={<BoastBoardList />} />
-            <Route path="/boastBoard/boastBoardWrite" element={<BoastBoardWrite />} />
-
+            <Route
+              path="/boastBoard/boastBoardList"
+              element={<BoastBoardList />}
+            />
+            <Route
+              path="/boastBoard/boastBoardWrite"
+              element={<BoastBoardWrite />}
+            />
 
             <Route path="/admin" element={<Admin />} />
 
@@ -156,6 +163,7 @@ const App = () => {
 
             <Route path="/login" element={<Login></Login>} />
             <Route path="/login/:showModal" element={<Login></Login>} />
+            <Route path="/login/kakao" element={<SocialKakao />} />
             <Route path="/join/auth" element={<JoinAuth></JoinAuth>} />
             <Route path="/pwdFind" element={<PwdFind></PwdFind>} />
 
@@ -195,8 +203,8 @@ const App = () => {
               element={<OrderCheckForm openLeftside="2" />}
             />
             <Route
-              path="/admin/orderShippingForm"
-              element={<OrderShippingForm openLeftside="2" />}
+              path="/admin/orderCompletedForm"
+              element={<OrderCompletedForm openLeftside="2" />}
             />
             {/* 문의 조회/답변*/}
             <Route
@@ -212,6 +220,10 @@ const App = () => {
             <Route
               path="/admin/matchingListForm"
               element={<MatchingListFormAdmin openLeftside="4" />}
+            />
+            <Route
+              path="/admin/boardListForm"
+              element={<BoardListForm openLeftside="5" />}
             />
 
             <Route path="product">

@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import admin.service.AdminDogService;
+import admin.service.AdminMainService;
 import admin.service.AdminMatchingService;
 import admin.service.AdminOrderService;
 import admin.service.AdminProductService;
@@ -30,6 +31,7 @@ import jakarta.servlet.http.HttpSession;
 import matching.bean.MatchingDTO;
 import order.bean.Orders;
 import product.bean.Product;
+import user.bean.Address;
 import user.bean.DogsInfo;
 import user.bean.User;
 
@@ -51,6 +53,8 @@ public class AdminController {
 	private AdminMatchingService adminMatchingService;
 	@Autowired
 	private AdminUploadService adminUploadService;
+	@Autowired
+	private AdminMainService adminMainService;
 
 	// @GetMapping(path = "testGo")
 	// public String testGo() {
@@ -272,6 +276,50 @@ public class AdminController {
 		return orderList;
 
 	}
+	// 주소가져오기
+	@GetMapping(path = "getAddress")
+	public List<Address> getAddress() {
+		List<Address> addressList = adminMainService.getAddress();
+		
+		return addressList;
+		
+	}
+	// 발주확인
+	@GetMapping(path = "orderCheck")
+	public void orderCheck(@RequestParam String id) {
+		System.out.println("컨트롤러 id: "+id);
+		adminOrderService.orderCheck(id);
+	}
+	// 발주취소
+	@GetMapping(path = "orderCancle")
+	public void orderCancle(@RequestParam String id) {
+		System.out.println("컨트롤러 id: "+id);
+		adminOrderService.orderCancle(id);
+	}
+	// 배송시작
+	@GetMapping(path = "orderCompleted")
+	public void orderCompleted(@RequestParam String id) {
+
+		adminOrderService.orderCompleted(id);
+	}
+	
+	// 발주리스트
+	@GetMapping(path = "getOrderCheckList")
+	public List<Orders> getOrderCheckList() {
+		List<Orders> orderCheckList = adminOrderService.getOrderCheckList();
+
+		return orderCheckList;
+
+	}
+	// 발주리스트
+	@GetMapping(path = "getOrderCompleted")
+	public List<Orders> getOrderCompleted() {
+		List<Orders> orderCompletedList = adminOrderService.getOrderCompleted();
+		
+		return orderCompletedList;
+		
+	}
+	
 	
 	//종인님께5.start----------------------------------------- 
 	@PostMapping(path = "oneFileGo")

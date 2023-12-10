@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styleDesktop from "../../css/main/HeaderCustomNavDropdownElement.module.css";
 import styleMobile from "../../css/main/HeaderCustomNavDropdownElementMobile.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -24,7 +24,7 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
     <>
       <div
         id={styleMobile.categoryDropdown}
-        className={`${styleDesktop.customDropdown} navText mx-2`}
+        className={`${styleDesktop.customDropdown} navText mx-3`}
         ref={dropdownRef}
       >
         <div
@@ -39,27 +39,23 @@ const HeaderCustomNavDropdownElement = ({ theme }) => {
             isOpen ? styleDesktop.customShow : ""
           }`}
         >
-          <a className={styleDesktop.customDropdownItem} href={`${window.location.origin}/mypage/FreeBoard`}>
+          <a
+            className={styleDesktop.customDropdownItem}
+            href={`${window.location.origin}/mypage/FreeBoard`}
+          >
             자유 게시판
-          </a>
-          <a className={styleDesktop.customDropdownItem} href="/boastBoard/BoastBoardList">
-            자랑 게시판
-          </a>
-          <a className={styleDesktop.customDropdownItem} href="#action/3.3">
-            Q&A
           </a>
           <a
             className={styleDesktop.customDropdownItem}
-            href={
-              window.location.pathname !== "/"
-                ? `${window.location.origin}/mypage/MypageMain` // 현재 페이지가 메인페이지가 아닐 경우 절대 경로로 이동
-                : `${window.location.origin}/mypage/MypageMain`
-                //: "mypage/MypageCategoryWrapper" 테스트화면
-            }
+            href="/boastBoard/BoastBoardList"
           >
-            마이페이지
+            자랑 게시판
           </a>
-          <a className={styleDesktop.customDropdownItem} href={`${window.location.origin}/mypage/WeatherAndStroll`}>
+
+          <a
+            className={styleDesktop.customDropdownItem}
+            href={`${window.location.origin}/mypage/WeatherAndStroll`}
+          >
             집사생활
           </a>
         </div>
