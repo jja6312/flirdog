@@ -30,19 +30,21 @@ const ModalGoMatching = ({
       console.log("상대방 address");
       console.log(modalMatchingTable[currentDogIndex].matchingAddress);
     }
-    // localStorage에서 myAddress 가져오기
-    const LocalStorageAddress = localStorage.getItem("address");
+    if (localStorage.getItem("address") !== null) {
+      // localStorage에서 myAddress 가져오기
+      const LocalStorageAddress = localStorage.getItem("address");
 
-    // myAddress를 JSON 형식으로 파싱하여 address 변수에 저장
-    const addressParsing = JSON.parse(LocalStorageAddress);
+      // myAddress를 JSON 형식으로 파싱하여 address 변수에 저장
+      const addressParsing = JSON.parse(LocalStorageAddress);
 
-    console.log("로컬스토리지 address");
-    console.log(addressParsing.address);
-    setMyAddress(
-      typeof addressParsing.address === "object"
-        ? addressParsing.address.address
-        : addressParsing.address
-    );
+      console.log("로컬스토리지 address");
+      console.log(addressParsing.address);
+      setMyAddress(
+        addressParsing && typeof addressParsing.address === "object"
+          ? addressParsing.address.address
+          : addressParsing.address
+      );
+    }
   }, [currentDogIndex, modalMatchingTable]);
 
   useEffect(() => {
