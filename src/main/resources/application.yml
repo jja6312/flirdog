@@ -76,6 +76,14 @@ spring:
       username: user
       password: qwe123!@#
 
+
+---
+
+spring:
+  elasticsearch:
+    rest:
+      uris: http://10.0.3.17:9200
+
 ---
 spring:
   config:

@@ -28,76 +28,76 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 public class ConsumerConfiguration {
-//    @Autowired
-//    private KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry;
-//
-//    @Autowired
-//    private KafkaService kafkaService;
-//
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, SendMessageForm> kafkaListenerContainerFactory() {
-//        ConcurrentKafkaListenerContainerFactory<String, SendMessageForm> kafkaListenerContainerFactory = new ConcurrentKafkaListenerContainerFactory<>();
-//        kafkaListenerContainerFactory.setConsumerFactory(consumerFactory());
-//        return kafkaListenerContainerFactory;
-//    }
-//
-//    private JsonDeserializer<SendMessageForm> getAllTrustJsonDeserializer() {
-//        JsonDeserializer<SendMessageForm> allTrustJsonDeserializer = new JsonDeserializer<>();
-//        allTrustJsonDeserializer.addTrustedPackages("*");
-//        return allTrustJsonDeserializer;
-//    }
-//
-//    private Map<String, Object> consumerConfigurations() {
-//        Map<String, Object> consumerConfigurations =
-//                ImmutableMap.<String, Object>builder()
-//                        .put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.KAFKA_BROKER)
-//                        .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class)
-//                        .put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class)
-//                        .put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, getAllTrustJsonDeserializer())
-//                        .put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
-//                        .put(ConsumerConfig.GROUP_ID_CONFIG, "messageListener")
-//                        .build();
-//        return consumerConfigurations;
-//    }
-//
-//    private ConsumerFactory<String, SendMessageForm> consumerFactory() {
-//        return new DefaultKafkaConsumerFactory<>(consumerConfigurations(), new StringDeserializer(), getAllTrustJsonDeserializer());
-//    }
-//
-//    public void messageConsumerFactory(List<String> topics) {
-//        for (String topic : topics) {
-//            messageConsumerFactory(topic);
-//        }
-//    }
-//
-//    public void messageConsumerFactory(String topic) {
-//        ContainerProperties containerProps = new ContainerProperties(topic);
-//        containerProps.setMessageListener((MessageListener<String, SendMessageForm>) record -> {
-//            kafkaService.broadcastMessage(topic, record.value());
-//        });
-//
-//        ConcurrentMessageListenerContainer<String, SendMessageForm> container =
-//                new ConcurrentMessageListenerContainer<>(consumerFactory(), containerProps);
-//        container.setBeanName("container-" + topic);
-//        container.start();
-//    }
-//
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, MessageRoom> messageRoomKafkaListenerContainerFactory() {
-//        ConcurrentKafkaListenerContainerFactory<String, MessageRoom> factory =
-//                new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(messageRoomConsumerFactory());
-//        return factory;
-//    }
-//
-//    private ConsumerFactory<String, MessageRoom> messageRoomConsumerFactory() {
-//        JsonDeserializer<MessageRoom> jsonDeserializer = new JsonDeserializer<>(MessageRoom.class);
-//        jsonDeserializer.addTrustedPackages("*");
-//
-//        return new DefaultKafkaConsumerFactory<>(
-//                consumerConfigurations(),
-//                new StringDeserializer(),
-//                jsonDeserializer
-//        );
-//    }
+    @Autowired
+    private KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry;
+
+    @Autowired
+    private KafkaService kafkaService;
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, SendMessageForm> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, SendMessageForm> kafkaListenerContainerFactory = new ConcurrentKafkaListenerContainerFactory<>();
+        kafkaListenerContainerFactory.setConsumerFactory(consumerFactory());
+        return kafkaListenerContainerFactory;
+    }
+
+    private JsonDeserializer<SendMessageForm> getAllTrustJsonDeserializer() {
+        JsonDeserializer<SendMessageForm> allTrustJsonDeserializer = new JsonDeserializer<>();
+        allTrustJsonDeserializer.addTrustedPackages("*");
+        return allTrustJsonDeserializer;
+    }
+
+    private Map<String, Object> consumerConfigurations() {
+        Map<String, Object> consumerConfigurations =
+                ImmutableMap.<String, Object>builder()
+                        .put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.KAFKA_BROKER)
+                        .put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class)
+                        .put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class)
+                        .put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, getAllTrustJsonDeserializer())
+                        .put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
+                        .put(ConsumerConfig.GROUP_ID_CONFIG, "messageListener")
+                        .build();
+        return consumerConfigurations;
+    }
+
+    private ConsumerFactory<String, SendMessageForm> consumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigurations(), new StringDeserializer(), getAllTrustJsonDeserializer());
+    }
+
+    public void messageConsumerFactory(List<String> topics) {
+        for (String topic : topics) {
+            messageConsumerFactory(topic);
+        }
+    }
+
+    public void messageConsumerFactory(String topic) {
+        ContainerProperties containerProps = new ContainerProperties(topic);
+        containerProps.setMessageListener((MessageListener<String, SendMessageForm>) record -> {
+            kafkaService.broadcastMessage(topic, record.value());
+        });
+
+        ConcurrentMessageListenerContainer<String, SendMessageForm> container =
+                new ConcurrentMessageListenerContainer<>(consumerFactory(), containerProps);
+        container.setBeanName("container-" + topic);
+        container.start();
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, MessageRoom> messageRoomKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, MessageRoom> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(messageRoomConsumerFactory());
+        return factory;
+    }
+
+    private ConsumerFactory<String, MessageRoom> messageRoomConsumerFactory() {
+        JsonDeserializer<MessageRoom> jsonDeserializer = new JsonDeserializer<>(MessageRoom.class);
+        jsonDeserializer.addTrustedPackages("*");
+
+        return new DefaultKafkaConsumerFactory<>(
+                consumerConfigurations(),
+                new StringDeserializer(),
+                jsonDeserializer
+        );
+    }
 }

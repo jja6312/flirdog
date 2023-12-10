@@ -1,5 +1,8 @@
 package message.service;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import message.bean.JoinUser;
@@ -12,10 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import user.bean.User;
 import user.repository.UserRepository;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,11 +33,25 @@ public class MessageRoomService {
     @Autowired
     private ConsumerConfiguration consumerConfiguration;
 
-    public void createRoom(MessageRoom messageRoom, List<Long> userIds) {
-        messageRoomRepository.save(messageRoom);
-        List<User> users = userRepository.findAllById(userIds);
-        joinRoom(messageRoom, users);
-        consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
+    public void createRoom(String name, Long[] userIds) {
+        if (isExistRoom(name)) {
+            return;
+        }else {
+            MessageRoom messageRoom = MessageRoom.builder()
+                  .name(name)
+                  .build();
+            messageRoomRepository.save(messageRoom);
+            List<User> users = userRepository.findAllById(Arrays.stream(userIds).collect(Collectors.toList()));
+            joinRoom(messageRoom, users);
+            consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
+        }
+    }
+
+    public boolean isExistRoom(String name) {
+        if(messageRoomRepository.countByName(name) == 1) {
+            return true;
+        }
+        return false;
     }
 
     public void joinRoom(MessageRoom messageRoom, List<User> users) {

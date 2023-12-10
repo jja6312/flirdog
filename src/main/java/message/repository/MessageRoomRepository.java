@@ -8,4 +8,6 @@ import java.util.List;
 
 @Repository
 public interface MessageRoomRepository extends JpaRepository<MessageRoom, Long> {
+
+    long countByName(String name);
 }

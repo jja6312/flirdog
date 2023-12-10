@@ -19,8 +19,8 @@ public class KafkaService {
 
     public void send(String topic, SendMessageForm message) {
         message = message.setSendDateToCurrentTime();
-        System.out.println(message);
         try {
+            kafkaTemplate.send("message", message).get(3, TimeUnit.SECONDS);
             kafkaTemplate.send(topic, message).get(3, TimeUnit.SECONDS);
         } catch (ExecutionException e) {
             System.out.println(e);

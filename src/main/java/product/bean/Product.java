@@ -60,5 +60,4 @@ public class Product extends BaseEntity {
                 .image(String.join(",", imgs))
                 .build();
     }
-
 }

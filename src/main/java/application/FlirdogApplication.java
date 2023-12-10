@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "application", "user.*", "product.*", "matching.*", "community.*", "order.*",
-		"payment.*", "admin.*", "s3.*", "ai.*", "somoim.*", "mypage.*", "access.*", "message.*", "webmvc" })
+		"payment.*", "admin.*", "s3.*", "ai.*", "somoim.*", "mypage.*", "access.*", "message.*" })
 @EntityScan({ "user.bean", "product.bean", "matching.bean", "community.bean", "order.bean", "payment.bean", "ai.bean",
 		"somoim.bean", "access.bean" ,"mypage.bean", "message.bean"})
 @EnableJpaRepositories({ "user.repository", "product.repository", "matching.repository", "community.repository",
