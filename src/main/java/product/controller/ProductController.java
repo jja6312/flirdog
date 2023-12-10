@@ -1,18 +1,12 @@
 package product.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import product.bean.Product;
 import product.bean.SubCategory;
 import product.service.ProductSearchService;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -26,13 +20,13 @@ public class ProductController {
 		return productSearchService.getAllProducts();
 	}
 
-	@GetMapping("/searchBySubCategories")
+	@GetMapping(path="searchBySubCategories")
 	public List<Product> searchBySubCategories(@RequestParam List<SubCategory> subCategories) {
 		return productSearchService.getProductsBySubCategories(subCategories);
 	}
 
-	@GetMapping("/getProduct")
-	public Product getProduct(@RequestParam String id) {
+	@GetMapping(path="getProduct")
+	public Product getProduct(@RequestParam Long id) {
 		return productSearchService.getProductById(id).get();
 	}
 }

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.flirdog.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.flirdog.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/flirdog.main.iml" filepath="$PROJECT_DIR$/.idea/modules/flirdog.main.iml" />
     </modules>
   </component>

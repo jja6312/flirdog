@@ -4,53 +4,224 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/InitKafkaService.class.uniqueId1" afterDir="false" />
-
-    <list default="true" id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="">
-
+    <list default="true" id="b276c58a-0a8d-47ec-a986-c943dc70e0e8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.example.flirdog.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/ConsumerConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/config/ConsumerConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/InitKafkaService.class.uniqueId6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JoinUser$JoinUserBuilder.class.uniqueId5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JoinUser.class.uniqueId4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/JoinUserRepository.class.uniqueId3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/KafkaController.class.uniqueId7" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/KafkaController.class.uniqueId2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageController.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoom.class.uniqueId2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoomRepository.class.uniqueId8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoomService.class.uniqueId9" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/MessageRoomService.class.uniqueId3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/config/ConsumerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/config/ConsumerConfiguration.java" afterDir="false" />
-    </list>
-
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/flirdog.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/flirdog.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/flirdog.test.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/controller/MessageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/controller/MessageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/repository/JoinUserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/repository/JoinUserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageRoomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageRoomService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/bean/JoinRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/bean/KakaoUserInfo$KakaoAccount$Profile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/bean/KakaoUserInfo$KakaoAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/bean/KakaoUserInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/bean/TranslateRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/conf/TwilioConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/controller/AccessController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/repository/AccessAddressRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/repository/AccessBragBoardRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/repository/AccessDogsInfoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/repository/AccessMatchingRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/repository/AccessProductRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/repository/AccessRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/service/AccessService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/access/service/AccessServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/conf/HitSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/controller/AdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/repository/AdminAddressRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/repository/AdminDogRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/repository/AdminMatchingRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/repository/AdminOrderRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/repository/AdminProductRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/repository/AdminUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminAddressService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminAddressServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminDogService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminDogServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminMainService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminMainServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminMatchingService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminMatchingServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminOrderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminOrderServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminProductService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminProductServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminUploadService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminUploadServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminUserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/AdminUserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/NCPObjectStorageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/admin/service/ObjectStorageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ai/controller/ChatGPTController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ai/service/ChatGPTService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/api/ApiControllerAdvice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/api/ApiResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/api/BaseEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/api/config/JpaAuditingConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/application/FlirdogApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/application/WebConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/bean/BoardType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/bean/BragBoardCommentDTO$BragBoardCommentDTOBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/bean/BragBoardCommentDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/bean/BragBoardDTO$BragBoardDTOBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/bean/BragBoardDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/bean/Community.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/bean/CommunityComment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/controller/BragCommunityController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/controller/CommunityController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/repository/BoastBoardCommentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/repository/BoastBoardRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/repository/BoastBoardUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/repository/CommunityRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/service/BragBoardService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/service/BragBoardServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/service/BragUserInfoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/community/service/BragUserInfoServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/legacy/user/bean/LegacyUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/bean/Matching$MatchingBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/bean/Matching.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/bean/MatchingDTO$MatchingDTOBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/bean/MatchingDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/bean/MatchingPurpose.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/bean/MatchingState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/controller/MatchingController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/repository/MatchingDTORepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/repository/MatchingRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/repository/MatchingUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/service/DateMatchingService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/service/DateMatchingServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/service/DogsInfoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/service/DogsInfoServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/service/UserInfoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/matching/service/UserInfoServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/JoinUser$JoinUserBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/JoinUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/Message$MessageBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/MessageRoom$MessageRoomBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/MessageRoom.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/SendMessageForm$SendMessageFormBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/bean/SendMessageForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/ConsumerConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/KafkaConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/ProducerConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/RestException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/config/WebSocketConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/controller/KafkaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/controller/MessageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/mongorepository/MessageRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/repository/JoinUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/repository/MessageRoomRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/InitKafkaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/KafkaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageRoomService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/message/service/MessageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/bean/MypageBoardDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/bean/MypageCommentDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/controller/MypageBoardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/controller/MypageCommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/controller/MypageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/controller/MypageUploadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/controller/MypageUploadUserDTOController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageBoardDTORepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageCommentDTORepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageDogsInfoDTORepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageDogsInfoDTOUploadRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageDogsInfoEmailUploadRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypagePointChargingDTORepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypagePointDTORepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageUserDTORepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/repository/MypageUserDTOUploadRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageBoardService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageBoardServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageCommentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageCommentServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageUploadService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageUploadServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageUserDTOUploadService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/mypage/service/MypageUserDTOUploadServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/order/bean/OrderStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/order/bean/OrderType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/order/bean/Orders.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/order/controller/OrderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/order/repository/OrderRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/payment/bean/PointCharging.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/payment/bean/PointChargingDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/payment/controller/PointChargingController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/payment/repository/PointChargingRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/bean/Hit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/bean/MainCategory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/bean/Product$ProductBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/bean/Product.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/bean/SubCategory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/controller/ProductController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/repository/ProductSearchRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/product/service/ProductSearchService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/s3/bean/S3ImgUpload.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/s3/config/NaverConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/s3/controller/S3Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/s3/repository/S3ImgRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/Hit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/Location.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/Somoim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/SomoimList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/SomoimListDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/SomoimListSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/SomoimPhoto$SomoimPhotoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/SomoimPhoto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/SomoimRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/bean/SomoimSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/controller/SomoimController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/repository/SomoimListRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/repository/SomoimPhotoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/repository/SomoimRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/repository/SomoimUserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/service/ObjectStorageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/service/SomoimNCPObjectStorageService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/service/SomoimService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/somoim/service/SomoimServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/Address.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/DogsBreed.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/DogsInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/DogsInfoDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/Popularity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/Score.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/UserDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/UserRole.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/bean/UserSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/controller/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/user/service/UserServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ControllerTestSupport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/IntegrationTestSupport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/admin/controller/AdminControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/admin/service/AdminUploadServiceImplTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/application/FlirdogApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/repository/JoinUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/repository/JoinUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/repository/MessageRoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/repository/MessageRoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/service/MessageRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageRoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/message/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/message/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/FlirdogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/FlirdogApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/product/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/product/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/product/repository/ProductSearchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/product/repository/ProductSearchRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/product/service/ProductSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/product/service/ProductSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
-
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +237,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="flirdog" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -76,183 +252,84 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="TypeScript File" />
-        <option value="JavaScript File" />
-        <option value="TypeScript JSX File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="chat" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.java" root0="SKIP_HIGHLIGHTING" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-websocket/6.0.13/ae627be80eda66e33fa6a9fc1aed97c25d155db9/spring-websocket-6.0.13-sources.jar!/org/springframework/web/socket/config/annotation/WebSocketMessageBrokerConfigurer.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/jbr-17.0.8.1/Contents/Home/lib/src.zip!/java.base/java/io/Serializable.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-        &quot;customColor&quot;: &quot;&quot;,
-        &quot;associatedIndex&quot;: 5
-        }</component>
-  <component name="ProjectId" id="2YG033oAzok8OLhhNY2SaZHwWMn" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2ZMVKizbjvsVdawJCs9IBdMYCLc" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-
-    &quot;git-widget-placeholder&quot;: &quot;featue/product&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/gitworkspace/flirdog/bin/main/static&quot;,
-
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-
-    &quot;git-widget-placeholder&quot;: &quot;feature/product&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-
-    &quot;last_opened_file_path&quot;: &quot;/Users/jongin/gitworkspace/flirdog&quot;,
-
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.50574714&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/jongin/gitworkspace/flirdog/src/main/webapp/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build flirdog.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.FlirdogApplication.executor": "Run",
+    "git-widget-placeholder": "chat2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Administrator/Desktop/git/flirdog/src/main/resources/elastic",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="chatting.service" />
-      <recent name="chatting.ㅠㄷ무" />
-      <recent name="chatting.config" />
-      <recent name="chatting.bean" />
-      <recent name="chatting" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/chatting" />
-      <recent name="F:\gitworkspace\flirdog\bin\main\static" />
-      <recent name="F:\gitworkspace\flirdog\build\resources\main\static\static" />
-      <recent name="F:\gitworkspace\flirdog\src\main\resources\static" />
-      <recent name="F:\gitworkspace\flirdog\src\main\webapp\public" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/src" />
-      <recent name="$PROJECT_DIR$/src/main/java/message/repository" />
-      <recent name="$PROJECT_DIR$/src/main/java/message/service" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/src/components/message" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/src/components" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="message.controller" />
-      <recent name="message.bean" />
-      <recent name="message.repository" />
-      <recent name="chatting.config" />
-      <recent name="chatting.bean" />
+      <recent name="C:\Users\Administrator\Desktop\git\flirdog\src\main\resources\elastic" />
     </key>
   </component>
   <component name="RunManager">
-
-    <configuration name="FlirdogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
-
-    <configuration name="FlirdogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-
-    <configuration name="FlirdogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
-
+    <configuration name="FlirdogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="com.example.flirdog.main" />
+      <module name="flirdog.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="application.FlirdogApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-
-      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
-        <option name="credential" />
-        <option name="region" />
-        <option name="useCurrentConnection" value="false" />
-      </extension>
-
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-
-        <item itemvalue="Spring Boot.FlirdogApplication" />
-
-        <item itemvalue="Spring Boot.FlirdogApplication (1)" />
-
-        <item itemvalue="Spring Boot.FlirdogApplication" />
-
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3a099e90-b9b7-4107-b99e-ae6ff4d938e3" name="Changes" comment="" />
-      <created>1700136410801</created>
+      <changelist id="b276c58a-0a8d-47ec-a986-c943dc70e0e8" name="Changes" comment="" />
+      <created>1702225893808</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1700136410801</updated>
-      <workItem from="1700136411754" duration="2766000" />
-      <workItem from="1700324248015" duration="3199000" />
-      <workItem from="1700443673817" duration="33000" />
-      <workItem from="1700443723952" duration="4330000" />
-      <workItem from="1700619722969" duration="38023000" />
-      <workItem from="1700746138051" duration="11762000" />
-      <workItem from="1700762006944" duration="13000" />
-      <workItem from="1700762037159" duration="3827000" />
-      <workItem from="1700789660044" duration="47470000" />
-
-      <workItem from="1701848984506" duration="3967000" />
-
-      <workItem from="1701911055832" duration="640000" />
-
+      <updated>1702225893808</updated>
+      <workItem from="1702225897831" duration="5411000" />
+      <workItem from="1702231879346" duration="1781000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

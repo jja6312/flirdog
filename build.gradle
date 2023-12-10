@@ -78,9 +78,6 @@ dependencies {
    //healthcheck
    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-   //elasticsearch
-   implementation 'org.springframework.data:spring-data-elasticsearch:4.2.2'
-
    //Twilio SDK 휴대전화 본인 인증-지안
    // implementation 'com.twilio.sdk:twilio:8.8.0'
 

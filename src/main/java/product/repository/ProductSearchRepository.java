@@ -1,22 +1,14 @@
 package product.repository;
 
-import java.util.List;
-import java.util.Optional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.annotations.Query;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import product.bean.Product;
 import product.bean.SubCategory;
 
+import java.util.List;
+
 @Repository
-public interface ProductSearchRepository extends ElasticsearchRepository<Product, String> {
+public interface ProductSearchRepository extends JpaRepository<Product, Long> {
     List<Product> findByName(String name);
-    Optional<Product> findById(String id);
-
-    List<Product> findAll();
-
-    @Query("{\"bool\": {\"must\": [{\"term\": {\"subCategory\": \"?0\"}}]}}")
     List<Product> findBySubCategory(SubCategory subCategory);
 }
