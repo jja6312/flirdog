@@ -1,5 +1,6 @@
 package product.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +29,12 @@ public class ProductSearchService {
         return productSearchRepository.findAll();
     }
 
-    public List<Product> getProductsBySubCategory(List<SubCategory> subCategories) {
-        return productSearchRepository.findBySubCategory(subCategories);
+    public List<Product> getProductsBySubCategories(List<SubCategory> subCategories) {
+        List<Product> result = new ArrayList<>();
+        for (SubCategory subCategory : subCategories) {
+            result.addAll(productSearchRepository.findBySubCategory(subCategory));
+        }
+        return result;
     }
 
     public Optional<Product> getProductById(String id) {

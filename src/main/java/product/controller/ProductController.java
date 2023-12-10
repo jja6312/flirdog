@@ -28,7 +28,7 @@ public class ProductController {
 
 	@GetMapping("/searchBySubCategories")
 	public List<Product> searchBySubCategories(@RequestParam List<SubCategory> subCategories) {
-		return productSearchService.getProductsBySubCategory(subCategories);
+		return productSearchService.getProductsBySubCategories(subCategories);
 	}
 
 	@GetMapping("/getProduct")

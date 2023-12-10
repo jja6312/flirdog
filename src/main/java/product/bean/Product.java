@@ -37,7 +37,7 @@ public class Product extends BaseEntity {
     private SubCategory subCategory;
 
     @Embedded
-    private Hit hit = new Hit(); // 정지안 : 이렇게해야 상품등록시 초기값이 0이되네요
+    private Hit hit = new Hit();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
