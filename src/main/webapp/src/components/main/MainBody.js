@@ -9,6 +9,7 @@ import BestProductMain from "./5인기상품/BestProductMain";
 
 import axios from "axios";
 import Chatting from "../Chatting";
+import { useNavigate } from "react-router-dom";
 
 const MainBody = () => {
   const [userInfoArray, setUserInfoArray] = React.useState([]);
@@ -18,9 +19,44 @@ const MainBody = () => {
   const [isOpenChatting, setIsOpenChatting] = useState(false);
 
   const [selectedRadio, setSelectedRadio] = useState("미모 점수 높은 순");
+  const navigate = useNavigate();
 
-  const openChatting = () => {
+  const openChatting = (e) => {
     setIsOpenChatting(!isOpenChatting);
+
+    // 카카오 로그인으로 진행했을 때
+    const userIdLocal = localStorage.getItem("user");
+    const userIdParsing = JSON.parse(userIdLocal);
+    let userId = userIdParsing.id;
+
+    if (userId === undefined) {
+      // 만약 일반적인 로그인으로 진행했다면 ??
+      userId = userIdParsing.user.id;
+    }
+
+    if (userId === null) {
+      alert("로그인 후 이용해주세요.");
+      navigate("/login");
+      return;
+    }
+
+    const otherUserId = e.currentTarget.id;
+    alert("내 아이디: " + userId);
+    alert("상대 개의 아이디: " + otherUserId);
+
+    axios
+      .post("http://localhost:8080/message/createRoom", null, {
+        params: {
+          userIds: `${userId},${otherUserId}`,
+          name: `1:1채팅방${userId}${otherUserId}`,
+        },
+      })
+      .then((res) => {
+        alert("채팅방 생성 성공! res.data: " + res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   //서버에서 userInfoArray를 가져온다.(communityScore가 높은 순으로 3개)

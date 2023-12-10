@@ -13,7 +13,7 @@ const CommunityWrite = ({ id, title, createdDate, author, imgSrc, number }) => {
           <img
             alt=""
             src={
-              imgSrc.includes(",")
+              imgSrc && imgSrc.includes(",")
                 ? `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${
                     imgSrc.split(",")[0]
                   }`
