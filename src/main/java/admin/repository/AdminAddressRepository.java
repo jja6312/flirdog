@@ -6,4 +6,6 @@ import user.bean.Address;
 
 public interface AdminAddressRepository extends JpaRepository<Address, Long>{
 
+	Address findByUserId(Long id);
+
 }

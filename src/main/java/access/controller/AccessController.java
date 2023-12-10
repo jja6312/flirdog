@@ -1,5 +1,6 @@
 package access.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,6 +27,7 @@ import access.bean.JoinRequestDTO;
 import access.bean.KakaoUserInfo;
 import access.bean.TranslateRequestDTO;
 import access.service.AccessService;
+import admin.service.AdminAddressService;
 import admin.service.AdminUserService;
 import community.bean.BragBoardDTO;
 import jakarta.servlet.http.HttpSession;
@@ -46,6 +48,8 @@ public class AccessController {
     AdminUserService adminUserService;
     @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private AdminAddressService adminAddressService;
 
     @PostMapping("translate")
     public ResponseEntity<String> translate(@RequestBody TranslateRequestDTO requestText) {
@@ -68,16 +72,28 @@ public class AccessController {
     }
 
     @PostMapping(path = "login", produces = "application/json;charset=UTF-8")
-    public ResponseEntity<User> login(@RequestParam String email, @RequestParam String passwd) {
+    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String passwd, HttpSession session) {
+        Optional<User> optionalUser = accessService.login(email, passwd);
 
-        Optional<User> user = accessService.login(email, passwd);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            Address address = adminAddressService.getAddress(user.getId());
+
+            // 세션에 사용자 정보 저장
+            session.setAttribute("user", user);
+            session.setAttribute("address", address);
+
+            // 사용자 정보와 주소 정보를 함께 반환
+            Map<String, Object> response = new HashMap<>();
+            response.put("user", user);
+            response.put("address", address);
+
+            return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
     }
+
     
 
     @PostMapping(path = "getFiveDogsInfo")
@@ -271,17 +287,24 @@ public class AccessController {
 
 
 
- 	 @PostMapping("kakaoAuth")
-     public ResponseEntity<?> handleKakaoToken(@RequestBody Map<String, String> tokenMap, HttpSession session) {
-         String accessToken = tokenMap.get("token");
-         KakaoUserInfo kakaoUserInfo = adminUserService.getKakaoUserInfo(accessToken);
-         User user = adminUserService.processKakaoLogin(kakaoUserInfo);
+ 	@PostMapping("kakaoAuth")
+ 	public ResponseEntity<?> handleKakaoToken(@RequestBody Map<String, String> tokenMap, HttpSession session) {
+ 	    String accessToken = tokenMap.get("token");
+ 	    KakaoUserInfo kakaoUserInfo = adminUserService.getKakaoUserInfo(accessToken);
+ 	    User user = adminUserService.processKakaoLogin(kakaoUserInfo);
+ 	    Address address = adminAddressService.getAddress(user.getId());
 
-         // 세션에 사용자 정보 저장
-         session.setAttribute("user", user);
-         
-         return ResponseEntity.ok(user);
-     }
+ 	    // 세션에 사용자 정보 저장
+ 	    session.setAttribute("user", user);
+ 	    session.setAttribute("address", address);
+
+ 	    // 사용자 정보와 주소 정보를 함께 반환
+ 	    Map<String, Object> response = new HashMap<>();
+ 	    response.put("user", user);
+ 	    response.put("address", address);
+
+ 	    return ResponseEntity.ok(response);
+ 	}
  	 
  	 
  	 //미모 점수 높은 순(베스트플러독) 개 리스트

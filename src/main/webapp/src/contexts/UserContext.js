@@ -53,8 +53,10 @@ const UserProvider = ({ children }) => {
       })
       .then((res) => {
         setUser(res.data);
+        console.log("localStorage");
         console.log(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("address", JSON.stringify(res.data));
 
         navigate("/");
         console.log("user");
