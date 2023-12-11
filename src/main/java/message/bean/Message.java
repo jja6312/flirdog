@@ -1,14 +1,11 @@
 package message.bean;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 
 @Document(collection = "message")
 @Getter
@@ -16,17 +13,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     private Long messageRoomId;
-
     private Long userId;
-
     private String nickName;
-
     private int messageType;
-
     private String content;
 
     private String sendDate;
@@ -34,7 +26,7 @@ public class Message {
     private String profileImage;
 
     @Builder(toBuilder = true)
-    private Message(Long messageRoomId, Long userId, String nickName, int messageType, String content, String sendDate, String profileImage) {
+    private Message(Long messageRoomId, Long userId, String nickName, int messageType, String content, String  sendDate, String profileImage) {
         this.messageRoomId = messageRoomId;
         this.userId = userId;
         this.nickName = nickName;

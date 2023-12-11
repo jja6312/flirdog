@@ -1,5 +1,6 @@
 package message.service;
 
+import access.service.AccessService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import message.bean.JoinUser;
@@ -34,6 +35,9 @@ public class MessageRoomService {
 
     @Autowired
     private ConsumerConfiguration consumerConfiguration;
+
+    @Autowired
+    private AccessService accessService;
 
     public void createRoom(String name, Long[] userIds) {
         if (isExistRoom(name)) {
@@ -101,11 +105,12 @@ public class MessageRoomService {
                             .collect(Collectors.toList());
 
                     User user = users.stream().filter(u -> u.getId() == userId).findFirst().orElse(null);
+                    String userImage = accessService.getDogsInfoArray(""+user.getId()).get().getImageAiProfile();
                     User otherUser = users.stream().filter(u -> u.getId() != userId).findFirst().orElse(null);
+                    String otherUserImage = accessService.getDogsInfoArray(""+otherUser.getId()).get().getImageAiProfile();
 
-                    return new MatchingRoomInfo(messageRoom.getId(), messageRoom.getName(), user, otherUser);
+                    return new MatchingRoomInfo(messageRoom.getId(), messageRoom.getName(), user, userImage, otherUser, otherUserImage);
                 })
                 .collect(Collectors.toList());
     }
-
 }

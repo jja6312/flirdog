@@ -2,7 +2,7 @@ package message.controller;
 
 import lombok.RequiredArgsConstructor;
 import message.bean.MatchingRoomInfo;
-import message.bean.MessageRoom;
+import message.bean.Message;
 import message.service.MessageRoomService;
 import message.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,8 @@ public class MessageController {
 	}
 
 	@GetMapping(path = "getMessages")
-	public void getMessages(@RequestParam Long messageRoomId) {
-		messageService.getMessage(messageRoomId);
+	public List<Message> getMessages(@RequestParam Long messageRoomId) {
+		return messageService.findAllMessagesByRoomId(messageRoomId);
 	}
 
 	@GetMapping(path = "getMessageRooms")

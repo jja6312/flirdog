@@ -10,7 +10,6 @@ import somoim.bean.Somoim;
 import somoim.bean.SomoimList;
 import somoim.bean.SomoimListDTO;
 import somoim.bean.SomoimPhoto;
-import somoim.bean.SomoimPhotoComment;
 import user.bean.DogsInfo;
 import user.bean.User;
 
@@ -41,31 +40,6 @@ public interface SomoimService {
 	public void somoimPhotoUpload(SomoimPhoto somoimPhoto, List<MultipartFile> imgFiles, HttpSession session);
 
 	public List<SomoimPhoto> somoimPhotoList(Long somoimId);
-
-	public void somoimPhotoDelete(Long id, Long userId, Long somoimId);
-
-	public Optional<SomoimPhoto> somoimPhotoCount(Long id);
-
-	public boolean isSomoimPhotoLiked(Long userId, Long photoId);
-
-	public void somoimPhotoLikes(Long userId, Long photoId);
-
-	public void somoimPhotoUnLikes(Long userId, Long photoId);
-
-	public Long somoimPhotoLikeCount(Long photoId);
-
-	public List<SomoimPhoto> somoimPhotoListAll();
-
-	//public void somoimPhotoUpdate(SomoimPhoto pinDetails, List<MultipartFile> imgFiles, HttpSession session);
-	public void somoimPhotoUpdate(SomoimPhoto pinDetails, List<MultipartFile> imgFiles, List<MultipartFile> newImgFiles, HttpSession session);
-	
-	//public void somoimPhotoReply(SomoimPhotoComment comment);
-	public void somoimPhotoReply(String comment, Long userId, Long somoimId, Long photoId);
-
-	public List<SomoimPhotoComment> getSomoimPhotoReply(Long somoimPhotoId);
-
-	public void photoReplyDelete(Long commentId, Long userId);
-
 	
 	
 	//public List<SomoimListDTO> somoimMemberIs(Long id);

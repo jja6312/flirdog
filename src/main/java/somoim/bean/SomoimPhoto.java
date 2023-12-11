@@ -5,7 +5,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import api.BaseEntity;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -15,7 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -64,9 +62,7 @@ public class SomoimPhoto extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "somoim_id", nullable = false)
     private Somoim somoim;
-    
-//	@OneToMany(mappedBy = "somoimPhoto", cascade = CascadeType.ALL)
-//    private List<SomoimPhotoLike> somoimPhotoLike;
+
 	
     @Builder(toBuilder = true)
     private SomoimPhoto(Long id, @NonNull String photoTitle, @NonNull String photoContent,

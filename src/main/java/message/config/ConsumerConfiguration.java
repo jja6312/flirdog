@@ -73,7 +73,7 @@ public class ConsumerConfiguration {
     public void messageConsumerFactory(String topic) {
         ContainerProperties containerProps = new ContainerProperties(topic);
         containerProps.setMessageListener((MessageListener<String, SendMessageForm>) record -> {
-            kafkaService.broadcastMessage(topic, record.value());
+            kafkaService.broadcastMessage("/sub/"+topic, record.value());
         });
 
         ConcurrentMessageListenerContainer<String, SendMessageForm> container =

@@ -17,11 +17,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 		"order.repository", "payment.repository", "admin.repository", "mypage.repository", "somoim.repository", 
 		"access.repository", "message.repository" })
 @EnableJpaAuditing
-@EnableMongoRepositories({ "message.mongorepository"})
+@EnableMongoRepositories(basePackages = "message.mongorepository")
 public class FlirdogApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(FlirdogApplication.class, args);
 	}
-
 }
