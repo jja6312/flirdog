@@ -75,13 +75,23 @@ const MypointRecharge = () => {
   useEffect(
     () => {
       // 로컬스토리지에서 유저 아이디 가져오기
-      const userJsonString = localStorage.getItem("user");
-
+      const userJsonString = localStorage.getItem('user');
+   
       const userObject = JSON.parse(userJsonString);
-      // console.log(userObject);
-      setUserObject(userObject);
-      const userId = userObject.id;
 
+      let userId = null;
+      if(userObject.user){
+          console.log(userObject.user);
+          setUserObject(userObject.user);
+          userId = userObject.user.id;
+          
+
+      }else if(userObject){
+          console.log(userObject);
+          setUserObject(userObject);
+           userId = userObject.id;
+      }
+      
       console.log("userId" + userId);
       // IMP 초기화
       const IMP = window.IMP;
