@@ -239,13 +239,13 @@ const DateList = () => {
   const [uniqueIds, setUniqueIds] = useState([]); // 중복 체크를 위한 state
 
   const handleScroll = () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+  const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
-    // 로딩 중이 아니면서 스크롤이 하단에 도달하면 데이터 추가로 가져오기
-    if (!loading && scrollTop + clientHeight >= scrollHeight - 10) {
-      loadMoreData();
-    }
-  };
+  // 로딩 중이 아니면서 스크롤이 하단에 도달하면 데이터 추가로 가져오기
+  if (!loading && scrollTop + clientHeight >= scrollHeight - 10) {
+    loadMoreData();
+  }
+};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -286,6 +286,8 @@ const DateList = () => {
           page + 1
         }&size=${itemsPerPage}`
       );
+      await new Promise(resolve => setTimeout(resolve, 500)); // 1초 지연, 필요에 따라 조절 가능
+
       const newData = response.data;
 
       // 중복된 id를 필터링하여 유일한 id 배열에 추가

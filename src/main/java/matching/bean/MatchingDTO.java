@@ -36,11 +36,11 @@ public class MatchingDTO extends BaseEntity {
 
     @Column(name = "content", length = 500)
     private String content;
-
-    @Column(name = "image", length = 500)
-    private String image;
-
-    @Column(name = "dogName", length = 30)
+	
+	@Column(name="image", length=500)
+	private String image;
+    
+	@Column(name="dogName", length=30)
     private String dogName;
 
     @Column(name = "dogAge", length = 20)

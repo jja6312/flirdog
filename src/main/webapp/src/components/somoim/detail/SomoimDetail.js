@@ -27,7 +27,7 @@ const SomoimDetail = () => {
     //const [somoimIdState, setSomoimId] = useState('1');
     const [isAdmin, setIsAdmin] = useState();
     const [somoimJoin, setSomoimJoin] = useState({});
-
+    const [formattedPhone, setFormattedPhone] = useState('');
     const { user } = useContext(UserContext); // 유저 컨텍스트
 
     console.log('state에 전달된 user 정보만 찍어보기 : ' + (user ? user.id : 'User 정보 없음'));
@@ -54,6 +54,7 @@ const SomoimDetail = () => {
         }
         isJoin();
     },[somoimId])
+
 
 
     // 가입 여부 확인 및 초기 데이터 로딩

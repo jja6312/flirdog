@@ -32,6 +32,8 @@ const UserProvider = ({ children }) => {
         // JSON.parse가 정상적으로 되었을 때만 setUser 호출
         if (parsedUser && parsedUser.id) {
           setUser(parsedUser);
+        }else if(parsedUser.user && parsedUser.user.id){
+          setUser(parsedUser.user);
         }
       } catch (error) {
         console.error("Error parsing stored user data:", error);
