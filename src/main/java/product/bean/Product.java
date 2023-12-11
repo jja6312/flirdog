@@ -37,10 +37,7 @@ public class Product extends BaseEntity {
     private SubCategory subCategory;
 
     @Embedded
-    private Hit hit = new Hit(); // 정지안 : 이렇게해야 상품등록시 초기값이 0이되네요
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductComment> productComments;
+    private Hit hit = new Hit();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
@@ -63,5 +60,4 @@ public class Product extends BaseEntity {
                 .image(String.join(",", imgs))
                 .build();
     }
-
 }

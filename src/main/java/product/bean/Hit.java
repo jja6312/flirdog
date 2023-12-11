@@ -1,8 +1,7 @@
 package product.bean;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import admin.conf.HitSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

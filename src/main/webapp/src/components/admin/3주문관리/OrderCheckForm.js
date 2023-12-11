@@ -11,7 +11,7 @@ const OrderCheckForm = ({ openLeftside }) => {
   const [orderCheckList, setOrderCheckList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/admin/getOrderCheckList").then((res) => {
+    axios.get("https://java.flirdog.store:8080/admin/getOrderCheckList").then((res) => {
       setOrderCheckList(res.data);
       console.log("orderCheckList");
       console.log(res.data);

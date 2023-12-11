@@ -5,19 +5,13 @@ import message.bean.MessageRoom;
 import message.bean.SendMessageForm;
 import message.config.ConsumerConfiguration;
 import message.service.KafkaService;
-import message.service.MessageRoomService;
-import message.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,8 +28,8 @@ public class KafkaController {
 		kafkaService.send(topic, message);
 	}
 
-	@KafkaListener(id = "newRoomEventListener", topics = "newRoom", containerFactory = "kafkaListenerContainerFactory")
+	@KafkaListener(id = "newRoomEventListener", topics = "flirdog.new_room.newRoom", containerFactory = "kafkaListenerContainerFactory")
 	public void listen(@Payload MessageRoom messageRoom) throws Exception{
-		//consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
+		consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
 	}
 }

@@ -46,8 +46,8 @@ const PetAiImage = ({
         imageUrl: aiDogProfileImgUrl,
         // imageUrl: "https://i.ibb.co/0jZQY5q/ai-dog-profile.png",
         link: {
-          mobileWebUrl: "http://localhost:3000/join/auth",
-          webUrl: "http://localhost:3000/join/auth",
+          mobileWebUrl: "https://java.flirdog.store:8080:3000/join/auth",
+          webUrl: "https://java.flirdog.store:8080:3000/join/auth",
         },
       },
     });

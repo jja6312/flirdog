@@ -1,49 +1,51 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Accordion from "react-bootstrap/Accordion";
 import styles from "../css/chatting.module.css";
 import ChattingGroupBox from "./ChattingGroupBox";
+import axios from "axios";
 
-const Chatting = ({ isOpenChatting }) => {
+const Chatting = ({ isOpenChatting, userId, setIsOpenChatting }) => {
+  const [messageRooms, setMessageRooms] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://java.flirdog.store:8080/message/getMessageRooms", {params: { userId }})
+        .then((res) => {
+          console.log(userId)
+          console.log(res.data)
+          setMessageRooms(res.data);
+        }). catch((error) => {
+      console.log(error);
+    });
+  }, [userId]);
+
+  const toggleChatting = () => {
+    setIsOpenChatting(!isOpenChatting);
+  };
+
   return (
-    <div className={styles.chattingContainer}>
+    <div className={styles.chattingContainer} >
       <Accordion activeKey={isOpenChatting ? "0" : ""}>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>채팅</Accordion.Header>
+          <Accordion.Header onClick={toggleChatting}>채팅</Accordion.Header>
           <Accordion.Body style={{ padding: 0 }}>
             <div className={`${styles.chattingContentContainer} d-flex`}>
               <div
                 className={`${styles.chattingContentElementLeft} d-flex justify-content-start align-items-start flex-column`}
               >
-                <ChattingGroupBox
-                  id="1"
-                  title="(클라우드)정지안"
-                  content="버거킹가실분?"
-                ></ChattingGroupBox>
-                <ChattingGroupBox
-                  id="2"
-                  title="(클라우드)김찬영"
-                  content="버거킹가실분?"
-                ></ChattingGroupBox>
-                <ChattingGroupBox
-                  id="3"
-                  title="(클라우드)최병권"
-                  content="버거킹가실분?"
-                ></ChattingGroupBox>
-                <ChattingGroupBox
-                  id="4"
-                  title="(클라우드)김현성"
-                  content="버거킹가실분?"
-                ></ChattingGroupBox>
-                <ChattingGroupBox
-                  id="5"
-                  title="(클라우드)장종인"
-                  content="버거킹가실분?"
-                ></ChattingGroupBox>
-                <ChattingGroupBox
-                  id="6"
-                  title="(클라우드)박기훈"
-                  content="버거킹가실분?"
-                ></ChattingGroupBox>
+                {
+                  messageRooms && (
+                      messageRooms.map((room) => {
+                          return (
+                              <ChattingGroupBox
+                                  key={room.id}
+                                  id={room.id}
+                                  title={room.name}
+                                  image={room.image || "null"}
+                              />
+                          )
+                      })
+                    )
+                }
               </div>
               <div
                 className={`${styles.chattingContentElementRight} d-flex justify-content-start align-items-start`}

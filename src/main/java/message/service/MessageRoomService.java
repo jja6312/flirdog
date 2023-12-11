@@ -3,6 +3,7 @@ package message.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import message.bean.JoinUser;
+import message.bean.MatchingRoomInfo;
 import message.bean.MessageRoom;
 import message.config.ConsumerConfiguration;
 import message.repository.JoinUserRepository;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import user.bean.User;
 import user.repository.UserRepository;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,11 +35,25 @@ public class MessageRoomService {
     @Autowired
     private ConsumerConfiguration consumerConfiguration;
 
-    public void createRoom(MessageRoom messageRoom, List<Long> userIds) {
-        messageRoomRepository.save(messageRoom);
-        List<User> users = userRepository.findAllById(userIds);
-        joinRoom(messageRoom, users);
-        //consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
+    public void createRoom(String name, Long[] userIds) {
+        if (isExistRoom(name)) {
+            return;
+        }else {
+            MessageRoom messageRoom = MessageRoom.builder()
+                  .name(name)
+                  .build();
+            messageRoomRepository.save(messageRoom);
+            List<User> users = userRepository.findAllById(Arrays.stream(userIds).collect(Collectors.toList()));
+            joinRoom(messageRoom, users);
+            consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
+        }
+    }
+
+    public boolean isExistRoom(String name) {
+        if(messageRoomRepository.countByName(name) == 1) {
+            return true;
+        }
+        return false;
     }
 
     public void joinRoom(MessageRoom messageRoom, List<User> users) {
@@ -76,9 +91,21 @@ public class MessageRoomService {
     }
 
 
-    public List<MessageRoom> getMessageRooms(Long userId) {
-        return joinUserRepository.findByUserId(userId).stream()
-                .map(JoinUser::getMessageRoom)
+    public List<MatchingRoomInfo> getMessageRoomsByUserId(Long userId) {
+        List<JoinUser> joinUsers = joinUserRepository.findByUserId(userId);
+        return joinUsers.stream()
+                .map(joinUser -> {
+                    MessageRoom messageRoom = joinUser.getMessageRoom();
+                    List<User> users = joinUser.getMessageRoom().getJoinUsers().stream()
+                            .map(JoinUser::getUser)
+                            .collect(Collectors.toList());
+
+                    User user = users.stream().filter(u -> u.getId() == userId).findFirst().orElse(null);
+                    User otherUser = users.stream().filter(u -> u.getId() != userId).findFirst().orElse(null);
+
+                    return new MatchingRoomInfo(messageRoom.getId(), messageRoom.getName(), user, otherUser);
+                })
                 .collect(Collectors.toList());
     }
+
 }

@@ -63,11 +63,11 @@ const DateReadMore = () => {
     const fetchData = async () => {
         try {
             if (seq) {
-                const res = await axios.get(`http://localhost:8080/date/dateReadMore?seq=${seq}`);
+                const res = await axios.get(`https://java.flirdog.store:8080/date/dateReadMore?seq=${seq}`);
                 console.log(res.data);
 
               
-                const userRes = await axios.get(`http://localhost:8080/date/getUser?id=${res.data.userId}`);
+                const userRes = await axios.get(`https://java.flirdog.store:8080/date/getUser?id=${res.data.userId}`);
                 console.log(userRes.data);
 
                 setUserDTO(prevUserDTO => ({
@@ -194,7 +194,7 @@ const DateReadMore = () => {
             // result.value가 true면 확인 버튼이 눌림, false면 취소 버튼이 눌림
             if (result.value) {
               axios
-              .delete(`http://localhost:8080/date/dateDelete?seq=${seq}`)
+              .delete(`https://java.flirdog.store:8080/date/dateDelete?seq=${seq}`)
               .then((res) => {
                   Swal.fire({
                     icon: "success",

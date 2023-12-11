@@ -59,7 +59,7 @@ const UserListForm = ({ openLeftside }) => {
       if (result.isConfirmed) {
         axios
           .post(
-            `http://localhost:8080/admin/userDeleteSelected?userId=${checkUser}`
+            `https://java.flirdog.store:8080/admin/userDeleteSelected?userId=${checkUser}`
           )
           .then(() => {
             //삭제 후 새로고침
@@ -78,7 +78,7 @@ const UserListForm = ({ openLeftside }) => {
     setIsLoading(true);
 
     axios
-      .get("http://localhost:8080/admin/getUserList")
+      .get("https://java.flirdog.store:8080/admin/getUserList")
       .then((res) => {
         console.log(res.data);
 

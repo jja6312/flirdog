@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../css/chatting.module.css";
 
-const ChattingGroupBox = ({ id, title, content }) => {
+const ChattingGroupBox = ({ id, title, image }) => {
   return (
     <>
       <div
@@ -9,14 +9,13 @@ const ChattingGroupBox = ({ id, title, content }) => {
       >
         <img
           className={`${styles.groupChatImage}`}
-          src="/image/nullImage/nullImage2.png"
+          src={image === "null" ? "/image/nullImage/nullImage2.png" : "/image/nullImage/nullImage2.png"}
           alt="nullImage"
         ></img>
         <div
           className={`${styles.groupChatInfoDiv} d-flex justify-content-center align-items-start flex-column`}
         >
           <span>{title}</span>
-          <span className={styles.groupChatContentSpan}>{content}</span>
         </div>
       </div>
     </>

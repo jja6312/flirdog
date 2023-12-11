@@ -1,6 +1,7 @@
 package message.controller;
 
 import lombok.RequiredArgsConstructor;
+import message.bean.MatchingRoomInfo;
 import message.bean.MessageRoom;
 import message.service.MessageRoomService;
 import message.service.MessageService;
@@ -22,11 +23,7 @@ public class MessageController {
 
 	@PostMapping(path = "createRoom")
 	public void createRoom(@RequestParam Long[] userIds, @RequestParam String name) {
-		System.out.println("###값들어왔니?");
-		System.out.println(userIds[0]);
-		System.out.println(userIds[1]);
-		System.out.println(name);
-		// messageRoomService.createRoom(messageRoom, userIds);
+		messageRoomService.createRoom(name, userIds);
 	}
 
 	@PostMapping(path = "exitRoom")
@@ -45,7 +42,7 @@ public class MessageController {
 	}
 
 	@GetMapping(path = "getMessageRooms")
-	public void getMessageRooms(@RequestParam Long userId) {
-		messageRoomService.getMessageRooms(userId);
+	public List<MatchingRoomInfo> getMessageRooms(@RequestParam Long userId) {
+		return messageRoomService.getMessageRoomsByUserId(userId);
 	}
 }

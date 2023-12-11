@@ -85,7 +85,7 @@ const MyprofileUpdate = () => {
             setUserObject(userObject);
             const userId = userObject.id;
 
-            axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
+            axios.get(`https://java.flirdog.store:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
             .then((res) => {
                 //alert('성공')
                 console.log(res.data);

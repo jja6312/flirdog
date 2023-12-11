@@ -26,7 +26,7 @@ const BoastBoardList = () => {
     // 전체 목록 조회
     useEffect(() => {
         axios
-        .get("http://localhost:8080/boastBoard/getBoastBoardList")
+        .get("https://java.flirdog.store:8080/boastBoard/getBoastBoardList")
         .then((res) => {
             console.log(res.data);
             setBoardDTOList(res.data);
@@ -59,7 +59,7 @@ const BoastBoardList = () => {
         const fetchData = async () => {
           try {
             // 검색어와 검색값이 주어졌을 때 서버에 요청을 보내어 데이터를 가져옵니다.
-            const response = await axios.get(`http://localhost:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
+            const response = await axios.get(`https://java.flirdog.store:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
             setBoardDTOList(response.data);
           } catch (error) {
             console.error('Error fetching data:', error);
@@ -79,7 +79,7 @@ const BoastBoardList = () => {
       }, []); // searchValue 또는 inputValue가 변경될 때마다 실행*/
       const fetchData = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
+          const response = await axios.get(`https://java.flirdog.store:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
           setBoardDTOList(response.data);
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -130,7 +130,7 @@ const BoastBoardList = () => {
             console.log("검색어:", inputValue);
         
             // Axios를 사용하여 서버에 검색 요청을 보냅니다.
-            const response = await axios.get(`http://localhost:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
+            const response = await axios.get(`https://java.flirdog.store:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
         
             // 검색 결과를 state에 저장합니다.
             setBoardDTOList(response.data);
