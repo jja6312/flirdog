@@ -11,6 +11,8 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { UserContext } from '../../contexts/UserContext';
 import dogsBreedObject from "../login/join/dogsBreeds";
+import Swal from 'sweetalert2';
+import DateMessageRoom from './DateMessageRoom';
 
 const DateReadMore = () => {
   const { user } = useContext(UserContext); // 유저 컨텍스트
@@ -129,16 +131,24 @@ const DateReadMore = () => {
   //날짜 표현
   const createdAtDate =moment(matchingDTO.createdAt).format('YYYY-MM-DD');
   const createdAtTime =moment(matchingDTO.createdAt).format('HH:mm');
+
   
   console.log(createdAtDate);
 
   const navigate = useNavigate();
   
-  const onUploadSubmit = (e) => {
-    e.preventDefault()
+  //채팅관련
+  const [showMessageRoomModal, setShowMessageRoomModal] = useState(false);
 
-    navigate('/date/dateList')
-  }
+  const onFlirting = () => {
+    setShowMessageRoomModal(true);
+  };
+
+  const onHideMessageRoomModal = () => {
+    setShowMessageRoomModal(false);
+  };
+
+
 
   const onBack = () => {
     window.scrollTo(0, 0);
@@ -172,6 +182,39 @@ const DateReadMore = () => {
     console.log('isMoreThanOneImage:', isMoreThanOneImage);
   }, [isMoreThanOneImage]);
 
+  const onDelete = () => {
+      Swal.fire({
+        icon: "error",
+        title: "정말 삭제하시겠습니까?",
+        text: false,
+        showConfirmButton: true,
+        showCancelButton: true, // 추가된 옵션
+        timer: false,
+        }).then((result) => {
+            // result.value가 true면 확인 버튼이 눌림, false면 취소 버튼이 눌림
+            if (result.value) {
+              axios
+              .delete(`http://localhost:8080/date/dateDelete?seq=${seq}`)
+              .then((res) => {
+                  Swal.fire({
+                    icon: "success",
+                    title: "삭제 되었습니다.",
+                    text: false,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                navigate(`/date/dateList`);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+            } else {
+                // 사용자가 취소 버튼을 눌렀을 때 실행할 코드
+                // 이 부분은 비워두거나 필요한 작업을 추가하세요.
+            }
+    });
+
+  }
 
     return (
         <div>
@@ -365,7 +408,7 @@ const DateReadMore = () => {
                                               } else if (score % 1 > 0 && score % 1 <= 0.5 && starIndex === Math.round(score)) {
                                                 starImage = 'halfstar';
                                               } else if (score % 1 > 0 && score % 1 < 0.5 && starIndex === Math.round(score)) {
-                                                starImage = 'star0';
+                                                starImage = 'halfstar';
                                               } else {
                                                 starImage = 'star0';
                                               }
@@ -577,6 +620,11 @@ const DateReadMore = () => {
                     background:'white',
                     paddingBottom:'2%',
                   }}>
+                    {showMessageRoomModal && (
+                      <DateMessageRoom userId={1} topic={"messageRoom1"} nickName={"Jongin"} roomNo={1}  profileImage={"null"}
+                        onHide={onHideMessageRoomModal}
+                      />
+                    )}
                   <Button variant="primary" type="submit"
                     style={{
                       borderColor:'#F56084',
@@ -584,28 +632,44 @@ const DateReadMore = () => {
                       fontSize:'1.5em',
                       backgroundColor:'#F56084',
                       borderRadius:'10px',
-                      width:'40%',
-                      marginRight:'5%',
+                      width:'30%',
+                      marginRight:'3%',
                       height:'70px',
                       boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)', /* 그림자 효과 설정 */
                       }}
-                      onClick={ onUploadSubmit }>
+                      onClick={ onFlirting }>
                       <img src='/image/date/chat.png' alt="chat" style={{width:50, height:50,
                       }}/>&nbsp;&nbsp;플러팅 하러가기&nbsp;&nbsp;&nbsp;&nbsp;
                     </Button>
-                    
-                    <Button
+                    {shouldHideLink ? null : (
+                    <Button variant="primary" type="submit"
                     style={{
-                      borderColor:'lightgray',
+                      borderColor:'#F56084',
                       fontWeight:'bold',
                       fontSize:'1.5em',
-                      backgroundColor:'lightgray',
+                      backgroundColor:'#F56084',
                       borderRadius:'10px',
-                      width:'40%',
+                      width:'20%',
+                      marginRight:'3%',
                       height:'70px',
                       boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)', /* 그림자 효과 설정 */
                       }}
-                      onClick={ onBack }>
+                      onClick={ onDelete }>
+                     글 삭제
+                    </Button>
+                    )}
+                    <Button
+                      style={{
+                        borderColor:'lightgray',
+                        fontWeight:'bold',
+                        fontSize:'1.5em',
+                        backgroundColor:'lightgray',
+                        borderRadius:'10px',
+                        width:'30%',
+                        height:'70px',
+                        boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)', /* 그림자 효과 설정 */
+                        }}
+                        onClick={ onBack }>
                      <img src='/image/date/text.png' alt="text" style={{width:50, height:50}} />&nbsp;&nbsp;목록으로&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                   </div>
                   </div>

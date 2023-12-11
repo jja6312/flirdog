@@ -73,7 +73,7 @@ public class BragBoardServiceImpl implements BragBoardService {
 		}
 		
 		// MatchingDTO에서 communityScore 업데이트
-	    int additionalCommunityScore = 20; // 필요에 따라 값을 조절할 수 있습니다.
+	    int additionalCommunityScore = 5; // 필요에 따라 값을 조절할 수 있습니다.
 		
 	    // User 엔티티에서 communityScore 업데이트
 	    Long userId = boardWriteDTO.getUserId();
@@ -141,15 +141,26 @@ public class BragBoardServiceImpl implements BragBoardService {
 	            .build();
 
 	    boastBoardCommentRepository.save(newComment);
-
+	    
+	    int additionalCommunityScore = 1; // 필요에 따라 값을 조절할 수 있습니다.
 	    // 해당 게시글의 commentCount 증가 및 저장
 	    Long boardId = bragBoardCommentDTO.getBoardId();
+	    
 	    BragBoardDTO bragBoardDTO = boastBoardRepository.findById(boardId)
 	            .orElseThrow(() -> new RuntimeException("해당 글을 찾을 수 없습니다. " + boardId));
+	    
+	    Long userId = newComment.getUserId();
+	    User user = boastBoardUserRepository.findById(userId)
+	    			.orElseThrow(() -> new RuntimeException("ID에 해당하는 사용자를 찾을 수 없습니다: " + userId));
+	    int userCommunityScore  = user.getCommunityScore() + additionalCommunityScore;
+	    
+	    user.setCommunityScore(userCommunityScore);
+	    
 	    
 	    // commentCount를 1 증가시키고 저장
 	    int commentCount = bragBoardDTO.getCommentCount();
 	    bragBoardDTO.setCommentCount(commentCount + 1);
+	    boastBoardUserRepository.save(user);
 	    boastBoardRepository.save(bragBoardDTO);
 	}
 	
@@ -189,4 +200,27 @@ public class BragBoardServiceImpl implements BragBoardService {
 		boastBoardRepository.deleteById(boardId);
 		boastBoardCommentRepository.deleteByBoardId(boardId);
 	}
+
+	@Override
+	public List<BragBoardDTO> getSearchBoastBoardList(String searchValue, String inputValue) {
+		List<BragBoardDTO> bragBoardDTOList;
+
+	    if ("all".equals(searchValue)) {
+	        // 'all'이면 모든 게시물을 가져오도록 설정
+	        bragBoardDTOList = boastBoardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+	    } else if ("content".equals(searchValue)) {
+	        // 'content'면 content 값으로 검색하고 id로 정렬
+	        bragBoardDTOList = boastBoardRepository.findByContentContainingOrderByIdDesc(inputValue);
+	    } else if ("title".equals(searchValue)) {
+	        // 'title'이면 title 값으로 검색하고 id로 정렬
+	        bragBoardDTOList = boastBoardRepository.findByTitleContainingOrderByIdDesc(inputValue);
+	    } else {
+	        // 그 외의 경우에는 모든 게시물을 가져오도록 설정
+	        bragBoardDTOList = boastBoardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+	    }
+
+        return bragBoardDTOList;
+	}
+	
+	
 }

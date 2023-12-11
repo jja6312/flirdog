@@ -80,18 +80,15 @@ const LogoutDropdown = ({ myDogsInfo, storedUser }) => {
           >
             로그아웃
           </a>
-          {(storedUser && storedUser.id && storedUser.userRole === "ADMIN") ||
-            (storedUser &&
-              storedUser.user &&
-              storedUser.user.id &&
-              storedUser.user.userRole === "ADMIN" && (
-                <a
-                  className={styleDesktop.customDropdownItem}
-                  href={`${window.location.origin}/admin`}
-                >
-                  관리자페이지
-                </a>
-              ))}
+          {storedUser?.userRole === "ADMIN" ||
+          storedUser?.user?.userRole === "ADMIN" ? (
+            <a
+              className={styleDesktop.customDropdownItem}
+              href={`${window.location.origin}/admin`}
+            >
+              관리자페이지
+            </a>
+          ) : null}
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,11 +107,20 @@ public class MatchingController {
 	}
 	
 	//전체 리스트 조회
+	/*
 	@GetMapping(path="getAllMatchingList", produces = "application/json;charset=UTF-8")
 	public List<MatchingDTO> getAllMatchingList() {
 		List<MatchingDTO> matchingList = dateMatchingService.getAllMatchingList();
 		
 		return matchingList;
+	}*/
+	
+	@GetMapping(path = "getAllMatchingList", produces = "application/json;charset=UTF-8")
+	public List<MatchingDTO> getAllMatchingList(@RequestParam(defaultValue = "1") int page,
+												@RequestParam(defaultValue = "5") int size) {
+	    List<MatchingDTO> matchingList = dateMatchingService.getAllMatchingList(page, size);
+
+	    return matchingList;
 	}
 	
 	//상세보기
@@ -129,10 +139,24 @@ public class MatchingController {
 		dateMatchingService.dateUpdate(matchingDTO, imgFiles, session);
 	}
 	
+	@PostMapping(path="dateUpdate2")
+	public void dateUpdate2(@RequestPart("matchingDTO2") MatchingDTO matchingDTO,
+						   HttpSession session) {
+		dateMatchingService.dateUpdate2(matchingDTO, session);
+	}
+	
 	//상위 인기애견 3마리 출력
 	@GetMapping(path="getTopMatchingThree", produces = "application/json;charset=UTF-8")
 	public List<MatchingDTO> getTopMatchingThree() {
 		List<MatchingDTO> matchingList = dateMatchingService.getTopMatchingThree();
 		return matchingList;
+	}
+	
+	//상세보기
+	@DeleteMapping(path="dateDelete")
+	public Optional<MatchingDTO> dateDelete(@RequestParam("seq") String id) {
+		System.out.println("상세보기 드가자");
+		System.out.println(id);
+		return dateMatchingService.dateDelete(id);
 	}
 }

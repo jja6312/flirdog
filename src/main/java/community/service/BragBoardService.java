@@ -25,4 +25,6 @@ public interface BragBoardService {
 
 	public void getBoastBoardDelete(Long boardId);
 
+	public List<BragBoardDTO> getSearchBoastBoardList(String searchValue, String inputValue);
+
 }
