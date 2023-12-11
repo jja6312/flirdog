@@ -72,7 +72,7 @@ const DateList = () => {
       .then((res) => {
         console.log("주소");
         console.log(res.data);
-        alert(res.data);
+
         setTopMatchingList(res.data);
       })
       .catch((error) => {
@@ -236,6 +236,7 @@ const DateList = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1); // 페이지 번호를 추적하는 state
   const itemsPerPage = 5; // 한 페이지당 아이템 수
+  const [uniqueIds, setUniqueIds] = useState([]); // 중복 체크를 위한 state
 
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
@@ -252,7 +253,12 @@ const DateList = () => {
         const response = await axios.get(
           `http://localhost:8080/date/getAllMatchingList?page=1&size=${itemsPerPage}`
         );
-        setAllMatchingList(response.data);
+        const initialData = response.data;
+
+        // 초기 데이터의 id들을 유일한 id 배열에 추가
+        setUniqueIds(initialData.map((item) => item.id));
+
+        setAllMatchingList(initialData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -282,9 +288,20 @@ const DateList = () => {
       );
       const newData = response.data;
 
-      if (newData.length > 0) {
-        setAllMatchingList((prevData) => [...prevData, ...newData]);
+      // 중복된 id를 필터링하여 유일한 id 배열에 추가
+      const uniqueNewData = newData.filter(
+        (item) => !uniqueIds.includes(item.id)
+      );
+
+      if (uniqueNewData.length > 0) {
+        setAllMatchingList((prevData) => [...prevData, ...uniqueNewData]);
         setPage((prevPage) => prevPage + 1);
+
+        // 중복된 id를 유일한 id 배열에 추가
+        setUniqueIds((prevIds) => [
+          ...prevIds,
+          ...uniqueNewData.map((item) => item.id),
+        ]);
       }
     } catch (error) {
       console.error("Error loading more data:", error);
