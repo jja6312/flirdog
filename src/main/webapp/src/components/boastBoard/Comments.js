@@ -21,7 +21,7 @@ const Comments = ({getBoardDTO}) => {
         // boardDTO에 있는 id 값을 사용하여 해당 게시글의 댓글을 가져오기
         if (commmetList) {
             axios
-                .get(`http://localhost:8080/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`)
+                .get(`https://java.flirdog.store:8080/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`)
                 .then((res) => {
                     console.log(res.data);
                     setCommmetList(res.data);
@@ -42,7 +42,7 @@ const Comments = ({getBoardDTO}) => {
             console.log(id); // ----3
         }
 
-        axios.get(`http://localhost:8080/boastBoard/getUser?id=${id}`)
+        axios.get(`https://java.flirdog.store:8080/boastBoard/getUser?id=${id}`)
         .then((res) => {
             console.log(res.data);
             setLoginUser(res.data);

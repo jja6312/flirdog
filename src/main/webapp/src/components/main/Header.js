@@ -25,7 +25,7 @@ const Header = () => {
           setStoredUser(parsedUser);
           console.log("parsedUser:", parsedUser);
           axios
-            .post("http://localhost:8080/access/getDogsInfoArray", null, {
+            .post("https://java.flirdog.store:8080/access/getDogsInfoArray", null, {
               params: {
                 userId: parsedUser.id,
               },
@@ -38,7 +38,7 @@ const Header = () => {
           setStoredUser(parsedUser);
           console.log("parsedUser:", parsedUser);
           axios
-            .post("http://localhost:8080/access/getDogsInfoArray", null, {
+            .post("https://java.flirdog.store:8080/access/getDogsInfoArray", null, {
               params: {
                 userId: parsedUser.user.id,
               },

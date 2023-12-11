@@ -39,7 +39,7 @@ const Mypoint = () => {
   
         console.log("userId"+userId);
 
-        axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
+        axios.get(`https://java.flirdog.store:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
         .then((res) => {
             console.log(res.data);
             setUserDTO(res.data);
@@ -50,7 +50,7 @@ const Mypoint = () => {
     }, []);
     useEffect(() => {
         
-        axios.get('http://localhost:8080/mypage/getPointCharging?userIdStr=1')
+        axios.get('https://java.flirdog.store:8080/mypage/getPointCharging?userIdStr=1')
         .then((res) => {
             console.log(res.data);
             setPointChargingDTO(res.data);

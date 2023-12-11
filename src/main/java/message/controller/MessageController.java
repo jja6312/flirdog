@@ -1,13 +1,10 @@
 package message.controller;
 
 import lombok.RequiredArgsConstructor;
-import message.bean.MessageRoom;
 import message.service.MessageRoomService;
 import message.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,11 +19,7 @@ public class MessageController {
 
 	@PostMapping(path = "createRoom")
 	public void createRoom(@RequestParam Long[] userIds, @RequestParam String name) {
-		System.out.println("###값들어왔니?");
-		System.out.println(userIds[0]);
-		System.out.println(userIds[1]);
-		System.out.println(name);
-		// messageRoomService.createRoom(messageRoom, userIds);
+		messageRoomService.createRoom(name, userIds);
 	}
 
 	@PostMapping(path = "exitRoom")

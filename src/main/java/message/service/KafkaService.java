@@ -1,13 +1,14 @@
 package message.service;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import message.bean.SendMessageForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @Service
 public class KafkaService {
@@ -19,8 +20,8 @@ public class KafkaService {
 
     public void send(String topic, SendMessageForm message) {
         message = message.setSendDateToCurrentTime();
-        System.out.println(message);
         try {
+            kafkaTemplate.send("message", message).get(3, TimeUnit.SECONDS);
             kafkaTemplate.send(topic, message).get(3, TimeUnit.SECONDS);
         } catch (ExecutionException e) {
             System.out.println(e);

@@ -22,8 +22,12 @@ const MainBody = () => {
   const navigate = useNavigate();
 
   const openChatting = (e) => {
+    if (localStorage.getItem("user") === null) {
+      alert("로그인 후 이용해주세요.");
+      navigate("/login");
+      return;
+    }
     setIsOpenChatting(!isOpenChatting);
-
     // 카카오 로그인으로 진행했을 때
     const userIdLocal = localStorage.getItem("user");
     const userIdParsing = JSON.parse(userIdLocal);
@@ -45,18 +49,18 @@ const MainBody = () => {
     alert("상대 개의 아이디: " + otherUserId);
 
     axios
-      .post("http://localhost:8080/message/createRoom", null, {
-        params: {
-          userIds: `${userId},${otherUserId}`,
-          name: `1:1채팅방${userId}${otherUserId}`,
-        },
-      })
-      .then((res) => {
-        alert("채팅방 생성 성공! res.data: " + res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .post("https://java.flirdog.store:8080/message/createRoom", null, {
+          params: {
+            userIds: `${userId},${otherUserId}`,
+            name: `1:1채팅방${userId}${otherUserId}`,
+          },
+        })
+        .then((res) => {
+          alert("채팅방 생성 성공! res.data: " + res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   };
 
   //서버에서 userInfoArray를 가져온다.(communityScore가 높은 순으로 3개)
@@ -66,18 +70,18 @@ const MainBody = () => {
   const fetchData = async () => {
     try {
       if (selectedRadio === "커뮤니티 점수 높은 순") {
-        let url = "http://localhost:8080/access/getUserInfoArray";
+        let url = "https://java.flirdog.store:8080/access/getUserInfoArray";
         const res1 = await axios.post(url);
         setUserInfoArray(res1.data);
         console.log("전체 유저데이터");
         console.log(res1.data);
 
         const dogsInfoPromises = res1.data.map((item) =>
-          axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
-            params: {
-              userId: item.id,
-            },
-          })
+            axios.post("https://java.flirdog.store:8080/access/getDogsInfoArray", null, {
+              params: {
+                userId: item.id,
+              },
+            })
         );
         const dogsInfoResults = await Promise.all(dogsInfoPromises);
         const combinedDogsInfo = dogsInfoResults.map((res) => res.data);
@@ -86,7 +90,7 @@ const MainBody = () => {
         console.log(combinedDogsInfo.flat());
       } else {
         const res1 = await axios.post(
-          "http://localhost:8080/access/getDogsInfoArrayByBeautyScore"
+            "https://java.flirdog.store:8080/access/getDogsInfoArrayByBeautyScore"
         );
 
         console.log("미모점수 높은 순 강아지데이터");
@@ -108,7 +112,7 @@ const MainBody = () => {
   const fetchDataLocal = async (location) => {
     if (selectedRadio === "커뮤니티 점수 높은 순") {
       try {
-        let url = "http://localhost:8080/access/getUserInfoArrayLocation";
+        let url = "https://java.flirdog.store:8080/access/getUserInfoArrayLocation";
 
         const res1 = await axios.post(url, null, {
           params: { location: location },
@@ -117,11 +121,11 @@ const MainBody = () => {
         console.log("로컬 유저데이터" + res1.data);
 
         const dogsInfoPromises = res1.data.map((item) =>
-          axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
-            params: {
-              userId: item.id,
-            },
-          })
+            axios.post("https://java.flirdog.store:8080/access/getDogsInfoArray", null, {
+              params: {
+                userId: item.id,
+              },
+            })
         );
 
         const dogsInfoResults = await Promise.all(dogsInfoPromises);
@@ -132,8 +136,8 @@ const MainBody = () => {
         console.log("error: " + error);
       }
     } else {
-      const url = `http://localhost:8080/access/getDogsInfoByLocationAndBeautyScore?location=${encodeURIComponent(
-        location
+      const url = `https://java.flirdog.store:8080/access/getDogsInfoByLocationAndBeautyScore?location=${encodeURIComponent(
+          location
       )}`;
       const res1 = await axios.get(url);
       console.log("미모 점수 높은 순 강아지데이터");
@@ -156,50 +160,50 @@ const MainBody = () => {
     if (selectedCategory === "전국 랭킹") {
       fetchData();
     } else if (
-      selectedCategory === "지역 랭킹" &&
-      selectedLocation !== "지역 선택" &&
-      selectedLocation !== "" &&
-      selectedLocation !== "전체"
+        selectedCategory === "지역 랭킹" &&
+        selectedLocation !== "지역 선택" &&
+        selectedLocation !== "" &&
+        selectedLocation !== "전체"
     ) {
       fetchDataLocal(selectedLocation);
     }
   }, [selectedCategory, selectedLocation, selectedRadio]);
 
   return (
-    <>
-      <Chatting isOpenChatting={isOpenChatting}></Chatting>
+      <>
+        <Chatting isOpenChatting={isOpenChatting}></Chatting>
 
-      <MainScreen></MainScreen>
+        <MainScreen></MainScreen>
 
-      <Container className="px-10">
-        <BestFlirdog
-          userInfoArray={userInfoArray}
-          dogsInfoArray={dogsInfoArray}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          selectedLocation={selectedLocation}
-          setSelectedLocation={setSelectedLocation}
-          openChatting={openChatting}
-          selectedRadio={selectedRadio}
-          setSelectedRadio={setSelectedRadio}
-        />
-      </Container>
-      <SmallGroupMain></SmallGroupMain>
-      <CommunityMain></CommunityMain>
-      <Container className="px-10">
-        <BestProductMain></BestProductMain>
+        <Container className="px-10">
+          <BestFlirdog
+              userInfoArray={userInfoArray}
+              dogsInfoArray={dogsInfoArray}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              selectedLocation={selectedLocation}
+              setSelectedLocation={setSelectedLocation}
+              openChatting={openChatting}
+              selectedRadio={selectedRadio}
+              setSelectedRadio={setSelectedRadio}
+          />
+        </Container>
+        <SmallGroupMain></SmallGroupMain>
+        <CommunityMain></CommunityMain>
+        <Container className="px-10">
+          <BestProductMain></BestProductMain>
 
-        <div className="mt-7 d-flex justify-content-center align-items-center">
-          <NavigateBtn
-            text="쇼핑몰 이동"
-            url="/product"
-            fontSize="2.5vw"
-            btnWidth="25vw"
-            btnHeight="80px"
-          ></NavigateBtn>
-        </div>
-      </Container>
-    </>
+          <div className="mt-7 d-flex justify-content-center align-items-center">
+            <NavigateBtn
+                text="쇼핑몰 이동"
+                url="/product"
+                fontSize="2.5vw"
+                btnWidth="25vw"
+                btnHeight="80px"
+            ></NavigateBtn>
+          </div>
+        </Container>
+      </>
   );
 };
 

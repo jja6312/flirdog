@@ -19,9 +19,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableJpaAuditing
 @EnableMongoRepositories({ "message.mongorepository"})
 public class FlirdogApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(FlirdogApplication.class, args);
 	}
-
 }

@@ -68,8 +68,8 @@ const SomoimDetail = () => {
     // 가입 여부 확인 및 초기 데이터 로딩
     const isJoin = async () => {
         if (user && user.id) {
-            //await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
-            await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&userId=${user.id}`)
+            //await axios.get(`https://java.flirdog.store:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
+            await axios.get(`https://java.flirdog.store:8080/somoim/isSomoimMember?somoimId=${somoimId}&userId=${user.id}`)
                 .then(res => {
                     setIsAdmin(res.data)
                     if(res.data) {
@@ -99,8 +99,8 @@ const SomoimDetail = () => {
 
     //     const isJoin = async () => {
     //         if (user && user.id) {
-    //             //await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
-    //             await axios.get(`http://localhost:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${user.id}`)
+    //             //await axios.get(`https://java.flirdog.store:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${state?.user?.id || ''}`)
+    //             await axios.get(`https://java.flirdog.store:8080/somoim/isSomoimMember?somoimId=${somoimId}&id=${user.id}`)
     //                 .then(res => {
     //                     setIsAdmin(res.data)
     //                     if(res.data) {

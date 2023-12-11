@@ -23,7 +23,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://db-ioa8o-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://db-k2g2a.vpc-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
     username: study
     password: bitcamp!@#123
 
@@ -42,49 +42,15 @@ spring:
 spring:
   kafka:
     consumer:
-      bootstrap-servers: 192.168.0.15:9092
+      bootstrap-servers: 10.0.3.16:9092
     producer:
-      bootstrap-servers: 192.168.0.15:9092
+      bootstrap-servers: 10.0.3.16:9092
 ---
 spring:
   data:
     mongodb:
-      host: k2hlg.pub-vpc.mg.naverncp.com
+      host: k2g36.vpc.mg.naverncp.com
       port: 17017
       database: test
       username: user
       password: qwe123!@#
----
-spring:
-  config:
-    activate:
-      on-profile: test
-
-  datasource:
-    url: jdbc:mysql://db-k0790-kr.vpc-pub-cdb.ntruss.com:3306/test?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: user
-    password: qwe123!@#
-
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-
-  sql:
-    init:
-      mode: never
-openai:
-  key: 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
-# chatgpt: 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
-
-# 디버깅을 위한 로그 레벨 설정
-logging:
-  level:
-    root: DEBUG
-    org.springframework: DEBUG
