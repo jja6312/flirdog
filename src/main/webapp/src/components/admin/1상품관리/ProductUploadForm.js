@@ -115,7 +115,7 @@ const ProductUploadForm = ({ openLeftside }) => {
     console.log(formData.entries());
 
     axios
-      .post("https://java.flirdog.store:8080/admin/productUpload", formData, {
+      .post("http://localhost:8080/admin/productUpload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

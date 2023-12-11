@@ -89,7 +89,7 @@ const MypointRecharge = () => {
 
       axios
         .get(
-          `https://java.flirdog.store:8080/mypage/getUserProfileTest?userIdStr=${userId}`
+          `http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`
         )
         .then((res) => {
           //alert('성공')
@@ -100,7 +100,7 @@ const MypointRecharge = () => {
           console.log(error);
         });
 
-      //   axios.get(`https://java.flirdog.store:8080/mypage/getPointCharging?userIdStr=${userId}`)
+      //   axios.get(`http://localhost:8080/mypage/getPointCharging?userIdStr=${userId}`)
       //   .then((res) => {
       //       //alert('성공')
       //       console.log('getPointCharging'+res.data);

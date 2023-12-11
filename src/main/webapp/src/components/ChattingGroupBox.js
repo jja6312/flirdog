@@ -9,7 +9,7 @@ const ChattingGroupBox = ({ id, title, image }) => {
       >
         <img
           className={`${styles.groupChatImage}`}
-          src={image === "null" ? "/image/nullImage/nullImage2.png" : "/image/nullImage/nullImage2.png"}
+          src={image === "null" ? "/image/nullImage/nullImage2.png" : `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/flirdogStorage/aiDogProfile/${image}`}
           alt="nullImage"
         ></img>
         <div

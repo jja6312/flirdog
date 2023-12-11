@@ -65,7 +65,7 @@ const CommentInput = ({ getBoardDTO, onInsert, loginUser  }) => {
           setCommentDTO(updatedCommentDTO);
   
           const response = await axios.post(
-            'https://java.flirdog.store:8080/boastBoard/boastCommentWrite',
+            'http://localhost:8080/boastBoard/boastCommentWrite',
             updatedCommentDTO
           );
           console.log(response.data);

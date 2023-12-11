@@ -61,22 +61,21 @@ const MainBody = () => {
 
 
     const otherUserId = e.currentTarget.id;
-    alert("내 아이디: " + userId);
-    alert("상대 개의 아이디: " + otherUserId);
+    if(userId !== otherUserId) {
+      axios
+        .post("http://localhost:8080/message/createRoom", null, {
+          params: {
+            userIds: `${userId},${otherUserId}`,
+            name: `1:1채팅방${userId}${otherUserId}`,
+          },
+        })
+        .then((res) => {
 
-    axios
-      .post("https://java.flirdog.store:8080/message/createRoom", null, {
-        params: {
-          userIds: `${userId},${otherUserId}`,
-          name: `1:1채팅방${userId}${otherUserId}`,
-        },
-      })
-      .then((res) => {
-        alert("채팅방 생성 성공! res.data: " + res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   //서버에서 userInfoArray를 가져온다.(communityScore가 높은 순으로 3개)
@@ -86,14 +85,14 @@ const MainBody = () => {
   const fetchData = async () => {
     try {
       if (selectedRadio === "커뮤니티 점수 높은 순") {
-        let url = "https://java.flirdog.store:8080/access/getUserInfoArray";
+        let url = "http://localhost:8080/access/getUserInfoArray";
         const res1 = await axios.post(url);
         setUserInfoArray(res1.data);
         console.log("전체 유저데이터");
         console.log(res1.data);
 
         const dogsInfoPromises = res1.data.map((item) =>
-          axios.post("https://java.flirdog.store:8080/access/getDogsInfoArray", null, {
+          axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
             params: {
               userId: item.id,
             },
@@ -106,7 +105,7 @@ const MainBody = () => {
         console.log(combinedDogsInfo.flat());
       } else {
         const res1 = await axios.post(
-          "https://java.flirdog.store:8080/access/getDogsInfoArrayByBeautyScore"
+          "http://localhost:8080/access/getDogsInfoArrayByBeautyScore"
         );
 
         console.log("미모점수 높은 순 강아지데이터");
@@ -128,7 +127,7 @@ const MainBody = () => {
   const fetchDataLocal = async (location) => {
     if (selectedRadio === "커뮤니티 점수 높은 순") {
       try {
-        let url = "https://java.flirdog.store:8080/access/getUserInfoArrayLocation";
+        let url = "http://localhost:8080/access/getUserInfoArrayLocation";
 
         const res1 = await axios.post(url, null, {
           params: { location: location },
@@ -137,7 +136,7 @@ const MainBody = () => {
         console.log("로컬 유저데이터" + res1.data);
 
         const dogsInfoPromises = res1.data.map((item) =>
-          axios.post("https://java.flirdog.store:8080/access/getDogsInfoArray", null, {
+          axios.post("http://localhost:8080/access/getDogsInfoArray", null, {
             params: {
               userId: item.id,
             },
@@ -152,7 +151,7 @@ const MainBody = () => {
         console.log("error: " + error);
       }
     } else {
-      const url = `https://java.flirdog.store:8080/access/getDogsInfoByLocationAndBeautyScore?location=${encodeURIComponent(
+      const url = `http://localhost:8080/access/getDogsInfoByLocationAndBeautyScore?location=${encodeURIComponent(
         location
       )}`;
       const res1 = await axios.get(url);

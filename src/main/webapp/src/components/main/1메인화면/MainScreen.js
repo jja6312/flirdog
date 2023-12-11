@@ -54,7 +54,7 @@ const MainScreen = () => {
   };
   const submitScore = () => {
     axios
-      .post("https://java.flirdog.store:8080/access/saveDogScore", null, {
+      .post("http://localhost:8080/access/saveDogScore", null, {
         params: {
           dogId: modaldogsInfo[currentDogIndex].id,
           score: score.filter(Boolean).length,
@@ -82,14 +82,14 @@ const MainScreen = () => {
       if (modalShow) {
         try {
           const res1 = await axios.post(
-            "https://java.flirdog.store:8080/access/getFiveDogsInfo"
+            "http://localhost:8080/access/getFiveDogsInfo"
           );
           const dogsInfoData = res1.data;
           setModalDogsInfo(dogsInfoData);
 
           const userInfoPromises = dogsInfoData.map((dog) =>
             axios.post(
-              "https://java.flirdog.store:8080/access/getUserInfoAsDogId",
+              "http://localhost:8080/access/getUserInfoAsDogId",
               null,
               {
                 params: { dogId: dog.id },
@@ -101,7 +101,7 @@ const MainScreen = () => {
           setModalUserInfo(userInfos.map((res) => res.data));
 
           const matchingInfoPromises = userInfos.map((res, i) =>
-            axios.post("https://java.flirdog.store:8080/access/getMatchingTable", null, {
+            axios.post("http://localhost:8080/access/getMatchingTable", null, {
               params: {
                 dogName: dogsInfoData[i].name,
                 userId: res.data.id,

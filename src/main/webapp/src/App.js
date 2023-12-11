@@ -226,10 +226,6 @@ const App = () => {
               element={<BoardListForm openLeftside="5" />}
             />
 
-            <Route path="product">
-              <Route path="" element={<Product />} />
-              <Route path=":id" element={<ProductDetail />} />
-            </Route>
           </Routes>
         </>
       </UserProvider>

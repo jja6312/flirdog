@@ -70,7 +70,7 @@ const PwdFind = () => {
     }
 
     await axios
-      .post("https://java.flirdog.store:8080/access/updatePwd", null, {
+      .post("http://localhost:8080/access/updatePwd", null, {
         params: {
           email: email,
           passwd: passwd,

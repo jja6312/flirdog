@@ -7,7 +7,7 @@ const BestProductMain = () => {
 
   useEffect(() => {
     axios
-      .post("https://java.flirdog.store:8080/access/getProductInfoArray")
+      .post("http://localhost:8080/access/getProductInfoArray")
       .then((res) => {
         setImageInfoArray(res.data);
         console.log("인기 상품 이미지정보(imageInfoArray)");

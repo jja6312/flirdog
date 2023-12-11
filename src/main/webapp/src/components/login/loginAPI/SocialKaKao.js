@@ -16,7 +16,7 @@ const SocialKakao = () => {
     const accessToken = data.response.access_token;
     try {
       const response = await axios.post(
-        "https://java.flirdog.store:8080/access/kakaoAuth",
+        "http://localhost:8080/access/kakaoAuth",
         {
           token: accessToken,
         }

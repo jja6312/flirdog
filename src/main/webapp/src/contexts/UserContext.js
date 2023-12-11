@@ -45,7 +45,7 @@ const UserProvider = ({ children }) => {
 
   const login = (userData) => {
     axios
-      .post("https://java.flirdog.store:8080/access/login", null, {
+      .post("http://localhost:8080/access/login", null, {
         params: {
           email: userData.email,
           passwd: userData.passwd,

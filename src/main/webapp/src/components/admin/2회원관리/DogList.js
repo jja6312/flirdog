@@ -61,7 +61,7 @@ const DogList = ({
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .post(`https://java.flirdog.store:8080/admin/dogDelete?dogId=${deleteBtnId}`)
+          .post(`http://localhost:8080/admin/dogDelete?dogId=${deleteBtnId}`)
           .then(() => {
             //삭제 후 새로고침
             window.location.reload();

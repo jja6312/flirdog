@@ -17,7 +17,7 @@ const OrderCompletedForm = ({ openLeftside }) => {
   const [orderCompletedList, setOrderCompletedList] = useState([]);
 
   useEffect(() => {
-    axios.get("https://java.flirdog.store:8080/admin/getOrderCompleted").then((res) => {
+    axios.get("http://localhost:8080/admin/getOrderCompleted").then((res) => {
       setOrderCompletedList(res.data);
       console.log("orderCompletedList");
       console.log(res.data);

@@ -42,7 +42,7 @@ const EmailInput = ({
   const onCheckEmailIsExist = () => {
     if (isValidEmail) {
       axios
-        .post("https://java.flirdog.store:8080/access/checkEmailIsExist", null, {
+        .post("http://localhost:8080/access/checkEmailIsExist", null, {
           params: {
             email: email,
           },

@@ -37,7 +37,7 @@ const BoardList = ({ allProduct, checkedBoards, setCheckedBoards }) => {
       if (result.isConfirmed) {
         axios
           .post(
-            `https://java.flirdog.store:8080/access/boardDelete?boardId=${deleteBtnId}`
+            `http://localhost:8080/access/boardDelete?boardId=${deleteBtnId}`
           )
           .then(() => {
             //삭제 후 새로고침

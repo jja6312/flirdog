@@ -25,7 +25,7 @@ const MyarticleRounge = () => {
         setUserObject(userObject);
         const userId = userObject.id;
         //단건조회
-        // axios.get(`https://java.flirdog.store:8080/mypage/getBoard?userIdStr=${userId}`)
+        // axios.get(`http://localhost:8080/mypage/getBoard?userIdStr=${userId}`)
         // .then((res) => {
         //     console.log("단건조회 성공"+res.data);
         //     //setUserDTO(res.data);

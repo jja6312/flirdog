@@ -28,7 +28,7 @@ const CommentsMerge = ({getBoardDTO}) => {
 
     useEffect(() => {
       if (id) {
-        axios.get(`https://java.flirdog.store:8080/boastBoard/getUser?id=${id}`)
+        axios.get(`http://localhost:8080/boastBoard/getUser?id=${id}`)
           .then((res) => {
             setLoginUser(res.data);
           })
@@ -57,7 +57,7 @@ const CommentsMerge = ({getBoardDTO}) => {
     useEffect(() => {
       if (getBoardDTO && getBoardDTO.id) {
       axios
-          .get(`https://java.flirdog.store:8080/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`)
+          .get(`http://localhost:8080/boastBoard/getBoastBoardCommentList?boardId=${getBoardDTO.id}`)
           .then((res) => {
               setCommentList(res.data); // 여기서 변수명을 올바르게 수정
           })
@@ -112,7 +112,7 @@ const CommentsMerge = ({getBoardDTO}) => {
       if (commentDTO.userId && commentDTO.boardId && commentDTO.userNickName && commentDTO.content) {
         try {
           // 서버에 댓글 작성 요청
-          const res = await axios.post('https://java.flirdog.store:8080/boastBoard/boastCommentWrite', commentDTO);
+          const res = await axios.post('http://localhost:8080/boastBoard/boastCommentWrite', commentDTO);
     
           // 서버 응답에서 전체 댓글 목록으로 갱신
           const newCommentList = res.data;

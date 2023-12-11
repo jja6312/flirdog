@@ -28,7 +28,7 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
     useEffect(() => {
         // boardDTO의 상세 내용 가져오기
         if (boardDTO && boardDTO.id) {
-            axios.get(`https://java.flirdog.store:8080/boastBoard/getBoastBoard?boardId=${boardDTO.id}`)
+            axios.get(`http://localhost:8080/boastBoard/getBoastBoard?boardId=${boardDTO.id}`)
             .then((res) => {
                 console.log(res.data);
                 setBoardNumber(res.data.id);
@@ -109,7 +109,7 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
             }).then((result) => {
                 // result.value가 true면 확인 버튼이 눌림, false면 취소 버튼이 눌림
                 if (result.value) {
-                    axios.delete(`https://java.flirdog.store:8080/boastBoard/getBoastBoardDelete?boardId=${boardDTO.id}`)
+                    axios.delete(`http://localhost:8080/boastBoard/getBoastBoardDelete?boardId=${boardDTO.id}`)
                         .then((res) => {
                             console.log(res);
 

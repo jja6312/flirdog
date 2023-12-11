@@ -49,7 +49,7 @@ const MypageMain = () => {
     
             
             // getUserId가 null이 아닌 경우
-            const response = await axios.get(`https://java.flirdog.store:8080/mypage/getUserProfileTest?userIdStr=${userId}`);
+            const response = await axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`);
             setUserDTO(response.data);
             
             console.log(response.data);
