@@ -23,7 +23,6 @@ const MyarticleRounge = () => {
 
         const userObject = JSON.parse(userJsonString);
 
-        
         let email = null;
         if(userObject.user){
             console.log(userObject.user);
@@ -100,7 +99,7 @@ const MyarticleRounge = () => {
                             <div className={Mypage5.boardDiv4}>
                             {list.map(item => (
                                 // <Link className={Mypage.subjectA} to={`/mypage/FreeBoardOne/${item.id}`}>
-                                <Link className={Mypage5.subjectA} to={`/mypage/FreeBoardOne`}>
+                                <Link key={item.id} className={Mypage5.subjectA} to={`/mypage/FreeBoardOne/${item.id}`}>
                                     <div key={item.email}> 
                                         {/* 컨텐츠 하나 상단부분 내용이랑 사진부분 */}
                                         <div className={Mypage5.boardDiv5}>

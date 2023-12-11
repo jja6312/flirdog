@@ -211,11 +211,12 @@ const MydogProfileRegister2 = () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // 마이페이지 반려견 프로필로 이동
-                    navigate('/mypage/MydogProfile');
+                    //navigate('/mypage/MydogProfile');
                 } 
             });
         })
         .catch(error=> console.log(error)) 
+        navigate('/mypage/MydogProfile');
     }
 
     const onReset = (e) => {

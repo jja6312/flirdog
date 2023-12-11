@@ -94,6 +94,7 @@ const WeatherAndStroll = () => {
                   {result.data.weather[0].main ==='Rain' && (
                     <>
                       <div className='message'>산책난이도: 어려움</div>
+                      <div className='message2'>비가 오네요ㅠㅠ</div>
                       <div className='message2'>산책하기 좋은 날씨가 아니에요.</div>
                       <div className='message2'>실내에 있는게 나을것 같애요~</div>
                     </>

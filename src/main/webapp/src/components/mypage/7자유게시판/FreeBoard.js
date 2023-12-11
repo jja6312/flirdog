@@ -1,15 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../main/Header';
 import Mypage3 from '../../../css/main/100마이페이지/mypage3.module.css';
 // 특정한 이미지 주소를 import하는 방법.밑에서 이미지 쓸거임
 import pen  from './pen.png';
 import { Link } from 'react-router-dom';
+import Mypage5 from  '../../../css/main/100마이페이지/mypage5.module.css';
+import axios from 'axios';
 const FreeBoard = () => {
-    
+
     const handleInputChange = () => {
         // 오류 방지용. 나중에 지울 것.
     }
     // div1, div7 접어서 보면 보기 편함.
+    
+    const [userObject, setUserObject] = useState({});
+    console.log(userObject); // 빈객체 방지용
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        // 로컬스토리지에서 유저 아이디 가져오기
+        const userJsonString = localStorage.getItem('user');
+
+        const userObject = JSON.parse(userJsonString);
+
+        let email = null;
+        if(userObject.user){
+            console.log(userObject.user);
+            setUserObject(userObject.user);
+            email = userObject.user.email;
+            
+
+        }else if(userObject){
+            console.log(userObject);
+            setUserObject(userObject);
+            email = userObject.email;
+        }
+
+        // 리스트 전체조회
+        axios.get(`/mypage/uploadListBoard?email=${email}`)
+            .then((res)=>{
+                console.log("전체조회 성공"+res.data)
+                setList(res.data)
+                //실제 값들을 찍을수 있게 해주는 것.
+                Object.keys(res.data).forEach((key) => {
+                    console.log("전체조회키값데이터값"+`${key}:`, res.data[key]);
+                });
+                })
+            .catch(error=>
+            	console.log(error)
+            );
+
+        }, []);
+
     return (
         <div>
             <Header/>
@@ -23,35 +65,28 @@ const FreeBoard = () => {
                         <div className={Mypage3.div4}>인기 자유게시판</div>
                         <div className={Mypage3.div5}>{/* 인기게시판 내용들 */}
                             <div className={Mypage3.div6}>
-                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
-                                <div className={Mypage3.div6_1}>
-                                    <div className={Mypage3.div6_2}>
-                                        <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
-                                        <div>강아지</div>
-                                    </div>
-                                    <div className={Mypage3.div6_2_1}>강아지랑 스튜디오에서 사진찍었어요</div>
-                                    <div className={Mypage3.div6_2_2}>
-                                        <div className={Mypage3.div6_2_3_1}>
-                                            고양이와 사진 찍는 건 참 어려운 일이라 매번 고민만했었는데요! 이번에 기회가 되어 여름겨울이와 함께 사진을 찍어봤습니다!
-
-                                            제가 찍은 곳은 사진작가 없이 셀프로 촬영할 수 있는
-                                            곳이라 낯선장소에서 낯가림이 심한 고양이들에게 괜찮은 스튜디오더라구요! 
-
-                                            물론 성격에 따라 불가능한 고양이들도 있을 수 있습니다! 최대한 아이들 스트레스 안받게 하는 게
-                                            중요하니 혹시라도 사진을 찍고싶은 집사님들은 반려동물의 성향을 잘 파악하셔야할 것 같아용 
-
-                                            저희는 촬영 시간은 10분 이내로 끝내서 
-                                            아이들이 크게 스트레스 받는 일 없이 무사히 끝날 수 있었어요🫶
-
-                                            인생샷 남겨서 너무나 좋았던 하루였네용
+                            {list.map(item => (
+                                <Link key={item.id} className={Mypage5.subjectA} to={`/mypage/FreeBoardOne/${item.id}`}>
+                                    <div key={item.email}> 
+                                        <div className={Mypage3.div6_1}>
+                                            <div className={Mypage3.div6_2}>
+                                                <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
+                                                <div>강아지</div>
+                                            </div>
+                                            <div className={Mypage3.div6_2_1}>{item.title}</div>
+                                            <div className={Mypage3.div6_2_2}>
+                                                <div className={Mypage3.div6_2_3_1}>
+                                                    {item.content}
+                                                </div>
+                                                <div className={Mypage3.div6_2_3_2}>
+                                                    <span>댓글 0</span>
+                                                    <span>날짜 {item.ref1}</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className={Mypage3.div6_2_3_2}>
-                                            <span>댓글 7</span>
-                                            <span>날짜20231128</span>
-                                        </div>
-                                    </div>
-                                </div>
-                              </Link>
+                                    </div> {/* //div item.id  */}
+                                </Link>
+                                ))}
                               
                               <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
                                 <div className={Mypage3.div6_1}>
@@ -82,7 +117,6 @@ const FreeBoard = () => {
                                     </div>
                                 </div>
                               </Link>
-                              
                               <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
                                 <div className={Mypage3.div6_1}>
                                     <div className={Mypage3.div6_2}>
@@ -113,65 +147,6 @@ const FreeBoard = () => {
                                 </div>
                               </Link>
                                 
-                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
-                                <div className={Mypage3.div6_1}>
-                                    <div className={Mypage3.div6_2}>
-                                        <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
-                                        <div>강아지</div>
-                                    </div>
-                                    <div className={Mypage3.div6_2_1}>강아지랑 스튜디오에서 사진찍었어요</div>
-                                    <div className={Mypage3.div6_2_2}>
-                                        <div className={Mypage3.div6_2_3_1}>
-                                            고양이와 사진 찍는 건 참 어려운 일이라 매번 고민만했었는데요! 이번에 기회가 되어 여름겨울이와 함께 사진을 찍어봤습니다!
-
-                                            제가 찍은 곳은 사진작가 없이 셀프로 촬영할 수 있는
-                                            곳이라 낯선장소에서 낯가림이 심한 고양이들에게 괜찮은 스튜디오더라구요! 
-
-                                            물론 성격에 따라 불가능한 고양이들도 있을 수 있습니다! 최대한 아이들 스트레스 안받게 하는 게
-                                            중요하니 혹시라도 사진을 찍고싶은 집사님들은 반려동물의 성향을 잘 파악하셔야할 것 같아용 
-
-                                            저희는 촬영 시간은 10분 이내로 끝내서 
-                                            아이들이 크게 스트레스 받는 일 없이 무사히 끝날 수 있었어요🫶
-
-                                            인생샷 남겨서 너무나 좋았던 하루였네용
-                                        </div>
-                                        <div className={Mypage3.div6_2_3_2}>
-                                            <span>댓글 7</span>
-                                            <span>날짜20231128</span>
-                                        </div>
-                                    </div>
-                                </div>
-                              </Link>
-                                
-                              <Link to="/mypage/FreeBoardOne" className={Mypage3.LinkReset}>
-                                <div className={Mypage3.div6_1}>
-                                    <div className={Mypage3.div6_2}>
-                                        <img  src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
-                                        <div>강아지</div>
-                                    </div>
-                                    <div className={Mypage3.div6_2_1}>강아지랑 스튜디오에서 사진찍었어요</div>
-                                    <div className={Mypage3.div6_2_2}>
-                                        <div className={Mypage3.div6_2_3_1}>
-                                            고양이와 사진 찍는 건 참 어려운 일이라 매번 고민만했었는데요! 이번에 기회가 되어 여름겨울이와 함께 사진을 찍어봤습니다!
-
-                                            제가 찍은 곳은 사진작가 없이 셀프로 촬영할 수 있는
-                                            곳이라 낯선장소에서 낯가림이 심한 고양이들에게 괜찮은 스튜디오더라구요! 
-
-                                            물론 성격에 따라 불가능한 고양이들도 있을 수 있습니다! 최대한 아이들 스트레스 안받게 하는 게
-                                            중요하니 혹시라도 사진을 찍고싶은 집사님들은 반려동물의 성향을 잘 파악하셔야할 것 같아용 
-
-                                            저희는 촬영 시간은 10분 이내로 끝내서 
-                                            아이들이 크게 스트레스 받는 일 없이 무사히 끝날 수 있었어요🫶
-
-                                            인생샷 남겨서 너무나 좋았던 하루였네용
-                                        </div>
-                                        <div className={Mypage3.div6_2_3_2}>
-                                            <span>댓글 7</span>
-                                            <span>날짜20231128</span>
-                                        </div>
-                                    </div>
-                                </div>
-                              </Link>
                             </div>
                         </div>
                     </div>
@@ -199,88 +174,42 @@ const FreeBoard = () => {
                 </div>
                 <div className={Mypage3.div10}>{/* 내용이랑 필터링 글쓰기  */}
                     <div className={Mypage3.div11}> {/* 내용 */}
-                        <div className={Mypage3.div12}> {/* div12가 반복되어야 내용이 밑으로 쭈욱 나옴. */}
-                            <div className={Mypage3.div13}>
-                                <div className={Mypage3.div14}>
-                                    <div className={Mypage3.div14_1}>
-                                        <div className={Mypage3.div14_1_1}>
-                                            <img src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
-                                            <div>강아지</div>
+                    
+                        {list.map(item => (
+                            <Link key={item.id} className={Mypage5.subjectA} to={`/mypage/FreeBoardOne/${item.id}`}>
+                                <div key={item.email}> 
+                                    <div className={Mypage3.div12}> {/* div12가 반복되어야 내용이 밑으로 쭈욱 나옴. */}
+                                        <div className={Mypage3.div13}>
+                                            <div className={Mypage3.div14}>
+                                                <div className={Mypage3.div14_1}>
+                                                    <div className={Mypage3.div14_1_1}>
+                                                        <img src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
+                                                        <div>강아지</div>
+                                                    </div>
+                                                </div>
+                                                <div  className={Mypage3.div14_2_plus}>{item.title}</div>
+                                                <div className={Mypage3.div14_2}>
+                                                    {item.content}
+                                                </div>
+                                                <div className={Mypage3.div14_3}></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div  className={Mypage3.div14_2_plus}>정보글) 강아지가 아플때 보내는 신호들</div>
-                                    <div className={Mypage3.div14_2}>
-                                    1.보호자의 손길을 피해요
-
-                                    2.움직임이 줄어들고 자는 시간이 늘어요
-
-                                    3.식욕이 줄어들어요
-
-                                    4.배변 실수가 잦아요.
-
-                                    5.보호자에게 과도하게 집착해요
-
-                                    6.과민반응을 보여요.
-
-                                    7.불안해보여요
-                                    </div>
-                                    <div className={Mypage3.div14_3}></div>
-                                </div>
-                            </div>
-                            <div className={Mypage3.div15}>
-                                <a className={Mypage3.div15_0}>
-                                    <img src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}} ></img>
-                                    <div className={Mypage3.div15_01}>코코아빠</div>
-                                </a>
-                                <div className={Mypage3.div15_1}>댓글 : 0</div>
-                                <div className={Mypage3.div15_2}>2 분전</div>
-                            </div>
-                            <div className={Mypage3.div16}>
-                                <div className={Mypage3.div16_1}></div>
-                            </div>
-                            <hr className={Mypage3.hr1}></hr>
-                        </div>
-                        <div className={Mypage3.div12}> {/* div12가 반복되어야 내용이 밑으로 쭈욱 나옴. */}
-                            <div className={Mypage3.div13}>
-                                <div className={Mypage3.div14}>
-                                    <div className={Mypage3.div14_1}>
-                                        <div className={Mypage3.div14_1_1}>
-                                            <img src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}}></img>
-                                            <div>강아지</div>
+                                        <div className={Mypage3.div15}>
+                                            <a className={Mypage3.div15_0}>
+                                                <img src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}} ></img>
+                                                <div className={Mypage3.div15_01}>코코아빠</div>
+                                            </a>
+                                            <div className={Mypage3.div15_1}>댓글 : 0</div>
+                                            <div className={Mypage3.div15_2}>2 분전</div>
                                         </div>
+                                        <div className={Mypage3.div16}>
+                                            <div className={Mypage3.div16_1}></div>
+                                        </div>
+                                        <hr className={Mypage3.hr1}></hr>
                                     </div>
-                                    <div  className={Mypage3.div14_2_plus}>정보글) 강아지가 아플때 보내는 신호들</div>
-                                    <div className={Mypage3.div14_2}>
-                                    1.보호자의 손길을 피해요
-
-                                    2.움직임이 줄어들고 자는 시간이 늘어요
-
-                                    3.식욕이 줄어들어요
-
-                                    4.배변 실수가 잦아요.
-
-                                    5.보호자에게 과도하게 집착해요
-
-                                    6.과민반응을 보여요.
-
-                                    7.불안해보여요
-                                    </div>
-                                    <div className={Mypage3.div14_3}></div>
                                 </div>
-                            </div>
-                            <div className={Mypage3.div15}>
-                                <a className={Mypage3.div15_0}>
-                                    <img src='https://bemypet.kr/icons/community/ANIMALICON_DOG_RIRI.svg' alt='' style={{width:'20px',borderRadius:'100%'}} ></img>
-                                    <div className={Mypage3.div15_01}>코코아빠</div>
-                                </a>
-                                <div className={Mypage3.div15_1}>댓글 : 0</div>
-                                <div className={Mypage3.div15_2}>2 분전</div>
-                            </div>
-                            <div className={Mypage3.div16}>
-                                <div className={Mypage3.div16_1}></div>
-                            </div>
-                            <hr className={Mypage3.hr1}></hr>
-                        </div>
+                            </Link>
+                            ))}
                         <div className={Mypage3.div12}> {/* div12가 반복되어야 내용이 밑으로 쭈욱 나옴. */}
                             <div className={Mypage3.div13}>
                                 <div className={Mypage3.div14}>

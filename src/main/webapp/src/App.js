@@ -123,7 +123,7 @@ const App = () => {
             />
 
             <Route path="/mypage/FreeBoard" element={<FreeBoard />} />
-            <Route path="/mypage/FreeBoardOne" element={<FreeBoardOne />} />
+            <Route path="/mypage/FreeBoardOne/:id" element={<FreeBoardOne />} />
             <Route path="/mypage/Kakaopay" element={<Kakaopay />} />
 
             {/* 김찬영마이페이지//================================================================= */}

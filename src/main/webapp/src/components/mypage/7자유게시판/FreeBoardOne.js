@@ -1,8 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../main/Header';
 import Mypage4 from '../../../css/main/100마이페이지/mypage4.module.css';
+import { useParams } from "react-router-dom";
+import axios from 'axios';
 
 const FreeBoardOne = () => {
+
+    const { id } = useParams();
+    // console.log("id값은~~~~~~~~~~~"+id);
+    const [userDTO, setUserDTO] = useState({
+        id: '',
+        title: '',
+        content: '',
+        image: '',
+        userId: '',
+        userNickName: '',
+        communtiScore: '',
+        likeScore: '',
+        commentCount: '',
+        hit: '',
+        dogBreed: '',
+        ref1: '',
+        ref2: '',
+        email: '',
+    });
+        
+        
+    useEffect(() => {  
+        //단건조회
+        axios.get(`http://localhost:8080/mypage/getBoard?userIdStr=${id}`)
+        .then((res) => {
+            // console.log("단건조회 성공"+res.data);
+            setUserDTO(res.data);
+            //실제 값들을 찍을수 있게 해주는 것.
+            //Object.keys(res.data).forEach((key) => {
+                // console.log("단건조회 키값데이터값"+`${key}:`, res.data[key]);
+            //});
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+
     return (
         <div>
             <Header />
@@ -21,17 +60,14 @@ const FreeBoardOne = () => {
                                     <button className={Mypage4.button1}>강아지</button>
                                 </div>
                                 {/* 제목 */}
-                                <h1 className={Mypage4.h1_1}>우리의 반려견을 위한 앱 개발, 여러분의 소중한 의견을 들려주세요.</h1>
+                                <h1 className={Mypage4.h1_1}>{userDTO.title}</h1>
                             </div>
                             {/* 내용 */}
                             <div className={Mypage4.div6}>
                                 {/* 링크걸시에 */}
                                 <div>
-                                    <a className={Mypage4.a_1} href='https://forms.gle/2Xmvfar6r4agTNne6'>https://forms.gle/2Xmvfar6r4agTNne6</a>
+                                {userDTO.content}
                                 </div>
-                                {/* 내용 여기밑에 넣어라*/}
-                                부탁드립니다ㅜㅜ
-                                여러분의 소중한 의견이 필요합니다!!
                             </div>
                             {/* 여백 */}
                             <div  className={Mypage4.div7}></div>
@@ -64,7 +100,7 @@ const FreeBoardOne = () => {
                                     <a className={Mypage4.a_2}>
                                         <img className={Mypage4.img1}></img>
                                         <div className={Mypage4.div12}>
-                                            <div className={Mypage4.div12_1}>황서이</div>
+                                            <div className={Mypage4.div12_1}>{userDTO.userNickName}</div>
                                             <div className={Mypage4.div12_2}>2023.11.28</div>
                                         </div>
                                     </a>
@@ -100,7 +136,7 @@ const FreeBoardOne = () => {
                                                 <input className={Mypage4.input1} type="file" id="uploadFile" multiple="" accept='image/jpg,image/png,image/jpeg,image/gif'/>
                                             </form>
                                             <div className={Mypage4.div15_2_1_1_2_1}>
-                                                <label for='uploadFile' className={Mypage4.label}>
+                                                <label htmlFor='uploadFile' className={Mypage4.label}>
                                                     <img src='https://bemypet.kr/icons/ICON_Camera.png' className={Mypage4.image}></img>
                                                     사진첨부
                                                 </label>

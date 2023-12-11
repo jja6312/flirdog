@@ -255,7 +255,6 @@
 }
 .div14_2_plus{
     /* 중간에빠져먹고 안써서 이렇게 plus달고 끼워넣었음. */
-    
     font-style: normal;
     font-weight: 700;
     margin-top: 18px;
@@ -263,8 +262,9 @@
     line-height: 19px;
 }
 .div14_2{
+    color: #868688;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     margin-top: 18px;
     font-size: 16px;
     line-height: 19px;
