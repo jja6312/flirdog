@@ -21,16 +21,16 @@ const SomoimDetailSchedule = ({ somoimId, user, isAdmin }) => {
 
     return (
         <div>
-            소모임 일정 페이지 입니다.<br/>
-            (이즈머드민 : {isAdmin})
-            {
+            {/* 소모임 일정 페이지 입니다.<br/>
+            (이즈머드민 : {isAdmin}) */}
+            {/* {
                 isAdmin === 2 && (
                     <div>
                         <div>(당신은 아직 미가입자 입니다.)</div><br/>
                         {introduceDetail}
                     </div>
                 )
-            }
+            } */}
         </div>
     );
 };
