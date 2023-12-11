@@ -45,6 +45,18 @@ public class MypageBoardDTO {
 	    @Column(name="hit", length=100)
 	    @GeneratedValue(strategy= GenerationType.IDENTITY) //MySQL의 AUTO-INCREMENT를 사용하여 자동으로 시쿼스 적용
 	    private int hit;
+
+	    @Column(name="dogBreed", length=50)
+	    private String dogBreed;
+
+	    @Column(name="ref1", length=50)
+	    private String ref1;
+
+	    @Column(name="ref2", length=50)
+	    private String ref2;
+
+	    @Column(name="email", length=150)
+	    private String email;
 	    
 
 }
