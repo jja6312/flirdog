@@ -36,7 +36,7 @@ public class BragBoardDTO extends BaseEntity{
     private String content;
     
     @NonNull
-    @Column(name="iamge", length=500)
+    @Column(name="image", length=500)
     private String image;
     
     @NonNull

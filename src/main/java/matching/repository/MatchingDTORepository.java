@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import matching.bean.MatchingDTO;
 
 public interface MatchingDTORepository extends JpaRepository<MatchingDTO, Long> {
-	List<MatchingDTO> findTop3ByOrderByAverageScoreDesc();
-    
+	public List<MatchingDTO> findTop3ByOrderByAverageScoreDesc();
+
 }

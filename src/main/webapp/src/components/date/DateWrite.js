@@ -370,7 +370,7 @@ const DateWrite = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/date/dateList");
+          navigate('/date/dateList')
         })
         .catch((error) => {
           Swal.fire({

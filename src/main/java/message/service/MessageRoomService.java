@@ -38,7 +38,7 @@ public class MessageRoomService {
         messageRoomRepository.save(messageRoom);
         List<User> users = userRepository.findAllById(userIds);
         joinRoom(messageRoom, users);
-        consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
+        //consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
     }
 
     public void joinRoom(MessageRoom messageRoom, List<User> users) {
