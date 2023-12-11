@@ -50,6 +50,7 @@ const JoinAuth = () => {
   const [isEmailCheck, setIsEmailCheck] = useState(false);
   const [showAuthKeyInput, setShowAuthKeyInput] = useState(false);
   const [authCode, setAuthCode] = useState("");
+  const [authTrue, setAuthTrue] = useState(false);
 
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isPasswordMatch, setIsPasswordMatch] = useState(false);
@@ -396,7 +397,12 @@ const JoinAuth = () => {
           setShowAuthKeyInput={setShowAuthKeyInput}
           setAuthCode={setAuthCode}
         ></EmailInput>
-        {showAuthKeyInput && <AuthKeyInput authCode={authCode}></AuthKeyInput>}
+        {showAuthKeyInput && (
+          <AuthKeyInput
+            authCode={authCode}
+            setAuthTrue={setAuthTrue}
+          ></AuthKeyInput>
+        )}
         <PwdInput
           setPassword={setPassword}
           isValidPassword={isValidPassword}

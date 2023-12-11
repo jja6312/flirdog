@@ -141,7 +141,7 @@ const SomoimDetailMember = ({ somoimId, isAdmin, user }) => {
 
     return (
         <div className='col-12'>
-            소모임 멤버 페이지 입니다.<br/>
+            {/* 소모임 멤버 페이지 입니다.<br/>
             (이즈머드민 : {isAdmin})
             {
                 isAdmin === 2 && (
@@ -149,7 +149,7 @@ const SomoimDetailMember = ({ somoimId, isAdmin, user }) => {
                         <div>(당신은 아직 미가입자 입니다.)</div><br/>
                     </div>
                 )
-            }
+            } */}
            {
              finalInfo.map((item, index) => (
                 // <div className="d-flex gap-2 align-items-start" key={item.id}>
@@ -178,12 +178,17 @@ const SomoimDetailMember = ({ somoimId, isAdmin, user }) => {
                         <div className={`flex-grow-1 ${styles.communityScore} col-3`}>
                             커뮤니티 점수 : {item.userDTO && item.userDTO.communityScore}
                         </div>
-                        <div className="ban col-2" 
-                             style={{ visibility: (isAdmin === 1 && item.isAdmin === 1) && 'hidden' }}>
-                            <Button variant="danger" onClick={() => handleBanUser(somoimId, item.userDTO && item.userDTO.id)}>
-                                강퇴
-                            </Button>
-                        </div>
+                        {
+                            isAdmin === 1 ? (
+                                <div className="ban col-2" 
+                                style={{ visibility: (isAdmin === 1 && item.isAdmin === 1) && 'hidden' }}>
+                                <Button variant="danger" onClick={() => handleBanUser(somoimId, item.userDTO && item.userDTO.id)}>
+                                    강퇴
+                                </Button>
+                                </div>)
+                            : (<></>)
+                        }
+                        
                         {/* {
                             isAdmin === 1 && item.isAdmin === 1 ||
                             <div className='ban col-2'>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/esm/Container';
 import Slider from "react-slick";
 import '../../../css/somoim/detail/slick.css';
@@ -9,13 +9,19 @@ import SomoimMainFilter from './SomoimMainFilter';
 import styles from '../../../css/somoim/main/somoimHighlightCard.module.css'
 import slideStyles from '../../../css/somoim/main/SomoimSliderStyles.module.css';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const SomoimMainBody = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null); // 캐러셀 호버 이벤트
     const { somoimId } = useParams();
     const [selectedLocation, setSelectedLocation] = useState(null); // 필터링
     const [searchList, setSearchList] = useState([]); // 검색
-    //const {id, email, passwd} = login;
+
+    const [somoimPhotoListAll, setSomoimPhotoListAll] = useState([{}]); // 전체 소모임 사진첩 목록
+    const [firstPhotoArray, setFirstPhotoArray] = useState([]); // 첫번째 이미지만 추출한 배열
+    const {createdAt, modifiedAt, id, photoTitle, photoContent, 
+        photoLink, photoLike, hit, somoimPhoto, somoim} = somoimPhotoListAll
+    console.log('somoim', somoim)
 
     const handleSelectLocation = (location) => {
         setSelectedLocation(location);
@@ -29,37 +35,17 @@ const SomoimMainBody = () => {
     }
 
     const settings = {
-        //rows: 1,                    //이미지를 몇 줄로 표시할지 개수
-        dots: true,                //슬라이더 아래에 도트 네비게이션 버튼 표시 여부(true or false) ▶기본값 false
-        //appendDots: $('selector'),  //네비게이션 버튼 변경
-        //dotsClass: 'custom-dots',   //네비게이션 버튼 클래스 변경
+        dots: true,                 //슬라이더 아래에 도트 네비게이션 버튼 표시 여부(true or false) ▶기본값 false
         infinite: true,             //무한반복(true or false) 기본값 true
         slidesToShow: 4,            //한번에 보여줄 슬라이드 아이템 개수
         slidesToScroll: 4,          //한번에 넘길 슬라이드 아이템 개수
-        //slidesPerRow: 1,            //보여질 행의 수 (한 줄, 두 줄 ... )
-        //autoplay: true,             //슬라이드 자동 시작(true or false) ▶기본값 false
+        autoplay: true,             //슬라이드 자동 시작(true or false) ▶기본값 false
         autoplaySpeed: 3000,        //슬라이드 자동 넘기기 시간(1000ms = 1초) 곧, 슬라이드 하나당 머무는 시간
-        //variableWidth: true,        //사진마다 width의 크기가 다른가?(true or false) ▶기본값 false
-        //draggable: false,           //슬라이드 드래그 가능여부 (true or false) ▶기본값 true
         arrows: true,               //이전 다음 버튼 표시 여부(true or false) ▶기본값 true
         pauseOnFocus: true,         //마우스 클릭 시 슬라이드 멈춤 ▶기본값 true
         pauseOnHover: true,         //마우스 호버 시 슬라이드 멈춤 ▶기본값 true
-        //pauseOnDotsHover: true,     //네비게이션버튼 호버 시 슬라이드 멈춤 ▶기본값 false
-        //vertical: true,             //세로 방향 여부(true or false) ▶기본값 false
-        //verticalSwiping: true,      //세로 방향 스와이프 여부(true or false) ▶기본값 false
-        //accessibility: true,        //접근성 여부(true or false) 기본값 false
-        //appendArrows: $('#arrows'), //좌우 화살표 변경
-        //prevArrow: $('#prevArrow'), //이전 화살표만 변경
-        //nextArrow: $('#nextArrow'), //다음 화살표만 변경
         initialSlide: 1,            //처음 보여질 슬라이드 번호 ▶기본값 0
-        //centerMode: true,           //중앙에 슬라이드가 보여지는 모드 ▶기본값 false
-        //centerPadding: '70px',      //중앙에 슬라이드가 보여지는 모드에서 패딩 값
-        // fade: true,                 //크로스페이드 모션 사용 여부 ▶기본값 false
         speed: 2000,                //모션 시간 (얼마나 빠른속도로 넘어가는지)(1000ms = 1초) 곧, 슬라이드 사이에 넘어가는 속도
-        //waitForAnimate: true,       //애니메이션 중에는 동작을 제한함 ▶기본값 true
-        // ▼ 반응형 브레이크포인트 옵션
-        // breakpoint: 숫자를 제작자의 환경에 맞게 조정함 ex) breakpoint: 1280
-        // 각 브레이크포인트 내에 settings 안에 위의 모든 옵션을 다르게 적용할 수 있음
         responsive: [
             {
                 breakpoint: 992,
@@ -78,49 +64,66 @@ const SomoimMainBody = () => {
       const handleSlideLeave = () => {
         setHoveredIndex(null);
       };
+      
+    useEffect(() => {
+        // 소모임 전체 사진첩 조회
+        const photoAll = async () => {
+            try {
+            const response = await axios.get(`/somoim/somoimPhotoListAll`);
+            console.log('전체 소모임 사진첩 목록 : ', response.data);
+        
+            setSomoimPhotoListAll(response.data);
+    
+            } catch (error) {
+                console.error(error);
+            }//try-cath문
+        };
 
-      const slideItems = [
-        {
-            image: '/image/somoim/highlight1.png',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
-        }, 
-        {   
-            image: '/image/main/dog1.jpg',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
-        },
-        {
-            image: '/image/somoim/highlight1.png',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
-        }, 
-        {   
-            image: '/image/main/dog1.jpg',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
-        },
-        {
-            image: '/image/somoim/highlight1.png',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
-        }, 
-        {   
-            image: '/image/main/dog1.jpg',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
-        },
-        {
-            image: '/image/somoim/highlight1.png',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
-        }, 
-        {   
-            image: '/image/main/dog1.jpg',
-            description: '우리 동네 강아지 자랑해요',
-            eventName: '반려견 친목모임'
+        photoAll();
+    }, [])
+
+      // somoimPhotoListAll이 변경될 때마다 firstPhotoArray 업데이트
+    useEffect(() => {
+        const newFirstPhotoArray = [];
+
+        if (Array.isArray(somoimPhotoListAll) && somoimPhotoListAll.length > 0) {
+            somoimPhotoListAll.forEach((item) => {
+                if (item.somoimPhoto) {
+                    const photoArray = item.somoimPhoto.replace(/"/g, '').split(',');
+                    // 각 항목에 대해 첫 번째 사진 선택
+                    if (photoArray.length > 0) {
+                        const firstPhoto = photoArray[0];
+                        newFirstPhotoArray.push(firstPhoto);
+                        console.log('소모임 메인 캐러셀용 이미지들 : ', firstPhoto)
+                    } else {
+                        console.log('somoimPhotoList is not a valid array');
+                    }
+                } else {
+                    console.log('somoimPhotoList is not available');
+                }
+            });
+
+            setFirstPhotoArray(newFirstPhotoArray);
+            console.log('firstPhotoArray :', newFirstPhotoArray);
+        } else {
+            console.log('somoimPhotoList is not a valid array or is empty');
         }
-      ]
+    }, [somoimPhotoListAll]);
+      
+    const slideItems = somoimPhotoListAll.map((item, index) => {
+        const firstPhoto = item.somoimPhoto ? item.somoimPhoto.replace(/"/g, '').split(',')[0] : '';
+        return {
+            image: `https://kr.object.ncloudstorage.com/bitcamp-edu-bucket-112/${firstPhoto}`,
+            description: item.photoTitle,
+            eventName: item.somoim ? item.somoim.somoimName : '',
+            somoimId: item.somoim ? item.somoim.id : null,
+            photoId: item.id,
+        };
+    });
+
+    // 슬라이드 아이템이 설정한 슬라이드 수를 충족하지 못하면 더미 슬라이드를 추가
+    const totalSlides = Math.max(settings.slidesToShow, slideItems.length);
+    const dummySlides = Array.from({ length: totalSlides - slideItems.length }, (_, index) => index);
 
     return (
         <>
@@ -141,23 +144,25 @@ const SomoimMainBody = () => {
                             onMouseEnter={() => handleSlideHover(index)}
                             onMouseLeave={handleSlideLeave}
                             >
-                                <Link to={`/somoim/detailMain/${somoimId}`}>
+                                {/* <Link to={`/somoim/detailMain/${somoimPhotoListAll[index].somoim.id}`}> */}
+                                {/* <Link to={item.somoimId ? `/somoim/detailMain/${item.somoimId}` : '#'}> */}
+                                {/* <Link to={item.somoimId ? `/somoim/detailPhoto/${item.somoimId}` : '#'}> */}
+                                <Link to={`/somoim/detailPhoto/${item.somoimId}?photoId=${item.photoId}`}>
                                     <img className={`${styles.moimHighlightImgDivImg} 
                                                     ${hoveredIndex === index ? slideStyles.hoveredImg : ''}
                                                     mb-4`} 
-                                                        src={item.image} alt={`Slide ${index + 1}`}/>
+                                        //src={item.image} alt={`Slide ${index + 1}`}/>
+                                        src={item.image} 
+                                        alt={`Slide ${index + 1}`}/>
                                     <div className={`${styles.highlightShortDetail}`}>
                                         {item.description} - {item.eventName}
                                     </div>
                                 </Link>
                             </div>
                         ))}
-                            {/* <div className={`${styles.moimHighlight} col-md-6 col-lg-3`}>
-                                <img className={`${styles.moimHighlightImgDivImg} mb-4`} src='/image/somoim/highlight1.png' alt='somoimHighlight'/>
-                                <div className={`${styles.highlightShortDetail}`}>
-                                    우리 동네 강아지 자랑해요 - 반려견 친목모임
-                                </div>
-                            </div> */}
+                        {dummySlides.map((_, index) => (
+                            <div key={index} className={`${styles.moimHighlight} col-md-6 col-lg-3`}></div>
+                        ))}
                         </Slider>
                     </div>
                 </div>

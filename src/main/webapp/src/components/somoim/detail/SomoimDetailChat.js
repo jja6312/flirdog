@@ -1,11 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+const getRandomImage = () => {
+    const imagePaths = [
+      '/image/somoim/ad.jpeg',
+      '/image/somoim/ad1.jpg',
+      '/image/somoim/ad2.jpg',
+      '/image/somoim/ad3.jpg',
+      '/image/somoim/ad4.jpg',
+    ];
+  
+    const randomIndex = Math.floor(Math.random() * imagePaths.length);
+    return imagePaths[randomIndex];
+  };
 
 const SomoimDetailChat = () => {
+    const [currentImage, setCurrentImage] = useState(getRandomImage);
+
+    const getNextImage = () => {
+        setCurrentImage(getRandomImage);
+    };
+
+    useEffect(() => {
+        // 새로고침할 때마다 다음 이미지를 보여줌
+        getNextImage();
+    }, []);
+
+
     return (
         <>
-            {/* <div className='col-lg-3 col-12 d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid brown', padding: 0 }}> */}
+        <div className='col-lg-3 col-12 d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-start', padding: 0 }}>
+            <div style={{ width: '290px', height: '964px', position: 'relative', paddingRight: '90%' }}>
+            <img
+                src={currentImage}
+                alt="Random Image"
+                style={{ width: '290px', height: '700px', objectFit: 'cover' }}
+                />
+            </div>
+        </div>
+
+            {/* <div className='col-lg-3 col-12 d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-end', border: '1px solid brown', padding: 0 }}>
             <div className='col-lg-3 col-12 d-flex justify-content-right' style={{ textAlign: 'center', alignSelf: 'flex-start', padding: 0 }}>
                    <div style={{ width: '290px', height: '964px', position: 'relative', paddingRight: '90%' }}>
+                    <img src='/image/somoim/ad.jpeg' alt='광고'  style={{ width: '290px', height: '604px', position: 'relative', paddingRight: '90%' }}/>   
                        <div className="Rectangle56" style={{ width: '308px', height: '965.79px', left: '0px', position: 'absolute', background: '#FFF4F4' }}></div>
                        <div style={{ width: '278px', height: '924px', left: '17px', top: '14px', position: 'absolute', background: 'white' }}></div>
                        <div style={{ width: '287px', height: '90px', left: '18px', top: '935px', position: 'absolute' }}>
@@ -67,7 +103,7 @@ const SomoimDetailChat = () => {
                        </div>
                        </div>
                    </div>
-               </div>
+               </div> */}
         </>
     );
 };

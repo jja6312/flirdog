@@ -22,8 +22,12 @@ const MainBody = () => {
   const navigate = useNavigate();
 
   const openChatting = (e) => {
+    if (localStorage.getItem("user") === null) {
+      alert("로그인 후 이용해주세요.");
+      navigate("/login");
+      return;
+    }
     setIsOpenChatting(!isOpenChatting);
-
     // 카카오 로그인으로 진행했을 때
     const userIdLocal = localStorage.getItem("user");
     const userIdParsing = JSON.parse(userIdLocal);

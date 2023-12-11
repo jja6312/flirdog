@@ -3,6 +3,7 @@ package somoim.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,9 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,12 +29,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import matching.bean.Matching;
 import somoim.bean.Somoim;
 import somoim.bean.SomoimList;
 import somoim.bean.SomoimListDTO;
 import somoim.bean.SomoimPhoto;
+import somoim.bean.SomoimPhotoComment;
 import somoim.bean.SomoimRequest;
 import somoim.service.SomoimService;
 import user.bean.DogsInfo;
@@ -270,4 +275,202 @@ public class SomoimController {
 		return somoimPhoto;
 	}
 	
+	// 사진첩 게시글 삭제
+	@DeleteMapping(path="/somoimPhotoDelete")
+	public void somoimPhotoDelete(
+					@RequestParam("id") Long id,
+					@RequestParam("userId") Long userId, 
+					@RequestParam("somoimId") Long somoimId) {
+		somoimService.somoimPhotoDelete(id, userId, somoimId);
+	}
+	
+	// 사진첩 게시글 조회수
+	@PostMapping("/somoimPhotoCount")
+    public Optional<SomoimPhoto> somoimPhotoCount(@RequestParam Long id) {
+		
+		Optional<SomoimPhoto> count = somoimService.somoimPhotoCount(id);
+		System.out.println("사진첩 조회수 응답 : " + count);
+        return count;
+    }
+	
+	// 사진첩 좋아요 등록 여부 조회
+	@PostMapping("/somoimPhotoLikeStatus")
+    public ResponseEntity<Map<String, Boolean>> somoimPhotoLikeStatus(
+    		@RequestBody Map<String, Long> request) {
+		Long userId = request.get("userId");
+	    Long photoId = request.get("photoId");
+		System.out.println("사진첩 좋아요 userId 잘 받아왔나 ? " + userId);
+		System.out.println("사진첩 좋아요 photoId 잘 받아왔나 ? " + photoId);
+		
+        boolean isLiked = somoimService.isSomoimPhotoLiked(userId, photoId);
+        
+        Map<String, Boolean> response = Collections.singletonMap("isLiked", isLiked);
+        System.out.println("사진첩 좋아요 여부 확인" + response);
+        
+        return ResponseEntity.ok(response);
+    }
+	
+	// 사진첩 좋아요 등록 및 취소
+	@RequestMapping(value = "/somoimPhotoLikes", method = {RequestMethod.POST, RequestMethod.DELETE})
+	public ResponseEntity<Void> somoimPhotoLikes(@RequestBody Map<String, Long> request, 
+													HttpServletRequest httpRequest) {
+	    Long userId = request.get("userId");
+	    Long photoId = request.get("photoId");
+	    System.out.println("좋아요 등록 및 취소 userId 잘 받아왔나 ? " + userId);
+		System.out.println("좋아요 등록 및 취소 photoId 잘 받아왔나 ? " + photoId);
+		
+	    if (httpRequest.getMethod().equals("POST")) {
+	        // 좋아요 등록
+	        somoimService.somoimPhotoLikes(userId, photoId);
+	    } else if (httpRequest.getMethod().equals("DELETE")) {
+	        // 좋아요 취소
+	        somoimService.somoimPhotoUnLikes(userId, photoId);
+	    }
+	    return ResponseEntity.ok().build();
+	}
+	
+	// 사진첩 좋아요 개수 조회
+	@GetMapping(path="/somoimPhotoLikeCount")
+	public Long somoimPhotoLikeCount(@RequestParam Long photoId) {
+		System.out.println("좋아요 개수 조회 게시글 아이디 : " + photoId);
+		Long returnLikeCount = somoimService.somoimPhotoLikeCount(photoId);
+		
+		return returnLikeCount;
+	}
+	
+	// 모임 하이라이트를 위한 사진첩 전체 조회
+	@GetMapping(path="/somoimPhotoListAll", produces = "application/json;charset=UTF-8")
+	public List<SomoimPhoto> somoimPhotoListAll() {
+		
+		List<SomoimPhoto> somoimPhotoAll = somoimService.somoimPhotoListAll();
+		System.out.println("컨트롤단 사진첩 전체 목록 조회 : " + somoimPhotoAll);
+		
+		return somoimPhotoAll;
+	}
+	
+	// 사진첩 수정
+//	@PostMapping("/somoimPhotoUpdate")
+//	public ResponseEntity<String> somoimPhotoUpdate(@RequestPart("pinDetails") SomoimPhoto pinDetails,
+//	                                                @RequestPart(value = "imgFiles", required = false) List<MultipartFile> imgFiles,
+//	                                                HttpSession session) {
+//	    
+//		System.out.println("컨트롤단 pinDetails : " + pinDetails);
+//		if (imgFiles != null) {
+//	        for (MultipartFile img : imgFiles) {
+//	            System.out.println("컨트롤단 imgFiles : " + img);
+//	        }
+//	    }
+//		
+//		try {
+//	        somoimService.somoimPhotoUpdate(pinDetails, imgFiles, session);
+//	        return ResponseEntity.ok("Somoim photo updated successfully.");
+//	    } catch (Exception e) {
+//	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating somoim photo.");
+//	    }
+//	}
+	
+	// 사진첩 수정
+	@PostMapping("/somoimPhotoUpdate")
+	public ResponseEntity<String> somoimPhotoUpdate(
+	        @RequestPart("pinDetails") SomoimPhoto pinDetails,
+	        @RequestParam(value = "imgFiles", required = false) List<MultipartFile> imgFiles,
+	        @RequestParam(value = "newImgFiles", required = false) List<MultipartFile> newImgFiles,
+	        HttpSession session) {
+	    
+		System.out.println("컨트롤단 pinDetails : " + pinDetails);
+	    if (imgFiles != null) {
+	        for (MultipartFile img : imgFiles) {
+	            System.out.println("컨트롤단 imgFiles : " + img);
+	        }
+	    }
+	    
+	    if (newImgFiles != null) {
+	        for (MultipartFile newImg : newImgFiles) {
+	            System.out.println("컨트롤단 newImgFiles : " + newImg);
+	        }
+	    }
+
+	    try {
+	        somoimService.somoimPhotoUpdate(pinDetails, imgFiles, newImgFiles, session);
+	        return ResponseEntity.ok("Somoim photo updated successfully.");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating somoim photo.");
+	    }
+	}
+	
+	// 댓글 등록
+//	@PostMapping("/somoimPhotoComment")
+//	public void somoimPhotoReply(@RequestBody SomoimPhotoComment comment) {
+//	    System.out.println("컨트롤단 comment : " + comment.getComment());
+//	    System.out.println("컨트롤단 comment id : " + comment.getId());
+//	    System.out.println("컨트롤단 comment somoimId : " + comment.getSomoim());
+//	    System.out.println("컨트롤단 comment somoimPhoto : " + comment.getSomoimPhoto());
+//
+//	    somoimService.somoimPhotoReply(comment);
+//	}
+	
+	// 댓글 등록
+	@PostMapping("/somoimPhotoComment")
+	public void somoimPhotoReply(@RequestBody Map<String, Object> requestBody) {
+	    String comment = (String) requestBody.get("comment");
+	    Long userId = requestBody.get("userId") != null ? Long.parseLong(requestBody.get("userId").toString()) : null;
+	    Long somoimId = requestBody.get("somoimId") != null ? Long.parseLong(requestBody.get("somoimId").toString()) : null;
+	    Long photoId = requestBody.get("photoId") != null ? Long.parseLong(requestBody.get("photoId").toString()) : null;
+
+	    System.out.println("컨트롤단 comment : " + comment);
+	    System.out.println("컨트롤단 comment id : " + userId);
+	    System.out.println("컨트롤단 comment somoimId : " + somoimId);
+	    System.out.println("컨트롤단 comment somoimPhoto : " + photoId);
+	    
+	    somoimService.somoimPhotoReply(comment, userId, somoimId, photoId);
+	    
+	    
+//	    SomoimPhotoComment createdComment = new SomoimPhotoComment();
+//		    createdComment.setComment(createdComment.getComment());
+//		    createdComment.setId(createdComment.getId());
+//		    createdComment.setSomoim(createdComment.getSomoim());
+//		    createdComment.setUser(createdComment.getUser());
+//	    System.out.println("컨트롤단 createdComment : " + createdComment);
+	}
+
+	
+//	@PostMapping("/somoimPhotoComment")
+//	public void somoimPhotoReply(
+//	        @RequestParam("comment") String comment,
+//	        @RequestParam("userId") Long userId,
+//	        @RequestParam("somoimId") Long somoimId,
+//	        @RequestParam("photoId") Long photoId) {
+//
+//	    System.out.println("컨트롤단 comment : " + comment);
+//
+//	    somoimService.somoimPhotoReply(comment, userId, somoimId, photoId);
+//	    
+//	    SomoimPhotoComment createdComment = new SomoimPhotoComment();
+//	    createdComment.setComment(comment);
+//	    System.out.println("컨트롤단 createdComment : " + createdComment);
+//	   
+//	}
+	
+	// 댓글 목록 조회
+	@GetMapping(path="/somoimPhotoComments")
+	public List<SomoimPhotoComment> getSomoimPhotoReply(@RequestParam(value="photoId") Long somoimPhotoId) {
+		List<SomoimPhotoComment> reaplyList = somoimService.getSomoimPhotoReply(somoimPhotoId);
+		
+		for(SomoimPhotoComment somoimPhotoComment : reaplyList) {
+			System.out.println("컨트롤단 SomoimPhotoComment 리턴정보" + somoimPhotoComment);
+		}
+		
+		return reaplyList;
+	}
+	
+	// 사진첩 댓글 삭제
+	@DeleteMapping(path="/photoReplyDelete")
+	public void photoReplyDelete(@RequestParam(value="commentId") Long commentId,
+								 @RequestParam(value="userId") Long userId) {
+		System.out.println("사진첩 댓글삭제 컨트롤단에서 CommentId 확인 : " + commentId + 
+							" & UserId 확인 : " + userId);
+		somoimService.photoReplyDelete(commentId, userId);
+	}
+
+
 }

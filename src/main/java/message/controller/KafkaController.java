@@ -36,6 +36,6 @@ public class KafkaController {
 
 	@KafkaListener(id = "newRoomEventListener", topics = "newRoom", containerFactory = "kafkaListenerContainerFactory")
 	public void listen(@Payload MessageRoom messageRoom) throws Exception{
-		consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
+		//consumerConfiguration.messageConsumerFactory("messageRoom" + messageRoom.getId());
 	}
 }

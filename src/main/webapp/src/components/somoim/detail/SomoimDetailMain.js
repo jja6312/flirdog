@@ -21,14 +21,14 @@ const SomoimDetailMain = ({ somoimId, user, isAdmin }) => {
 
     return (
         <div>
-            (이즈머드민 : {isAdmin})
+            {/* (이즈머드민 : {isAdmin})
             {
                 isAdmin === 2 && (
                     <div>
                         <div>(당신은 아직 미가입자 입니다.)</div><br/>
                     </div>
                 )
-            }
+            } */}
             <div dangerouslySetInnerHTML={{ __html: introduceDetail }} />
         </div>
     );

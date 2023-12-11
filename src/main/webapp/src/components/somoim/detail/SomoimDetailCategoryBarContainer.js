@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import data from './SomoimDetailMenuData';
 import axios from 'axios';
 
-const SomoimDetailCategoryBarContainer = ({somoimId, user}) => {
+const SomoimDetailCategoryBarContainer = ({ somoimId, user }) => {
   const [selectedCategory, setSelectedCategory] = useState('모임 정보');
   const [memberCount, setMemberCount] = useState(1);
   const navigate = useNavigate();

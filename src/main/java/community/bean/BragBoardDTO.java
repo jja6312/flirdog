@@ -1,6 +1,5 @@
 package community.bean;
 
-
 import java.util.List;
 
 import api.BaseEntity;
@@ -22,47 +21,47 @@ import lombok.Setter;
 @Entity
 @Setter
 @Table(name = "BragBoard")
-public class BragBoardDTO extends BaseEntity{
-	@Id
+public class BragBoardDTO extends BaseEntity {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
-    @Column(name="title", length=50)
+    @Column(name = "title", length = 50)
     private String title;
-    
+
     @NonNull
-    @Column(name="content", length=500)
+    @Column(name = "content", length = 500)
     private String content;
-    
+
     @NonNull
-    @Column(name="image", length=500)
+    @Column(name = "image", length = 500)
     private String image;
-    
+
     @NonNull
-	@Column(name="userId", length=50)
+    @Column(name = "userId", length = 50)
     private Long userId;
-    
+
     @NonNull
-    @Column(name="userNickName", length=100)
+    @Column(name = "userNickName", length = 100)
     private String userNickName;
-    
-    @Column(name="communityScore", length=200)
+
+    @Column(name = "communityScore", length = 200)
     private int communityScore;
-    
-    @Column(name="likeScore", length=200)
+
+    @Column(name = "likeScore", length = 200)
     private int likeScore;
-    
-    @Column(name="commentCount", length=200)
+
+    @Column(name = "commentCount", length = 200)
     private int commentCount;
-    
-    @Column(name="hit", length=100)
-    @GeneratedValue(strategy= GenerationType.IDENTITY) //MySQL의 AUTO-INCREMENT를 사용하여 자동으로 시쿼스 적용
+
+    @Column(name = "hit", length = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL의 AUTO-INCREMENT를 사용하여 자동으로 시쿼스 적용
     private int hit;
-    
+
     @Builder(toBuilder = true)
-    public BragBoardDTO(Long userId, String title, String content, String image, String userNickName, 
-    					int communityScore, int commentCount, int likeScore, int hit) {
+    public BragBoardDTO(Long userId, String title, String content, String image, String userNickName,
+            int communityScore, int commentCount, int likeScore, int hit) {
         this.userId = userId;
         this.userNickName = userNickName;
         this.title = title;
@@ -79,7 +78,7 @@ public class BragBoardDTO extends BaseEntity{
                 .image(String.join(",", imgs))
                 .build();
     }
-    
+
     public int getHit() {
         return this.hit;
     }

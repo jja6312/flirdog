@@ -42,11 +42,21 @@ const MydogProfileRegister2 = () => {
         const userJsonString = localStorage.getItem('user');
         
         const userObject = JSON.parse(userJsonString);
-        console.log(userObject);
-        setUserObject(userObject);
-        setEmail1(userObject.email);
 
-        console.log("email~~~~"+userObject.email);
+        let email = null;
+        if(userObject.user){
+            console.log(userObject.user);
+            setUserObject(userObject.user);
+            email = userObject.user.email;
+            
+
+        }else if(userObject){
+            console.log(userObject);
+            setUserObject(userObject);
+            email = userObject.email;
+        }
+        console.log("email~~~~!!!!!!!!!!!!!!"+email);
+        setEmail1(email);
         console.log("email1~~~~"+email1);
         console.log("email2~~~~"+dogsInfoDTO.email);
 

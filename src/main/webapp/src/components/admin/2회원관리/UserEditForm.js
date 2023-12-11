@@ -220,7 +220,7 @@ const UserEditForm = () => {
           </Form.Group>
 
           {/* 생성 날짜 필드 */}
-          <Form.Group className="mb-3">
+          {/* <Form.Group className="mb-3">
             <Form.Label>생성 날짜</Form.Label>
             <Form.Control
               type="text"
@@ -229,10 +229,10 @@ const UserEditForm = () => {
               style={{ backgroundColor: "#EEEEEE" }}
               readOnly // 생성 날짜는 읽기 전용일 수 있습니다.
             />
-          </Form.Group>
+          </Form.Group> */}
 
           {/* 수정 날짜 필드 */}
-          <Form.Group className="mb-3">
+          {/* <Form.Group className="mb-3">
             <Form.Label>수정 날짜</Form.Label>
             <Form.Control
               style={{ backgroundColor: "#EEEEEE" }}
@@ -241,7 +241,7 @@ const UserEditForm = () => {
               value={userDTO.modifiedAt}
               readOnly
             />
-          </Form.Group>
+          </Form.Group> */}
 
           <Button className={checkBtnStyle.editBtn} onClick={onSave}>
             저장

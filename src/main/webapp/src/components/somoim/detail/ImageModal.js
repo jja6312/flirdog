@@ -198,35 +198,35 @@ const ImageModal = React.forwardRef((props, ref) => {
                     업로드하는 유저의 이름 : {user.name} / id번호 : {user.id}
 
                     <div className={`${styles.section2} gap-3`}>
-                <input
-                    placeholder="사진의 제목을 입력하세요"
-                    type="text"
-                    className={`${styles.new_pin_input} pin_title`}
-                    id={`${styles.pin_title}`}
-                    name="photoTitle" // name을 추가
-                    value={pinDetails.title} // value를 상태 변수로 설정
-                    onChange={handleChange} // onChange 이벤트 추가
-                />
-                <textarea
-                    placeholder="사진에 대한 자세한 설명을 입력하세요"
-                    type="text"
-                    className={`${styles.new_pin_input} pin_description`}
-                    id={`${styles.pin_description}`}
-                    name="photoContent" // name을 추가
-                    value={pinDetails.content} // value를 상태 변수로 설정
-                    onChange={handleChange} // onChange 이벤트 추가
-                    style={{ height: '15rem' }}
-                />
-                <input
-                    placeholder="사진과 관련된 링크를 남겨주세요"
-                    type="text"
-                    className={`${styles.new_pin_input} pin_destination`}
-                    id={`${styles.pin_destination}`}
-                    name="photoLink" // name을 추가
-                    value={pinDetails.link} // value를 상태 변수로 설정
-                    onChange={handleChange} // onChange 이벤트 추가
-                />
-            </div>
+                        <input
+                            placeholder="사진의 제목을 입력하세요"
+                            type="text"
+                            className={`${styles.new_pin_input} pin_title`}
+                            id={`${styles.pin_title}`}
+                            name="photoTitle" // name을 추가
+                            value={pinDetails.title} // value를 상태 변수로 설정
+                            onChange={handleChange} // onChange 이벤트 추가
+                        />
+                        <textarea
+                            placeholder="사진에 대한 자세한 설명을 입력하세요"
+                            type="text"
+                            className={`${styles.new_pin_input} pin_description`}
+                            id={`${styles.pin_description}`}
+                            name="photoContent" // name을 추가
+                            value={pinDetails.content} // value를 상태 변수로 설정
+                            onChange={handleChange} // onChange 이벤트 추가
+                            style={{ height: '15rem' }}
+                        />
+                        <input
+                            placeholder="사진과 관련된 링크를 남겨주세요"
+                            type="text"
+                            className={`${styles.new_pin_input} pin_destination`}
+                            id={`${styles.pin_destination}`}
+                            name="photoLink" // name을 추가
+                            value={pinDetails.link} // value를 상태 변수로 설정
+                            onChange={handleChange} // onChange 이벤트 추가
+                        />
+                    </div>
                 </div>
             </div>
         </div>
