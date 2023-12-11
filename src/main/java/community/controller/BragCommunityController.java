@@ -59,10 +59,11 @@ public class BragCommunityController {
 			return getUser;
 		}
 		
-		//댓글작성
-		@PostMapping(path="boastCommentWrite", produces ="application/json")
-		public void boastCommentWrite(@RequestBody BragBoardCommentDTO bragBoardCommentDTO) {
+		@PostMapping(path = "boastCommentWrite", produces = "application/json")
+		public List<BragBoardCommentDTO> boastCommentWrite(@RequestBody BragBoardCommentDTO bragBoardCommentDTO) {
 		    bragBoardService.boastCommentWrite(bragBoardCommentDTO);
+		    // 작성한 댓글을 포함한 전체 댓글 목록 반환
+		    return bragBoardService.getBoastBoardCommentList(bragBoardCommentDTO.getBoardId());
 		}
 		
 		//작성글의 댓글 조회
@@ -96,5 +97,16 @@ public class BragCommunityController {
 		public void getBoastBoardDelete(@RequestParam("boardId") Long boardId) {
 		    System.out.println(boardId);
 		    bragBoardService.getBoastBoardDelete(boardId);
+		}
+		
+		//검색기능
+		@GetMapping(path="getSearchBoastBoardList", produces = "application/json;charset=UTF-8")
+		public List<BragBoardDTO> getSearchBoastBoardList(@RequestParam("searchValue") String searchValue,
+														  @RequestParam("inputValue") String inputValue){
+			System.out.println(searchValue);
+			System.out.println(inputValue);
+			List<BragBoardDTO> bragBoardDTO = bragBoardService.getSearchBoastBoardList(searchValue, inputValue);
+			
+			return bragBoardDTO;
 		}
 }

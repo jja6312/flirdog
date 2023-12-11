@@ -24,4 +24,10 @@ public interface DateMatchingService {
 	public void dateUpdate(MatchingDTO matchingDTO, List<MultipartFile> imgFiles, HttpSession session);
 
 	public List<MatchingDTO> getTopMatchingThree();
+
+	public void dateUpdate2(MatchingDTO matchingDTO, HttpSession session);
+
+	public Optional<MatchingDTO> dateDelete(String id);
+
+	public List<MatchingDTO> getAllMatchingList(int page, int size);
 }

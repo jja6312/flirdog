@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Comments from './Comments';
+import BoastBoardUpdate from './BoastBoardUpdate';
 import { UserContext } from '../../contexts/UserContext';
 import axios from 'axios';
 import Swal from "sweetalert2";
@@ -132,6 +132,14 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
         });
     }
 
+    //글 수정
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
+    const handleUpdateButtonClick = () => {
+        setIsUpdateModalOpen(true);
+      };
+
+
     return (
         <Modal 
             show={true} 
@@ -249,34 +257,45 @@ const BoastBoardRead = ({ boardDTO, closeModal }) => {
             <Modal.Footer>
             {/* 글 수정 버튼 렌더링 */}
             {getBoardDTO.userId === id && (
-            <Button
+                <Button
                 variant="primary"
                 style={{
-                backgroundColor: '#F56084',
-                borderColor: '#F56084',
-                fontWeight: 'bold',
-                }}
-            >
-                글 수정
-            </Button>
-            )}
-            {/* 글 삭제 버튼 */}
-            {getBoardDTO.userId === id && (
-                <Button
-                    variant="primary"
-                    style={{
                     backgroundColor: '#F56084',
                     borderColor: '#F56084',
                     fontWeight: 'bold',
-                    }}
-                    onClick={boastBoardDelete}
+                }}
+                onClick={handleUpdateButtonClick}
+                >
+                글 수정
+                </Button>
+            )}
+
+            {/* 글 삭제 버튼 */}
+            {getBoardDTO.userId === id && (
+                <Button
+                variant="primary"
+                style={{
+                    backgroundColor: '#F56084',
+                    borderColor: '#F56084',
+                    fontWeight: 'bold',
+                }}
+                onClick={boastBoardDelete}
                 >
                 글 삭제
                 </Button>
             )}
+
             <Button variant="secondary" onClick={handleClose}>
                 닫기
             </Button>
+
+            {/* 모달 창 */}
+            {isUpdateModalOpen && (
+                <BoastBoardUpdate
+                onClose={() => setIsUpdateModalOpen(false)}
+                boardDTO={getBoardDTO}
+                />
+            )}
             </Modal.Footer>
         </Modal>
     );

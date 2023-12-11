@@ -4,7 +4,6 @@ import { Container} from 'react-bootstrap';
 import Footer from '../main/Footer';
 import Dropdown from "react-bootstrap/Dropdown";
 import BoastBoardListCss from "../../css/boastBoard/boastBoardList.module.css";
-import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import BoastBoardWrite from './BoastBoardWrite';
 import axios from 'axios';
@@ -37,23 +36,114 @@ const BoastBoardList = () => {
         });
     }, []);
 
-    const navigate = useNavigate();
 
-    //검색 관련
-    const [searchName, setSearchName] = useState("제 목");
+    const [searchName, setSearchName] = useState("전 체");
+    const [searchValue, setSearchValue] = useState("");
     const [sortingFilter, setSortingFilter] = useState("작성일");
     const [inputValue, setInputValue] = useState('');
+    // eslint-disable-next-line no-unused-vars
+    const [swNum, setSwNum] = useState(0);
 
     const handleSearchSelect = (searchName) => {
         setSearchName(searchName);
+        setSearchValue(
+            searchName === "전 체" ? "all" :
+            searchName === "제 목" ? "title" :
+            searchName === "내 용" ? "content" :
+            searchName
+        )
     };
-    const  handleFilterSelect = (sortingFilter) => {
-        setSortingFilter(sortingFilter);
+
+    /*
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            // 검색어와 검색값이 주어졌을 때 서버에 요청을 보내어 데이터를 가져옵니다.
+            const response = await axios.get(`http://localhost:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
+            setBoardDTOList(response.data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        // 초기 데이터 로딩
+        fetchData();
+    
+        // 일정 주기로 데이터 새로고침 (예: 10초마다)
+        const intervalId = setInterval(() => {
+          fetchData();
+        }, 10000); // 10초마다 새로고침
+    
+        // 컴포넌트가 언마운트될 때 clearInterval을 통해 interval 정리
+        return () => clearInterval(intervalId);
+      }, []); // searchValue 또는 inputValue가 변경될 때마다 실행*/
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
+          setBoardDTOList(response.data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      
+      useEffect(() => {
+        fetchData();
+      }, []); // 초기에 한 번만 실행되도록 빈 배열을 전달
+
+    //검색 관련
+    //정렬기준
+    // 정렬 함수
+    const sortData = (data, sortingFilter) => {
+        switch (sortingFilter) {
+        case "작성일":
+            return data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        case "인기순":
+            return data.sort((a, b) => b.likeScore - a.likeScore);
+        case "조회수":
+            return data.sort((a, b) => b.hit - a.hit);
+        default:
+            return data;
+        }
     };
+    
+    // 핸들러 함수
+    const handleFilterSelect = (filter) => {
+        setSortingFilter(filter);
+        // sortingFilter 값에 따라 데이터를 정렬하고 상태를 업데이트
+        setBoardDTOList((prevData) => sortData([...prevData], filter));
+    };
+    
+    // useEffect 안에서 sortingFilter 값이 변경될 때마다 데이터를 정렬하고 상태를 업데이트
+    useEffect(() => {
+        setBoardDTOList((prevData) => sortData([...prevData], sortingFilter));
+    }, [sortingFilter]);
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
+
+    const handleSearch = async () => {
+        try {
+            setSwNum(1);
+        
+            // 검색 로직을 이곳에 구현하고, 검색 결과를 처리합니다.
+            console.log("검색어:", inputValue);
+        
+            // Axios를 사용하여 서버에 검색 요청을 보냅니다.
+            const response = await axios.get(`http://localhost:8080/boastBoard/getSearchBoastBoardList?searchValue=${searchValue}&inputValue=${inputValue}`);
+        
+            // 검색 결과를 state에 저장합니다.
+            setBoardDTOList(response.data);
+        
+            // 이후에 검색 결과에 대한 처리를 추가하면 됩니다.
+            console.log("검색 결과:", response.data);
+          } catch (error) {
+            console.error("검색 중 오류 발생:", error);
+          } finally {
+            // 검색이 성공하든 실패하든 항상 실행됩니다.
+            setSwNum(0);
+          }
+      };
 
     //모달 상세보기
     const [showModal, setShowModal] = useState(false);
@@ -170,6 +260,13 @@ const BoastBoardList = () => {
                                         >
                                         <Dropdown.Item
                                                 href="#/action-1"
+                                                onClick={() => handleSearchSelect("전 체" || "")}
+                                                style={{textAlign: "center"}}
+                                                >
+                                                전 체
+                                        </Dropdown.Item>
+                                        <Dropdown.Item
+                                                href="#/action-1"
                                                 onClick={() => handleSearchSelect("제 목" || "")}
                                                 style={{textAlign: "center"}}
                                                 >
@@ -213,7 +310,8 @@ const BoastBoardList = () => {
                                     // 입력 상자의 값은 상태로 설정됩니다.
                                     value={inputValue}
                                 /> &nbsp;&nbsp;&nbsp;
-                                <button className={BoastBoardListCss.searchBtn} 
+                                <button className={BoastBoardListCss.searchBtn}
+                                 onClick={handleSearch}
                                 >검 색</button>
                             </div>
                         </div>
@@ -287,7 +385,8 @@ const BoastBoardList = () => {
                 <div style={{width:'100%',
                     border: '10px solid pink',
                     borderRadius: '20px',
-                    padding:'2%'
+                    padding:'2%',
+                    marginBottom:'30px'
                 }}>
                     <div>
                         <div className="row row-cols-1 row-cols-md-3 g-4">

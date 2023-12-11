@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -352,4 +354,85 @@ public class DateMatchingServiceImpl implements DateMatchingService {
 	    return matchingDTOList;
 	}
 
+	@Override
+	public void dateUpdate2(MatchingDTO matchingDTO, HttpSession session) {
+		Optional<MatchingDTO> existingMatchingDTOOptional = matchingDTORepository.findById(matchingDTO.getId());
+
+
+		if (existingMatchingDTOOptional.isPresent()) {
+			MatchingDTO existingMatchingDTO = existingMatchingDTOOptional.get();
+			// 이미지 업로드 및 경로 설정 코드 생략
+
+			// 기존 매칭 객체의 필드 업데이트
+			existingMatchingDTO.setTitle(matchingDTO.getTitle());
+			existingMatchingDTO.setContent(matchingDTO.getContent());
+			existingMatchingDTO.setDogName(matchingDTO.getDogName());
+			existingMatchingDTO.setDogAge(matchingDTO.getDogAge());
+			existingMatchingDTO.setDogGender(matchingDTO.getDogGender());
+			existingMatchingDTO.setIsNeutralized(matchingDTO.getIsNeutralized());
+			existingMatchingDTO.setDogBreed(matchingDTO.getDogBreed());
+			existingMatchingDTO.setDate(matchingDTO.getDate());
+			existingMatchingDTO.setMatchingState(matchingDTO.getMatchingState());
+			existingMatchingDTO.setMatchingAddress(matchingDTO.getMatchingAddress());
+			existingMatchingDTO.setMatchingPurpose(matchingDTO.getMatchingPurpose());
+			existingMatchingDTO.setHit(matchingDTO.getHit());
+			existingMatchingDTO.setAverageScore(matchingDTO.getAverageScore());
+			existingMatchingDTO.setCommunityScore(matchingDTO.getCommunityScore());
+
+			// 변경된 매칭 객체 저장
+			matchingDTORepository.save(existingMatchingDTO);
+		} else {
+			// 매칭 객체가 존재하지 않는 경우 예외 처리 또는 다른 로직 수행
+		}
+	}
+
+	@Override
+	public Optional<MatchingDTO> dateDelete(String id) {
+		try {
+			Long idLong = Long.parseLong(id);
+			matchingDTORepository.deleteById(idLong);
+		} catch (NumberFormatException e) {
+			// 변환에 실패하면 예외 처리
+			// 적절한 처리를 추가하거나 예외를 다시 던지거나, 기본값을 반환하거나 등의 처리를 할 수 있습니다.
+			return Optional.empty(); // 예를 들어, 실패 시 Optional.empty()를 반환하는 등의 방법을 선택할 수 있습니다.
+		}
+		return Optional.empty();
+	}
+
+	@Override
+	public List<MatchingDTO> getAllMatchingList(int page, int size) {
+		Sort sort = Sort.by(Sort.Direction.DESC, "id");	    
+	    // 페이지 요청 객체 생성
+	    PageRequest pageRequest = PageRequest.of(page - 1, size, sort);
+
+	    // 페이징된 데이터를 가져오기
+	    Page<MatchingDTO> matchingDTOPage = matchingDTORepository.findAll(pageRequest);
+
+	    // 페이징된 데이터를 리스트로 변환
+	    List<MatchingDTO> matchingDTOList = matchingDTOPage.getContent();
+
+	    
+	    for (MatchingDTO matchingDTO : matchingDTOList) {
+	        Long userId = matchingDTO.getUserId();
+	        String dogName = matchingDTO.getDogName();
+
+	        // 유저 엔티티에서 communityScore 업데이트
+	        User user = matchingUserRepository.findById(userId)
+	                .orElseThrow(() -> new RuntimeException("ID에 해당하는 사용자를 찾을 수 없습니다: " + userId));
+	        int userCommunityScore = user.getCommunityScore();
+	        matchingDTO.setCommunityScore(userCommunityScore); // MatchingDTO에도 업데이트
+
+	        // DogsInfo 엔티티에서 averageScore 업데이트
+	        DogsInfo dogsInfo = accessDogsInfoRepository.findByUserIdAndName(userId, dogName);
+	        Score score = dogsInfo.getScore();
+	        Double averageScore = score.getAverageScore();
+	        String averageScoreStr = averageScore.toString();
+	        matchingDTO.setAverageScore(averageScoreStr);       
+	        
+	        // MatchingDTO 저장
+	        matchingDTORepository.save(matchingDTO);
+	    }
+
+	    return matchingDTOList;
+	}
 }
