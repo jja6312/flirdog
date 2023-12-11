@@ -231,13 +231,13 @@ const DateList = () => {
   const [uniqueIds, setUniqueIds] = useState([]); // 중복 체크를 위한 state
 
   const handleScroll = () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+  const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
-    // 로딩 중이 아니면서 스크롤이 하단에 도달하면 데이터 추가로 가져오기
-    if (!loading && scrollTop + clientHeight >= scrollHeight - 10) {
-      loadMoreData();
-    }
-  };
+  // 로딩 중이 아니면서 스크롤이 하단에 도달하면 데이터 추가로 가져오기
+  if (!loading && scrollTop + clientHeight >= scrollHeight - 10) {
+    loadMoreData();
+  }
+};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -271,6 +271,8 @@ const DateList = () => {
     setLoading(true);
   
     try {
+      await new Promise(resolve => setTimeout(resolve, 500)); // 1초 지연, 필요에 따라 조절 가능
+
       const response = await axios.get(`http://localhost:8080/date/getAllMatchingList?page=${page + 1}&size=${itemsPerPage}`);
       const newData = response.data;
   
