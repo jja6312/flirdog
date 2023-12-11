@@ -18,6 +18,9 @@ const SomoimMainFilter = ({ onSelectLocation, onSearch }) => {
     const { user } = useContext(UserContext); // 유저 컨텍스트
     const { id } = user;
     const navigate = useNavigate();
+    useEffect(() => {
+        console.log('소모임 리스트 id : ', id)
+    },[id, user])
 
     const handleSearch  = (searchData) => {
         const { search } = searchData;
@@ -40,13 +43,17 @@ const SomoimMainFilter = ({ onSelectLocation, onSearch }) => {
         };
     }, []);
 
-    // (() => { ... })()로 함수를 정의하고 즉시 실행
+    //(() => { ... })()로 함수를 정의하고 즉시 실행
     const preLogin = () => {
         id ? navigate('/somoim/somoimNew') : (() => {
           alert('먼저 로그인 하세요');
           navigate('/login');
         })();
       }
+
+    // const preLogin = () => {
+    //     navigate('/somoim/somoimNew')
+    // }
 
     return (
         <div>

@@ -311,29 +311,28 @@ const SomoimDetailPhoto = ({ somoimId, user, isAdmin } ) => {
                     loading={<div className="loading">Loading...</div>}
                     //groupBy={(jsx) => jsx.props["data-grid-groupkey"]}
                     itemBy={(jsx) => jsx.key}
-                        placeholder={<div className="placeholder">플레이스 홀더</div>}
-                        className="container mt-3"
-                        align="center"
-                        gap={20} // margin
-                        defaultDirection={"end"}
-                        sizeWeight={2}
-                        ratioWeight={1}
-                        aspectRatio={1}
-                        weightPriority={"custom"}
-                        // frame={[[1, 1, 2, 3, 3], [1, 1, 4, 4, 5]]} // 한 행의 열크기
-                        attributePrefix={"data-grid-"}
-                        column={0}
-                        ref={igRef}
-                        columnCalculationThreshold={1}
-                        // threshold={1000}
-                        onRequestAppend={onRequestAppend}
-                        onRenderComplete={(e) => { 
-                            console.log(e);
-                          }}
-                        isEqualSize={false}
-                        useResizeObserver={true}
-                        outlineLength={0}
-                        
+                      placeholder={<div className="placeholder">플레이스 홀더</div>}
+                      className="container mt-3"
+                      align="center"
+                      gap={20} // margin
+                      defaultDirection={"end"}
+                      sizeWeight={2}
+                      ratioWeight={1}
+                      aspectRatio={1}
+                      weightPriority={"custom"}
+                      // frame={[[1, 1, 2, 3, 3], [1, 1, 4, 4, 5]]} // 한 행의 열크기
+                      attributePrefix={"data-grid-"}
+                      column={0}
+                      ref={igRef}
+                      columnCalculationThreshold={1}
+                      // threshold={1000}
+                      onRequestAppend={onRequestAppend}
+                      onRenderComplete={(e) => { 
+                          console.log(e);
+                        }}
+                      isEqualSize={false}
+                      useResizeObserver={true}
+                      outlineLength={0} 
                     >
                       {/* {items ? (
                           items.map((item, index) => (

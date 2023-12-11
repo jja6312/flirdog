@@ -81,6 +81,11 @@ const SomoimNew = () => {
 
   const { user } = useContext(UserContext); // 유저 컨텍스트
   const { name, id } = user;
+  
+  useEffect(() => {
+    console.log('소모임 개설페이지 name : ', name);
+  },[user, name])
+
 
   const imgRef = useRef(); // 초점 맞추기
   const onCamera = () => {
@@ -712,7 +717,7 @@ const SomoimNew = () => {
                       name="createdId"
                       type="text"
                       value={name}
-                      placeholder="John Doe"
+                      // placeholder="John Doe"
                       readOnly
                     />
                   </Col>
