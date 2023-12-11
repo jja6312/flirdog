@@ -8,6 +8,6 @@ public interface MypageBoardService {
 
 	public MypageBoardDTO getBoard(Long userId);
 
-	public List<MypageBoardDTO> uploadListBoard(Long userId);
+	public List<MypageBoardDTO> uploadListBoard(String email);
 	
 }

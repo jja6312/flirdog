@@ -24,9 +24,20 @@ const MydogProfile = () => {
             const userJsonString = localStorage.getItem('user');
          
             const userObject = JSON.parse(userJsonString);
-            console.log(userObject);
-            setUserObject(userObject);
-            const email = userObject.email;
+
+            
+            let email = null;
+            if(userObject.user){
+                console.log(userObject.user);
+                setUserObject(userObject.user);
+                email = userObject.user.email;
+                
+
+            }else if(userObject){
+                console.log(userObject);
+                setUserObject(userObject);
+                email = userObject.email;
+            }
 
         axios.get(`/mypage/uploadListDog?email=${email}`)
             .then((res)=>{

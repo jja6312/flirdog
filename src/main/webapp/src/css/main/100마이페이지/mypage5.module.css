@@ -1,0 +1,213 @@
+/* 안녕 */
+.boardDiv1{
+    width: 100%;
+    min-height: calc(100vh - 52px);
+}
+.boardDiv2{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 100px;
+    max-width: 1024px;
+}
+.boardDiv3{
+    margin-top: 50px;
+}
+.boardDiv4{
+    padding: 9px 0;
+}
+.boardDiv5{
+    padding-right: 27px;
+    display: flex;
+    justify-content: space-between;
+    grid-gap: 10px;
+    gap: 10px;
+}
+.boardDiv6{
+    display: block;
+    width: 40rem;
+}
+.boardDiv7{
+    display: flex;
+    grid-gap: 10px;
+    gap: 10px;
+}
+.boardDiv8{
+    padding: 0 9px;
+    display: inline-flex;
+    align-items: center;
+    grid-gap: 5px;
+    gap: 5px;
+    height: 30px;
+    background: #ffeb99;
+    border-radius: 22px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 14px;
+}
+.boardDiv9{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 5px;
+    gap: 5px;
+}
+.boardDiv9_1{
+    position: relative;
+    width: 28px;
+    height: 28px;
+    background-color: #c0dfb0;
+    border-radius: 50%;
+}
+.boardDiv9_12{
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.boardDiv9_2{
+    font-size: 11px;
+    font-weight: 700;
+}
+.boardDiv10{
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 19px;
+}
+.boardDiv10:hover{
+    color: #F56084;
+}
+.boardDiv11{font-style: normal;
+    margin-top: 7px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    font-weight: 400;
+    color: #868688;
+    font-size: 13px;
+    line-height: 160%;
+}
+.boardDiv12{
+    position: relative;
+    min-width: 120px;
+    max-width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+}
+.boardDiv13{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    grid-gap: 40px;
+    gap: 40px;
+    font-size: 13px;
+    line-height: 16px;
+    color: #868688;
+}
+.boardDiv14{
+    color: #000;
+    cursor: pointer;    
+    font-size: 13px;
+    line-height: 16px;
+}
+.boardDiv15{
+    color: #000;
+}
+.boardDiv16{
+    font-size: 13px;
+    line-height: 16px;
+    color: #868688;
+}
+.boardDiv17{
+    padding-right: 16px;
+    display: block;
+}
+.boardDiv18{
+    padding-right: 18px;
+    display: flex;
+    grid-gap: 5px;
+    gap: 5px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.boardA1{
+    display: flex;
+    grid-gap: 5px;
+    gap: 5px;
+    align-items: center;
+    color: #1a0dab;
+}
+.boardHr1{
+    margin: 12px 0 0;
+    background-color: #e4e4e6;
+    height: 1px;
+    border: 0;
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+
+}
+.boardSpan1{
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    width: initial;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    inset: 0px;
+}
+.boardImg{
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    background-color: darkcyan;
+}
+.boardImg1{
+    position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: none;
+    background-size: cover;
+    background-image: none;
+    background-position: center center;
+}
+.boardImg2{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;    
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.subjectA{
+    text-decoration: none;
+    color: black;
+}
