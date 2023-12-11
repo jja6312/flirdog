@@ -126,6 +126,7 @@ const ImageModal = React.forwardRef((props, ref) => {
                         alert('사진 업로드가 완료되었습니다.')
                         // 업로드 성공 시 onSavePin 콜백(사용자 정의 함수) 호출
                         props.onSavePin(res.data);
+                        window.location.reload();
                     }).catch(e => console.log(e));
             } catch (error) {
                 console.error('이미지 업로드 오류 : ', error);
