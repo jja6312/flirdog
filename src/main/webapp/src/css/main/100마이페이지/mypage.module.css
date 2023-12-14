@@ -1,3 +1,4 @@
+
 .Nav {
     color: grey;
 }
@@ -67,7 +68,8 @@
 .RoundedCircle{
     width: 150px;
     height: 150px;
-    justify-content: center s;
+    justify-content: center;
+    object-fit: cover;
 }
 .Text {
     border-bottom: 3px solid #f56084;
@@ -89,6 +91,8 @@
 
 .Email{
     width: 30px;
+    height: 30px;
+    border-style: none;
 }
 .Btn{
     width: 100%;
@@ -150,7 +154,23 @@
     display: flex;
     justify-content: center;
 }
+.Imagecenter2{
+    display: flex;
+    justify-content: left;
+}
+.Imagecenter3{
+    display: flex;
+    justify-content: center;
+    margin-left: 10rem;
+}
 
+.Imagecenter4{
+    display: flex;
+    justify-content: start;
+    margin-top: 11px;
+    font-size: 18px;
+
+}
 .colorFixx{
     font-weight: bold;
     cursor: pointer;
@@ -402,6 +422,30 @@
     font-size: 15px;
     margin-top: 4%;
 }
+.Myarticle2_1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    color: #707070;
+    font-size: 15px;
+    margin-top: 4%;
+    margin-left: 17px;
+}
+.Myarticle2_2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    color:  #707070;
+    font-size: 15px;
+    margin-top: 4%;
+    margin-left: 17px;
+}
 .Myarticle3{
     position: relative;
     width: 180px;
@@ -545,3 +589,137 @@ input[type=radio]:checked + .labelClass2  {
     align-items: center;
 }
 /* ========================== */
+
+.subjectA:link { color: black; text-decoration: none;}
+.subjectA:visited { color: black; text-decoration: none;}
+.subjectA:hover { color: #F56084;; text-decoration: underline;}
+.subjectA:active { color: black; text-decoration: none;}
+
+
+.MydogProfileMarging{
+    margin-top: 10px;
+}
+.boxMydogProfileRegister{
+    border-radius: 70%;
+    overflow: hidden;
+}
+.Imagecenter{
+    position: relative;
+}
+.main_image_text {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  font-size: 10px;
+  color: #F56084;
+}
+.updateFormTest {
+	color: red;
+	font-size: 8pt;
+	font-weight: bold;
+}
+.MarginREM{
+    margin-top: 15rem !important;
+}
+.Margin0{
+    margin-top: 5rem;
+}
+.Margin1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;   
+}
+.Margin2{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 14rem;
+    margin-top: 1rem;
+}
+.Margin2_1{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 14rem;
+}
+.Margin2_2{
+    display: flex;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 14rem;
+    margin-top: 2rem;
+}
+.Margin4{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    width: 100%;
+    color: #707070;
+    font-size: 15px;
+    margin-left: 15rem;
+}
+.Myarticle5{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    margin-top: 10px;
+    color: #707070;
+    font-size: 30px;
+    margin-top: 4%;
+    margin-left: 11.5rem;
+    border-bottom: #f56084 2px solid;
+    cursor: pointer;
+}
+.ImgBorder:hover{
+    border: 2px solid #f56084;
+}
+.Myarticle5Input{
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+}
+.Myarticle5Input:focus{
+    outline: none;
+}
+.Margin1PointCHarge{
+    margin-left: 5rem;
+    font-size: 30px;
+    font-weight: 700;
+}
+.ImagecenterPoint{
+    text-align: center;
+    margin-left: 6rem;
+}
+.Margin0 input::-webkit-outer-spin-button,
+.Margin0 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input10{
+    border:none;
+    border-right: 0px;
+    border-top: 0px;
+    border-left: 0px;
+    width: 11rem;
+    color: #f56084;
+    font-size: 18px;
+
+}
+.input10:focus {outline:none;}

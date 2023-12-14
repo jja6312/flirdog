@@ -1,0 +1,25 @@
+.genderDivMale {
+  height: 45;
+  background-color: rgb(183, 193, 228);
+  transition: all 0.15s ease-in-out;
+}
+.genderDivMale:hover {
+  background-color: rgb(135, 140, 160);
+}
+.genderDivFemale {
+  height: 45;
+  background-color: rgb(255, 221, 233);
+  transition: all 0.15s ease-in-out;
+}
+.genderDivFemale:hover {
+  background-color: rgb(236, 192, 208);
+}
+
+.isNeutralizedDiv {
+  border: 1px solid rgb(217, 210, 212);
+  cursor: pointer;
+}
+.isNeutralizedDiv:hover {
+  border: 1px solid rgb(222, 47, 97);
+  cursor: pointer;
+}

@@ -5,6 +5,10 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faStoreSlash } from "@fortawesome/free-solid-svg-icons";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import { faHeadset } from "@fortawesome/free-solid-svg-icons";
+import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
+import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faTree } from "@fortawesome/free-solid-svg-icons";
 
 const FilterForm = ({
   iconName,
@@ -40,6 +44,18 @@ const FilterForm = ({
           )}
           {iconName === "faHeadset" && (
             <FontAwesomeIcon className={styles.icon} icon={faHeadset} />
+          )}
+          {iconName === "faHourglassHalf" && (
+            <FontAwesomeIcon className={styles.icon} icon={faHourglassHalf} />
+          )}
+          {iconName === "faHourglassEnd" && (
+            <FontAwesomeIcon className={styles.icon} icon={faHourglassEnd} />
+          )}
+          {iconName === "faHeart" && (
+            <FontAwesomeIcon className={styles.icon} icon={faHeart} />
+          )}
+          {iconName === "faTree" && (
+            <FontAwesomeIcon className={styles.icon} icon={faTree} />
           )}
         </div>
 

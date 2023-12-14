@@ -9,8 +9,7 @@ const Main = () => {
     <div>
       <Header></Header>
       <div style={{ width: "100%", textAlign: "center" }}>
-        <Link to="/user/userTest">가이드라인(필독)</Link>
-        <Link to="/admin">관리자페이지 </Link>
+        <br></br>
       </div>
 
       <MainBody></MainBody>

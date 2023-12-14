@@ -1,10 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "react-bootstrap/esm/Button";
 import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
 import CheckBtn from "../1상품관리/CheckBtn";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Loading from "../../Loading";
+
+function formatDate(isoString) {
+  const date = new Date(isoString);
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const seconds = date.getSeconds().toString().padStart(2, "0");
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
 
 const UserList = ({
   userList,
@@ -16,25 +28,12 @@ const UserList = ({
   checkUser,
   setCheckUser,
   setTotalFilter,
+  whatProduct,
 }) => {
-  const filteredUserList = useFilter
-    ? userList.filter((item) => item.name.includes(searchValueText))
-    : userList;
-
-  useEffect(() => {
-    setTotalFilter(filteredUserList.length);
-  }, [
-    userList,
-    useFilter,
-    searchValueText,
-    filteredUserList.length,
-    setTotalFilter,
-  ]);
-
   const goUserEditForm = (e) => {
     const editBtnId = e.target.id;
     const popupWidth = 600;
-    const popupHeight = 600;
+    const popupHeight = 900;
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
     const left = screenWidth / 2 - popupWidth / 2;
@@ -84,7 +83,7 @@ const UserList = ({
 
   return (
     <>
-      {filteredUserList.map((item, index) => (
+      {whatProduct.map((item, index) => (
         <tr key={index}>
           <td>
             <CheckBtn
@@ -118,8 +117,8 @@ const UserList = ({
           <td>{item.nickname}</td>
           <td>{item.userRole}</td>
           <td>{item.point}</td>
-          <td>{item.createdAt}</td>
-          <td>{item.modifiedAt}</td>
+          <td>{item.createdAt ? formatDate(item.createdAt) : "-"}</td>
+          <td>{item.modifiedAt ? formatDate(item.modifiedAt) : "-"}</td>
         </tr>
       ))}
     </>

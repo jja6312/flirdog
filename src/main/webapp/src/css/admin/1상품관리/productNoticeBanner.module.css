@@ -83,3 +83,7 @@
   background-color: #f56084;
   color: white;
 }
+
+.moveUpDown {
+  animation: moveUpDown 1s ease-in-out infinite;
+}

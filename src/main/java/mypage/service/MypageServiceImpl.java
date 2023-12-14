@@ -1,12 +1,19 @@
 package mypage.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import mypage.repository.MypageDTORepository;
+import mypage.repository.MypageDogsInfoDTORepository;
+import mypage.repository.MypagePointChargingDTORepository;
 import mypage.repository.MypagePointDTORepository;
 import mypage.repository.MypageRepository;
+import mypage.repository.MypageUserDTORepository;
 import payment.bean.PointChargingDTO;
+import user.bean.DogsInfoDTO;
 import user.bean.User;
 import user.bean.UserDTO;
 
@@ -14,12 +21,17 @@ import user.bean.UserDTO;
 public class MypageServiceImpl implements MypageService {
     @Autowired
     private MypageRepository mypageRepository;
+    @Autowired
+    private MypageDogsInfoDTORepository mypageDogsInfoDTORepository;
 
 	@Autowired
-	private MypageDTORepository mypageDTORepository;
+	private MypageUserDTORepository mypageUserDTORepository;
 	
 	@Autowired
 	private MypagePointDTORepository mypagePointDTORepository;
+
+	@Autowired
+	private MypagePointChargingDTORepository mypagePointChargingDTORepository;
 	
     @Override
     public User getUserProfile(Long userId) {
@@ -27,10 +39,35 @@ public class MypageServiceImpl implements MypageService {
     }
 	@Override
 	public UserDTO getUserProfileTest(Long userId) {
-		return mypageDTORepository.findById(userId).orElse(null);
+		return mypageUserDTORepository.findById(userId).orElse(null);
+	}
+
+	@Override
+	public void writeUser(UserDTO userDTO) {
+		mypageUserDTORepository.save(userDTO);
+		
 	}
 	@Override
 	public PointChargingDTO getPointCharging(Long userId) {
 		return mypagePointDTORepository.findById(userId).orElse(null);
 	}
+	@Override
+	public void write(DogsInfoDTO dogsInfoDTO) {
+//		System.out.println("MypageServiceImpl 부분에서 " + dogsInfoDTO.getName() );
+		mypageDogsInfoDTORepository.save(dogsInfoDTO);
+		
+	}
+	@Override
+	public Page<DogsInfoDTO> getDogInfoList(Pageable pageable) {	
+		//DB
+		Page<DogsInfoDTO> list = mypageDogsInfoDTORepository.findAll(pageable);
+		System.out.println(list.getContent());
+		
+		return list;
+	}
+	@Override
+	public void wrtitePointCharging(PointChargingDTO pointChargingDTO) {
+		mypagePointChargingDTORepository.save(pointChargingDTO);
+	}
+
 }

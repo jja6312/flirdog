@@ -1,0 +1,157 @@
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0%);
+    visibility: visible; /* 요소가 보이게 설정 */
+    opacity: 1; /* 완전 불투명 */
+  }
+  100% {
+    transform: translateX(-100%);
+    visibility: hidden; /* 요소를 숨김 */
+    opacity: 0; /* 완전 투명 */
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.loginForm {
+  position: fixed;
+  display: flex;
+  width: 100%;
+}
+.joinAuthForm {
+  width: 350px;
+}
+
+.loginFormElementDiv {
+  width: 340px;
+  height: 60px;
+}
+.loginFormElementLater {
+  cursor: pointer;
+}
+
+.loginFormElementDivSmall {
+  width: 340px;
+  height: 40px;
+}
+
+.kakaoDiv {
+  background-color: #ffeb00;
+  cursor: pointer;
+}
+.googleDiv {
+  background-color: rgb(227, 227, 227);
+  cursor: pointer;
+}
+.naverDiv {
+  background-color: rgb(54, 149, 54);
+  cursor: pointer;
+}
+.logoTextDiv {
+  cursor: pointer;
+}
+
+.inputStyle {
+  height: 100%;
+}
+
+.loginBtn {
+  background-color: #f56084;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.loginBtn:hover {
+  background-color: #fe7394;
+}
+
+.loginBtn2 {
+  background-color: #ffffff;
+  color: #f56084;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.loginBtn2:hover {
+  background-color: #e3e3e3;
+}
+
+.disabledBtn {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.loginBtnSpan {
+  color: white;
+  font-size: 20px;
+}
+.loginBtnSpan2 {
+  color: #f56084;
+  font-size: 20px;
+}
+
+.PwdFindAndJoinSpan {
+  cursor: pointer;
+  font-size: 15px;
+  color: black;
+}
+
+.JoinAuthFont1 {
+  font-size: 25px;
+  font-weight: 700;
+  color: black;
+}
+.JoinAuthFont2 {
+  font-size: 15px;
+
+  color: rgb(144, 144, 144);
+}
+.JoinAuthFont3 {
+  font-size: 15px;
+
+  color: black;
+}
+.JoinAuthFont4 {
+  font-size: 22px;
+
+  color: black;
+}
+.underlineStyle {
+  text-decoration: underline;
+  color: black;
+}
+
+.phoneStyle {
+  width: 100%;
+}
+
+.customInput::placeholder {
+  /* Placeholder 스타일 */
+  font-size: 12px; /* 원하는 폰트 크기로 조절 */
+}
+
+.customInput input {
+  /* 입력값 스타일 */
+  font-size: 12px; /* 원하는 폰트 크기로 조절 */
+}
+
+.linkNoneStyle {
+  text-decoration: none;
+  color: black;
+}
+
+.slideInRight {
+  animation: slideInRight 0.5s ease-in-out forwards;
+}
+.slideOutLeft {
+  animation: slideOutLeft 0.5s ease-in-out forwards;
+}

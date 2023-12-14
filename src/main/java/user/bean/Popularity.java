@@ -1,5 +1,7 @@
 package user.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +16,8 @@ public class Popularity {
 
     @Embedded
     private Score score;
-
+    
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 	@Autowired
 	private ObjectStorageService objectStorageService;
-	private String bucketName = "bitcamp-edu-bucket-111";
+	private String bucketName = "bitcamp-edu-bucket-112";
 	@Autowired
 	private AdminProductRepository adminProductRepository;
 
@@ -46,7 +47,10 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		// 1-3. 이미지 경로
 		// 실제 폴더
+		// s3문제
 		String filePath = session.getServletContext().getRealPath("/public/storage");
+		// String filePath =
+		// session.getServletContext().getRealPath("/public/image/product/");
 		System.out.println("실제폴더 = " + filePath);
 
 		File file;
@@ -62,11 +66,17 @@ public class AdminProductServiceImpl implements AdminProductService {
 			for (MultipartFile img : imgFilesList) {
 				originalFileName = img.getOriginalFilename();
 				System.out.println("originalFileName: " + originalFileName);
+				// s3문제
+				fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/product/", img);
+				// fileName = UUID.randomUUID().toString() + ".png";
 
-				fileName = objectStorageService.uploadFile(bucketName, "flirdogStorage/", img);
+				// s3문제
 				file = new File(filePath, originalFileName);
+				// file = new File(filePath, fileName);
 
-				imagePaths.add("flirdogStorage/" + fileName);
+				// s3문제
+				imagePaths.add("flirdogStorage/product/" + fileName);
+				// imagePaths.add("/image/product/" + fileName);
 
 				try {
 					img.transferTo(file);
@@ -111,7 +121,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 	@Override
 	public void productDelete(String productId) {
-		adminProductRepository.deleteById(Integer.parseInt(productId));
+		adminProductRepository.deleteById(Long.parseLong(productId));
 
 	}
 
@@ -121,14 +131,14 @@ public class AdminProductServiceImpl implements AdminProductService {
 		String[] productIdArray = productId.split(",");
 
 		for (String id : productIdArray) {
-			adminProductRepository.deleteById(Integer.parseInt(id));
+			adminProductRepository.deleteById(Long.parseLong(id));
 		}
 
 	}
 
 	@Override
 	public Optional<Product> getProductList(String productIdString) {
-		Integer productId = Integer.parseInt(productIdString);
+		Long productId = Long.parseLong(productIdString);
 
 		return adminProductRepository.findById(productId);
 	}
@@ -144,7 +154,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 		MainCategory mainCategoryEnumClass = MainCategory.valueOf(mainCategory);
 		SubCategory subCategoryEnumClass = SubCategory.valueOf(subCategory);
 
-		Integer productId = Integer.parseInt(productIdStr);
+		Long productId = Long.parseLong(productIdStr);
 		System.out.println("제이슨변환: " + newProductData);
 		System.out.println("메인카테고리: " + mainCategoryEnumClass);
 		System.out.println("서브카테고리: " + subCategoryEnumClass);
@@ -184,7 +194,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 		MainCategory mainCategoryEnumClass = MainCategory.valueOf(mainCategory);
 		SubCategory subCategoryEnumClass = SubCategory.valueOf(subCategory);
 
-		Integer productId = Integer.parseInt(productIdStr);
+		Long productId = Long.parseLong(productIdStr);
 		System.out.println("제이슨변환: " + newProductData);
 		System.out.println("메인카테고리: " + mainCategoryEnumClass);
 		System.out.println("서브카테고리: " + subCategoryEnumClass);
@@ -194,7 +204,10 @@ public class AdminProductServiceImpl implements AdminProductService {
 
 		// 1-3. 이미지 경로
 		// 실제 폴더
+		// s3문제
 		String filePath = session.getServletContext().getRealPath("/public/storage");
+		// String filePath =
+		// session.getServletContext().getRealPath("/public/image/product");
 		System.out.println("실제폴더 = " + filePath);
 
 		File file;

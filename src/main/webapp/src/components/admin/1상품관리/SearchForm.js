@@ -1,18 +1,19 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import checkBtnStyle from "../../../css/admin/checkBtn.module.css";
+import SearchDropdown from "./SearchDropdown";
 
 const SearchForm = ({
+  whatLeftMenuInnerText,
   placeHolder,
-  allProduct,
-  sellingProduct,
-  soldOutProduct,
-  selectedIcon,
   setUseFilter,
-  searchValueText,
   setSearchValueText,
   useFilterCheckNumber,
   setUseFilterCheckNumber,
+  selectedDropdown,
+  setSelectedDropdown,
+  placeHolderUseState,
+  setPlaceHolderUseState,
 }) => {
   const searchInput = useRef();
 
@@ -21,6 +22,7 @@ const SearchForm = ({
     const searchInputValue = searchInput.current.value;
     setSearchValueText(searchInputValue);
 
+    console.log("searchInputValue");
     console.log(searchInputValue);
     if (searchInputValue === "") {
       setUseFilter(false);
@@ -37,7 +39,7 @@ const SearchForm = ({
         <Form.Control
           style={{ width: "470px", height: "50px" }}
           type="search"
-          placeholder={placeHolder}
+          placeholder={placeHolderUseState}
           className="me-2"
           aria-label="Search"
           // onChange={onSearchValueText}

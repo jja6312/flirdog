@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "../../../css/admin/checkBtn.module.css";
 import { useState } from "react";
 
@@ -14,6 +14,11 @@ const CheckBtn = ({ productId, checkedProducts, setCheckedProducts }) => {
     }
     setCheckBtn(!checkBtn);
   };
+
+  useEffect(() => {
+    //선택될때마다 콘솔
+    console.log(checkedProducts);
+  }, [checkedProducts]);
 
   const productIdRef = useRef();
 

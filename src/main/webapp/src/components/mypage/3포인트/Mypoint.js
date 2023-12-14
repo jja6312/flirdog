@@ -7,25 +7,47 @@ import axios from 'axios';
 
 const Mypoint = () => {
 
+    const [userObject, setUserObject] = useState({});
+    console.log(userObject); //아무의미없음.userObject빈객체 방지용
+
     const [userDTO, setUserDTO] = useState({
         name: '',
         passwd: '',
         email: '',
         nickname: '',
         userRole: '',
-        point: 0,
-        communityScore: 0,
+        point: '디비연결안됨',
+        communityScore: '',
         // 나머지 필드들에 대해서도 테이블의 컬럼에 따라 추가해주세요.
         // 예를 들면, dogsInfos, popularity, matching 등...
       });
       
     const [pointChargingDTO, setPointChargingDTO] = useState({
-		price: 0,
+		price: '디비연결안됨',
 		
       });
       
     useEffect(() => {
-        axios.get('http://localhost:8080/mypage/getUserProfileTest?userIdStr=1')
+
+            // 로컬스토리지에서 유저 아이디 가져오기
+            const userJsonString = localStorage.getItem('user');
+         
+            const userObject = JSON.parse(userJsonString);
+
+            let userId = null;
+            if(userObject.user){
+                console.log(userObject.user);
+                setUserObject(userObject.user);
+                userId = userObject.user.id;
+                
+
+            }else if(userObject){
+                console.log(userObject);
+                setUserObject(userObject);
+                 userId = userObject.id;
+            }
+
+        axios.get(`http://localhost:8080/mypage/getUserProfileTest?userIdStr=${userId}`)
         .then((res) => {
             console.log(res.data);
             setUserDTO(res.data);
@@ -36,7 +58,7 @@ const Mypoint = () => {
     }, []);
     useEffect(() => {
         
-        axios.get('http://localhost:8080/mypage/getPointCharging?userIdStr=1')
+        axios.get('http://localhost:8080/mypage/getPointCharging?userIdStr=31')
         .then((res) => {
             console.log(res.data);
             setPointChargingDTO(res.data);
@@ -66,12 +88,13 @@ const Mypoint = () => {
                     </div>
                     <div className='col-lg-2'></div>
                 </div>
-                <div className='row mt-2'>
+                {/* 소멸 예정 포인트 여기는 안할거임. 시간부족 */}
+                {/* <div className='row mt-2'>
                     <div className='col-lg-2'></div>
-                    <div className='col-lg-8'><h3 className={Mypage.Point1}>소멸 예정 포인트 (7일 이내)</h3></div>
+                    <div className='col-lg-8'><h3 className={Mypage.Point1}>소멸 예정 포인트! (7일 이내)</h3></div>
                     <div className='col-lg-2'></div>
                 </div>
-                <div className='row mt-2'> {/* P글씨 */}
+                <div className='row mt-2'> 
                     <div className='col-lg-2'></div>
                     <div className='col-lg-8'>
                         <div className={Mypage.Point2}>
@@ -79,7 +102,7 @@ const Mypoint = () => {
                         </div>
                     </div>
                     <div className='col-lg-2'></div>
-                </div>
+                </div> */}
             </Container>         
         </div>
     );

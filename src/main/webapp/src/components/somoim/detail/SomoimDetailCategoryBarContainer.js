@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CategoryBtn from "./SomoimDetailCategoryBar";
 import { useNavigate } from 'react-router-dom';
 import data from './SomoimDetailMenuData';
+import axios from 'axios';
 
-const SomoimDetailCategoryBarContainer = ({somoimId}) => {
+const SomoimDetailCategoryBarContainer = ({ somoimId, user }) => {
   const [selectedCategory, setSelectedCategory] = useState('모임 정보');
+  const [memberCount, setMemberCount] = useState(1);
   const navigate = useNavigate();
-  //const location = useLocation();
 
   const handleCategoryClick = (categoryInfo) => {
     const [title, path] = categoryInfo;
-    navigate(`/somoim/${path}/${somoimId}`, { somoimId: somoimId });
+    //navigate(`/somoim/${path}/${somoimId}`, { somoimId: somoimId });
+    navigate(`/somoim/${path}/${somoimId}`, { state: { user, somoimId } });
     setSelectedCategory(title);
   };
 
-  //const showDetailMain = location.pathname === '/somoim/detailMain' || selectedCategory === '모임 정보';
+  // 멤버 수를 가져오는 함수
+  useEffect(() => {
+    getMemberCount(somoimId);
+  },[somoimId]);
+
+  const getMemberCount = async (somoimId) => {
+    console.log('과연 소모임아이디는 찍히는가? ', somoimId)
+    try {
+      if(somoimId) {
+        await axios.get(`/somoim/getMemberCount?somoimId=${somoimId}`)
+            .then(res => {
+              setMemberCount(res.data)
+              console.log('현재 소모임의 회원수 : ', res.data)
+            })
+            .catch(e => console.log(e));
+      }
+    } catch (error) {
+      console.error('멤버 수를 가져오는 중 오류 발생:', error);
+      return 1; // 오류가 발생하면 0으로 처리하거나 다른 기본값 사용
+    }
+  };
 
     return (
         <>
@@ -23,7 +45,8 @@ const SomoimDetailCategoryBarContainer = ({somoimId}) => {
                 <CategoryBtn
                   key={index}
                   isSelect={selectedCategory === item.title ? "selected" : "notSelected"}
-                  text={item.title}
+                  // text={item.title + `(${memberCount})`}
+                  text={`${item.title}${item.title === '모임 멤버' ? `(${memberCount})` : ''}`}
                   onClick={() => handleCategoryClick([item.title, item.path])}
                   size="col-3 col-lg-2"
                   height="40px"
@@ -33,47 +56,6 @@ const SomoimDetailCategoryBarContainer = ({somoimId}) => {
               )
             })
           }
-          {/* {showDetailMain && <SomoimDetailMain />} */}
-          {/* <CategoryBtn
-            isSelect={selectedCategory === "모임 정보" ? "selected" : "notSelected"}
-            text="모임 정보"
-            onClick={() => handleCategoryClick("모임 정보")}
-            size="col-2 col-lg-2"
-            height="40px"
-            fontSize="1.2rem"
-          />
-          <CategoryBtn
-            isSelect={selectedCategory === "게시판" ? "selected" : "notSelected"}
-            text="게시판"
-            onClick={() => handleCategoryClick("게시판")}
-            size="col-2 col-lg-2"
-            height="40px"
-            fontSize="1.2rem"
-          />
-          <CategoryBtn
-            isSelect={selectedCategory === "사진첩" ? "selected" : "notSelected"}
-            text="사진첩"
-            onClick={() => handleCategoryClick("사진첩")}
-            size="col-2 col-lg-2"
-            height="40px"
-            fontSize="1.2rem"
-          />
-          <CategoryBtn
-            isSelect={selectedCategory === "모임 일정" ? "selected" : "notSelected"}
-            text="모임 일정"
-            onClick={() => handleCategoryClick("모임 일정")}
-            size="col-2 col-lg-2"
-            height="40px"
-            fontSize="1.2rem"
-          />
-          <CategoryBtn
-            isSelect={selectedCategory === "모임 멤버(9)" ? "selected" : "notSelected"}
-            text="모임 멤버(9)"
-            onClick={() => handleCategoryClick("모임 멤버(9)")}
-            size="col-2 col-lg-2"
-            height="40px"
-            fontSize="1.2rem"
-          /> */}
       </>
     );
 };
