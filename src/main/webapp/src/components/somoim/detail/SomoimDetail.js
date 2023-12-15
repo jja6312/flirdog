@@ -112,6 +112,11 @@ const SomoimDetail = () => {
             console.log("유저 id 또는 소모임 id가 없습니다.");
           }
     }
+
+    // 소모임 수정
+    const onSomoimModifyBtn = (somoimId) => {
+        navigate(`/somoim/somoimModify?somoimId=${somoimId}`);
+    } 
     
 
     return (
@@ -129,7 +134,7 @@ const SomoimDetail = () => {
                         <div className={`${styles.header}`}>
                             <h1>{ somoimName }</h1>
                             <p className='col-lg-8 d-none d-md-block' style={{ textAlign: 'bold' }}>{ introduceSub }</p>
-                            
+                            {/* <Button variant="secondary" style={{ padding: '0rem 2rem 0rem 2rem' }} onClick={() => onSomoimModifyBtn(somoimId) }>관리</Button> */}
                         </div>
                         <div className="content d-flex">
                             <div className="flex-row col-lg-2 d-none d-md-block" style={{ position: 'relative', lineHeight: '0.8rem', textAlign:'right', paddingRight: '30px', color: '#F56084', marginTop:'2px' }}>

@@ -65,6 +65,7 @@ import MatchingListFormAdmin from "./components/admin/5매칭관리/MatchingList
 import BoastBoardWrite from "./components/boastBoard/BoastBoardWrite";
 import BoardListForm from "./components/admin/6커뮤니티관리/BoardListForm";
 import SocialKakao from "./components/login/loginAPI/SocialKaKao";
+import SomoimModify from "./components/somoim/SomoimModify";
 
 const App = () => {
   return (
@@ -159,6 +160,7 @@ const App = () => {
               path="/somoim/:subMenu/:somoimId"
               element={<SomoimDetail />}
             />
+            <Route path="/somoim/somoimModify" element={<SomoimModify/>} />
             <Route path="/somoimTest" element={<SomoimTest />} />
 
             <Route path="/login" element={<Login></Login>} />
