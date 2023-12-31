@@ -38,7 +38,7 @@ const MessageRoom: React.FC<Props> = ({ userId, nickName, profileImage, topic, r
     }, [changeRoom]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/message/getMessages', { params: { messageRoomId:roomNo } })
+        axios.get('https://java.flirdog.store:8080/message/getMessages', { params: { messageRoomId:roomNo } })
             .then(response => {
                 setMessages(response.data);
             })
@@ -58,7 +58,7 @@ const MessageRoom: React.FC<Props> = ({ userId, nickName, profileImage, topic, r
 
     useEffect(() => {
         if (!stompClient) {
-            const sock = new SockJS('http://localhost:8080/ws');
+            const sock = new SockJS('https://java.flirdog.store:8080/ws');
             const stomp = new Client({
                 webSocketFactory: () => sock,
                 connectHeaders: {
@@ -92,7 +92,7 @@ const MessageRoom: React.FC<Props> = ({ userId, nickName, profileImage, topic, r
             const formData = new FormData();
             formData.append('file', imageFile);
 
-            const response = await axios.post("http://localhost:8080/admin/oneFileGo", formData, {
+            const response = await axios.post("https://java.flirdog.store:8080/admin/oneFileGo", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

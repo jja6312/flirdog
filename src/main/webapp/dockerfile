@@ -1,0 +1,10 @@
+FROM showg100/flirdog:1.6
+
+RUN rm -rf /app/build
+
+COPY build /app/build
+
+EXPOSE 80
+
+# Nginx 실행
+CMD ["nginx", "-g", "daemon off;"]

@@ -131,12 +131,12 @@ const DateUpdate = () => {
   useEffect(() => {
     const fetchData = async () => {
       try{
-        const res = await axios.get(`http://localhost:8080/date/dateReadMore?seq=${seq}`)
+        const res = await axios.get(`https://java.flirdog.store:8080/date/dateReadMore?seq=${seq}`)
         
         console.log(res.data);
         
-        const userRes = await axios.get(`http://localhost:8080/date/getUserInfo?userId=${res.data.userId}`)
-        const dogRes = await axios.get(`http://localhost:8080/date/getDogsInfoUserId?userId=${res.data.userId}`);
+        const userRes = await axios.get(`https://java.flirdog.store:8080/date/getUserInfo?userId=${res.data.userId}`)
+        const dogRes = await axios.get(`https://java.flirdog.store:8080/date/getDogsInfoUserId?userId=${res.data.userId}`);
         console.log(userRes.data);
         console.log(dogRes.data);
         console.log(res.data.dogName);

@@ -5,21 +5,19 @@ import ChattingGroupBox from "./ChattingGroupBox";
 import axios from "axios";
 import MessageRoom from "./message/MessageRoom";
 
-const Chatting = ({ isOpenChatting, userId, setIsOpenChatting }) => {
+const Chatting = ({ isOpenChatting, userId, setIsOpenChatting, isCreated }) => {
   const [messageRooms, setMessageRooms] = useState([]);
   const [enterMessageroom, setEnterMessageroom] = useState(null);
   const [changeRoom, setChangeRoom] = useState(0);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/message/getMessageRooms", {params: { userId }})
+    axios.get("https://java.flirdog.store:8080/message/getMessageRooms", {params: { userId }})
         .then((res) => {
-          console.log(userId)
-          console.log(res.data)
           setMessageRooms(res.data);
         }). catch((error) => {
       console.log(error);
     });
-  }, [userId]);
+  }, [userId, isCreated]);
 
   useEffect(() => {
     console.log(enterMessageroom)

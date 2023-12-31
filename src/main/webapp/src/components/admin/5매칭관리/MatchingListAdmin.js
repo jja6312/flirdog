@@ -30,7 +30,7 @@ const MatchingListAdmin = ({
 }) => {
   // 수정 버튼 핸들러
   const goMatchingEditForm = (id) => {
-    window.open("http://localhost:8080:3000/date/dateUpdate/" + id, "newWindow");
+    window.open("https://java.flirdog.store:8080:3000/date/dateUpdate/" + id, "newWindow");
   };
 
   const goMatchingWriteForm = (e) => {
@@ -54,7 +54,7 @@ const MatchingListAdmin = ({
       if (result.isConfirmed) {
         axios
           .post(
-            `http://localhost:8080/admin/matchingDelete?matchingId=${deleteBtnId}`
+            `https://java.flirdog.store:8080/admin/matchingDelete?matchingId=${deleteBtnId}`
           )
           .then(() => {
             //삭제 후 새로고침

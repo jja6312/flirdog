@@ -115,10 +115,6 @@ const App = () => {
                         element={<ReviewListForm openLeftside="3"/>}
                     />
 
-                    <Route path="product">
-                        <Route path="" element={<Product/>}/>
-                        <Route path=":id" element={<ProductDetail/>}/>
-                    </Route>
                 </Routes>
             </>
         </BrowserRouter>

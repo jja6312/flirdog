@@ -29,7 +29,7 @@ const MessageRoom: React.FC<Props> = ({ userId, nickName, topic, roomNo, profile
     const [messages, setMessages] = useState<Message[]>([]);
     const [messageInput, setMessageInput] = useState<string>('');
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const url = 'http://localhost:8080/ws';
+    const url = 'https://java.flirdog.store:8080/ws';
     const messagesContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

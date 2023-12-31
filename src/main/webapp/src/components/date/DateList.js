@@ -54,7 +54,7 @@ const DateList = () => {
   /*
   useEffect(() => {
     axios
-      .get("http://localhost:8080/date/getAllMatchingList")
+      .get("https://java.flirdog.store:8080/date/getAllMatchingList")
       .then((res) => {
         console.log("주소");
         console.log(res.data);
@@ -68,7 +68,7 @@ const DateList = () => {
   // 상위 3개 조회
   useEffect(() => {
     axios
-      .get("http://localhost:8080/date/getTopMatchingThree")
+      .get("https://java.flirdog.store:8080/date/getTopMatchingThree")
       .then((res) => {
         console.log("주소");
         console.log(res.data);
@@ -157,7 +157,7 @@ const DateList = () => {
 
   const submitScore = () => {
     axios
-      .post("http://localhost:8080/access/saveDogScore", null, {
+      .post("https://java.flirdog.store:8080/access/saveDogScore", null, {
         params: {
           dogId: modaldogsInfo[currentDogIndex].id,
           score: score.filter(Boolean).length,
@@ -187,14 +187,14 @@ const DateList = () => {
       if (modalShow) {
         try {
           const res1 = await axios.post(
-            "http://localhost:8080/access/getFiveDogsInfo"
+            "https://java.flirdog.store:8080/access/getFiveDogsInfo"
           );
           const dogsInfoData = res1.data;
           setModalDogsInfo(dogsInfoData);
 
           const userInfoPromises = dogsInfoData.map((dog) =>
             axios.post(
-              "http://localhost:8080/access/getUserInfoAsDogId",
+              "https://java.flirdog.store:8080/access/getUserInfoAsDogId",
               null,
               {
                 params: { dogId: dog.id },
@@ -206,7 +206,7 @@ const DateList = () => {
           setModalUserInfo(userInfos.map((res) => res.data));
 
           const matchingInfoPromises = userInfos.map((res, i) =>
-            axios.post("http://localhost:8080/access/getMatchingTable", null, {
+            axios.post("https://java.flirdog.store:8080/access/getMatchingTable", null, {
               params: {
                 dogName: dogsInfoData[i].name,
                 userId: res.data.id,
@@ -251,7 +251,7 @@ const DateList = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/date/getAllMatchingList?page=1&size=${itemsPerPage}`
+          `https://java.flirdog.store:8080/date/getAllMatchingList?page=1&size=${itemsPerPage}`
         );
         const initialData = response.data;
 
@@ -282,7 +282,7 @@ const DateList = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/date/getAllMatchingList?page=${
+        `https://java.flirdog.store:8080/date/getAllMatchingList?page=${
           page + 1
         }&size=${itemsPerPage}`
       );

@@ -23,7 +23,7 @@ const OrderList = ({ orderList }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .get("http://localhost:8080/admin/orderCheck", {
+          .get("https://java.flirdog.store:8080/admin/orderCheck", {
             params: {
               id: checkBtnId,
             },
@@ -61,7 +61,7 @@ const OrderList = ({ orderList }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .get("http://localhost:8080/admin/orderCancle", {
+          .get("https://java.flirdog.store:8080/admin/orderCancle", {
             params: {
               id: checkBtnId,
             },
